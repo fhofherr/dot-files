@@ -3,7 +3,8 @@
 '''
 TODO Describe your module here.
 
-.. module:       
-.. moduleauthor: Ferdinand Hofherr <ferdinand.hofherr@gmail.com>
+:file:   <FILENAME>
+:date:   <DATE>
+:author: Ferdinand Hofherr <ferdinand.hofherr@gmail.com>
 '''
 
