@@ -70,6 +70,9 @@ if has("autocmd")
 
   augroup END
 
+  " Read some templates when new files of this type are created
+  autocmd BufNewFile *.py 0r ~/.vim/templates/template.py
+
 else
 
   set autoindent		" always set autoindenting on
