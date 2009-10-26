@@ -72,6 +72,7 @@ if has("autocmd")
 
   " Read some templates when new files of this type are created
   autocmd BufNewFile *.py 0r ~/.vim/templates/template.py
+  autocmd BufNewFile *.rst 0r ~/.vim/templates/template.rst
 
 else
 
