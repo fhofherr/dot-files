@@ -7,6 +7,8 @@
 " Author     :   Stepan Koltsov <yozh@mx1.ru>
 " Revision   : $Id: 31-create-scala.vim 17312 2009-03-16 04:02:05Z stepancheg $
 "        $URL: https://lampsvn.epfl.ch/svn-repos/scala/scala-tool-support/trunk/src/vim/plugin/31-create-scala.vim $
+"
+" Modified by Ferdinand Hofherr to suit his needs.
 
 function! MakeScalaFile()
     if exists("b:template_used") && b:template_used
@@ -47,7 +49,7 @@ function! MakeScalaFile()
     "norm G
     "call append(".", "} /// end of " . class)
     
-    call append(".", "// vim: set ts=4 sw=4 et:")
+    call append(".", "// vim: set ts=2 sw=2 sts=2 et:")
     call append(".", "")
     
 endfunction
