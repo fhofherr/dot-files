@@ -11,14 +11,14 @@ set nocompatible
 set backspace=indent,eol,start
 
 if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
+  set nobackup          " do not keep a backup file, use versions instead
 else
-  set backup		" keep a backup file
+  set backup            " keep a backup file
 endif
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
+set history=50          " keep 50 lines of command line history
+set ruler               " show the cursor position all the time
+set showcmd             " display incomplete commands
+set incsearch           " do incremental searching
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
@@ -33,7 +33,6 @@ set incsearch		" do incremental searching
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
-  " Tell vim that the terminal background is dark
   set background=light
   " Choose a colorscheme
   "colorscheme default
@@ -76,7 +75,7 @@ if has("autocmd")
 
 else
 
-  set autoindent		" always set autoindenting on
+  set autoindent                " always set autoindenting on
 
 endif " has("autocmd")
 
@@ -97,6 +96,32 @@ set softtabstop=4
 "" Set width of line number bar. As my terminal is set to a width of 85
 "" characters and I want exactly room for 80 textcharacters I set it to 5.
 "set numberwidth=5
+
+" Set a nice statusline
+"set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+set statusline=%f\ %m\ %r\ Line:\ %l/%L[%p%%]\ Col:\ %c\ Buf:\ #%n\ [%b][0x%B]
+set laststatus=2
+
+" Some usefull shortcuts
+" Toggle paste mode
+nmap  ,p :set invpaste<cr>:set paste?<cr>
+
+" Turn off that stupid highlight search
+nmap  ,n :set invhls<cr>:set hls?<cr>
+
+" Set text wrapping toggles
+nmap  ,w :set invwrap<cr>:set wrap?<cr>
+
+" Set up retabbing on a source file
+nmap  ,rr :1,$retab<cr>
+
+" cd to the directory containing the file in the buffer
+nmap  ,cd :lcd %:h<cr>
+
+" Make the directory that contains the file in the current buffer.
+" This is useful when you edit a file in a directory that doesn't
+" (yet) exist
+nmap  ,md :!mkdir -p %:p:h<cr>
 
 "" Higlight column 79
 highlight column79 ctermbg=blue guibg=blue
