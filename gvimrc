@@ -17,7 +17,13 @@ set mousehide		" Hide the mouse when typing text
 " those just steal screen real estate
 set guioptions=ac
 
+" Start at a more usable size
+set columns=170
+set lines=50
 
+" Show line numers
+set number
+set numberwidth=5
 
 " Make shift-insert work like in Xterm
 map <S-Insert> <MiddleMouse>
