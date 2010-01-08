@@ -104,24 +104,24 @@ set laststatus=2
 
 " Some usefull shortcuts
 " Toggle paste mode
-nmap  ,p :set invpaste<cr>:set paste?<cr>
+nmap ,p :set invpaste<cr>:set paste?<cr>
 
 " Turn off that stupid highlight search
-nmap  ,n :set invhls<cr>:set hls?<cr>
+nmap ,n :set invhls<cr>:set hls?<cr>
 
 " Set text wrapping toggles
-nmap  ,w :set invwrap<cr>:set wrap?<cr>
+nmap ,w :set invwrap<cr>:set wrap?<cr>
 
 " Set up retabbing on a source file
-nmap  ,rr :1,$retab<cr>
+nmap ,rr :1,$retab<cr>
 
 " cd to the directory containing the file in the buffer
-nmap  ,cd :lcd %:h<cr>
+nmap ,cd :lcd %:h<cr>
 
 " Make the directory that contains the file in the current buffer.
 " This is useful when you edit a file in a directory that doesn't
 " (yet) exist
-nmap  ,md :!mkdir -p %:p:h<cr>
+nmap ,md :!mkdir -p %:p:h<cr>
 
 "" Higlight column 79
 highlight column79 ctermbg=blue guibg=blue
