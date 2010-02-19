@@ -93,6 +93,9 @@ set softtabstop=4
 "" Show line numbers
 "set number
 
+" Set the characters that listmode should highlight 
+set lcs=eol:$,tab:>-,trail:·
+
 "" Set width of line number bar. As my terminal is set to a width of 85
 "" characters and I want exactly room for 80 textcharacters I set it to 5.
 "set numberwidth=5
@@ -103,6 +106,12 @@ set statusline=%f\ %m\ %r\ Line:\ %l/%L[%p%%]\ Col:\ %c\ Buf:\ #%n\ [%b][0x%B]
 set laststatus=2
 
 " Some usefull shortcuts
+" Delete all trailing whitespace in a file
+nmap ,dtws %s/\s\+$//
+
+" Toggle list mode
+nmap ,ls :set invlist<cr>:set list?<cr>
+
 " Toggle paste mode
 nmap ,p :set invpaste<cr>:set paste?<cr>
 
