@@ -107,7 +107,7 @@ set laststatus=2
 
 " Some usefull shortcuts
 " Delete all trailing whitespace in a file
-nmap ,dtws %s/\s\+$//
+nmap ,dtws :%s/\s\+$//<cr>
 
 " Toggle list mode
 nmap ,ls :set invlist<cr>:set list?<cr>
