@@ -106,8 +106,6 @@ set statusline=%f\ %m\ %r\ Line:\ %l/%L[%p%%]\ Col:\ %c\ Buf:\ #%n\ [%b][0x%B]
 set laststatus=2
 
 " Some usefull shortcuts
-" Delete all trailing whitespace in a file
-nmap ,dtws :%s/\s\+$//<cr>
 
 " Toggle list mode
 nmap ,ls :set invlist<cr>:set list?<cr>
@@ -125,7 +123,10 @@ nmap ,w :set invwrap<cr>:set wrap?<cr>
 nmap ,rr :1,$retab<cr>
 
 " cd to the directory containing the file in the buffer
-nmap ,cd :lcd %:h<cr>
+nmap ,cd :lcd %:p:h<cr>
+
+" cd to the directory containing the file in the buffer and toggle a NERTTree
+nmap ,nt :lcd %:p:h<cr>:NERDTreeToggle<cr>
 
 " Make the directory that contains the file in the current buffer.
 " This is useful when you edit a file in a directory that doesn't
@@ -144,6 +145,9 @@ command LongLines
       \   let w:long_line_match = matchadd('LongLine', '\%>80v.\+', -1) <Bar>
       \ endif
 "match column79 /\%<80v.\%>79v/
+"
+" Delete all trailing whitespace in a file
+command Dtws :%s/\s\+$//<cr>
 
 "" Automatically close (, [, and {
 " imap ( ()<ESC>i
