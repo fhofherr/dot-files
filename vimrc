@@ -147,7 +147,7 @@ command LongLines
 "match column79 /\%<80v.\%>79v/
 "
 " Delete all trailing whitespace in a file
-command Dtws :%s/\s\+$//<cr>
+command  Dtws :%s/\s\+$//
 
 "" Automatically close (, [, and {
 " imap ( ()<ESC>i
