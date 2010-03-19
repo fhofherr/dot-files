@@ -33,7 +33,7 @@ set incsearch           " do incremental searching
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
-  set background=light
+  set background=dark
   " Choose a colorscheme
   "colorscheme default
   "colorscheme fhlord
