@@ -3,7 +3,16 @@ if exists("loaded_screenrepl")
 endif
 let loaded_screenrepl = 1
 
-python import screenrepl.vimfuncs as vf
+python << EOF
+import vim
+try:
+    import screenrepl.vimfuncs as vf
+except ImportError:
+    vim.command('let screenrepl_import_error = 1')
+EOF
+if exists("screenrepl_import_error")
+    finish
+endif
 
 function! Connect_to_Screen()
     python vf.connect_to_screen()
