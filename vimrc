@@ -34,6 +34,8 @@ set incsearch           " do incremental searching
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
   set background=dark
+  set t_Co=256
+  colorscheme colorful256
   " Choose a colorscheme
   "colorscheme default
   "colorscheme fhlord
@@ -134,7 +136,7 @@ nmap ,nt :lcd %:p:h<cr>:NERDTreeToggle<cr>
 nmap ,md :!mkdir -p %:p:h<cr>
 
 "" Higlight LongLines
-highlight LongLine ctermbg=lightblue guibg=lightblue
+highlight LongLine ctermbg=blue guibg=blue
 command LongLines
       \ :if exists('w:long_line_match') <Bar>
       \   silent! call matchdelete(w:long_line_match) <Bar>

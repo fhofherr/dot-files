@@ -1,8 +1,8 @@
 " Make external commands work through a pipe instead of a pseudo-tty
 "set noguipty
 
-colorscheme colorful256
 set background=dark
+colorscheme colorful256
 
 " set the X11 font to use
 " set guifont=-b&h-lucidatypewriter-medium-*-*-*-12-*-*-*-*-*-*-*
@@ -51,3 +51,5 @@ if version >= 500
   "endif
   
 endif
+
+highlight LongLine ctermbg=blue guibg=blue
