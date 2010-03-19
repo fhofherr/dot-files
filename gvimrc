@@ -1,6 +1,9 @@
 " Make external commands work through a pipe instead of a pseudo-tty
 "set noguipty
 
+colorscheme colorful256
+set background=dark
+
 " set the X11 font to use
 " set guifont=-b&h-lucidatypewriter-medium-*-*-*-12-*-*-*-*-*-*-*
 " set guifont=Terminus\ 12 
@@ -8,7 +11,6 @@
 set guifont=Monospace\ 10 
 
 set ch=1		" Make command line two lines high
-
 set mousehide		" Hide the mouse when typing text
 
 " The GUI (i.e. the 'g' in 'gvim') is fantastic, but let's not be
@@ -18,7 +20,7 @@ set mousehide		" Hide the mouse when typing text
 set guioptions=ac
 
 " Start at a more usable size
-set columns=170
+set columns=120
 set lines=50
 
 " Show line numers
@@ -27,7 +29,6 @@ set numberwidth=5
 
 " Make shift-insert work like in Xterm
 map <S-Insert> <MiddleMouse>
-map! <S-Insert> <MiddleMouse>
 
 " Only do this for Vim version 5.0 and later.
 if version >= 500
