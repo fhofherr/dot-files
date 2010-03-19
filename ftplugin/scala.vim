@@ -1,3 +1,3 @@
-set sw=2
-set et
-set sts=2
+set shiftwidth=2
+set expandtab
+set softtabstop=2
