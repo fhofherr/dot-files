@@ -7,6 +7,9 @@
 " Author     :   Stepan Koltsov <yozh@mx1.ru>
 " Revision   : $Id: 31-create-scala.vim 17312 2009-03-16 04:02:05Z stepancheg $
 "        $URL: https://lampsvn.epfl.ch/svn-repos/scala/scala-tool-support/trunk/src/vim/plugin/31-create-scala.vim $
+"
+" Modified by: Ferdinand Hofherr 
+"   Added support for packages that start with de.
 
 function! MakeScalaFile()
     if exists("b:template_used") && b:template_used
@@ -24,6 +27,7 @@ function! MakeScalaFile()
     let p = substitute(p, ".*\.src\.", "!", "")
     let p = substitute(p, "^!main\.scala\.", "!", "") "
     let p = substitute(p, "^!.*\.ru\.", "!ru.", "")
+    let p = substitute(p, "^!.*\.de\.", "!de.", "")
     let p = substitute(p, "^!.*\.org\.", "!org.", "")
     let p = substitute(p, "^!.*\.com\.", "!com.", "")
     
