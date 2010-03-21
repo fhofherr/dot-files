@@ -12,6 +12,10 @@
 "   * Added support for packages that start with de.
 "   * Modified the vim modeline added to the created files.
 
+if exists("g:create_scala_loaded") && !exists("g:create_scala_force_reload")
+    let g:create_scala_loaded = 1
+endif
+
 function! MakeScalaFile()
     if exists("b:template_used") && b:template_used
         return
