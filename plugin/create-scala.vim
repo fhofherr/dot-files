@@ -9,7 +9,8 @@
 "        $URL: https://lampsvn.epfl.ch/svn-repos/scala/scala-tool-support/trunk/src/vim/plugin/31-create-scala.vim $
 "
 " Modified by: Ferdinand Hofherr 
-"   Added support for packages that start with de.
+"   * Added support for packages that start with de.
+"   * Modified the vim modeline added to the created files.
 
 function! MakeScalaFile()
     if exists("b:template_used") && b:template_used
@@ -24,8 +25,8 @@ function! MakeScalaFile()
     let p = substitute(x, "/[^/]*$", "", "")
     let p = substitute(p, "/", ".", "g")
     let p = substitute(p, ".*\.src$", "@", "") " unnamed package
-    let p = substitute(p, ".*\.src\.", "!", "")
-    let p = substitute(p, "^!main\.scala\.", "!", "") "
+    let p = substitute(p, ".*\.src\.", "!", "")  
+    let p = substitute(p, "^!main\.scala\.", "!", "")
     let p = substitute(p, "^!.*\.ru\.", "!ru.", "")
     let p = substitute(p, "^!.*\.de\.", "!de.", "")
     let p = substitute(p, "^!.*\.org\.", "!org.", "")
@@ -39,19 +40,11 @@ function! MakeScalaFile()
         let p = "@"
     endif
     
-    let class = substitute(x, ".*/", "", "")
-    
     if p != "@"
         call append("0", "package " . p)
     endif
     
-    "norm G
-    "call append(".", "class " . class . " {")
-    
-    "norm G
-    "call append(".", "} /// end of " . class)
-    
-    call append(".", "// vim: set ts=2 sw=2 et sts=2:")
+    call append(".", "/* vim: set ts=2 sw=2 et sts=2: */")
     call append(".", "")
     
 endfunction
