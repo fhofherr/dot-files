@@ -11,15 +11,16 @@ if exists("syntax_on")
   syntax reset
 endif
 let g:colors_name = "fhlord"
-hi Normal		guifg=LightGrey			guibg=black
-hi Comment	term=bold		ctermfg=DarkCyan		guifg=#80a0ff
-hi Constant	term=underline	ctermfg=Magenta		guifg=Magenta
-hi Special	term=bold		ctermfg=DarkMagenta	guifg=Red
-hi Identifier term=underline	cterm=bold			ctermfg=Cyan guifg=#40ffff
-hi Statement term=bold		ctermfg=LightGreen gui=bold	guifg=#aa4444
-hi PreProc	term=underline	ctermfg=LightBlue	guifg=#ff80ff
-hi Type	term=underline		ctermfg=LightGreen	guifg=#60ff60 gui=bold
-hi Function	term=bold		ctermfg=White guifg=White
+
+hi Normal                                                                         guifg=LightGrey guibg=black
+hi Comment    term=bold       ctermfg=DarkCyan                                    guifg=#80a0ff
+hi Constant   term=underline  ctermfg=Magenta                                     guifg=Magenta
+hi Special    term=bold       ctermfg=DarkMagenta                                 guifg=Red
+hi Identifier term=underline  cterm=bold          ctermfg=Cyan                    guifg=#40ffff
+hi Statement  term=bold       ctermfg=LightGreen                  gui=bold        guifg=#aa4444
+hi PreProc    term=underline  ctermfg=LightBlue                                   guifg=#ff80ff
+hi Type       term=underline  ctermfg=LightGreen                                  guifg=#60ff60 gui=bold
+hi Function   term=bold       ctermfg=White                                       guifg=White
 
 "" This influences the color of if, for, while, etc.
 hi Repeat	term=underline	ctermfg=LightGreen		guifg=LightGreen
