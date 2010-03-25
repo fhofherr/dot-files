@@ -34,11 +34,11 @@ set incsearch           " do incremental searching
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
   set background=dark
-  set t_Co=256
-  colorscheme colorful256
   " Choose a colorscheme
   "colorscheme default
-  "colorscheme fhlord
+  colorscheme fhlord
+  "set t_Co=256         " needed for colorful256 to work in terminal
+  "colorscheme colorful256
   syntax on
   set hlsearch
 endif
@@ -105,30 +105,30 @@ set laststatus=2
 " Some usefull shortcuts
 
 " Toggle list mode
-nmap ,ls :set invlist<cr>:set list?<cr>
+nmap <Leader>ls :set invlist<cr>:set list?<cr>
 
 " Toggle paste mode
-nmap ,p :set invpaste<cr>:set paste?<cr>
+nmap <Leader>p :set invpaste<cr>:set paste?<cr>
 
 " Turn off that stupid highlight search
-nmap ,n :set invhls<cr>:set hls?<cr>
+nmap <Leader>n :set invhls<cr>:set hls?<cr>
 
 " Set text wrapping toggles
-nmap ,w :set invwrap<cr>:set wrap?<cr>
+nmap <Leader>w :set invwrap<cr>:set wrap?<cr>
 
 " Set up retabbing on a source file
-nmap ,rr :1,$retab<cr>
+nmap <Leader>rr :1,$retab<cr>
 
 " cd to the directory containing the file in the buffer
-nmap ,cd :lcd %:p:h<cr>
+nmap <Leader>cd :lcd %:p:h<cr>
 
 " cd to the directory containing the file in the buffer and toggle a NERTTree
-nmap ,nt :lcd %:p:h<cr>:NERDTreeToggle<cr>
+nmap <Leader>nt :lcd %:p:h<cr>:NERDTreeToggle<cr>
 
 " Make the directory that contains the file in the current buffer.
 " This is useful when you edit a file in a directory that doesn't
 " (yet) exist
-nmap ,md :!mkdir -p %:p:h<cr>
+nmap <Leader>md :!mkdir -p %:p:h<cr>
 
 "" Higlight LongLines
 highlight LongLine ctermbg=blue guibg=blue
