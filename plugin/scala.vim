@@ -15,7 +15,7 @@ FILE_NAME_RE = re.compile(r"/[^/]+\.scala$")
 PACKAGE_PREFIX_RE = re.compile(r"^.*/(de|com|org)")
 
 def in_subdir_of_source(bufname):
-    return SOURCE_FOLDER_RE.match(bufname) != None
+    return SOURCE_FOLDER_RE.match(bufname) is not None
 
 def remove_filename(bufname):
     return FILE_NAME_RE.sub("", bufname)
