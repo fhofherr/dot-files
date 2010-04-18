@@ -3,9 +3,9 @@
 "
 " set the X11 font to use
 " set guifont=-b&h-lucidatypewriter-medium-*-*-*-12-*-*-*-*-*-*-*
-" set guifont=Terminus\ 12 
+set guifont=Terminus\ 12 
 " set guifont=Bitstream\ Vera\ Sans\ Mono\ 10 
-set guifont=Monospace\ 10 
+" set guifont=Monospace\ 10 
 
 set ch=1		" Make command line two lines high
 set mousehide		" Hide the mouse when typing text
