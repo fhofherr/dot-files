@@ -102,6 +102,11 @@ set lcs=eol:$,tab:>-,trail:·
 set statusline=%f\ %m\ %r\ Line:\ %l/%L[%p%%]\ Col:\ %c\ Buf:\ #%n\ [%b][0x%B]
 set laststatus=2
 
+" When spliting horizontaly always split below the current window,
+" when spliting verticaly always open the window on the right.
+set splitbelow 
+set splitright
+
 " Some usefull shortcuts
 
 " Toggle list mode
