@@ -17,7 +17,7 @@ set mousehide		" Hide the mouse when typing text
 set guioptions=ac
 
 " Start at a more usable size
-set columns=120
+set columns=85
 set lines=50
 
 " Show line numers
