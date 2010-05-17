@@ -49,4 +49,7 @@ if version >= 500
   
 endif
 
+" Stop the blinking cursor
+set guicursor=a:blinkon0
+
 highlight LongLine ctermbg=blue guibg=blue
