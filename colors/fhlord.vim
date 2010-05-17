@@ -21,6 +21,7 @@ hi Statement  term=bold       ctermfg=LightGreen                  gui=bold      
 hi PreProc    term=underline  ctermfg=LightBlue                                   guifg=#ff80ff
 hi Type       term=underline  ctermfg=LightGreen                                  guifg=#60ff60 gui=bold
 hi Function   term=bold       ctermfg=White                                       guifg=White
+hi Cursor                     ctermfg=black       ctermbg=green                   guifg=black guibg=green
 
 "" This influences the color of if, for, while, etc.
 hi Repeat	term=underline	ctermfg=LightGreen		guifg=LightGreen
@@ -28,7 +29,7 @@ hi Operator				ctermfg=LightGreen			guifg=LightGreen
 hi Ignore				ctermfg=black		guifg=bg
 hi Error	term=reverse ctermbg=Red ctermfg=White guibg=Red guifg=White
 hi Todo	term=standout ctermbg=Yellow ctermfg=Black guifg=Blue guibg=Yellow
-hi LineNr term=bold ctermfg=DarkYellow  guifg=DarkYellow guibg=NONE 
+hi LineNr term=bold ctermfg=DarkYellow  guifg=DarkYellow guibg=NONE
 
 " Common groups that link to default highlighting.
 " You can specify other highlighting easily.
