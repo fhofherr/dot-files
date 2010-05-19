@@ -22,6 +22,7 @@ hi PreProc    term=underline  ctermfg=LightBlue                                 
 hi Type       term=underline  ctermfg=LightGreen                                  guifg=#60ff60 gui=bold
 hi Function   term=bold       ctermfg=White                                       guifg=White
 hi Cursor                     ctermfg=black       ctermbg=green                   guifg=black guibg=green
+hi Visual                     ctermfg=lightblue   ctermbg=black                   guifg=black guibg=lightblue
 
 "" This influences the color of if, for, while, etc.
 hi Repeat	term=underline	ctermfg=LightGreen		guifg=LightGreen
