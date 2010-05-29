@@ -3,8 +3,9 @@
 " Author     :   Ferdinand Hofherr <ferdinand.hofherr@gmail.com>
 
 if exists("g:create_scala_loaded") && !exists("g:create_scala_force_reload")
-    let g:create_scala_loaded = 1
+    finish
 endif
+let g:create_scala_loaded = 1
 
 python << EOF
 import re
