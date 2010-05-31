@@ -1,6 +1,7 @@
 " Adds a package line to newly created scala files.
 "
-" Author     :   Ferdinand Hofherr <ferdinand.hofherr@gmail.com>
+" Author:       Ferdinand Hofherr <ferdinand.hofherr@gmail.com>
+" Latst Change: 2010-05-31
 
 if exists("g:create_scala_loaded") && !exists("g:create_scala_force_reload")
     finish
@@ -38,8 +39,8 @@ def create_package_line():
 
 EOF
 
-function! MakeScalaFile()
+function! CreateScalaFile()
     python create_package_line()
 endfunction
 
-au BufNewFile *.scala call MakeScalaFile()
+au BufNewFile *.scala call CreateScalaFile()
