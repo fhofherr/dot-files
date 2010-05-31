@@ -167,8 +167,3 @@ set grepprg=grep\ -nH\ $*
 " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
 " The following changes the default filetype back to 'tex':
 let g:tex_flavor='latex'
-
-" CTAGS
-" Search for tagsfile starting in the current directory. Uses the first 
-" tags file found, or finishes if / is reached.
-set tags=./tags;
