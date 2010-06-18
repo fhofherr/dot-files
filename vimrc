@@ -116,7 +116,7 @@ nmap <Leader>ls :set invlist<cr>:set list?<cr>
 nmap <Leader>p :set invpaste<cr>:set paste?<cr>
 
 " Turn off that stupid highlight search
-nmap <Leader>n :set invhls<cr>:set hls?<cr>
+nmap <Leader>nh :set invhls<cr>:set hls?<cr>
 
 " Set text wrapping toggles
 nmap <Leader>w :set invwrap<cr>:set wrap?<cr>
@@ -128,7 +128,7 @@ nmap <Leader>rr :1,$retab<cr>
 nmap <Leader>cd :lcd %:p:h<cr>
 
 " cd to the directory containing the file in the buffer and toggle a NERTTree
-nmap <Leader>nt :lcd %:p:h<cr>:NERDTreeToggle<cr>
+nmap <Leader>nt :NERDTreeToggle<cr>
 
 " Make the directory that contains the file in the current buffer.
 " This is useful when you edit a file in a directory that doesn't
