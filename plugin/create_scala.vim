@@ -9,32 +9,26 @@ endif
 let g:create_scala_loaded = 1
 
 python << EOF
+import os
 import re
 import vim
 
-SOURCE_FOLDER_RE = re.compile(r".*/(src|source)/")
-FILE_NAME_RE = re.compile(r"/[^/]+\.scala$")
-PACKAGE_PREFIX_RE = re.compile(r"^.*/(de|com|org)")
+SOURCE_FOLDER_RE = re.compile(r".*/src/")
 
 def in_subdir_of_source(bufname):
     return SOURCE_FOLDER_RE.match(bufname) is not None
 
-def remove_filename(bufname):
-    return FILE_NAME_RE.sub("", bufname)
-
-def remove_path(bufname):
-    return PACKAGE_PREFIX_RE.sub(r"\1", bufname)
-
-def replace_delims(bufname):
-    return bufname.replace(r"/", r".")
+def is_scala_file(filename):
+    (r, e) = os.path.splitext(filename)
+    return e == ".scala"
 
 def create_package_line():
     cb = vim.current.buffer
-    p = remove_filename(cb.name)
-    if not in_subdir_of_source(p):
+    (p, f) = os.path.split(cb.name)
+    if not in_subdir_of_source(p) or not is_scala_file(f):
         return
-    p = remove_path(p)
-    p = replace_delims(p)
+    p = re.sub(r"^.*/src/(test|main)/scala/", "", p)    
+    p = p.replace(r"/", r".")
     cb[0:0] = ["package " + p]
 
 EOF
