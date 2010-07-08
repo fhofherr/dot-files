@@ -170,4 +170,5 @@ let g:tex_flavor='latex'
 
 "" Settings for snipmate
 " source support functions file
+let g:snips_author = 'Ferdinand Hofherr <ferdinand.hofherr@gmail.com>'
 source ~/.vim/snippets/support_functions.vim
