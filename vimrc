@@ -167,3 +167,7 @@ set grepprg=grep\ -nH\ $*
 " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
 " The following changes the default filetype back to 'tex':
 let g:tex_flavor='latex'
+
+"" Settings for snipmate
+" source support functions file
+source ~/.vim/snippets/support_functions.vim
