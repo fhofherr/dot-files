@@ -1,0 +1,27 @@
+import org.scalatest.{FunSuite, BeforeAndAfterEach, BeforeAndAfterAll}
+import org.scalatest.matchers.MustMatchers._
+
+class ${1:`Snippet_JavaClassNameFromFilename()`} extends FunSuite
+with BeforeAndAfterEach
+with BeforeAndAfterAll {
+
+	override def beforeAll() {
+		${2}
+	}
+
+	override def afterAll() {
+		${3}
+	}
+
+	override def beforeEach() {
+		${4}
+	}
+
+	override def afterEach() {
+		${5}
+	}
+
+	test("${6}") {
+		${7}
+	}
+}
