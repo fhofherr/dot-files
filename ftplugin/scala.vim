@@ -10,3 +10,7 @@ let b:did_ftplugin = 1
 setlocal softtabstop=2
 setlocal shiftwidth=2
 setlocal expandtab
+
+" Set continuation options for comments. See $VIMRUNTIME/ftplugin/c.vim
+setlocal formatoptions-=t formatoptions+=cqroln
+setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
