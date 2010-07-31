@@ -152,9 +152,20 @@ command LongLines
 command  Dtws :%s/\s\+$//
 
 "" Automatically close (, [, and {
-" imap ( ()<ESC>i
-" imap [ []<ESC>i
-" imap { {}<ESC>i
+"" Sets leave char to the corresponding closing bracket. If you press <C-j>
+"" the cursor moves behind the closing bracket.
+""
+"" This will lead to problems if you want to paste something into the buffer
+"" and forget to :set paste.
+""
+"" Found there:
+"" <http://vim.wikia.com/wiki/Making_Parenthesis_And_Brackets_Handling_Easier>
+""
+"" TODO Put this into some kind of plugin?
+inoremap ( ()<ESC>:let leavechar=")"<CR>i
+inoremap [ []<ESC>:let leavechar="]"<CR>i
+inoremap { {}<ESC>:let leavechar="}"<CR>i
+imap <C-j> <Esc>:exec "normal f" . leavechar<CR>a
 
 "" Settings for snipmate
 " source support functions file
