@@ -4,6 +4,8 @@
 " Last Change: 2006 Apr 13
 " Revision   : $Id: scala.vim 15234 2008-05-29 21:54:59Z stepancheg $
 "        $URL: https://lampsvn.epfl.ch/svn-repos/scala/scala-tool-support/trunk/src/vim/indent/scala.vim $
+" Modified by: Ferdinand Hofherr <ferdinand.hofherr@gmail.com>
+" Last Change: 2010-07-31
 
 if exists("b:did_indent")
   finish
@@ -39,9 +41,21 @@ function! GetScalaIndent()
   let ind = indent(lnum)
   let prevline = getline(lnum)
 
-  "Indent html literals
-  if prevline !~ '/>\s*$' && prevline =~ '^\s*<[a-zA-Z][^>]*>\s*$'
-    return ind + &shiftwidth
+  "" Indent html literals
+  "" Disabled as this causes problems.
+  "" Ferdinand
+  " if prevline !~ '/>\s*$' && prevline =~ '^\s*<[a-zA-Z][^>]*>\s*$'
+  "   return ind + &shiftwidth
+  " endif
+  
+  "" Add indent by a single space if we started a multiline comment.
+  "" Remove it, after we closed the multiline comment.
+  "" Ferdinand
+  if prevline =~ '^\s*/\*'
+      let ind = ind + 1
+  endif
+  if prevline =~ '^\s*\*/'
+      let ind = ind - 1
   endif
 
   " Add a 'shiftwidth' after lines that start a block
