@@ -1,7 +1,8 @@
 " Re-creates the tags file if it exists in the CWD.
 "
 " Author:      Ferdinand Hofherr <ferdinand.hofherr@gmail.com>
-" Last Change: 2010-05-31
+" Last Change: 2010-08-01
+" Version:     0.1.0
 
 if exists("g:retag_loaded")
     finish
