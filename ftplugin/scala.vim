@@ -14,3 +14,8 @@ setlocal expandtab
 " Set continuation options for comments. See $VIMRUNTIME/ftplugin/c.vim
 setlocal formatoptions-=t formatoptions+=cqroln
 setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
+
+inoremap <buffer> ( <ESC>:call InsertPair('(', ')')<CR>i
+inoremap <buffer> [ <ESC>:call InsertPair('[', ']')<CR>i
+inoremap <buffer> { <ESC>:call InsertPair('{', '}')<CR>i
+inoremap <buffer> " <ESC>:call InsertPair('"', '"')<CR>i
