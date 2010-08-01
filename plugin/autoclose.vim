@@ -14,7 +14,7 @@ let g:vim_autoclose_loaded = 1
 " Sets b:jumpAfterCharacter as a side effect
 function InsertPair(open, close)
     let b:jumpAfterCharacter = a:close
-    exec "normal! i" . a:open . a:close
+    exec "normal! a" . a:open . a:close
 endfunction
 
 imap <C-j> <ESC>:exec "normal f" . b:jumpAfterCharacter<CR>a
