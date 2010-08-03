@@ -12,25 +12,26 @@ if exists("syntax_on")
 endif
 let g:colors_name = "fhlord"
 
-hi Normal                                                                         guifg=LightGrey guibg=black
+hi Normal                                                                         guifg=LightGrey    guibg=black
 hi Comment    term=bold       ctermfg=DarkCyan                                    guifg=#80a0ff
 hi Constant   term=underline  ctermfg=Magenta                                     guifg=Magenta
 hi Special    term=bold       ctermfg=DarkMagenta                                 guifg=Red
 hi Identifier term=underline  cterm=bold          ctermfg=Cyan                    guifg=#40ffff
 hi Statement  term=bold       ctermfg=LightGreen                  gui=bold        guifg=#aa4444
 hi PreProc    term=underline  ctermfg=LightBlue                                   guifg=#ff80ff
-hi Type       term=underline  ctermfg=LightGreen                                  guifg=#60ff60 gui=bold
+hi Type       term=underline  ctermfg=LightGreen                  gui=bold        guifg=#60ff60 
 hi Function   term=bold       ctermfg=White                                       guifg=White
-hi Cursor                     ctermfg=black       ctermbg=green                   guifg=black guibg=green
-hi Visual                     ctermfg=lightblue   ctermbg=black                   guifg=black guibg=lightblue
+hi Cursor                     ctermfg=black       ctermbg=green                   guifg=black        guibg=green
+hi Visual                     ctermfg=lightblue   ctermbg=black                   guifg=black        guibg=lightblue
+hi MatchParen term=bold       ctermfg=red         ctermbg=black                   guifg=red          guibg=black
 
 "" This influences the color of if, for, while, etc.
-hi Repeat	term=underline	ctermfg=LightGreen		guifg=LightGreen
-hi Operator				ctermfg=LightGreen			guifg=LightGreen
-hi Ignore				ctermfg=black		guifg=bg
-hi Error	term=reverse ctermbg=Red ctermfg=White guibg=Red guifg=White
-hi Todo	term=standout ctermbg=Yellow ctermfg=Black guifg=Blue guibg=Yellow
-hi LineNr term=bold ctermfg=DarkYellow  guifg=DarkYellow guibg=NONE
+hi Repeat  	  term=underline  ctermfg=LightGreen		                          guifg=LightGreen
+hi Operator 				  ctermfg=LightGreen			                      guifg=LightGreen
+hi Ignore  				      ctermfg=black		                                  guifg=bg
+hi Error      term=reverse    ctermbg=Red         ctermfg=White                   guibg=Red          guifg=White
+hi Todo	      term=standout   ctermbg=Yellow      ctermfg=Black                   guifg=Blue         guibg=Yellow
+hi LineNr     term=bold       ctermfg=DarkYellow                                  guifg=DarkYellow   guibg=NONE
 
 " Common groups that link to default highlighting.
 " You can specify other highlighting easily.
