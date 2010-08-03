@@ -10,3 +10,4 @@ inoremap <buffer> " <ESC>:call InsertPair('"', '"')<CR>i
 inoremap <buffer> ' <ESC>:call InsertPair("'", "'")<CR>i
 
 abbreviate <buffer> sefl self
+abbreviate <buffer> slef self
