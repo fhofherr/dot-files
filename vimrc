@@ -135,19 +135,49 @@ nmap <Leader>nt :NERDTreeToggle<cr>
 " (yet) exist
 nmap <Leader>md :!mkdir -p %:p:h<cr>
 
-"" Higlight LongLines
-highlight LongLine ctermbg=blue guibg=blue
-command LongLines
-      \ :if exists('w:long_line_match') <Bar>
-      \   silent! call matchdelete(w:long_line_match) <Bar>
-      \   unlet w:long_line_match <Bar>
-      \ elseif &textwidth > 0 <Bar>
-      \   let w:long_line_match = matchadd('LongLine', '\%>'.&tw.'v.\+', -1) <Bar>
-      \ else <Bar>
-      \   let w:long_line_match = matchadd('LongLine', '\%>80v.\+', -1) <Bar>
-      \ endif
-"match column79 /\%<80v.\%>79v/
-"
+"" Higlight LongLines -------------------------------------------------------
+" Requires the highlight group LongLine
+highlight LongLine ctermbg=lightblue guibg=lightblue
+
+"" Disable highlighting of long lines.
+"" Return 1 if it was disabled, 0 if it was not necessary
+"" to disable it.
+"" If silent is > 0 then print a message.
+function DisableHighlightLongLines(silent)
+    if exists('w:long_line_match')
+        silent! call matchdelete(w:long_line_match)
+        unlet w:long_line_match
+        if !a:silent 
+            echo "Disabled highlighting of long lines"
+        endif
+        return 1
+    endif
+    return 0
+ endfunction
+
+"" Enable highlighting of long lines. 
+"" If silent is > 0 then print a message.
+function HighlightLongLines(silent)
+    call DisableHighlightLongLines(1)
+    if &textwidth > 0
+        let w:long_line_match = matchadd('LongLine', '\%>'.&tw.'v.\+', -1)
+    else
+        let w:long_line_match = matchadd('LongLine', '\%>80v.\+', -1)
+    endif
+    if !a:silent
+        echo "Enabled highlighting of long lines"
+    endif
+endfunction
+
+function ToggleHighlightLongLines(silent)
+    if !DisableHighlightLongLines(a:silent)
+        call HighlightLongLines(a:silent)
+    endif
+endfunction
+
+command LongLines call ToggleHighlightLongLines(0)
+au VimEnter,BufNewFile * call HighlightLongLines(1)
+
 " Delete all trailing whitespace in a file
 command  Dtws :%s/\s\+$//
 
