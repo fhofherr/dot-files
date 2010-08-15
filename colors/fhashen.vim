@@ -1,14 +1,15 @@
 " Vim color file
-" Maintainer:  Tuomas Kasmra <kasmra@gmail.com>
-" Last Change:  2009 Feb 10
-" Version: 0.3
+" Maintainer: Ferdinand Hofherr
+" Last Change: 2010-08-15
+"
+" Based on ashen.vim by Tuomas Kasmra <kasmra@gmail.com>
 
 set background=light
 hi clear
 if exists("syntax_on")
     syntax reset
 endif
-let g:colors_name="ashen"
+let g:colors_name="fhashen"
 
 hi Normal       guifg=#000000                   guibg=#e0e0e0
 hi Title        guifg=#000000   gui=BOLD        guibg=#ffffcc
@@ -31,4 +32,4 @@ hi Constant     guifg=#9d7d4a   gui=NONE
 hi Function     guifg=#660066   gui=NONE
 hi PreProc      guifg=#000080   gui=bold
 hi Keyword      guifg=#c03417   gui=NONE
-
+hi MatchParen   guifg=#1d2ab7   gui=bold        guibg=#ece5e5 

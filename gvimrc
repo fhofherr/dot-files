@@ -2,7 +2,7 @@
 "set noguipty
 "
 
-colorscheme zenburn
+colorscheme fhashen
 
 " set the X11 font to use
 " set guifont=-b&h-lucidatypewriter-medium-*-*-*-10-*-*-*-*-*-*-*
