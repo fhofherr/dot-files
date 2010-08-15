@@ -15,7 +15,7 @@ setlocal expandtab
 setlocal formatoptions-=t formatoptions+=cqroln
 setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
 
-inoremap <buffer> ( <ESC>:call InsertPair('(', ')')<CR>i
-inoremap <buffer> [ <ESC>:call InsertPair('[', ']')<CR>i
-inoremap <buffer> { <ESC>:call InsertPair('{', '}')<CR>i
-inoremap <buffer> " <ESC>:call InsertPair('"', '"')<CR>i
+" inoremap <buffer> ( <ESC>:call InsertPair('(', ')')<CR>i
+" inoremap <buffer> [ <ESC>:call InsertPair('[', ']')<CR>i
+" inoremap <buffer> { <ESC>:call InsertPair('{', '}')<CR>i
+" inoremap <buffer> " <ESC>:call InsertPair('"', '"')<CR>i
