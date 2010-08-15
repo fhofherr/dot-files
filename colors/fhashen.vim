@@ -32,4 +32,4 @@ hi Constant     guifg=#9d7d4a   gui=NONE
 hi Function     guifg=#660066   gui=NONE
 hi PreProc      guifg=#000080   gui=bold
 hi Keyword      guifg=#c03417   gui=NONE
-hi MatchParen   guifg=#1d2ab7   gui=bold        guibg=#ece5e5 
+hi MatchParen   guifg=#ee0000   gui=bold        guibg=#ece5e5 
