@@ -144,9 +144,9 @@ highlight LongLine ctermbg=lightblue guibg=lightblue
 "" to disable it.
 "" If silent is > 0 then print a message.
 function DisableHighlightLongLines(silent)
-    if exists('w:long_line_match')
-        silent! call matchdelete(w:long_line_match)
-        unlet w:long_line_match
+    if exists('b:long_line_match')
+        silent! call matchdelete(b:long_line_match)
+        unlet b:long_line_match
         if !a:silent 
             echo "Disabled highlighting of long lines"
         endif
@@ -160,9 +160,9 @@ function DisableHighlightLongLines(silent)
 function HighlightLongLines(silent)
     call DisableHighlightLongLines(1)
     if &textwidth > 0
-        let w:long_line_match = matchadd('LongLine', '\%>'.&tw.'v.\+', -1)
+        let b:long_line_match = matchadd('LongLine', '\%>'.&tw.'v.\+', -1)
     else
-        let w:long_line_match = matchadd('LongLine', '\%>80v.\+', -1)
+        let b:long_line_match = matchadd('LongLine', '\%>80v.\+', -1)
     endif
     if !a:silent
         echo "Enabled highlighting of long lines"
