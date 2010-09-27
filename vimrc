@@ -112,4 +112,9 @@ else
   set autoindent                " always set autoindenting on
 endif " has("autocmd")
 
-
+" ---------------------------------------------------------------------------
+"
+" Snipmate
+"
+" ---------------------------------------------------------------------------
+let g:snips_author = 'Ferdinand Hofherr <ferdinand.hofherr@gmail.com>'
