@@ -10,6 +10,7 @@ let b:did_ftplugin = 1
 setlocal softtabstop=2
 setlocal shiftwidth=2
 setlocal expandtab
+setlocal smartindent
 
 " Set continuation options for comments. See $VIMRUNTIME/ftplugin/c.vim
 setlocal formatoptions-=t formatoptions+=cqroln
