@@ -38,6 +38,14 @@ set laststatus=2
 set splitbelow 
 set splitright
 
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+if &t_Co > 2 || has("gui_running")
+  set background=dark
+  syntax on
+  set hlsearch
+endif
+
 " ---------------------------------------------------------------------------
 "
 " Shortcuts
@@ -69,15 +77,6 @@ nmap <Leader>nt :NERDTreeToggle<cr>
 " This is useful when you edit a file in a directory that doesn't
 " (yet) exist
 nmap <Leader>md :!mkdir -p %:p:h<cr>
-
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-  set background=dark
-  syntax on
-  set hlsearch
-endif
 
 " ---------------------------------------------------------------------------
 "
