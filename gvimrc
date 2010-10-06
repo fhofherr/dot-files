@@ -32,8 +32,9 @@ set guicursor=a:blinkon0
 " Higlight the 80th column.
 " Vim 7.3 has a colorcolumn command. For versions lower than 7.3
 " we have to use a different approach.
-if has("colorcolumn")
+"if has("colorcolumn")
+if version >= 703
     set colorcolumn=80
 else
-    au BufWinEnter * let w:m2=matchadd('LongLine', '\%80v.', -1)
+    au BufWinEnter * let w:m2=matchadd('ColorCoulmn', '\%80v.', -1)
 endif
