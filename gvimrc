@@ -36,5 +36,5 @@ set guicursor=a:blinkon0
 if version >= 703
     set colorcolumn=80
 else
-    au BufWinEnter * let w:m2=matchadd('ColorCoulmn', '\%80v.', -1)
+    au BufWinEnter * let w:m2=matchadd('ColorColumn', '\%80v.', -1)
 endif
