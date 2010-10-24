@@ -1,6 +1,9 @@
 import org.scalatest._
 import org.scalatest.matchers.MustMatchers
+import org.scalatest.junit.JUnitRunner
+import org.junit.runner.RunWith
 
+@RunWith(classOf[JUnitRunner])
 class ${1:TestName} extends FunSuite with MustMatchers with BeforeAndAfterAll {
 	override def beforeAll() {
 		${2}
