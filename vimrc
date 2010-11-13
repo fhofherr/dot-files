@@ -117,3 +117,11 @@ endif " has("autocmd")
 "
 " ---------------------------------------------------------------------------
 let g:snips_author = 'Ferdinand Hofherr <ferdinand.hofherr@gmail.com>'
+
+" ---------------------------------------------------------------------------
+"
+" Read .vimrc file in cwd.
+"
+" ---------------------------------------------------------------------------
+set exrc			" enable per-directory .vimrc files
+set secure			" disable unsafe commands in local .vimrc files
