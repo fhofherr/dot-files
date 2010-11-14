@@ -19,22 +19,21 @@ set guioptions=ac
 set columns=120
 set lines=50
 
-" Show line numers
-set number
-set numberwidth=5
-
 " Make shift-insert work like in Xterm
 map <S-Insert> <MiddleMouse>
 
 " Stop the blinking cursor
 set guicursor=a:blinkon0
 
-" Higlight the 80th column.
-" Vim 7.3 has a colorcolumn command. For versions lower than 7.3
-" we have to use a different approach.
-"if has("colorcolumn")
+" Width of line number column
+set numberwidth=5
 if version >= 703
     set colorcolumn=80
+    " Show relative line numers
+    set relativenumber
 else
     au BufWinEnter * let w:m2=matchadd('ColorColumn', '\%80v.', -1)
+
+    " Show line numers
+    set number
 endif
