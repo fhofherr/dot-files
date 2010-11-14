@@ -1,0 +1,14 @@
+import org.scalatest._
+import org.scalatest.matchers.MustMatchers
+
+class ${1:TestName} extends FunSuite with MustMatchers with BeforeAndAfterAll {
+	override def beforeAll() {
+		${2}
+	}
+
+	override def afterAll() {
+		${3}
+	}
+	
+	test("${4:what}") (${5:pending})
+}
