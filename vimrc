@@ -125,6 +125,7 @@ endif " has("autocmd")
 "
 " ---------------------------------------------------------------------------
 let g:snips_author = 'Ferdinand Hofherr <ferdinand.hofherr@gmail.com>'
+let g:snippets_dir = '~/.vim/snippets/'
 
 " ---------------------------------------------------------------------------
 "
