@@ -54,6 +54,9 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
+" Enhance Tab completion of vim commands.
+set wildmenu wildmode=list:longest
+
 " ---------------------------------------------------------------------------
 "
 " Shortcuts
