@@ -7,7 +7,7 @@ this is mine! ... :-)
 
 It contains mostly stuff I copied from some obscure corners of the
 Internet. It is probably of little use to you, but hosting it in github
-is of gread use to me.
+is of great use to me.
 
 Plugins
 =======
@@ -32,3 +32,13 @@ Command-T has some parts that need to be compiled. Execute::
 
     cd bundle/command-t
     rake make
+
+Installation
+============
+
+After initializing and updating the plugins it is enough to create three
+symlinks:
+
+* Link myvimcfg/vimrc to $HOME/.vimrc
+* Link myvimcfg/gvimrc to $HOME/.gvimrc
+* Link myvimcfg to $HOME/.vim
