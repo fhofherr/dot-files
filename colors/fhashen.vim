@@ -1,6 +1,6 @@
 " Vim color file
 " Maintainer: Ferdinand Hofherr
-" Last Change: 2010-08-15
+" Last Change: 2010-12-30
 "
 " Based on ashen.vim by Tuomas Kasmra <kasmra@gmail.com>
 
@@ -13,9 +13,10 @@ let g:colors_name="fhashen"
 
 hi Normal       guifg=#000000                   guibg=#e0e0e0
 hi Title        guifg=#000000   gui=BOLD        guibg=#ffffcc
+hi Subtitle     guifg=#000000   gui=BOLD        guibg=#ffffcc
 hi lCursor      guifg=NONE                      guibg=#000000
 hi LineNr       guifg=#e0e0e0                   guibg=#84986C
-hi Comment      guifg=#c03417   gui=italic
+hi Comment      guifg=#5a9657   gui=italic
 hi Identifier   guifg=#000000   gui=NONE
 hi Visual       guifg=NONE      gui=NONE        guibg=#00ccff
 hi Directory    guifg=#8b8b8b
@@ -26,11 +27,11 @@ hi Statement    guifg=#006600   gui=bold
 hi TypeDef      guifg=#dcdce0   gui=NONE
 hi Type         guifg=#4848f3   gui=bold
 hi Boolean      guifg=#669900   gui=NONE
-hi String       guifg=#eb2c2c   gui=NONE
+hi String       guifg=#822ceb   gui=NONE
 hi Number       guifg=#9d7d4a   gui=NONE
 hi Constant     guifg=#9d7d4a   gui=NONE
 hi Function     guifg=#660066   gui=NONE
 hi PreProc      guifg=#000080   gui=bold
 hi Keyword      guifg=#c03417   gui=NONE
 hi MatchParen   guifg=#ee0000   gui=bold        guibg=#ece5e5 
-hi ColorColumn                                  guibg=grey
+hi ColorColumn                                  guibg=#bebebe
