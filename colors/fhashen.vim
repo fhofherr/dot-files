@@ -24,7 +24,7 @@ hi NonText      guifg=#6f8b17
 hi Special      guifg=#32329e
 hi Operator     guifg=#01c1c7   gui=NONE
 hi Statement    guifg=#006600   gui=bold
-hi TypeDef      guifg=#dcdce0   gui=NONE
+hi TypeDef      guifg=#4848f3   gui=NONE
 hi Type         guifg=#4848f3   gui=bold
 hi Boolean      guifg=#669900   gui=NONE
 hi String       guifg=#822ceb   gui=NONE
