@@ -118,7 +118,6 @@ if has("autocmd")
    
   " Set textwidth for some file types.
   autocmd FileType mail setlocal textwidth=72
-  autocmd FileType moin setlocal textwidth=78
   autocmd FileType rst setlocal textwidth=78
   autocmd FileType tex setlocal textwidth=78
   autocmd FileType text setlocal textwidth=78
