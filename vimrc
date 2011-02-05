@@ -122,6 +122,14 @@ if has("autocmd")
   autocmd FileType tex setlocal textwidth=78
   autocmd FileType text setlocal textwidth=78
 
+  " Set shiftwidth for some file types.
+  autocmd FileType haskell setlocal shiftwidth=2
+  autocmd FileType lhaskell setlocal shiftwidth=2
+
+  " Set softtabstop for some file types.
+  autocmd FileType haskell setlocal softtabstop=2
+  autocmd FileType lhaskell setlocal softtabstop=2
+
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
   " (happens when dropping a file on gvim).
