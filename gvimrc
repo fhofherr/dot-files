@@ -1,9 +1,11 @@
-colorscheme fhashen
+" colorscheme fhashen
+colorscheme fhlord
+set background=dark
 
 " set the X11 font to use
 " set guifont=-b&h-lucidatypewriter-medium-*-*-*-10-*-*-*-*-*-*-*
-" set guifont=Terminus\ 12 
-set guifont=Bitstream\ Vera\ Sans\ Mono\ 11 
+set guifont=Terminus\ 12 
+" set guifont=Bitstream\ Vera\ Sans\ Mono\ 11 
 " set guifont=Monospace\ 11 
 
 set ch=1                " Make command line two lines high
