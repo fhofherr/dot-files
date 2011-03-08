@@ -24,6 +24,7 @@ hi Function   term=bold       ctermfg=White                                     
 hi Cursor                     ctermfg=black       ctermbg=green                   guifg=black        guibg=green
 hi Visual                     ctermfg=lightblue   ctermbg=black                   guifg=black        guibg=lightblue
 hi MatchParen term=bold       ctermfg=red         ctermbg=black                   guifg=red          guibg=black
+hi ColorColumn                                  guibg=#53391F
 
 "" This influences the color of if, for, while, etc.
 hi Repeat  	  term=underline  ctermfg=LightGreen		                          guifg=LightGreen
