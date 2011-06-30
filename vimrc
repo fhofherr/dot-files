@@ -21,6 +21,7 @@ call pathogen#helptags()
 "
 " ---------------------------------------------------------------------------
 set nocompatible
+set encoding=utf-8
 set fileencoding=utf-8
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
