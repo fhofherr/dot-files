@@ -4,7 +4,11 @@ set background=dark
 
 " set the X11 font to use
 " set guifont=-b&h-lucidatypewriter-medium-*-*-*-10-*-*-*-*-*-*-*
-set guifont=Terminus\ 12 
+if has("win32") || has("win64")
+    set guifont=consolas:h10
+else
+    set guifont=Terminus\ 12
+endif
 " set guifont=Bitstream\ Vera\ Sans\ Mono\ 11 
 " set guifont=Monospace\ 11 
 
