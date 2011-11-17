@@ -123,14 +123,6 @@ if has("autocmd")
   autocmd FileType tex setlocal textwidth=78
   autocmd FileType text setlocal textwidth=78
 
-  " Set shiftwidth for some file types.
-  autocmd FileType haskell setlocal shiftwidth=2
-  autocmd FileType lhaskell setlocal shiftwidth=2
-
-  " Set softtabstop for some file types.
-  autocmd FileType haskell setlocal softtabstop=2
-  autocmd FileType lhaskell setlocal softtabstop=2
-
   " Use smartindet for those file types
   autocmd FileType haskell setlocal smartindent
 
