@@ -7,7 +7,7 @@ set background=dark
 if has("win32") || has("win64")
     set guifont=consolas:h10
 else
-    set guifont=Terminus\ 12
+    set guifont=Terminus\ 10
 endif
 " set guifont=Bitstream\ Vera\ Sans\ Mono\ 11 
 " set guifont=Monospace\ 11 
