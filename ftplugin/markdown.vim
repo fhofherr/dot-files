@@ -8,3 +8,4 @@ endif
 let b:did_ftplugin = 1
 
 setlocal textwidth=80
+setlocal smartindent
