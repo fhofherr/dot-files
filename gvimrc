@@ -22,7 +22,7 @@ set mousehide           " Hide the mouse when typing text
 set guioptions=ac
 
 " Start at a more usable size
-set columns=120
+set columns=125
 set lines=50
 
 " Make shift-insert work like in Xterm
@@ -31,10 +31,13 @@ map <S-Insert> <MiddleMouse>
 " Stop the blinking cursor
 set guicursor=a:blinkon0
 
+" Display trailing newlines
+set list
+
 " Width of line number column
 set numberwidth=5
 if version >= 703
-    set colorcolumn=80
+    set colorcolumn=120
     " Show relative line numers
     set relativenumber
 else
