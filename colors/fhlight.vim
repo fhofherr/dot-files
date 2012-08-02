@@ -30,7 +30,7 @@ hi Operator                   ctermfg=DarkGreen                  gui=bold       
 hi Ignore                     ctermfg=black                                       guifg=bg
 hi Error      term=reverse    ctermbg=Red         ctermfg=White                   guifg=White        guibg=Red
 hi Todo       term=standout   ctermbg=DarkYellow  ctermfg=Black gui=bold          guifg=fg           guibg=NONE
-hi LineNr     term=bold       ctermfg=DarkYellow                                  guifg=DarkYellow   guibg=NONE
+hi LineNr     term=bold       ctermfg=DarkYellow                                  guifg=Yellow   guibg=#ACBFAC
 
 " Common groups that link to default highlighting.
 " You can specify other highlighting easily.
