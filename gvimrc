@@ -1,6 +1,6 @@
 " colorscheme fhashen
-colorscheme fhlord
-set background=dark
+colorscheme fhlight
+set background=light
 
 " set the X11 font to use
 " set guifont=-b&h-lucidatypewriter-medium-*-*-*-10-*-*-*-*-*-*-*
