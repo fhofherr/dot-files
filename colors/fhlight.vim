@@ -22,7 +22,8 @@ hi Function   term=bold       ctermfg=Black                                     
 hi Cursor                     ctermfg=black       ctermbg=green                   guifg=black        guibg=#43586A
 hi Visual                     ctermfg=lightblue   ctermbg=black                   guifg=black        guibg=lightblue
 hi MatchParen term=bold       ctermfg=red                        gui=bold         guifg=red          guibg=#F4F4FF
-hi ColorColumn                                                                    guifg=black        guibg=#F1F1F1
+hi ColorColumn                                                                    guifg=black        guibg=#ACBFAC
+hi LineNr     term=bold       ctermfg=DarkYellow                                  guifg=Yellow       guibg=#ACBFAC
 
 "" This influences the color of if, for, while, etc.
 hi Repeat     term=underline  ctermfg=DarkGreen                  gui=bold         guifg=Black
@@ -30,7 +31,6 @@ hi Operator                   ctermfg=DarkGreen                  gui=bold       
 hi Ignore                     ctermfg=black                                       guifg=bg
 hi Error      term=reverse    ctermbg=Red         ctermfg=White                   guifg=White        guibg=Red
 hi Todo       term=standout   ctermbg=DarkYellow  ctermfg=Black gui=bold          guifg=fg           guibg=NONE
-hi LineNr     term=bold       ctermfg=DarkYellow                                  guifg=Yellow   guibg=#ACBFAC
 
 " Common groups that link to default highlighting.
 " You can specify other highlighting easily.
