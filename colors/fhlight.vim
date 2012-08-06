@@ -11,7 +11,7 @@ endif
 let g:colors_name = "fhlight"
 
 hi Normal                                                                         guifg=black       guibg=#FFFFF0
-hi Comment    term=bold       ctermfg=LightGrey                                   guifg=#949494
+hi Comment    term=bold       ctermfg=LightGrey                                   guifg=#74AC9F
 hi Constant   term=underline  ctermfg=Blue                                        guifg=Blue
 hi Special    term=bold       ctermfg=DarkMagenta                                 guifg=Red
 hi Identifier term=underline  cterm=bold          ctermfg=Cyan   gui=bold         guifg=#255723
