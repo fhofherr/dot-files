@@ -146,6 +146,13 @@ endif " has("autocmd")
 
 " ---------------------------------------------------------------------------
 "
+" Ack
+"
+" ---------------------------------------------------------------------------
+nmap \a <Esc>:Ack!
+
+" ---------------------------------------------------------------------------
+"
 " Snipmate
 "
 " ---------------------------------------------------------------------------
@@ -154,10 +161,21 @@ let g:snippets_dir = '~/.vim/snippets/'
 
 " ---------------------------------------------------------------------------
 "
-" Vimwiki
+" Syntastic
 "
 " ---------------------------------------------------------------------------
-let g:vimwiki_ext2syntax = {'.wiki': 'default' }
+" Use flake8 and pylint as python checkers. Requires both executables to be
+" on the path. Installing them in a virtualenv works.
+let g:syntastic_python_checkers = ['flake8', 'pylint']
+
+" ---------------------------------------------------------------------------
+"
+" TaskList
+"
+" ---------------------------------------------------------------------------
+" Map TaskList to \td instead of \t (which is occupied by command-t already)
+map <leader>td <Plug>TaskList
+
 " ---------------------------------------------------------------------------
 "
 " Read .vimrc file in cwd.

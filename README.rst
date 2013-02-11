@@ -17,10 +17,12 @@ located in the *bundles* directory, and are git submodules. To
 initialize the submodules after cloning this repository execute::
 
   git submodule init
+  git submodule foreach git submodule init
 
 After that, or to update all plugins execute::
 
   git submodule update
+  git submodule foreach git submodule update
 
 Plugin specific instructions
 ----------------------------
@@ -32,6 +34,19 @@ Command-T has some parts that need to be compiled. Execute::
 
     cd bundle/command-t
     rake make
+
+Note that this needs the `ruby-dev` installed! Under Debian/Ubuntu execute::
+
+    sudo aptitude install ruby-dev
+
+Syntastic
+~~~~~~~~~
+
+Syntastic requires a few addtional executables to work. Python syntax checking
+for example requires at least one of `flake8`, `pyflakes`, `pylint` or
+`python` to be on the path. If nothing is found on the path no syntax checking
+will take place. You can install the executables in a virtual environment. See
+the syntastic documentation for further information.
 
 Installation
 ============
