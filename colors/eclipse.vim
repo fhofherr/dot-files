@@ -58,6 +58,7 @@ highlight NonText    gui=none guifg=#707070 guibg=#e7e7e7
 highlight SpecialKey gui=none guifg=#c0c0c0 guibg=bg      cterm=none       ctermfg=4
 highlight Title      gui=bold guifg=#0033cc guibg=bg
 highlight Visual     gui=none guifg=#804020 guibg=#ffc0a0 ctermfg=DarkCyan
+highlight ColorColumn                                                      guifg=black        guibg=#EEEEEE
 
 " Syntax group
 highlight Comment    gui=none guifg=#236e25 guibg=bg      ctermfg=2

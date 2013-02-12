@@ -1,5 +1,5 @@
 " colorscheme fhashen
-colorscheme fhlight
+colorscheme eclipse
 set background=light
 
 " set the X11 font to use
