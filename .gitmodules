@@ -43,3 +43,12 @@
 [submodule "bundle/gundo"]
 	path = bundle/gundo
 	url = https://github.com/sjl/gundo.vim.git
+[submodule "bundle/vim-foreplay"]
+	path = bundle/vim-foreplay
+	url = https://github.com/tpope/vim-foreplay.git
+[submodule "bundle/vim-classpath"]
+	path = bundle/vim-classpath
+	url = https://github.com/tpope/vim-classpath.git
+[submodule "bundle/vim-clojure-static"]
+	path = bundle/vim-clojure-static
+	url = https://github.com/guns/vim-clojure-static.git
