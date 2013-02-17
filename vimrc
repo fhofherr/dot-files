@@ -177,7 +177,7 @@ let g:snippets_dir = '~/.vim/snippets/'
 " ---------------------------------------------------------------------------
 " Use flake8 and pylint as python checkers. Requires both executables to be
 " on the path. Installing them in a virtualenv works.
-let g:syntastic_python_checkers = ['flake8', 'pylint']
+let g:syntastic_python_checkers = ['flake8']
 
 " ---------------------------------------------------------------------------
 "
