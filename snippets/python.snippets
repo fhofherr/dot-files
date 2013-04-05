@@ -3,12 +3,15 @@ snippet doc
 	'''
 	${1:.. todo:: Add documentation}
 	'''
-
 # Set the source file's coding
 snippet coding
 	# coding=${1:utf-8}
-
 # Create a logger instance
 snippet logger
 	import logging
 	_log = logging.getLogger(__name__)
+snippet unittest
+	from unittest import TestCase
+snippet testcase
+	class Test${1:TestName}(TestCase):
+		${2:pass}
