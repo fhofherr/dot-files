@@ -43,9 +43,6 @@
 [submodule "bundle/gundo"]
 	path = bundle/gundo
 	url = https://github.com/sjl/gundo.vim.git
-[submodule "bundle/vim-foreplay"]
-	path = bundle/vim-foreplay
-	url = https://github.com/tpope/vim-foreplay.git
 [submodule "bundle/vim-classpath"]
 	path = bundle/vim-classpath
 	url = https://github.com/tpope/vim-classpath.git
@@ -58,3 +55,6 @@
 [submodule "bundle/jedi-vim"]
 	path = bundle/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim.git
+[submodule "bundle/vim-fireplace"]
+	path = bundle/vim-fireplace
+	url = https://github.com/tpope/vim-fireplace.git
