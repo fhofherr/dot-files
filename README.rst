@@ -16,13 +16,11 @@ I'm using *pathogen.vim* to manage the plugins I use. They are all
 located in the *bundles* directory, and are git submodules. To
 initialize the submodules after cloning this repository execute::
 
-  git submodule init
-  git submodule foreach git submodule init
+  git submodule update --init --recursive
 
-After that, or to update all plugins execute::
+To update all plugins execute::
 
-  git submodule update
-  git submodule foreach git submodule update
+  git submodule update --recursive
 
 Plugin specific instructions
 ----------------------------
