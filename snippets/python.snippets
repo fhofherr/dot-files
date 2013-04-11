@@ -15,3 +15,11 @@ snippet unittest
 snippet testcase
 	class Test${1:TestName}(TestCase):
 		${2:pass}
+# define a function
+snippet defn
+	def ${1:funcname}(${2:args}):
+		${3:body}
+# define a method
+snippet defm
+	def ${1:methname}(self, ${2:args}):
+		${3:body}
