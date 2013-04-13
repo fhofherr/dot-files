@@ -1,16 +1,14 @@
-" colorscheme fhashen
-colorscheme eclipse
-set background=light
+set background=dark
+colorscheme solarized
 
 " set the X11 font to use
 " set guifont=-b&h-lucidatypewriter-medium-*-*-*-10-*-*-*-*-*-*-*
 if has("win32") || has("win64")
     set guifont=consolas:h10
 else
-    set guifont=Terminus\ 10
+    set guifont=DejaVu\ Sans\ Mono\ 9
+    " set guifont=Terminus\ 10
 endif
-" set guifont=Bitstream\ Vera\ Sans\ Mono\ 11 
-" set guifont=Monospace\ 11 
 
 set ch=1                " Make command line two lines high
 set mousehide           " Hide the mouse when typing text
