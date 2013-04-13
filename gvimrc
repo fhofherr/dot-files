@@ -35,7 +35,7 @@ set list
 " Width of line number column
 set numberwidth=5
 if version >= 703
-    set colorcolumn=120
+    set colorcolumn=80
     " Show relative line numers
     set relativenumber
 else
