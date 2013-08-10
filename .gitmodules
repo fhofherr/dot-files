@@ -79,6 +79,3 @@
 [submodule "bundle/mustache-vim"]
 	path = bundle/mustache-vim
 	url = https://github.com/juvenn/mustache.vim.git
-[submodule "bundle/paredit-vim"]
-	path = bundle/paredit-vim
-	url = https://github.com/vim-scripts/paredit.vim.git
