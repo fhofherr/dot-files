@@ -76,3 +76,6 @@
 [submodule "bundle/mustache-vim"]
 	path = bundle/mustache-vim
 	url = https://github.com/juvenn/mustache.vim.git
+[submodule "bundle/vim-ctrlp"]
+	path = bundle/vim-ctrlp
+	url = https://github.com/kien/ctrlp.vim
