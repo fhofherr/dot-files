@@ -1,4 +1,4 @@
-set background=light
+set background=dark
 colorscheme solarized
 
 " set the X11 font to use
