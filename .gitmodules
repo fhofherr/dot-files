@@ -1,87 +1,89 @@
 [submodule "bundle/nerdtree"]
-	path = bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
+        path = bundle/nerdtree
+        url = https://github.com/scrooloose/nerdtree.git
 [submodule "bundle/snipmate"]
-	path = bundle/snipmate
-	url = https://github.com/garbas/vim-snipmate.git
+        path = bundle/snipmate
+        url = https://github.com/garbas/vim-snipmate.git
 [submodule "bundle/tlib"]
-	path = bundle/tlib
-	url = https://github.com/tomtom/tlib_vim.git
+        path = bundle/tlib
+        url = https://github.com/tomtom/tlib_vim.git
 [submodule "bundle/vim-addon-mw-utils"]
-	path = bundle/vim-addon-mw-utils
-	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
+        path = bundle/vim-addon-mw-utils
+        url = https://github.com/MarcWeber/vim-addon-mw-utils.git
 [submodule "bundle/vim-cucumber"]
-	path = bundle/vim-cucumber
-	url = https://github.com/tpope/vim-cucumber.git
+        path = bundle/vim-cucumber
+        url = https://github.com/tpope/vim-cucumber.git
 [submodule "bundle/fugitive"]
-	path = bundle/fugitive
-	url = https://github.com/tpope/vim-fugitive.git
+        path = bundle/fugitive
+        url = https://github.com/tpope/vim-fugitive.git
 [submodule "bundle/vim-less"]
-	path = bundle/vim-less
-	url = https://github.com/groenewege/vim-less.git
+        path = bundle/vim-less
+        url = https://github.com/groenewege/vim-less.git
 [submodule "bundle/surround"]
-	path = bundle/surround
-	url = https://github.com/tpope/vim-surround.git
+        path = bundle/surround
+        url = https://github.com/tpope/vim-surround.git
 [submodule "bundle/git"]
-	path = bundle/git
-	url = https://github.com/tpope/vim-git.git
+        path = bundle/git
+        url = https://github.com/tpope/vim-git.git
 [submodule "bundle/ack"]
-	path = bundle/ack
-	url = https://github.com/mileszs/ack.vim.git
+        path = bundle/ack
+        url = https://github.com/mileszs/ack.vim.git
 [submodule "bundle/pydoc"]
-	path = bundle/pydoc
-	url = https://github.com/fs111/pydoc.vim.git
+        path = bundle/pydoc
+        url = https://github.com/fs111/pydoc.vim.git
 [submodule "bundle/syntastic"]
-	path = bundle/syntastic
-	url = https://github.com/scrooloose/syntastic.git
+        path = bundle/syntastic
+        url = https://github.com/scrooloose/syntastic.git
 [submodule "bundle/tasklist"]
-	path = bundle/tasklist
-	url = https://github.com/vim-scripts/TaskList.vim.git
+        path = bundle/tasklist
+        url = https://github.com/vim-scripts/TaskList.vim.git
 [submodule "bundle/gundo"]
-	path = bundle/gundo
-	url = https://github.com/sjl/gundo.vim.git
+        path = bundle/gundo
+        url = https://github.com/sjl/gundo.vim.git
 [submodule "bundle/vim-classpath"]
-	path = bundle/vim-classpath
-	url = https://github.com/tpope/vim-classpath.git
+        path = bundle/vim-classpath
+        url = https://github.com/tpope/vim-classpath.git
 [submodule "bundle/vim-clojure-static"]
-	path = bundle/vim-clojure-static
-	url = https://github.com/guns/vim-clojure-static.git
+        path = bundle/vim-clojure-static
+        url = https://github.com/guns/vim-clojure-static.git
+        ignore = dirty
 [submodule "bundle/vim-ragtag"]
-	path = bundle/vim-ragtag
-	url = https://github.com/tpope/vim-ragtag.git
+        path = bundle/vim-ragtag
+        url = https://github.com/tpope/vim-ragtag.git
 [submodule "bundle/jedi-vim"]
-	path = bundle/jedi-vim
-	url = https://github.com/davidhalter/jedi-vim.git
+        path = bundle/jedi-vim
+        url = https://github.com/davidhalter/jedi-vim.git
 [submodule "bundle/vim-fireplace"]
-	path = bundle/vim-fireplace
-	url = https://github.com/tpope/vim-fireplace.git
+        path = bundle/vim-fireplace
+        url = https://github.com/tpope/vim-fireplace.git
 [submodule "bundle/vim-colors-solarized"]
-	path = bundle/vim-colors-solarized
-	url = https://github.com/altercation/vim-colors-solarized.git
+        path = bundle/vim-colors-solarized
+        url = https://github.com/altercation/vim-colors-solarized.git
 [submodule "bundle/vim-jellybeans"]
-	path = bundle/vim-jellybeans
-	url = https://github.com/nanotech/jellybeans.vim.git
+        path = bundle/vim-jellybeans
+        url = https://github.com/nanotech/jellybeans.vim.git
 [submodule "bundle/vim-vividchalk"]
-	path = bundle/vim-vividchalk
-	url = https://github.com/tpope/vim-vividchalk.git
+        path = bundle/vim-vividchalk
+        url = https://github.com/tpope/vim-vividchalk.git
 [submodule "bundle/vim-commentary"]
-	path = bundle/vim-commentary
-	url = https://github.com/tpope/vim-commentary.git
+        path = bundle/vim-commentary
+        url = https://github.com/tpope/vim-commentary.git
 [submodule "bundle/vim-visual-star-search"]
-	path = bundle/vim-visual-star-search
-	url = https://github.com/nelstrom/vim-visual-star-search.git
+        path = bundle/vim-visual-star-search
+        url = https://github.com/nelstrom/vim-visual-star-search.git
 [submodule "bundle/vim-markdown"]
-	path = bundle/vim-markdown
-	url = https://github.com/tpope/vim-markdown.git
+        path = bundle/vim-markdown
+        url = https://github.com/tpope/vim-markdown.git
 [submodule "bundle/mustache-vim"]
-	path = bundle/mustache-vim
-	url = https://github.com/juvenn/mustache.vim.git
+        path = bundle/mustache-vim
+        url = https://github.com/juvenn/mustache.vim.git
 [submodule "bundle/vim-ctrlp"]
-	path = bundle/vim-ctrlp
-	url = https://github.com/kien/ctrlp.vim
+        path = bundle/vim-ctrlp
+        url = https://github.com/kien/ctrlp.vim
 [submodule "bundle/vim-paredit"]
-	path = bundle/vim-paredit
-	url = https://github.com/vim-scripts/paredit.vim
+        path = bundle/vim-paredit
+        url = https://github.com/vim-scripts/paredit.vim
+        ignore = dirty
 [submodule "bundle/rainbow-parentheses"]
-	path = bundle/rainbow-parentheses
-	url = https://github.com/kien/rainbow_parentheses.vim
+        path = bundle/rainbow-parentheses
+        url = https://github.com/kien/rainbow_parentheses.vim
