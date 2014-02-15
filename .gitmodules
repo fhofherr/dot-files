@@ -79,3 +79,6 @@
 [submodule "bundle/vim-ctrlp"]
 	path = bundle/vim-ctrlp
 	url = https://github.com/kien/ctrlp.vim
+[submodule "bundle/vim-paredit"]
+	path = bundle/vim-paredit
+	url = https://github.com/vim-scripts/paredit.vim
