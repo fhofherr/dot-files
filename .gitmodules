@@ -80,10 +80,10 @@
 [submodule "bundle/vim-ctrlp"]
         path = bundle/vim-ctrlp
         url = https://github.com/kien/ctrlp.vim
-[submodule "bundle/vim-paredit"]
-        path = bundle/vim-paredit
-        url = https://github.com/vim-scripts/paredit.vim
-        ignore = dirty
 [submodule "bundle/rainbow-parentheses"]
         path = bundle/rainbow-parentheses
         url = https://github.com/kien/rainbow_parentheses.vim
+[submodule "bundle/slimv"]
+	path = bundle/slimv
+	url = https://github.com/kovisoft/slimv
+        ignore = dirty
