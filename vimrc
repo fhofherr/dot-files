@@ -111,6 +111,11 @@ nmap <Leader>nt :NERDTreeToggle<cr>
 " (yet) exist
 nmap <Leader>md :!mkdir -p %:p:h<cr>
 
+" Toggle spell checking on and off
+nmap <silent> <leader>s :set spell!<CR>
+set spelllang=en_us
+
+
 " Identify active highlight group.
 " Source: http://vim.wikia.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
@@ -221,8 +226,8 @@ map <leader>td <Plug>TaskList
 "
 " ---------------------------------------------------------------------------
 
-let g:slimv_leader='\'
-let g:paredit_leader='\'
+let g:slimv_leader=','
+let g:paredit_leader=','
 
 " ---------------------------------------------------------------------------
 "
