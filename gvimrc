@@ -1,5 +1,5 @@
 set background=dark
-colorscheme solarized
+colorscheme jellybeans
 
 " set the X11 font to use
 " set guifont=-b&h-lucidatypewriter-medium-*-*-*-10-*-*-*-*-*-*-*
