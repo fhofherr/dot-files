@@ -32,9 +32,6 @@
         path = bundle/vim-clojure-static
         url = https://github.com/guns/vim-clojure-static.git
         ignore = dirty
-[submodule "bundle/vim-ragtag"]
-        path = bundle/vim-ragtag
-        url = https://github.com/tpope/vim-ragtag.git
 [submodule "bundle/vim-fireplace"]
         path = bundle/vim-fireplace
         url = https://github.com/tpope/vim-fireplace.git
