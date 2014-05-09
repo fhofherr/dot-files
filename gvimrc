@@ -1,12 +1,20 @@
 set background=dark
 colorscheme jellybeans
 
-" set the X11 font to use
-" set guifont=-b&h-lucidatypewriter-medium-*-*-*-10-*-*-*-*-*-*-*
+" set the gui font to use
+"
+" The following helps to select a new font:
+"
+"   set guifont=*   " Brings up a selection dialog
+"   set guifont?    " Displays the selected font's name
+"
+" Then add the displayed name below. Note that blanks have to be escaped using
+" \.
 if has("win32") || has("win64")
     set guifont=consolas:h10
 else
-    set guifont=DejaVu\ Sans\ Mono\ 9
+    set guifont=DejaVu\ Sans\ Mono\ 10
+    " set guifont=Source\ Code\ Pro\ Light\ 11
     " set guifont=Terminus\ 10
 endif
 
