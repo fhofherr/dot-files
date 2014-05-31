@@ -12,6 +12,10 @@ endif
 " Pathogen configuration. Must be executed before filetype detection.
 "
 " ---------------------------------------------------------------------------
+
+" Add plugins you want to temporarily disable to this list
+let g:pathogen_disabled=[]
+
 execute pathogen#infect()
 execute pathogen#helptags()
 
@@ -175,42 +179,11 @@ nmap \a <Esc>:Ack!
 
 " ---------------------------------------------------------------------------
 "
-" Gundo
-"
-" ---------------------------------------------------------------------------
-nnoremap <F5> :GundoToggle<CR>
-
-" ---------------------------------------------------------------------------
-"
-" Jedi-Vim
-"
-" ---------------------------------------------------------------------------
-let g:jedi#popup_on_dot = 0
-
-" ---------------------------------------------------------------------------
-"
-" RagTag
-"
-" ---------------------------------------------------------------------------
-let g:ragtag_global_maps = 1
-
-" ---------------------------------------------------------------------------
-"
 " Snipmate
 "
 " ---------------------------------------------------------------------------
 let g:snips_author = 'Ferdinand Hofherr <ferdinand.hofherr@gmail.com>'
 let g:snippets_dir = '~/.vim/snippets/'
-
-" ---------------------------------------------------------------------------
-"
-" Syntastic
-"
-" ---------------------------------------------------------------------------
-" Use flake8 and pylint as python checkers. Requires both executables to be
-" on the path. Installing them in a virtualenv works.
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_html_checkers = ['tidy']
 
 " ---------------------------------------------------------------------------
 "
