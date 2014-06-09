@@ -50,9 +50,6 @@
 [submodule "bundle/vim-markdown"]
         path = bundle/vim-markdown
         url = https://github.com/tpope/vim-markdown.git
-[submodule "bundle/mustache-vim"]
-        path = bundle/mustache-vim
-        url = https://github.com/juvenn/mustache.vim.git
 [submodule "bundle/vim-ctrlp"]
         path = bundle/vim-ctrlp
         url = https://github.com/kien/ctrlp.vim
@@ -62,3 +59,6 @@
 [submodule "bundle/paredit"]
 	path = bundle/paredit
 	url = https://github.com/vim-scripts/paredit.vim
+[submodule "bundle/vim-mustache-handlebars"]
+	path = bundle/vim-mustache-handlebars
+	url = https://github.com/mustache/vim-mustache-handlebars
