@@ -25,6 +25,9 @@
 [submodule "bundle/ack"]
         path = bundle/ack
         url = https://github.com/mileszs/ack.vim.git
+[submodule "bundle/syntastic"]
+        path = bundle/syntastic
+        url = https://github.com/scrooloose/syntastic.git
 [submodule "bundle/vim-classpath"]
         path = bundle/vim-classpath
         url = https://github.com/tpope/vim-classpath.git
