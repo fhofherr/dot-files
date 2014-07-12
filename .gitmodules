@@ -68,3 +68,6 @@
 [submodule "bundle/vim-mustache-handlebars"]
 	path = bundle/vim-mustache-handlebars
 	url = https://github.com/mustache/vim-mustache-handlebars
+[submodule "bundle/closetag-vim"]
+	path = bundle/closetag-vim
+	url = http://github.com/vim-scripts/closetag.vim
