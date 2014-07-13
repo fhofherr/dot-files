@@ -6,25 +6,52 @@ if has('win32') || has ('win64')
 else
     let $VIMHOME = $HOME."/.vim"
 endif
-
 " ---------------------------------------------------------------------------
 "
-" Pathogen configuration. Must be executed before filetype detection.
+" Vundle
 "
 " ---------------------------------------------------------------------------
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-" Add plugins you want to temporarily disable to this list
-let g:pathogen_disabled=[]
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
 
-execute pathogen#infect()
-execute pathogen#helptags()
+Plugin 'mileszs/ack.vim'
+Plugin 'tpope/vim-git'
+Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/nerdtree'
+Plugin 'vim-scripts/paredit.vim'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/syntastic'
+Plugin 'tomtom/tlib_vim'
+Plugin 'sirver/ultisnips'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tpope/vim-classpath'
+Plugin 'guns/vim-clojure-static'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-cucumber'
+Plugin 'tpope/vim-fireplace'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'groenewege/vim-less'
+Plugin 'tpope/vim-markdown'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'nelstrom/vim-visual-star-search'
+Plugin 'tpope/vim-vividchalk'
 
-" ---------------------------------------------------------------------------
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+"  ---------------------------------------------------------------------------
 "
 " General settings
 "
 " ---------------------------------------------------------------------------
-set nocompatible
 set encoding=utf-8
 set fileencoding=utf-8
 " allow backspacing over everything in insert mode

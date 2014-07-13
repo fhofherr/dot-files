@@ -4,3 +4,8 @@
 .netrwhist
 spell
 tags
+
+# Ignore all vim plugins as they are managed by vundle.
+# Vundle is an exception, of course :-)
+bundle/
+!bundle/Vundle.vim
