@@ -157,6 +157,8 @@ if has("autocmd")
   autocmd FileType tex setlocal textwidth=78
   autocmd FileType text setlocal textwidth=78
 
+  autocmd FileType html setlocal shiftwidth=2
+
   " Use smartindet for those file types
   autocmd FileType haskell setlocal smartindent
 
@@ -210,7 +212,7 @@ augroup END
 
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
-let g:html_indent_inctags = "html,body,head,tbody"
+let g:html_indent_inctags = "html,body,head,tbody,main,section"
 
 " ---------------------------------------------------------------------------
 "
