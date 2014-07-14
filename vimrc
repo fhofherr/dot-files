@@ -168,6 +168,12 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 
+" Disable anoying insert mode commands
+imap <c-a> <Nop>
+imap <c-c> <Nop>
+imap <c-h> <Nop>
+imap <c-u> <Nop>
+imap <c-w> <Nop>
 " ---------------------------------------------------------------------------
 "
 " Autocommands
