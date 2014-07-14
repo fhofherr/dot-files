@@ -13,8 +13,15 @@ endif
 " ---------------------------------------------------------------------------
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+
+if has('win32') || has ('win64')
+    set rtp+=~/vimfiles/bundle/Vundle.vim/
+    call vundle#begin('~/vimfiles/bundle')
+else
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
+endif
+
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
