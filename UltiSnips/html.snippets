@@ -126,6 +126,25 @@ snippet section
 </section>
 endsnippet
 
+snippet form
+<form id="$1" method="${2:post}">
+	$0
+</form>
+endsnippet
+
+snippet input
+<label for="$1">$2</label>
+<input id="$1"
+       name="$3"
+       type="$4"
+       placeholder="$2"
+       ${5:required}>
+endsnippet
+
+snippet submit
+<input type="submit" value="$1">
+endsnippet
+
 snippet viewport
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	$0
