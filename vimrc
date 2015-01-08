@@ -45,10 +45,12 @@ Plugin 'tpope/vim-cucumber'
 Plugin 'tpope/vim-fireplace'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'groenewege/vim-less'
-Plugin 'tpope/vim-markdown'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'nelstrom/vim-visual-star-search'
 Plugin 'tpope/vim-vividchalk'
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'vim-pandoc/vim-pandoc-after'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -263,7 +265,17 @@ let g:html_indent_inctags = "html,body,head,tbody,main,section"
 " ---------------------------------------------------------------------------
 
 " Use W3 online validation service. Requires curl
-let g:syntastic_html_checkers = ['w3']
+let g:syntastic_html_checkers = ['']
+
+" ---------------------------------------------------------------------------
+"
+" Vim Pandoc
+"
+" ---------------------------------------------------------------------------
+
+" Enable the following vim-pandoc-after plugins
+let g:pandoc#after#modules#enabled = ["ultisnips"]
+
 
 
 " ---------------------------------------------------------------------------
