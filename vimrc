@@ -276,7 +276,13 @@ let g:syntastic_html_checkers = ['']
 " Enable the following vim-pandoc-after plugins
 let g:pandoc#after#modules#enabled = ["ultisnips"]
 
+" ---------------------------------------------------------------------------
+"
+" Delimitmate
+"
+" ---------------------------------------------------------------------------
 
+au FileType sql let b:delimitMate_expand_cr = 1
 
 " ---------------------------------------------------------------------------
 "
