@@ -283,6 +283,8 @@ let g:pandoc#after#modules#enabled = ["ultisnips"]
 " ---------------------------------------------------------------------------
 
 au FileType sql let b:delimitMate_expand_cr = 1
+au FileType json let b:delimitMate_expand_cr = 1
+au FileType javascript let b:delimitMate_expand_cr = 1
 
 " ---------------------------------------------------------------------------
 "
