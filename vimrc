@@ -48,9 +48,6 @@ Plugin 'groenewege/vim-less'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'nelstrom/vim-visual-star-search'
 Plugin 'tpope/vim-vividchalk'
-Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
-Plugin 'vim-pandoc/vim-pandoc-after'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
