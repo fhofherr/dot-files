@@ -21,3 +21,15 @@ endsnippet
 snippet strict
 "use strict";
 endsnippet
+
+snippet ctor "Create a Javascript constructor function" b
+var $1 = function($2) {
+    if (! (this instanceof $1)) {
+	return new $1($2);
+    }
+
+    $0
+
+    return this;
+};
+endsnippet
