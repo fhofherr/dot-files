@@ -242,8 +242,6 @@ augroup END
 "
 " ---------------------------------------------------------------------------
 let g:UltiSnipsEditSplit="horizontal"
-let g:UltiSnipsJumpForwardTrigger="<c-d>"
-let g:UltiSnipsJumpBackwardTrigger="<c-u>"
 
 " ---------------------------------------------------------------------------
 "
