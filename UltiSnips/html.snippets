@@ -149,3 +149,9 @@ snippet viewport
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	$0
 endsnippet
+
+snippet t "A generic tag snippet" mb
+<$1>
+	$0
+</${1/(\w+).*/$1/}>
+endsnippet
