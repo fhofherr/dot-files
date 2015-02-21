@@ -22,38 +22,36 @@ snippet strict
 "use strict";
 endsnippet
 
-snippet ctor "Create a Javascript constructor function" b
+snippet ctor "Create a Javascript constructor function" mb
 var $1 = function($2) {
-    if (! (this instanceof $1)) {
-	return new $1($2);
-    }
+	if (! (this instanceof $1)) {
+		return new $1($2);
+	}
 
-    $0
+	$0
 
-    return this;
+	return this;
 };
 endsnippet
 
-snippet describe "Create a Mocha/Jasmine describe." b
+snippet describe "Create a Mocha/Jasmine describe." mb
 describe("$1", function() {
 
-    $0
+	$0
 
 });
 endsnippet
 
-snippet beforeEach "Create a Mocha/Jasmine before each." b
+snippet beforeEach "Create a Mocha/Jasmine before each." mb
 beforeEach(function() {
 
-    $0
+	$0
 
 });
 endsnippet
 
-snippet it "Create a Mocha/Jasmine it" b
+snippet it "Create a Mocha/Jasmine it" mb
 it("$1", function() {
-
-    $0
-
+	$0
 });
 endsnippet
