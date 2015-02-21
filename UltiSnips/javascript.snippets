@@ -24,6 +24,8 @@ endsnippet
 
 snippet ctor "Create a Javascript constructor function" mb
 var $1 = function($2) {
+	"use strict";
+
 	if (!(this instanceof $1)) {
 		return new $1($2);
 	}
