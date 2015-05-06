@@ -12,6 +12,8 @@ colorscheme solarized
 " \.
 if has("win32") || has("win64")
     set guifont=consolas:h10
+elseif has("gui_macvim")
+    set guifont=Monaco:h12
 else
     set guifont=DejaVu\ Sans\ Mono\ 10
     " set guifont=Source\ Code\ Pro\ Light\ 11
