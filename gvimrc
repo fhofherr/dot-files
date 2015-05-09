@@ -14,6 +14,8 @@ if has("win32") || has("win64")
     set guifont=consolas:h10
 elseif has("gui_macvim")
     set guifont=Monaco:h12
+    "Disable the horrible beeping sound when hitting escape multible times
+    autocmd! GuiEnter * set vb t_vb=
 else
     set guifont=DejaVu\ Sans\ Mono\ 10
     " set guifont=Source\ Code\ Pro\ Light\ 11
