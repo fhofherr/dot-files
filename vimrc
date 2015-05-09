@@ -123,7 +123,7 @@ endif
 "
 " ---------------------------------------------------------------------------
 
-let mapleader = '\'
+let mapleader = ' '
 
 " Toggle list mode
 nmap <Leader>ls :set invlist<cr>:set list?<cr>
