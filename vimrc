@@ -48,6 +48,7 @@ Plugin 'groenewege/vim-less'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'nelstrom/vim-visual-star-search'
 Plugin 'tpope/vim-vividchalk'
+Plugin 'fatih/vim-go'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
