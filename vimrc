@@ -48,6 +48,7 @@ Plugin 'groenewege/vim-less'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'nelstrom/vim-visual-star-search'
 Plugin 'tpope/vim-vividchalk'
+Plugin 'valloric/youcompleteme'
 Plugin 'fatih/vim-go'
 
 " All of your Plugins must be added before the following line
@@ -243,6 +244,7 @@ augroup END
 "
 " ---------------------------------------------------------------------------
 let g:UltiSnipsEditSplit="horizontal"
+let g:UltiSnipsExpandTrigger="<m-tab>"
 
 " ---------------------------------------------------------------------------
 "
