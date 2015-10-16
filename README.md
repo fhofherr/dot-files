@@ -20,3 +20,11 @@ git submodule update --init
 
 After that start vim and call `:PluginInstall`
 
+## YouCompleteMe
+
+The YouCompleteMe plugin has a compiled component. I usually call its
+`install.py` script with the following arguments:
+
+```bash
+./install.py --clang-completer --gocode-completer
+```
