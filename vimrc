@@ -52,6 +52,7 @@ Plugin 'nelstrom/vim-visual-star-search'
 Plugin 'tpope/vim-vividchalk'
 Plugin 'valloric/youcompleteme'
 Plugin 'fatih/vim-go'
+Plugin 'reedes/vim-pencil'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -269,12 +270,17 @@ let g:syntastic_html_checkers = ['']
 
 " ---------------------------------------------------------------------------
 "
-" Vim Pandoc
+" Vim Pencil
 "
 " ---------------------------------------------------------------------------
 
-" Enable the following vim-pandoc-after plugins
-let g:pandoc#after#modules#enabled = ["ultisnips"]
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init({'wrap': 'hard'})
+  autocmd FileType text         call pencil#init({'wrap': 'hard'})
+augroup END
+
+let g:pencil#textwidth = 72
 
 " ---------------------------------------------------------------------------
 "
