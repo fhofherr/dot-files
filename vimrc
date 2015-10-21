@@ -198,12 +198,6 @@ if has("autocmd")
   augroup vimrcEx
   au!
 
-  " Set textwidth for some file types.
-  autocmd FileType mail setlocal textwidth=72
-  autocmd FileType rst setlocal textwidth=78
-  autocmd FileType tex setlocal textwidth=78
-  autocmd FileType text setlocal textwidth=78
-
   autocmd FileType html setlocal shiftwidth=2
 
   " Use smartindet for those file types
@@ -276,13 +270,15 @@ let g:syntastic_html_checkers = ['']
 "
 " ---------------------------------------------------------------------------
 
+let g:pencil#textwidth = 72
+
 augroup pencil
   autocmd!
-  autocmd FileType markdown,mkd call pencil#init({'wrap': 'hard'})
-  autocmd FileType text         call pencil#init({'wrap': 'hard'})
+  autocmd FileType markdown,mkd call pencil#init({'wrap': 'hard',})
+  autocmd FileType text call pencil#init({'wrap': 'hard'})
+  autocmd FileType mail call pencil#init({'wrap': 'hard'})
+  autocmd FileType plaintex,tex call pencil#init({'wrap': 'hard', 'textwidth': 78})
 augroup END
-
-let g:pencil#textwidth = 72
 
 " ---------------------------------------------------------------------------
 "
