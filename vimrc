@@ -54,6 +54,7 @@ Plugin 'valloric/youcompleteme'
 Plugin 'fatih/vim-go'
 Plugin 'godlygeek/tabular'
 Plugin 'reedes/vim-pencil'
+Plugin 'bling/vim-airline'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -82,12 +83,12 @@ set incsearch           " do incremental searching
 set shiftwidth=4        " Set default indentation width
 set expandtab           " Use spaces for indenting only
 
-"" Set the number of spaces a tab counts while editing. When expandtab is 
-"" enabled, vim will only insert spaces. Else it will insert a combination 
+"" Set the number of spaces a tab counts while editing. When expandtab is
+"" enabled, vim will only insert spaces. Else it will insert a combination
 "" of tabs and spaces in order to reduce the size of a file.
 set softtabstop=4
 
-" Set the characters that listmode should highlight 
+" Set the characters that listmode should highlight
 set lcs=eol:$,tab:>-,trail:·
 
 " Set a nice statusline
@@ -97,7 +98,7 @@ set laststatus=2
 
 " When spliting horizontaly always split below the current window,
 " when spliting verticaly always open the window on the right.
-set splitbelow 
+set splitbelow
 set splitright
 
 set background=dark
@@ -196,7 +197,7 @@ if has("autocmd")
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
   au!
-   
+
   " Set textwidth for some file types.
   autocmd FileType mail setlocal textwidth=72
   autocmd FileType rst setlocal textwidth=78
