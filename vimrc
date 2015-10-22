@@ -24,7 +24,7 @@ endif
 
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-git'
