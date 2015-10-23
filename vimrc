@@ -55,6 +55,7 @@ Plugin 'fatih/vim-go'
 Plugin 'godlygeek/tabular'
 Plugin 'reedes/vim-pencil'
 Plugin 'bling/vim-airline'
+Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
