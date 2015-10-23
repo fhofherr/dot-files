@@ -133,33 +133,33 @@ endif
 let mapleader = ' '
 
 " Toggle list mode
-nmap <Leader>ls :set invlist<cr>:set list?<cr>
+nnoremap <Leader>ls :set invlist<cr>:set list?<cr>
 
 " Toggle paste mode
-nmap <Leader>p :set invpaste<cr>:set paste?<cr>
+nnoremap <Leader>p :set invpaste<cr>:set paste?<cr>
 
 " Turn off that stupid highlight search
-nmap <Leader>nh :set invhls<cr>:set hls?<cr>
+nnoremap <Leader>nh :set invhls<cr>:set hls?<cr>
 
 " Set text wrapping toggles
-nmap <Leader>w :set invwrap<cr>:set wrap?<cr>
+nnoremap <Leader>w :set invwrap<cr>:set wrap?<cr>
 
 " Set up retabbing on a source file
-nmap <Leader>rr :1,$retab<cr>
+nnoremap <Leader>rr :1,$retab<cr>
 
 " cd to the directory containing the file in the buffer
-nmap <Leader>cd :lcd %:p:h<cr>
+nnoremap <Leader>cd :lcd %:p:h<cr>
 
 " cd to the directory containing the file in the buffer and toggle a NERTTree
-nmap <Leader>nt :NERDTreeToggle<cr>
+nnoremap <Leader>nt :NERDTreeToggle<cr>
 
 " Make the directory that contains the file in the current buffer.
 " This is useful when you edit a file in a directory that doesn't
 " (yet) exist
-nmap <Leader>md :!mkdir -p %:p:h<cr>
+nnoremap <Leader>md :!mkdir -p %:p:h<cr>
 
 " Toggle spell checking on and off
-nmap <silent> <leader>s :set spell!<CR>
+nnoremap <silent> <leader>s :set spell!<CR>
 set spelllang=en_us
 
 
@@ -196,20 +196,20 @@ if has("autocmd")
 
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
-  au!
+      au!
 
-  autocmd FileType html setlocal shiftwidth=2
+      autocmd FileType html setlocal shiftwidth=2
 
-  " Use smartindet for those file types
-  autocmd FileType haskell setlocal smartindent
+      " Use smartindet for those file types
+      autocmd FileType haskell setlocal smartindent
 
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
+      " When editing a file, always jump to the last known cursor position.
+      " Don't do it when the position is invalid or when inside an event handler
+      " (happens when dropping a file on gvim).
+      autocmd BufReadPost *
+                  \ if line("'\"") > 0 && line("'\"") <= line("$") |
+                  \   exe "normal g`\"" |
+                  \ endif
   augroup END
 else
   set autoindent                " always set autoindenting on
