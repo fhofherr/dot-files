@@ -265,9 +265,9 @@ let g:pencil#textwidth = 72
 
 augroup pencil
   autocmd!
-  autocmd FileType markdown,mkd call pencil#init({'wrap': 'hard',})
-  autocmd FileType text call pencil#init({'wrap': 'hard'})
-  autocmd FileType mail call pencil#init({'wrap': 'hard'})
+  autocmd FileType markdown,mkd call pencil#init({'wrap': 'hard', 'autoformat': 0})
+  autocmd FileType text call pencil#init({'wrap': 'hard', 'autoformat': 0})
+  autocmd FileType mail call pencil#init({'wrap': 'hard', 'autoformat': 0})
   autocmd FileType plaintex,tex call pencil#init({'wrap': 'hard', 'textwidth': 78})
 augroup END
 
