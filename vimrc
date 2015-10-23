@@ -135,14 +135,8 @@ let mapleader = ' '
 " Toggle list mode
 nnoremap <Leader>ls :set invlist<cr>:set list?<cr>
 
-" Toggle paste mode
-nnoremap <Leader>p :set invpaste<cr>:set paste?<cr>
-
 " Turn off that stupid highlight search
 nnoremap <Leader>nh :set invhls<cr>:set hls?<cr>
-
-" Set text wrapping toggles
-nnoremap <Leader>w :set invwrap<cr>:set wrap?<cr>
 
 " Set up retabbing on a source file
 nnoremap <Leader>rr :1,$retab<cr>
@@ -153,14 +147,10 @@ nnoremap <Leader>cd :lcd %:p:h<cr>
 " cd to the directory containing the file in the buffer and toggle a NERTTree
 nnoremap <Leader>nt :NERDTreeToggle<cr>
 
-" Make the directory that contains the file in the current buffer.
-" This is useful when you edit a file in a directory that doesn't
-" (yet) exist
-nnoremap <Leader>md :!mkdir -p %:p:h<cr>
-
-" Toggle spell checking on and off
-nnoremap <silent> <leader>s :set spell!<CR>
-set spelllang=en_us
+" Edit vimrc in a split window
+nnoremap <Leader>ev :split $MYVIMRC<cr>
+" Source the vimrc
+nnoremap <Leader>sv :source $MYVIMRC<cr>
 
 
 " Identify active highlight group.
