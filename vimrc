@@ -234,7 +234,7 @@ augroup END
 "
 " ---------------------------------------------------------------------------
 let g:UltiSnipsEditSplit="horizontal"
-let g:UltiSnipsExpandTrigger="<m-tab>"
+let g:UltiSnipsExpandTrigger="<c-j>"
 
 " ---------------------------------------------------------------------------
 "
