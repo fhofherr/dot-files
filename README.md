@@ -28,3 +28,11 @@ The YouCompleteMe plugin has a compiled component. I usually call its
 ```bash
 ./install.py --clang-completer --gocode-completer
 ```
+
+## MacVim
+
+```bash
+brew install macvim --with-override-system-vi
+brew linkapps macvim
+```
+
