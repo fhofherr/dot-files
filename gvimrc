@@ -1,5 +1,5 @@
 set background=dark
-colorscheme jellybeans
+colorscheme solarized
  
 " set the gui font to use
 "
