@@ -29,7 +29,14 @@ set mousehide           " Hide the mouse when typing text
 " silly about it :)  The GUI is fantastic, but it's fantastic for
 " its fonts and its colours, not for its toolbar and its menus -
 " those just steal screen real estate
-set guioptions=ac
+set guioptions+=c
+set guioptions-=a
+set guioptions-=r
+set guioptions-=R
+set guioptions-=l
+set guioptions-=L
+set guioptions-=b
+set guioptions-=m
 
 " Start at a more usable size
 set columns=125
