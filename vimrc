@@ -56,6 +56,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'reedes/vim-pencil'
 Plugin 'bling/vim-airline'
 Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+Bundle 'venantius/vim-cljfmt'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
