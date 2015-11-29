@@ -55,6 +55,7 @@ Plugin 'valloric/youcompleteme'
 Plugin 'fatih/vim-go'
 Plugin 'godlygeek/tabular'
 Plugin 'reedes/vim-pencil'
+Plugin 'reedes/vim-lexical'
 Plugin 'bling/vim-airline'
 Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 Plugin 'venantius/vim-cljfmt'
@@ -277,6 +278,10 @@ let g:pencil#textwidth = 72
 augroup pencil
   autocmd!
   autocmd FileType markdown,mkd call pencil#init({'wrap': 'hard', 'autoformat': 0})
+                            \ | call lexical#init({
+                            \       'spell': 1,
+                            \       'spelllang': ['en_us']
+                            \   })
   autocmd FileType text call pencil#init({'wrap': 'hard', 'autoformat': 0})
   autocmd FileType mail call pencil#init({'wrap': 'hard', 'autoformat': 0})
   autocmd FileType plaintex,tex call pencil#init({'wrap': 'hard', 'textwidth': 78})
