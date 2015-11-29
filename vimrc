@@ -56,6 +56,7 @@ Plugin 'fatih/vim-go'
 Plugin 'godlygeek/tabular'
 Plugin 'reedes/vim-pencil'
 Plugin 'reedes/vim-lexical'
+Plugin 'reedes/vim-wordy'
 Plugin 'bling/vim-airline'
 Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 Plugin 'venantius/vim-cljfmt'
