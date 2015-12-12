@@ -58,8 +58,6 @@ Plugin 'tpope/vim-salve'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-vividchalk'
 Plugin 'valloric/youcompleteme'
-Plugin 'venantius/vim-cljfmt'
-Plugin 'venantius/vim-eastwood'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

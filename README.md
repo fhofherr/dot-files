@@ -38,10 +38,7 @@ the following [Leiningen](http://leiningen.org) configuration in
 ```clojure
 {:user {:plugins [[lein-ancient "0.6.7"]
                   [lein-cloverage "1.0.6"]
-                  [cider/cider-nrepl "0.8.2"]]
-        :dependencies [[cljfmt "0.3.0" :exclusions [org.clojure/clojure]]
-                       [jonase/eastwood "0.2.2" :exclusions [org.clojure/clojure]]]
-        :repl-options {:init (require 'cljfmt.core)}}}
+                  [cider/cider-nrepl "0.8.2"]]}}
 ```
 
 ## MacVim
