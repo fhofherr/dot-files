@@ -308,6 +308,9 @@ au FileType ruby let b:delimitMate_expand_space = 1
 
 au FileType scss let b:delimitMate_expand_cr = 1
 au FileType scss let b:delimitMate_expand_space = 1
+
+au FileType go let b:delimitMate_expand_cr = 1
+au FileType go let b:delimitMate_expand_space = 1
 " ---------------------------------------------------------------------------
 "
 " Read .vimrc file in cwd.
