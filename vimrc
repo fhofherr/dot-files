@@ -83,9 +83,9 @@ set ruler               " show the cursor position all the time
 set showcmd             " display incomplete commands
 set incsearch           " do incremental searching
 
-set shiftwidth=4        " Set default indentation width
+" Indent with spaces only by default.
 set expandtab           " Use spaces for indenting only
-
+set shiftwidth=4        " Set default indentation width
 "" Set the number of spaces a tab counts while editing. When expandtab is
 "" enabled, vim will only insert spaces. Else it will insert a combination
 "" of tabs and spaces in order to reduce the size of a file.
@@ -291,26 +291,41 @@ augroup END
 "
 " ---------------------------------------------------------------------------
 
-au FileType sql let b:delimitMate_expand_cr = 1
-au FileType sql let b:delimitMate_expand_space = 1
+augroup delimitmate
+    au FileType sql let b:delimitMate_expand_cr = 1
+    au FileType sql let b:delimitMate_expand_space = 1
 
-au FileType json let b:delimitMate_expand_cr = 1
-au FileType json let b:delimitMate_expand_space = 1
+    au FileType json let b:delimitMate_expand_cr = 1
+    au FileType json let b:delimitMate_expand_space = 1
 
-au FileType javascript let b:delimitMate_expand_cr = 1
-au FileType javascript let b:delimitMate_expand_space = 1
+    au FileType javascript let b:delimitMate_expand_cr = 1
+    au FileType javascript let b:delimitMate_expand_space = 1
 
-au FileType clojure let b:delimitMate_quotes = "\""
-au FileType clojure let b:delimitMate_expand_cr = 1
+    au FileType clojure let b:delimitMate_quotes = "\""
+    au FileType clojure let b:delimitMate_expand_cr = 1
 
-au FileType ruby let b:delimitMate_expand_cr = 1
-au FileType ruby let b:delimitMate_expand_space = 1
+    au FileType ruby let b:delimitMate_expand_cr = 1
+    au FileType ruby let b:delimitMate_expand_space = 1
 
-au FileType scss let b:delimitMate_expand_cr = 1
-au FileType scss let b:delimitMate_expand_space = 1
+    au FileType scss let b:delimitMate_expand_cr = 1
+    au FileType scss let b:delimitMate_expand_space = 1
 
-au FileType go let b:delimitMate_expand_cr = 1
-au FileType go let b:delimitMate_expand_space = 1
+    au FileType go let b:delimitMate_expand_cr = 1
+    au FileType go let b:delimitMate_expand_space = 1
+augroup END
+
+" ---------------------------------------------------------------------------
+" Programming language specific configurations
+" ---------------------------------------------------------------------------
+
+augroup golang
+    " Go files are to be indented with tabs only.
+    au FileType go setlocal noexpandtab |
+                 \ setlocal shiftwidth=4 |
+                 \ setlocal tabstop=4 |
+                 \ setlocal softtabstop=0
+augroup END
+
 " ---------------------------------------------------------------------------
 "
 " Read .vimrc file in cwd.
