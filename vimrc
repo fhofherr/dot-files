@@ -36,6 +36,7 @@ Plugin 'fatih/vim-go'
 Plugin 'godlygeek/tabular'
 Plugin 'groenewege/vim-less'
 Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'ledger/vim-ledger'
 Plugin 'mileszs/ack.vim'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'nanotech/jellybeans.vim'
@@ -240,6 +241,14 @@ augroup END
 
 " ---------------------------------------------------------------------------
 "
+" NERDTree
+"
+" ---------------------------------------------------------------------------
+
+let NERDTreeIgnore=['\~$', '__pycache__', '.egg-info']
+
+" ---------------------------------------------------------------------------
+"
 " UltiSnips
 "
 " ---------------------------------------------------------------------------
@@ -320,6 +329,11 @@ augroup END
 "
 " ---------------------------------------------------------------------------
 let g:ycm_server_python_interpreter = '/usr/local/bin/python'
+
+" Disable YCM for ledger files. See vim-ledger help.
+if exists('g:ycm_filetype_blacklist')
+    call extend(g:ycm_filetype_blacklist, { 'ledger': 1 })
+endif
 
 
 " ---------------------------------------------------------------------------
