@@ -31,7 +31,6 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 Plugin 'fatih/vim-go'
 Plugin 'godlygeek/tabular'
 Plugin 'groenewege/vim-less'
