@@ -288,7 +288,7 @@ augroup pencil
                             \       'spell': 1,
                             \       'spelllang': ['en_us']
                             \   })
-  autocmd FileType asciidoc call pencil#init({'textwidth': 72, 'wrap': 'soft', 'cursorwrap': 1})
+  autocmd FileType asciidoc call pencil#init()
   autocmd FileType text call pencil#init({'wrap': 'hard', 'autoformat': 0})
   autocmd FileType mail call pencil#init({'wrap': 'hard', 'autoformat': 0})
   autocmd FileType plaintex,tex call pencil#init({'wrap': 'hard', 'textwidth': 78, 'autoformat': 0})
