@@ -328,7 +328,7 @@ augroup END
 " Youcompleteme
 "
 " ---------------------------------------------------------------------------
-let g:ycm_server_python_interpreter = '/usr/local/bin/python'
+"let g:ycm_server_python_interpreter = '/usr/local/bin/python'
 
 " Disable YCM for ledger files. See vim-ledger help.
 if exists('g:ycm_filetype_blacklist')
