@@ -280,6 +280,7 @@ let g:syntastic_html_checkers = ['']
 " ---------------------------------------------------------------------------
 
 let g:pencil#textwidth = 72
+let g:pencil#conceallevel = 0
 
 augroup pencil
   autocmd!
