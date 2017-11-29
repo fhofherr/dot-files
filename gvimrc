@@ -13,7 +13,7 @@ colorscheme solarized
 if has("win32") || has("win64")
     set guifont=consolas:h10
 elseif has("gui_macvim")
-    set guifont=Hack:h14
+    set guifont=Hack:h18
     "Disable the horrible beeping sound when hitting escape multible times
     autocmd! GuiEnter * set vb t_vb=
 else
