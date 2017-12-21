@@ -231,6 +231,9 @@ autocmd InsertLeave * if pumvisible() == 0|silent! pclose|endif
 "
 " ---------------------------------------------------------------------------
 nmap \a <Esc>:Ack!
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 
 " ---------------------------------------------------------------------------
 "
@@ -344,7 +347,6 @@ augroup END
 if exists('g:ycm_filetype_blacklist')
     call extend(g:ycm_filetype_blacklist, { 'ledger': 1 })
 endif
-
 
 " ---------------------------------------------------------------------------
 "

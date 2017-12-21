@@ -55,6 +55,16 @@ brew install fzf
 $(brew --prefix)/opt/fzf/install
 ```
 
+## The Silver Searcher
+
+To use [The Silver Searcher](https://github.com/ggreer/the_silver_searcher)
+with [Ack.vim](https://github.com/mileszs/ack.vim) you have to install
+it.
+
+```bash
+brew install the_silver_searcher
+```
+
 ## MacVim
 
 ```bash
