@@ -30,10 +30,11 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'Raimondi/delimitMate'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'fatih/vim-go'
 Plugin 'godlygeek/tabular'
 Plugin 'groenewege/vim-less'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'ledger/vim-ledger'
 Plugin 'mileszs/ack.vim'
@@ -345,6 +346,14 @@ if exists('g:ycm_filetype_blacklist')
 endif
 
 
+" ---------------------------------------------------------------------------
+"
+" fzf.vim
+"
+" ---------------------------------------------------------------------------
+" Default fzf layout
+" - down / up / left / right
+let g:fzf_layout = { 'down': '~40%' }
 " ---------------------------------------------------------------------------
 " Programming language specific configurations
 " ---------------------------------------------------------------------------

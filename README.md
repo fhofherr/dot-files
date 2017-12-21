@@ -41,6 +41,20 @@ the following [Leiningen](http://leiningen.org) configuration in
                   [cider/cider-nrepl "0.8.2"]]}}
 ```
 
+## FZF
+
+Install [FZF](https://github.com/junegunn/fzf) as described in its
+README.
+
+If you are using Homebrew
+
+```bash
+brew install fzf
+
+# To install useful key bindings and fuzzy completion:
+$(brew --prefix)/opt/fzf/install
+```
+
 ## MacVim
 
 ```bash
