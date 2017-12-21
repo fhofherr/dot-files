@@ -116,6 +116,13 @@ endif
 " Enhance Tab completion of vim commands.
 set wildmenu wildmode=list:longest
 
+" Improve joining of comment lines.
+" Found at https://kinbiko.com/vim/my-shiniest-vim-gems/
+if v:version > 703 || v:version == 703 && has('patch541')
+  set formatoptions+=j
+endif
+
+
 " ---------------------------------------------------------------------------
 "
 " Colors
