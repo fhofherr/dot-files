@@ -356,9 +356,13 @@ endif
 " Default fzf layout
 " - down / up / left / right
 let g:fzf_layout = { 'down': '~40%' }
+
 " ---------------------------------------------------------------------------
-" Programming language specific configurations
+"
+" vim-go
+"
 " ---------------------------------------------------------------------------
+let g:go_metalinter_autosave = 1
 
 augroup golang
     " Go files are to be indented with tabs only.
