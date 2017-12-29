@@ -276,14 +276,38 @@ let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 let g:html_indent_inctags = "html,body,head,tbody,main,section"
 
+
+" ---------------------------------------------------------------------------
+"
+" vim-go
+"
+" ---------------------------------------------------------------------------
+let g:go_fmt_fail_silently = 1
+
+augroup golang
+    " Go files are to be indented with tabs only.
+    au FileType go setlocal noexpandtab |
+                 \ setlocal shiftwidth=4 |
+                 \ setlocal tabstop=4 |
+                 \ setlocal softtabstop=0 |
+                 \ setlocal nolist
+augroup END
+
 " ---------------------------------------------------------------------------
 "
 " Syntastic
 "
 " ---------------------------------------------------------------------------
 
-" Use W3 online validation service. Requires curl
-let g:syntastic_html_checkers = ['']
+" we want to tell the syntastic module when to run
+" we want to see code highlighting and checks when  we open a file
+" but we don't care so much that it reruns when we close the file
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_go_checkers = ['gometalinter']
+" Disable all linters then enable the select few we are interested in.
+let g:syntastic_go_gometalinter_args = "--no-config --disable-all --enable=vet --enable=golint --enable=errcheck"
 
 " ---------------------------------------------------------------------------
 "
@@ -356,22 +380,6 @@ endif
 " Default fzf layout
 " - down / up / left / right
 let g:fzf_layout = { 'down': '~40%' }
-
-" ---------------------------------------------------------------------------
-"
-" vim-go
-"
-" ---------------------------------------------------------------------------
-let g:go_metalinter_autosave = 1
-
-augroup golang
-    " Go files are to be indented with tabs only.
-    au FileType go setlocal noexpandtab |
-                 \ setlocal shiftwidth=4 |
-                 \ setlocal tabstop=4 |
-                 \ setlocal softtabstop=0 |
-                 \ setlocal nolist
-augroup END
 
 " ---------------------------------------------------------------------------
 "
