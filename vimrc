@@ -106,7 +106,32 @@ set laststatus=2
 set splitbelow
 set splitright
 
-set background=dark
+" Color setup
+if $TERM == "xterm-256color"
+    set background=dark
+    colorscheme solarized
+else
+    set background=dark
+    colorscheme default
+endif
+
+
+if $TERM == "xterm-256color" || has("gui_running")
+    " Highlight the 80th colum
+    if version >= 703
+        set colorcolumn=80
+    else
+        au BufWinEnter * let w:m2=matchadd('ColorColumn', '\%80v.', -1)
+    end
+
+    " Width of line number column
+    set numberwidth=5
+    set number
+end
+
+" Display trailing newlines
+set list
+
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
@@ -381,6 +406,22 @@ endif
 " Default fzf layout
 " - down / up / left / right
 let g:fzf_layout = { 'down': '~40%' }
+"
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
 " ---------------------------------------------------------------------------
 "
