@@ -10,15 +10,30 @@ is of great use to me.
 # Installation
 
 ```bash
-ln -s  $PWD/myvimcfg/vimrc $HOME/.vimrc
-ln -s  $PWD/myvimcfg/gvimrc $HOME/.gvimrc
-ln -s  $PWD/myvimcfg $HOME/.vim
+ln -s $PWD/myvimcfg/vimrc $HOME/.vimrc
+ln -s $PWD/myvimcfg/gvimrc $HOME/.gvimrc
+ln -s $PWD/myvimcfg $HOME/.vim
+ln -s $PWD/myvimcfg/nvim $HOME/.config/nvim
 
 cd $PWD/myvimcfg
 git submodule update --init
 ```
 
 After that start vim and call `:PluginInstall`
+
+## Neovim
+
+It may be necessary to install additional providers for Neovim. In order
+to do this execute:
+
+```bash
+pip2 install --user --upgrade neovim # Python 2
+pip3 install --user --upgrade neovim # Python 3
+
+gem install neovim # Ruby
+
+npm install -g neovim # NodeJS
+```
 
 ## YouCompleteMe
 
