@@ -8,62 +8,54 @@ else
 endif
 " ---------------------------------------------------------------------------
 "
-" Vundle
+" vim-plug
 "
 " ---------------------------------------------------------------------------
-set nocompatible
-filetype off
-
-if has('win32') || has ('win64')
-    set rtp+=~/vimfiles/bundle/Vundle.vim/
-    call vundle#begin('~/vimfiles/bundle')
-else
-    set rtp+=~/.vim/bundle/Vundle.vim
-    call vundle#begin()
+if empty(glob($VIMHOME.'/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+call plug#begin($VIMHOME."/bundle")
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'Raimondi/delimitMate'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'bling/vim-airline'
-Plugin 'fatih/vim-go'
-Plugin 'godlygeek/tabular'
-Plugin 'groenewege/vim-less'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'ledger/vim-ledger'
-Plugin 'mileszs/ack.vim'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'nelstrom/vim-visual-star-search'
-Plugin 'reedes/vim-lexical'
-Plugin 'reedes/vim-pencil'
-Plugin 'reedes/vim-wordy'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'sirver/ultisnips'
-Plugin 'tomtom/tlib_vim'
-Plugin 'tpope/vim-classpath'
-Plugin 'tpope/vim-cucumber'
-Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-fireplace'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-git'
-Plugin 'tpope/vim-projectionist'
-Plugin 'tpope/vim-salve'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-vividchalk'
-Plugin 'valloric/youcompleteme'
-Plugin 'venantius/vim-cljfmt'
-
+Plug 'junegunn/vim-plug'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'Raimondi/delimitMate'
+Plug 'altercation/vim-colors-solarized'
+Plug 'bling/vim-airline'
+Plug 'fatih/vim-go'
+Plug 'godlygeek/tabular'
+Plug 'groenewege/vim-less'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'ledger/vim-ledger'
+Plug 'mileszs/ack.vim'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'nanotech/jellybeans.vim'
+Plug 'nelstrom/vim-visual-star-search'
+Plug 'reedes/vim-lexical'
+Plug 'reedes/vim-pencil'
+Plug 'reedes/vim-wordy'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'sirver/ultisnips'
+Plug 'tomtom/tlib_vim'
+Plug 'tpope/vim-classpath'
+Plug 'tpope/vim-cucumber'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-fireplace'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-git'
+Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-salve'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vividchalk'
+Plug 'valloric/youcompleteme'
+Plug 'venantius/vim-cljfmt'
+"
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+call plug#end()            " required
 
 " ---------------------------------------------------------------------------
 "
@@ -260,7 +252,7 @@ nmap \a <Esc>:Ack!
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
-command Todo Ack! 'TODO|FIXME|XXX'
+command! Todo Ack! 'TODO|FIXME|XXX'
 
 " ---------------------------------------------------------------------------
 "

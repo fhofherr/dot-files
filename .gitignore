@@ -5,7 +5,7 @@
 spell
 tags
 
-# Ignore all vim plugins as they are managed by vundle.
-# Vundle is an exception, of course :-)
+# Ignore vim-plug since it will install itself if it is missing
+autoload/plug.vim
+# Ignore all vim plugins as they are managed by vim-plug.
 bundle/
-!bundle/Vundle.vim
