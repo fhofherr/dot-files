@@ -80,6 +80,7 @@ if has("vms")
 else
   set backup            " keep a backup file
 endif
+
 set history=50          " keep 50 lines of command line history
 set ruler               " show the cursor position all the time
 set showcmd             " display incomplete commands
@@ -97,7 +98,6 @@ set softtabstop=4
 set lcs=eol:$,tab:>-,trail:·
 
 " Set a nice statusline
-"set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 set statusline=%{fugitive#statusline()}\ %f\ %m\ %r\ Line:\ %l/%L[%p%%]\ Col:\ %c\ Buf:\ #%n\ [%b][0x%B]
 set laststatus=2
 
@@ -148,6 +148,7 @@ if v:version > 703 || v:version == 703 && has('patch541')
   set formatoptions+=j
 endif
 
+language messages en_US.UTF-8
 
 " ---------------------------------------------------------------------------
 "
