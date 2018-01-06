@@ -1,6 +1,3 @@
-set background=light
-colorscheme solarized
- 
 " set the gui font to use
 "
 " The following helps to select a new font:

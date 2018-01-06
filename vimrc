@@ -19,42 +19,49 @@ endif
 call plug#begin($VIMHOME."/bundle")
 
 Plug 'junegunn/vim-plug'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'Raimondi/delimitMate'
 Plug 'altercation/vim-colors-solarized'
 Plug 'bling/vim-airline'
-Plug 'fatih/vim-go'
+Plug 'Raimondi/delimitMate'
 Plug 'godlygeek/tabular'
-Plug 'groenewege/vim-less'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'kien/rainbow_parentheses.vim'
-Plug 'ledger/vim-ledger'
 Plug 'mileszs/ack.vim'
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'nanotech/jellybeans.vim'
 Plug 'nelstrom/vim-visual-star-search'
-Plug 'reedes/vim-lexical'
-Plug 'reedes/vim-pencil'
-Plug 'reedes/vim-wordy'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'sirver/ultisnips'
-Plug 'tomtom/tlib_vim'
-Plug 'tpope/vim-classpath'
-Plug 'tpope/vim-cucumber'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-fireplace'
+Plug 'tpope/vim-surround'
+Plug 'kien/rainbow_parentheses.vim'
+
+" Code completion
+Plug 'valloric/youcompleteme', {'do': './install.py --clang-completer --gocode-completer'}
+
+" Git plugins
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
-Plug 'tpope/vim-projectionist'
-Plug 'tpope/vim-salve'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-vividchalk'
-Plug 'valloric/youcompleteme'
-Plug 'venantius/vim-cljfmt'
-"
-" All of your Plugins must be added before the following line
+
+" Clojure plugins
+Plug 'tpope/vim-classpath', {'for': 'clojure'}
+Plug 'tpope/vim-salve', {'for': 'clojure'}
+Plug 'tpope/vim-projectionist', {'for': 'clojure'}
+Plug 'tpope/vim-dispatch', {'for': 'clojure'}
+Plug 'tpope/vim-fireplace', {'for': 'clojure'}
+Plug 'venantius/vim-cljfmt', {'for': 'clojure'}
+
+" Go plugins
+Plug 'fatih/vim-go', {'for': 'go'}
+
+" Text editing
+Plug 'reedes/vim-lexical', {'for': ['markdown', 'asciidoc', 'text']}
+Plug 'reedes/vim-pencil', {'for': ['markdown', 'asciidoc', 'text']}
+Plug 'reedes/vim-lexical', {'for': ['markdown', 'asciidoc', 'text']}
+Plug 'reedes/vim-lexical', {'for': ['markdown', 'asciidoc', 'text']}
+Plug 'reedes/vim-wordy', {'for': ['markdown', 'asciidoc', 'text']}
+
+"" TODO what do I need those for? Delete them if nothing breaks.
+" Plug 'MarcWeber/vim-addon-mw-utils'
+" Plug 'tomtom/tlib_vim'
+
 call plug#end()            " required
 
 " ---------------------------------------------------------------------------
@@ -64,23 +71,14 @@ call plug#end()            " required
 " ---------------------------------------------------------------------------
 set encoding=utf-8
 set fileencoding=utf-8
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
-
-if has("vms")
-  set nobackup          " do not keep a backup file, use versions instead
-else
-  set backup            " keep a backup file
-endif
-
-set history=50          " keep 50 lines of command line history
-set ruler               " show the cursor position all the time
-set showcmd             " display incomplete commands
-set incsearch           " do incremental searching
-
-" Indent with spaces only by default.
-set expandtab           " Use spaces for indenting only
-set shiftwidth=4        " Set default indentation width
+set backspace=indent,eol,start " allow backspacing over everything in insert mode
+set nobackup                   " never keep backup files
+set history=50                 " keep 50 lines of command line history
+set ruler                      " show the cursor position all the time
+set showcmd                    " display incomplete commands
+set incsearch                  " do incremental searching
+set expandtab                  " Use spaces for indenting only
+set shiftwidth=4               " Set default indentation width
 "" Set the number of spaces a tab counts while editing. When expandtab is
 "" enabled, vim will only insert spaces. Else it will insert a combination
 "" of tabs and spaces in order to reduce the size of a file.
@@ -88,6 +86,7 @@ set softtabstop=4
 
 " Set the characters that listmode should highlight
 set lcs=eol:$,tab:>-,trail:·
+set list
 
 " Set a nice statusline
 set statusline=%{fugitive#statusline()}\ %f\ %m\ %r\ Line:\ %l/%L[%p%%]\ Col:\ %c\ Buf:\ #%n\ [%b][0x%B]
@@ -98,31 +97,21 @@ set laststatus=2
 set splitbelow
 set splitright
 
-" Color setup
-if $TERM == "xterm-256color"
+" 256 Color setup
+if &t_Co == 256 || has("gui_running")
     set background=dark
     colorscheme solarized
-else
-    set background=dark
-    colorscheme default
-endif
 
-
-if $TERM == "xterm-256color" || has("gui_running")
     " Highlight the 80th colum
-    if version >= 703
-        set colorcolumn=80
-    else
-        au BufWinEnter * let w:m2=matchadd('ColorColumn', '\%80v.', -1)
-    end
+    set colorcolumn=80
 
     " Width of line number column
     set numberwidth=5
     set number
-end
-
-" Display trailing newlines
-set list
+else
+    set background=dark
+    colorscheme default
+endif
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -144,18 +133,6 @@ language messages en_US.UTF-8
 
 " ---------------------------------------------------------------------------
 "
-" Colors
-"
-" ---------------------------------------------------------------------------
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
-endif
-
-" ---------------------------------------------------------------------------
-"
 " Shortcuts
 "
 " ---------------------------------------------------------------------------
@@ -165,23 +142,11 @@ let mapleader = ' '
 " Toggle list mode
 nnoremap <Leader>ls :set invlist<cr>:set list?<cr>
 
-" Turn off that stupid highlight search
+" Turn off highlight search
 nnoremap <Leader>nh :set invhls<cr>:set hls?<cr>
-
-" Set up retabbing on a source file
-nnoremap <Leader>rr :1,$retab<cr>
-
-" cd to the directory containing the file in the buffer
-nnoremap <Leader>cd :lcd %:p:h<cr>
 
 " cd to the directory containing the file in the buffer and toggle a NERTTree
 nnoremap <Leader>nt :NERDTreeToggle<cr>
-
-" Edit vimrc in a split window
-nnoremap <Leader>ev :split $MYVIMRC<cr>
-" Source the vimrc
-nnoremap <Leader>sv :source $MYVIMRC<cr>
-
 
 " Identify active highlight group.
 " Source: http://vim.wikia.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
@@ -195,7 +160,7 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 
-" Disable anoying insert mode commands
+" Disable insert mode commands
 imap <c-a> <Nop>
 imap <c-c> <Nop>
 imap <c-h> <Nop>
@@ -206,35 +171,20 @@ imap <c-w> <Nop>
 " Autocommands
 "
 " ---------------------------------------------------------------------------
-if has("autocmd")
+" Enable file type detection.
+" Use the default filetype settings, so that mail gets 'tw' set to 72,
+" 'cindent' is on in C files, etc.
+" Also load indent files, to automatically do language-dependent indenting.
+filetype plugin indent on
 
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
-
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-      au!
-
-      autocmd FileType html setlocal shiftwidth=2
-
-      " Use smartindet for those file types
-      autocmd FileType haskell setlocal smartindent
-
-      " When editing a file, always jump to the last known cursor position.
-      " Don't do it when the position is invalid or when inside an event handler
-      " (happens when dropping a file on gvim).
-      autocmd BufReadPost *
-                  \ if line("'\"") > 0 && line("'\"") <= line("$") |
-                  \   exe "normal g`\"" |
-                  \ endif
-  augroup END
-else
-  set autoindent                " always set autoindenting on
-endif " has("autocmd")
-
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid or when inside an event handler
+" (happens when dropping a file on gvim).
+autocmd BufReadPost *
+            \ if line("'\"") > 0 && line("'\"") <= line("$") |
+            \   exe "normal g`\"" |
+            \ endif
+"
 " If you prefer the Omni-Completion tip window to close when a selection is
 " made, these lines close it on movement in insert mode or when leaving
 " insert mode
@@ -294,7 +244,14 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 let g:html_indent_inctags = "html,body,head,tbody,main,section"
+autocmd FileType html setlocal shiftwidth=2
 
+" ---------------------------------------------------------------------------
+"
+" Haskell
+"
+" ---------------------------------------------------------------------------
+autocmd FileType haskell setlocal smartindent
 
 " ---------------------------------------------------------------------------
 "
@@ -347,7 +304,6 @@ augroup pencil
   autocmd FileType asciidoc call pencil#init({'wrap': 'soft'})
   autocmd FileType text call pencil#init({'wrap': 'hard', 'autoformat': 0})
   autocmd FileType mail call pencil#init({'wrap': 'hard', 'autoformat': 0})
-  autocmd FileType plaintex,tex call pencil#init({'wrap': 'hard', 'textwidth': 78, 'autoformat': 0})
 augroup END
 
 " ---------------------------------------------------------------------------
@@ -381,18 +337,6 @@ augroup END
 
 " ---------------------------------------------------------------------------
 "
-" Youcompleteme
-"
-" ---------------------------------------------------------------------------
-"let g:ycm_server_python_interpreter = '/usr/local/bin/python'
-
-" Disable YCM for ledger files. See vim-ledger help.
-if exists('g:ycm_filetype_blacklist')
-    call extend(g:ycm_filetype_blacklist, { 'ledger': 1 })
-endif
-
-" ---------------------------------------------------------------------------
-"
 " fzf.vim
 "
 " ---------------------------------------------------------------------------
@@ -415,11 +359,3 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-
-" ---------------------------------------------------------------------------
-"
-" Read .vimrc file in cwd.
-"
-" ---------------------------------------------------------------------------
-set exrc			" enable per-directory .vimrc files
-set secure			" disable unsafe commands in local .vimrc files
