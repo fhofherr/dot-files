@@ -9,33 +9,25 @@ is of great use to me.
 
 # Installation
 
-```bash
-ln -s $PWD/myvimcfg/vimrc $HOME/.vimrc
-ln -s $PWD/myvimcfg/gvimrc $HOME/.gvimrc
-ln -s $PWD/myvimcfg $HOME/.vim
-ln -s $PWD/myvimcfg/nvim $HOME/.config/nvim
-
-cd $PWD/myvimcfg
-git submodule update --init
-```
-
-After that start vim and call `:PluginInstall`
-
-## Neovim
-
-It may be necessary to install additional providers for Neovim. In order
-to do this execute:
+## MacVim with Python3 support
 
 ```bash
-pip2 install --user --upgrade neovim # Python 2
-pip3 install --user --upgrade neovim # Python 3
-
-gem install neovim # Ruby
-
-npm install -g neovim # NodeJS
+brew install macvim --with-python3
 ```
 
-## Clojure plugins
+## NeoVim
+
+```bash
+brew install neovim
+```
+
+## Setup
+
+Execute `./install.py`. 
+
+## Manual Setup
+
+### Clojure plugins
 
 The various [Clojure](http://clojure.org) plugins in this config require
 the following [Leiningen](http://leiningen.org) configuration in
@@ -47,7 +39,7 @@ the following [Leiningen](http://leiningen.org) configuration in
                   [cider/cider-nrepl "0.8.2"]]}}
 ```
 
-## FZF
+### FZF
 
 Install [FZF](https://github.com/junegunn/fzf) as described in its
 README.
@@ -61,7 +53,7 @@ brew install fzf
 $(brew --prefix)/opt/fzf/install
 ```
 
-## The Silver Searcher
+### The Silver Searcher
 
 To use [The Silver Searcher](https://github.com/ggreer/the_silver_searcher)
 with [Ack.vim](https://github.com/mileszs/ack.vim) you have to install
@@ -69,10 +61,4 @@ it.
 
 ```bash
 brew install the_silver_searcher
-```
-
-## MacVim
-
-```bash
-brew install macvim --with-python3
 ```
