@@ -35,15 +35,6 @@ gem install neovim # Ruby
 npm install -g neovim # NodeJS
 ```
 
-## YouCompleteMe
-
-The YouCompleteMe plugin has a compiled component. I usually call its
-`install.py` script with the following arguments:
-
-```bash
-./install.py --clang-completer --gocode-completer
-```
-
 ## Clojure plugins
 
 The various [Clojure](http://clojure.org) plugins in this config require
@@ -83,6 +74,5 @@ brew install the_silver_searcher
 ## MacVim
 
 ```bash
-brew install macvim --with-override-system-vi
-brew linkapps macvim
+brew install macvim --with-python3
 ```
