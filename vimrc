@@ -341,9 +341,14 @@ augroup END
 "
 " ---------------------------------------------------------------------------
 " Default fzf layout
-" - down / up / left / right
-let g:fzf_layout = { 'down': '~40%' }
-"
+if has('nvim')
+    let g:fzf_layout = { 'window': '10split enew' }
+else
+    let g:fzf_layout = { 'down': '~40%' }
+endif
+
+nmap <c-p> :Files<cr>
+
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
