@@ -49,7 +49,7 @@ Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 Plug 'venantius/vim-cljfmt', {'for': 'clojure'}
 
 " Go plugins
-Plug 'fatih/vim-go', {'for': 'go'}
+Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
 
 " Text editing
 Plug 'reedes/vim-lexical', {'for': ['markdown', 'asciidoc', 'text']}
@@ -351,7 +351,7 @@ nmap <c-p> :Files<cr>
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
+  \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
   \ 'hl':      ['fg', 'Comment'],
   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
