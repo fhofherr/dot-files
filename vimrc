@@ -131,6 +131,8 @@ endif
 
 language messages en_US.UTF-8
 
+set diffopt=filler,vertical
+
 " ---------------------------------------------------------------------------
 "
 " Shortcuts
