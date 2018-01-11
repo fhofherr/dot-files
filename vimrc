@@ -98,7 +98,7 @@ set splitbelow
 set splitright
 
 " 256 Color setup
-if &t_Co == 256 || has("gui_running")
+if has('nvim') || has("gui_running") || &t_Co == 256
     set background=dark
     colorscheme solarized
 
@@ -115,7 +115,7 @@ endif
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
+if has('nvim') || has("gui_running") || &t_Co > 2
   syntax on
   set hlsearch
 endif
