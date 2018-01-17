@@ -285,7 +285,7 @@ let g:syntastic_check_on_wq = 0
 
 let g:syntastic_go_checkers = ['gometalinter']
 " Disable all linters then enable the select few we are interested in.
-let g:syntastic_go_gometalinter_args = "--no-config --disable-all --enable=vet --enable=golint --enable=errcheck"
+let g:syntastic_go_gometalinter_args = "--no-config --disable-all --enable=vet --enable=golint"
 
 " ---------------------------------------------------------------------------
 "
