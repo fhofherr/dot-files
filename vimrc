@@ -86,7 +86,7 @@ set softtabstop=4
 
 " Set the characters that listmode should highlight
 set lcs=eol:$,tab:>-,trail:·
-set list
+set nolist
 
 " Set a nice statusline
 set statusline=%{fugitive#statusline()}\ %f\ %m\ %r\ Line:\ %l/%L[%p%%]\ Col:\ %c\ Buf:\ #%n\ [%b][0x%B]
