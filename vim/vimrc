@@ -11,19 +11,59 @@ endif
 " vim-plug
 "
 " ---------------------------------------------------------------------------
-if empty(glob($VIMHOME.'/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+
+function! s:is_installed(cmd)
+    return !empty(system('command -v xbuild'))
+endfunction
+
+function! BuildYCM(info)
+    if exists('g:python3_host_prog')
+        let cmd = g:python3_host_prog . ' install.py'
+    elseif exists('g:python_host_prog')
+        let cmd = g:python_host_prog . ' install.py'
+    else
+        let cmd = './install.py'
+    endif
+    let cmd = '!' . cmd . ' --clang-completer'
+
+    if s:is_installed('xbuild')
+        let cmd = cmd . ' --cs-completer'
+    endif
+
+    if s:is_installed('go')
+        let cmd = cmd . ' --go-completer'
+    endif
+
+    if s:is_installed('node') && s:is_installed('npm')
+        let cmd = cmd . ' --js-completer'
+    endif
+
+    if s:is_installed('rustc') && s:is_installed('cargo')
+        let cmd = cmd . ' --rust-completer'
+    endif
+
+    if a:info.status == 'installed' || a:info.force
+        silent execute cmd
+    endif
+endfunction
 
 call plug#begin($VIMHOME."/bundle")
-
 Plug 'junegunn/vim-plug'
+
+" Eye candy and color schemes
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/tmuxline.vim'
+
 Plug 'altercation/vim-colors-solarized'
-Plug 'bling/vim-airline'
+Plug 'tpope/vim-vividchalk'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'morhetz/gruvbox'
+Plug 'arcticicestudio/nord-vim'
+
 Plug 'Raimondi/delimitMate'
 Plug 'godlygeek/tabular'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', {'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'nelstrom/vim-visual-star-search'
@@ -31,25 +71,27 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'sirver/ultisnips'
 Plug 'tpope/vim-surround'
-Plug 'kien/rainbow_parentheses.vim'
+Plug 'tpope/vim-dispatch'
+Plug 'christoomey/vim-tmux-navigator'
 
 " Code completion
-Plug 'valloric/youcompleteme', {'do': './install.py --clang-completer --gocode-completer'}
+Plug 'valloric/youcompleteme', {'do': function('BuildYCM')}
 
 " Git plugins
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
 
 " Clojure plugins
+Plug 'kien/rainbow_parentheses.vim', {'for': 'clojure'}
 Plug 'tpope/vim-classpath', {'for': 'clojure'}
 Plug 'tpope/vim-salve', {'for': 'clojure'}
-Plug 'tpope/vim-projectionist', {'for': 'clojure'}
-Plug 'tpope/vim-dispatch', {'for': 'clojure'}
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 Plug 'venantius/vim-cljfmt', {'for': 'clojure'}
 
 " Go plugins
-Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
+if s:is_installed('go')
+    Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
+endif
 
 " Text editing
 Plug 'reedes/vim-lexical', {'for': ['markdown', 'asciidoc', 'text']}
@@ -88,10 +130,6 @@ set softtabstop=4
 set lcs=eol:$,tab:>-,trail:·
 set nolist
 
-" Set a nice statusline
-set statusline=%{fugitive#statusline()}\ %f\ %m\ %r\ Line:\ %l/%L[%p%%]\ Col:\ %c\ Buf:\ #%n\ [%b][0x%B]
-set laststatus=2
-
 " When spliting horizontaly always split below the current window,
 " when spliting verticaly always open the window on the right.
 set splitbelow
@@ -100,7 +138,36 @@ set splitright
 " 256 Color setup
 if has('nvim') || has("gui_running") || &t_Co == 256
     set background=dark
-    colorscheme solarized
+
+    if has('termguicolors')
+        set termguicolors
+    elseif has('nvim')
+        let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+    endif
+
+    let g:airline_powerline_fonts = 1
+    let g:tmuxline_powerline_separators = 1
+
+    " Comment/Un-comment those based on your color scheme selection below
+    " let g:palenight_terminal_italics=1
+    " let g:gruvbox_italic=1
+    let g:nord_italic = 1
+    let g:nord_italic_comments = 1
+
+    try
+        " colorscheme solarized
+        " colorscheme vividchalk
+        " colorscheme palenight
+        " colorscheme gruvbox
+
+        " The nord color scheme requires the respective color scheme for
+        " your terminal emulator.
+        " See https://github.com/arcticicestudio/nord-vim for a list
+        " of supported terminals.
+        colorscheme nord
+    catch E185
+        " Do nothing.
+    endtry
 
     " Highlight the 80th colum
     set colorcolumn=80
@@ -156,12 +223,6 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-" Move between windows using CTRL+{hjkl}
-map <c-h> <c-w>h
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-
 " Disable insert mode commands
 imap <c-a> <Nop>
 imap <c-c> <Nop>
@@ -212,13 +273,13 @@ command! Todo Ack! 'TODO|FIXME|XXX'
 "
 " ---------------------------------------------------------------------------
 
-" Enable rainbow parentheses for all buffers
+" Enable rainbow parentheses for Clojure buffers
 augroup rainbow_parentheses
   au!
-  au VimEnter * RainbowParenthesesActivate
-  au BufEnter * RainbowParenthesesLoadRound
-  au BufEnter * RainbowParenthesesLoadSquare
-  au BufEnter * RainbowParenthesesLoadBraces
+  au BufEnter clojure RainbowParenthesesActivate
+  au BufEnter clojure RainbowParenthesesLoadRound
+  au BufEnter clojure RainbowParenthesesLoadSquare
+  au BufEnter clojure RainbowParenthesesLoadBraces
 augroup END
 
 " ---------------------------------------------------------------------------
@@ -315,26 +376,10 @@ augroup END
 " ---------------------------------------------------------------------------
 
 augroup delimitmate
-    au FileType sql let b:delimitMate_expand_cr = 1
-    au FileType sql let b:delimitMate_expand_space = 1
-
-    au FileType json let b:delimitMate_expand_cr = 1
-    au FileType json let b:delimitMate_expand_space = 1
-
-    au FileType javascript let b:delimitMate_expand_cr = 1
-    au FileType javascript let b:delimitMate_expand_space = 1
+    au FileType * let b:delimitMate_expand_cr = 1
+    au FileType * let b:delimitMate_expand_space = 1
 
     au FileType clojure let b:delimitMate_quotes = "\""
-    au FileType clojure let b:delimitMate_expand_cr = 1
-
-    au FileType ruby let b:delimitMate_expand_cr = 1
-    au FileType ruby let b:delimitMate_expand_space = 1
-
-    au FileType scss let b:delimitMate_expand_cr = 1
-    au FileType scss let b:delimitMate_expand_space = 1
-
-    au FileType go let b:delimitMate_expand_cr = 1
-    au FileType go let b:delimitMate_expand_space = 1
 augroup END
 
 " ---------------------------------------------------------------------------

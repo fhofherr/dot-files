@@ -1,11 +1,17 @@
 *~
 *.swp
+*.pyc
 
 .netrwhist
 spell
 tags
 
-# Ignore vim-plug since it will install itself if it is missing
-autoload/plug.vim
 # Ignore all vim plugins as they are managed by vim-plug.
-bundle/
+vim/bundle/
+tmux/plugins
+
+
+.cache/
+.venv/
+.vagrant/
+*.log
