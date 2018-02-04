@@ -39,14 +39,14 @@ if [ -e "$HOME/.vimrc" ]
 then
     echo "$HOME/.vimrc exists"
 else
-    ln -s "$DOTFILES_DIR/vim/vimrc" "$HOME/.vimrc"
+    ln -s "$DOTFILES_DIR/vim/init.vim" "$HOME/.vimrc"
 fi
 
 if [ -e "$XDG_CONFIG_HOME/nvim" ];
 then
     echo "$XDG_CONFIG_HOME/nvim exists"
 else
-    ln -s "$DOTFILES_DIR/vim/nvim" "$XDG_CONFIG_HOME/nvim"
+    ln -s "$DOTFILES_DIR/vim" "$XDG_CONFIG_HOME/nvim"
 fi
 
 if $USE_NVIM

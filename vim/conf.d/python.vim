@@ -1,9 +1,6 @@
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
-let &packpath = &runtimepath
-
-function s:find_executable(paths)
+function! s:find_executable(paths)
     for path in a:paths
-        if !empty(glob(path))
+        if executable(path)
             return path
         endif
     endfor
@@ -21,6 +18,3 @@ endif
 if !empty(s:python2)
     let g:python_host_prog=s:python2
 endif
-
-" load our .vimrc
-source ~/.vimrc
