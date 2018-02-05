@@ -3,35 +3,6 @@
 " vim-plug
 "
 " ---------------------------------------------------------------------------
-function! BuildYCM(info)
-    if exists('g:python3_host_prog')
-        let cmd = g:python3_host_prog . ' install.py'
-    elseif exists('g:python_host_prog')
-        let cmd = g:python_host_prog . ' install.py'
-    else
-        let cmd = './install.py'
-    endif
-    let cmd = '!' . cmd . ' --system-libclang --clang-completer'
-
-    if executable('xbuild')
-        let cmd = cmd . ' --cs-completer'
-    endif
-
-    if executable('go')
-        let cmd = cmd . ' --go-completer'
-    endif
-
-    if executable('node') && executable('npm')
-        let cmd = cmd . ' --js-completer'
-    endif
-
-    if executable('rustc') && executable('cargo')
-        let cmd = cmd . ' --rust-completer'
-    endif
-
-    silent execute cmd
-endfunction
-
 call plug#begin($VIMHOME."/bundle")
 Plug 'junegunn/vim-plug'
 
@@ -60,7 +31,15 @@ Plug 'tpope/vim-dispatch'
 Plug 'christoomey/vim-tmux-navigator'
 
 " Code completion
-Plug 'valloric/youcompleteme', {'do': function('BuildYCM')}
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+Plug 'zchee/deoplete-jedi'
+Plug 'zchee/deoplete-zsh'
 
 " Git plugins
 Plug 'tpope/vim-fugitive'
