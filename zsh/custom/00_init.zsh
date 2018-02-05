@@ -36,6 +36,25 @@ fi
 # -----------------------------------------------------------------------------
 if which pyenv > /dev/null; then
     eval "$(pyenv init -)";
+else
+    if which python3 > /dev/null; then
+        py3bin="$(python3 -m site --user-base)/bin"
+        if [ -d "$py3bin" ]; then
+            export PATH="$PATH:$py3bin"
+        fi
+    fi
+    if which python2 > /dev/null; then
+        py2bin="$(python2 -m site --user-base)/bin"
+        if [ -d "$py2bin" ]; then
+            export PATH="$PATH:$py2bin"
+        fi
+    fi
+    if which python > /dev/null; then
+        pybin="$(python -m site --user-base)/bin"
+        if [ -d "$pybin" ]; then
+            export PATH="$PATH:$pybin"
+        fi
+    fi
 fi
 
 if which pyenv-virtualenv-init > /dev/null; then

@@ -47,6 +47,19 @@ then
     tic -x $DOTFILES_DIR/tmux/tmux.terminfo
 fi
 
+if which pip3 > /dev/null
+then
+    pip3 install --user tmuxp
+elif which pip2 > /dev/null
+then
+    pip2 install --user tmuxp
+elif which pip > /dev/null
+then
+    pip install --user tmuxp
+else
+    echo "Could not install tmuxp"
+fi
+
 tmux new-session -s tmux-install -d
 tmux run-shell /Users/fh/.tmux/plugins/tpm/bindings/install_plugins
 tmux kill-session -t tmux-install
