@@ -40,6 +40,7 @@ else
 endif
 Plug 'zchee/deoplete-jedi'
 Plug 'zchee/deoplete-zsh'
+Plug 'ervandew/supertab'
 
 " Git plugins
 Plug 'tpope/vim-fugitive'
