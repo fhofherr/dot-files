@@ -56,6 +56,7 @@ ZSH_CUSTOM="$DOTFILES_DIR/zsh/custom"
 plugins=(
     git
     rvm
+    workon
 )
 
 # User configuration

@@ -76,8 +76,8 @@ if [ -f "/usr/libexec/path_helper" ]; then
 fi
 
 # -----------------------------------------------------------------------------
-# Secrets
+# Local configuration and secrets
 # -----------------------------------------------------------------------------
-if [ -f "$HOME/.zsh_secrets" ];then
-    source "$HOME/.zsh_secrets"
+if [ -f "$HOME/.zsh_local" ];then
+    source "$HOME/.zsh_local"
 fi
