@@ -54,7 +54,7 @@ ZSH_CUSTOM="$DOTFILES_DIR/zsh/custom"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    git 
+    git
     rvm
 )
 
@@ -63,5 +63,3 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR="nvim"
 export PATH="$PATH:/usr/local/bin"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
