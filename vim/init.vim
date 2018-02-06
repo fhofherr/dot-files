@@ -15,4 +15,3 @@ source $VIMHOME/conf.d/general.vim
 source $VIMHOME/conf.d/python.vim
 source $VIMHOME/conf.d/vimplug.vim
 source $VIMHOME/conf.d/colors.vim
-source $VIMHOME/conf.d/plugins.vim

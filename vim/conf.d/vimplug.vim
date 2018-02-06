@@ -56,6 +56,7 @@ Plug 'venantius/vim-cljfmt', {'for': 'clojure'}
 " Go plugins
 if executable('go')
     Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
+    Plug 'zchee/deoplete-go', {'for': 'go'}
 endif
 
 " Text editing
@@ -70,3 +71,8 @@ Plug 'reedes/vim-wordy', {'for': ['markdown', 'asciidoc', 'text']}
 " Plug 'tomtom/tlib_vim'
 
 call plug#end()            " required
+
+let s:cfg_files = globpath($VIMHOME . '/conf.d/plugins/', '*.vim', 0, 1)
+for plugincfg in s:cfg_files
+    execute 'source ' . plugincfg
+endfor
