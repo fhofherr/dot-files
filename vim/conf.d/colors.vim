@@ -1,12 +1,18 @@
+set background=dark
+if has('termguicolors')
+    set termguicolors
+elseif has('nvim')
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+
 " 256 Color setup
 if has('nvim') || has("gui_running") || &t_Co == 256
-    set background=dark
+    " Highlight the 80th colum
+    set colorcolumn=80
 
-    if has('termguicolors')
-        set termguicolors
-    elseif has('nvim')
-        let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-    endif
+    " Width of line number column
+    set numberwidth=5
+    set number
 
     let g:airline_powerline_fonts = 1
     let g:tmuxline_powerline_separators = 1
@@ -31,21 +37,6 @@ if has('nvim') || has("gui_running") || &t_Co == 256
     catch E185
         " Do nothing.
     endtry
-
-    " Highlight the 80th colum
-    set colorcolumn=80
-
-    " Width of line number column
-    set numberwidth=5
-    set number
 else
-    set background=dark
     colorscheme default
-endif
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if has('nvim') || has("gui_running") || &t_Co > 2
-  syntax on
-  set hlsearch
 endif

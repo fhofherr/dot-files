@@ -6,29 +6,33 @@
 call plug#begin($VIMHOME."/bundle")
 Plug 'junegunn/vim-plug'
 
-" Eye candy and color schemes
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'edkolev/tmuxline.vim'
-
-Plug 'altercation/vim-colors-solarized'
-Plug 'tpope/vim-vividchalk'
-Plug 'drewtempelmeyer/palenight.vim'
-Plug 'morhetz/gruvbox'
-Plug 'arcticicestudio/nord-vim'
-
-Plug 'Raimondi/delimitMate'
-Plug 'godlygeek/tabular'
+Plug 'tpope/vim-sensible'
+Plug 'nelstrom/vim-visual-star-search'
+Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf', {'do': './install --all'}
 Plug 'junegunn/fzf.vim'
+Plug 'Raimondi/delimitMate'
+
+Plug 'godlygeek/tabular'
 Plug 'mileszs/ack.vim'
-Plug 'nelstrom/vim-visual-star-search'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'sirver/ultisnips'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-dispatch'
-Plug 'christoomey/vim-tmux-navigator'
+
+" Eye candy and color schemes
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+if executable('tmux')
+    Plug 'edkolev/tmuxline.vim'
+    Plug 'christoomey/vim-tmux-navigator'
+endif
+
+" I don't need all of those. But if I want to switch I want
+" the others handy. So they are just commented out.
+" Plug 'altercation/vim-colors-solarized'
+" Plug 'drewtempelmeyer/palenight.vim'
+" Plug 'morhetz/gruvbox'
+Plug 'arcticicestudio/nord-vim'
 
 " Code completion
 if has('nvim')
@@ -38,11 +42,12 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
+Plug 'Shougo/neco-vim'
 Plug 'zchee/deoplete-jedi'
 Plug 'zchee/deoplete-zsh'
 Plug 'ervandew/supertab'
 
-" Git plugins
+" Git
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
 
@@ -67,8 +72,3 @@ Plug 'reedes/vim-lexical', {'for': ['markdown', 'asciidoc', 'text']}
 Plug 'reedes/vim-wordy', {'for': ['markdown', 'asciidoc', 'text']}
 
 call plug#end()            " required
-
-let s:cfg_files = globpath($VIMHOME . '/conf.d/plugins/', '*.vim', 0, 1)
-for plugincfg in s:cfg_files
-    execute 'source ' . plugincfg
-endfor
