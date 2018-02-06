@@ -66,10 +66,6 @@ Plug 'reedes/vim-lexical', {'for': ['markdown', 'asciidoc', 'text']}
 Plug 'reedes/vim-lexical', {'for': ['markdown', 'asciidoc', 'text']}
 Plug 'reedes/vim-wordy', {'for': ['markdown', 'asciidoc', 'text']}
 
-"" TODO what do I need those for? Delete them if nothing breaks.
-" Plug 'MarcWeber/vim-addon-mw-utils'
-" Plug 'tomtom/tlib_vim'
-
 call plug#end()            " required
 
 let s:cfg_files = globpath($VIMHOME . '/conf.d/plugins/', '*.vim', 0, 1)
