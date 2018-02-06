@@ -1,5 +1,35 @@
 #!/usr/bin/env zsh
 
+WITH_ZSH=true
+WITH_VIM=true
+WITH_TMUX=true
+WITH_LEIN=true
+WITH_GIT=true
+MINIMAL=''
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --no-zsh)
+            WITH_ZSH=false
+            ;;
+        --no-vim)
+            WITH_VIM=false
+            ;;
+        --no-tmux)
+            WITH_TMUX=false
+            ;;
+        --no-lein)
+            WITH_LEIN=false
+            ;;
+        --no-git)
+            WITH_GIT=false
+            ;;
+        --minimal)
+            MINIMAL="--minimal"
+            ;;
+    esac
+    shift
+done
+
 DOTFILES_DIR="$(dirname ${0:A})"
 
 cat <<END > "$HOME/.zsh_dotfiles_init"
@@ -9,8 +39,8 @@ export DOTFILES_DIR=$DOTFILES_DIR
 export ZSH=${ZSH:="$HOME/.oh-my-zsh"}
 END
 
-$DOTFILES_DIR/zsh/install.zsh
-$DOTFILES_DIR/vim/install.zsh
-$DOTFILES_DIR/tmux/install.zsh
-$DOTFILES_DIR/leiningen/install.zsh
-$DOTFILES_DIR/git/install.zsh
+$WITH_ZSH  && $DOTFILES_DIR/zsh/install.zsh $MINIMAL
+$WITH_VIM && $DOTFILES_DIR/vim/install.zsh $MINIMAL
+$WITH_TMUX && $DOTFILES_DIR/tmux/install.zsh $MINIMAL
+$WITH_LEIN && $DOTFILES_DIR/leiningen/install.zsh $MINIMAL
+$WITH_GIT && $DOTFILES_DIR/git/install.zsh $MINIMAL

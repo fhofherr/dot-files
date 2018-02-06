@@ -9,6 +9,16 @@ else
     exit 1
 fi
 
+MINIMAL=false
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --minimal)
+            MINIMAL=true
+            ;;
+    esac
+    shift
+done
+
 VIM=$(which nvim)
 USE_NVIM=true
 if [ -z "$VIM" ]
@@ -74,6 +84,16 @@ then
             echo "Could not find pip. No python providers installed"
         fi
     fi
+fi
+
+if [ ! -e "$DOTFILES_DIR/vim/local.vim" ]; then
+    cp "$DOTFILES_DIR/vim/local.vim.template" "$DOTFILES_DIR/vim/local.vim"
+fi
+
+if $MINIMAL; then
+    sed -i -e 's/local_vim_minimal=.*/local_vim_minimal=1/g' "$DOTFILES_DIR/vim/local.vim"
+else
+    sed -i -e 's/local_vim_minimal=.*/local_vim_minimal=0/g' "$DOTFILES_DIR/vim/local.vim"
 fi
 
 echo "Installing vim plugins"

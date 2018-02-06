@@ -8,6 +8,7 @@ tags
 
 # Ignore all vim plugins as they are managed by vim-plug.
 vim/bundle/
+vim/local.vim
 tmux/plugins
 
 

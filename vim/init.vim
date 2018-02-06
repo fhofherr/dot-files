@@ -77,6 +77,10 @@ autocmd BufReadPost *
             \   exe "normal g`\"" |
             \ endif
 
+if filereadable($VIMHOME . '/local.vim')
+    source $VIMHOME/local.vim
+endif
+
 source $VIMHOME/shortcuts.vim
 source $VIMHOME/vimplug.vim
 
