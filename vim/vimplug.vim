@@ -57,7 +57,6 @@ if !g:local_vim_minimal
         Plug 'tpope/vim-classpath', {'for': 'clojure'}
         Plug 'tpope/vim-salve', {'for': 'clojure'}
         Plug 'tpope/vim-fireplace', {'for': 'clojure'}
-        Plug 'venantius/vim-cljfmt', {'for': 'clojure'}
         Plug 'clojure-vim/async-clj-omni', {'for': 'clojure'}
         if has('nvim')
             Plug 'snoe/clj-refactor.nvim', {'for': 'clojure', 'do': ':UpdateRemotePlugins'}
