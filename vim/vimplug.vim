@@ -57,6 +57,11 @@ if !g:local_vim_minimal
         Plug 'tpope/vim-fireplace', {'for': 'clojure'}
     endif
 
+    " CommonLisp plugins
+    if executable('sbcl')
+        Plug 'l04m33/vlime', {'rtp': './vim', 'for': 'lisp'}
+    endif
+
     " Go plugins
     if executable('go')
         Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
