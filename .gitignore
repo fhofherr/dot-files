@@ -10,8 +10,12 @@ tags
 # Ignore all vim plugins as they are managed by vim-plug.
 vim/bundle/
 vim/local.vim
+
+# Ignore tmux plugins as they are managed by tpm
 tmux/plugins
 
+# Ignore quicklisp.lisp as it is downloaded
+sbcl/quicklisp.lisp
 
 .cache/
 .venv/
