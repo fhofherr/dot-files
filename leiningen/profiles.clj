@@ -3,4 +3,5 @@
                   [refactor-nrepl "2.3.1"]
                   [cider/cider-nrepl "0.16.0"]
                   [jonase/eastwood "0.2.5"]]
-        :dependencies [[cljfmt "0.5.7" :exclusions [org.clojure/clojure]]]}}
+        :dependencies [[org.clojure/clojure "1.9.0"]
+                       [cljfmt "0.5.7" :exclusions [org.clojure/clojure]]]}}
