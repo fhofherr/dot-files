@@ -5,6 +5,7 @@
 " ---------------------------------------------------------------------------
 
 let mapleader = ' '
+let maplocalleader = ' '
 
 " Toggle list mode
 nnoremap <Leader>ls :set invlist<cr>:set list?<cr>
