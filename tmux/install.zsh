@@ -61,5 +61,5 @@ else
 fi
 
 tmux new-session -s tmux-install -d
-tmux run-shell /Users/fh/.tmux/plugins/tpm/bindings/install_plugins
+tmux run-shell $HOME/.tmux/plugins/tpm/bindings/install_plugins
 tmux kill-session -t tmux-install
