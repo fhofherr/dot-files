@@ -65,7 +65,7 @@ if !g:local_vim_minimal
 
     " Go plugins
     if executable('go')
-        Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
+        Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoUpdateBinaries'}
         Plug 'zchee/deoplete-go', {'for': 'go'}
     endif
 
