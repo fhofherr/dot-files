@@ -35,17 +35,18 @@ if !g:local_vim_minimal
     Plug 'arcticicestudio/nord-vim'
 
     " Code completion
-    if has('nvim')
-        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    else
-        Plug 'Shougo/deoplete.nvim'
-        Plug 'roxma/nvim-yarp'
-        Plug 'roxma/vim-hug-neovim-rpc'
-    endif
-    Plug 'Shougo/neco-vim'
-    Plug 'zchee/deoplete-jedi'
-    Plug 'zchee/deoplete-zsh'
-    Plug 'ervandew/supertab'
+    " if has('nvim')
+    "     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    " else
+    "     Plug 'Shougo/deoplete.nvim'
+    "     Plug 'roxma/nvim-yarp'
+    "     Plug 'roxma/vim-hug-neovim-rpc'
+    " endif
+    " Plug 'Shougo/neco-vim'
+    " Plug 'zchee/deoplete-jedi'
+    " Plug 'zchee/deoplete-zsh'
+    " Plug 'ervandew/supertab'
+    Plug 'valloric/youcompleteme', { 'do': $VIMHOME.'/ycm-install.sh' }
 
     " Git
     Plug 'tpope/vim-fugitive'
@@ -57,16 +58,12 @@ if !g:local_vim_minimal
         Plug 'tpope/vim-classpath', {'for': 'clojure'}
         Plug 'tpope/vim-salve', {'for': 'clojure'}
         Plug 'tpope/vim-fireplace', {'for': 'clojure'}
-        Plug 'clojure-vim/async-clj-omni', {'for': 'clojure'}
-        if has('nvim')
-            Plug 'snoe/clj-refactor.nvim', {'for': 'clojure', 'do': ':UpdateRemotePlugins'}
-        endif
     endif
 
     " Go plugins
     if executable('go')
         Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoUpdateBinaries'}
-        Plug 'zchee/deoplete-go', {'for': 'go'}
+        " Plug 'zchee/deoplete-go', {'for': 'go'}
     endif
 
     " Text editing

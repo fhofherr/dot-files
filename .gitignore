@@ -1,6 +1,7 @@
 *~
 *.swp
 *.pyc
+*.old
 
 .netrwhist
 spell
