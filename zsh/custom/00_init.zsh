@@ -14,6 +14,15 @@ if [ -e "$HOME/.linuxbrew" ]; then
 fi
 
 # -----------------------------------------------------------------------------
+# MacTeX
+# -----------------------------------------------------------------------------
+# Path helper adds in front of the path. It thus must come first, as it will
+# override other things.
+if [ -f "/usr/libexec/path_helper" ]; then
+    eval `/usr/libexec/path_helper -s`
+fi
+
+# -----------------------------------------------------------------------------
 # FZF
 # -----------------------------------------------------------------------------
 if [ -f "$HOME/.fzf.zsh" ]; then
@@ -36,6 +45,9 @@ fi
 # -----------------------------------------------------------------------------
 if which pyenv > /dev/null; then
     eval "$(pyenv init -)";
+    if which pyenv-virtualenv-init > /dev/null; then
+        eval "$(pyenv virtualenv-init -)"
+    fi
 else
     if which python3 > /dev/null; then
         py3bin="$(python3 -m site --user-base)/bin"
@@ -57,22 +69,11 @@ else
     fi
 fi
 
-if which pyenv-virtualenv-init > /dev/null; then
-    eval "$(pyenv virtualenv-init -)"
-fi
-
 # -----------------------------------------------------------------------------
 # RVM
 # -----------------------------------------------------------------------------
 if [ -e "$HOME/.rvm/bin" ]; then
-    export PATH="$PATH:$HOME/.rvm/bin"
-fi
-
-# -----------------------------------------------------------------------------
-# MacTeX
-# -----------------------------------------------------------------------------
-if [ -f "/usr/libexec/path_helper" ]; then
-    eval `/usr/libexec/path_helper -s`
+    export PATH="$HOME/.rvm/bin:$PATH"
 fi
 
 # -----------------------------------------------------------------------------
