@@ -8,7 +8,7 @@ then
     exit 1
 fi
 
-INSTALL_YCM="$YCM_DIR/install.py --clang-completer"
+INSTALL_YCM="$YCM_DIR/install.py --clang-completer --system-libclang"
 
 if [ -e "/usr/local/bin/python3" ]
 then
