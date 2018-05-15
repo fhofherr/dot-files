@@ -10,9 +10,18 @@ fi
 
 INSTALL_YCM="$YCM_DIR/install.py --clang-completer"
 
-if which python3 > /dev/null
+if [ -e "/usr/local/bin/python3" ]
 then
-    INSTALL_YCM="python3 $INSTALL_YCM"
+    INSTALL_YCM="/usr/local/bin/python3 $INSTALL_YCM"
+elif [ -e "/usr/bin/python3" ]
+then
+    INSTALL_YCM="/usr/bin/python3 $INSTALL_YCM"
+elif [ -e "/usr/local/bin/python2" ]
+then
+    INSTALL_YCM="/usr/local/bin/python2 $INSTALL_YCM"
+elif [ -e "/usr/bin/python2" ]
+then
+    INSTALL_YCM="/usr/bin/python2 $INSTALL_YCM"
 else
     INSTALL_YCM="python $INSTALL_YCM"
 fi
