@@ -19,10 +19,17 @@ if !g:local_vim_minimal
     Plug 'scrooloose/nerdtree'
     Plug 'scrooloose/syntastic'
 
-    " Load first time when entering insert mode.
-    " The augroup is defined in conf.d/ultisnips.vim
-    " @See https://github.com/junegunn/vim-plug/wiki/tips#loading-plugins-manually
-    Plug 'sirver/ultisnips', {'on': []}
+    Plug 'sirver/ultisnips'
+
+    if has('nvim')
+        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    else
+        Plug 'Shougo/deoplete.nvim'
+        Plug 'roxma/nvim-yarp'
+        Plug 'roxma/vim-hug-neovim-rpc'
+    endif
+
+    Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh' }
 
     " Eye candy and color schemes
     Plug 'vim-airline/vim-airline'
@@ -38,12 +45,6 @@ if !g:local_vim_minimal
     " Plug 'morhetz/gruvbox'
     Plug 'arcticicestudio/nord-vim'
 
-
-    " Load first time when entering insert mode.
-    " The augroup is defined in conf.d/ycm.vim
-    " @See https://github.com/junegunn/vim-plug/wiki/tips#loading-plugins-manually
-    Plug 'valloric/youcompleteme', { 'do': $VIMHOME.'/ycm-install.sh', 'on': [] }
-
     " Git
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-git'
@@ -58,7 +59,8 @@ if !g:local_vim_minimal
 
     " Go plugins
     if executable('go')
-        Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoUpdateBinaries'}
+        Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
+        Plug 'zchee/deoplete-go', {'do': 'make'}
     endif
 
     " Text editing
