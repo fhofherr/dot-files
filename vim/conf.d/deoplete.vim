@@ -22,3 +22,11 @@ let g:deoplete#sources#go#package_dot = 1
 let g:deoplete#sources.python = ['LanguageClient']
 let g:deoplete#sources.python3 = ['LanguageClient']
 let g:deoplete#sources.vim = ['vim']
+
+" Auto-close preview window upon completion
+" See https://github.com/Shougo/deoplete.nvim/issues/115
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" deoplete tab-complete
+" See https://www.gregjs.com/vim/2016/configuring-the-deoplete-asynchronous-keyword-completion-plugin-with-tern-for-vim/
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
