@@ -66,8 +66,6 @@ if !g:local_vim_minimal
     " Text editing
     Plug 'reedes/vim-lexical', {'for': ['markdown', 'asciidoc', 'text']}
     Plug 'reedes/vim-pencil', {'for': ['markdown', 'asciidoc', 'text']}
-    Plug 'reedes/vim-lexical', {'for': ['markdown', 'asciidoc', 'text']}
-    Plug 'reedes/vim-lexical', {'for': ['markdown', 'asciidoc', 'text']}
     Plug 'reedes/vim-wordy', {'for': ['markdown', 'asciidoc', 'text']}
 endif
 call plug#end()            " required
