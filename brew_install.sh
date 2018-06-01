@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
 brew install\
+    clojure\
     cmake\
     leiningen\
     neovim\
