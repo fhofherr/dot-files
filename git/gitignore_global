@@ -14,5 +14,9 @@
 ehthumbs.db
 Thumbs.db
 
+
+# Tool generated files #
+########################
 .idea/
 *.iml
+.lsp/
