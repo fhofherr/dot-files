@@ -3,7 +3,7 @@
 WITH_ZSH=true
 WITH_VIM=true
 WITH_TMUX=true
-WITH_LEIN=true
+WITH_CLJ=true
 WITH_GIT=true
 WITH_SBCL=true
 MINIMAL=''
@@ -18,8 +18,8 @@ while [ $# -gt 0 ]; do
         --no-tmux)
             WITH_TMUX=false
             ;;
-        --no-lein)
-            WITH_LEIN=false
+        --no-clj)
+            WITH_CLJ=false
             ;;
         --no-git)
             WITH_GIT=false
@@ -46,6 +46,7 @@ END
 $WITH_ZSH  && $DOTFILES_DIR/zsh/install.zsh $MINIMAL
 $WITH_VIM && $DOTFILES_DIR/vim/install.zsh $MINIMAL
 $WITH_TMUX && $DOTFILES_DIR/tmux/install.zsh $MINIMAL
-$WITH_LEIN && $DOTFILES_DIR/leiningen/install.zsh $MINIMAL
+$WITH_CLJ && $DOTFILES_DIR/leiningen/install.zsh $MINIMAL
+$WITH_CLJ && $DOTFILES_DIR/clojure/install.zsh $MINIMAL
 $WITH_GIT && $DOTFILES_DIR/git/install.zsh $MINIMAL
 $WITH_SBCL && $DOTFILES_DIR/sbcl/install.zsh $MINIMAL
