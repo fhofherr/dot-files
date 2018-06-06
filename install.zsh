@@ -5,6 +5,7 @@ WITH_VIM=true
 WITH_TMUX=true
 WITH_LEIN=true
 WITH_GIT=true
+WITH_SBCL=true
 MINIMAL=''
 while [ $# -gt 0 ]; do
     case "$1" in
@@ -22,6 +23,9 @@ while [ $# -gt 0 ]; do
             ;;
         --no-git)
             WITH_GIT=false
+            ;;
+        --no-sbcl)
+            WITH_SBCL=false
             ;;
         --minimal)
             MINIMAL="--minimal"
@@ -44,3 +48,4 @@ $WITH_VIM && $DOTFILES_DIR/vim/install.zsh $MINIMAL
 $WITH_TMUX && $DOTFILES_DIR/tmux/install.zsh $MINIMAL
 $WITH_LEIN && $DOTFILES_DIR/leiningen/install.zsh $MINIMAL
 $WITH_GIT && $DOTFILES_DIR/git/install.zsh $MINIMAL
+$WITH_SBCL && $DOTFILES_DIR/sbcl/install.zsh $MINIMAL
