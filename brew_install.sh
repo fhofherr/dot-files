@@ -7,6 +7,7 @@ brew install\
     neovim\
     python3\
     python\
+    sbcl\
     the_silver_searcher\
     tmux\
     zsh
