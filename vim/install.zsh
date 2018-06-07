@@ -91,9 +91,9 @@ if [ ! -e "$DOTFILES_DIR/vim/local.vim" ]; then
 fi
 
 if $MINIMAL; then
-    sed -i -e 's/local_vim_minimal=.*/local_vim_minimal=1/g' "$DOTFILES_DIR/vim/local.vim"
+    sed -i .bak -e 's/local_vim_minimal=.*/local_vim_minimal=1/g' "$DOTFILES_DIR/vim/local.vim"
 else
-    sed -i -e 's/local_vim_minimal=.*/local_vim_minimal=0/g' "$DOTFILES_DIR/vim/local.vim"
+    sed -i .bak -e 's/local_vim_minimal=.*/local_vim_minimal=0/g' "$DOTFILES_DIR/vim/local.vim"
 fi
 
 echo "Installing vim plugins"

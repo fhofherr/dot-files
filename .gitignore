@@ -2,6 +2,8 @@
 *.swp
 *.pyc
 *.old
+*.bak
+*.log
 
 .netrwhist
 spell
@@ -20,4 +22,3 @@ sbcl/quicklisp.lisp
 .cache/
 .venv/
 .vagrant/
-*.log
