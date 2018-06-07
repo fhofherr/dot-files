@@ -50,7 +50,7 @@ if !g:local_vim_minimal
     Plug 'tpope/vim-git'
 
     " Clojure plugins
-    if executable('lein')
+    if executable('clj') || executable('clojure') || executable('lein')
         Plug 'kien/rainbow_parentheses.vim', {'for': 'clojure'}
         Plug 'tpope/vim-classpath', {'for': 'clojure'}
         Plug 'tpope/vim-salve', {'for': 'clojure'}
