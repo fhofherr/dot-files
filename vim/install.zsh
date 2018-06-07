@@ -59,27 +59,53 @@ else
     ln -s "$DOTFILES_DIR/vim" "$XDG_CONFIG_HOME/nvim"
 fi
 
+if which /usr/local/bin/pip2 > /dev/null
+then
+    PIP2="/usr/local/bin/pip2"
+elif which /usr/bin/pip2 > /dev/null
+then
+    PIP2="/usr/bin/pip2"
+fi
+
+if which /usr/local/bin/pip3 > /dev/null
+then
+    PIP3="/usr/local/bin/pip3"
+elif which /usr/bin/pip3 > /dev/null
+then
+    PIP3="/usr/bin/pip3"
+fi
+
+if which /usr/local/bin/pip > /dev/null
+then
+    PIP="/usr/local/bin/pip"
+elif which /usr/bin/pip > /dev/null
+then
+    PIP="/usr/bin/pip"
+fi
+
+
+
 if $USE_NVIM
 then
     py_provider_installed=false
     echo "Installing NeoVim python providers"
-    if which pip2 > /dev/null
+    if [ -n "$PIP2" ]
     then
-        pip2 install --user --upgrade neovim > /dev/null
+        $PIP2 install --user --upgrade neovim > /dev/null
         echo "Installed NeoVim Python2 provider"
         py_provider_installed=true
     fi
-    if which pip3 > /dev/null
+    if [ -n "$PIP3" ]
     then
-        pip3 install --user --upgrade neovim > /dev/null
+        $PIP3 install --user --upgrade neovim > /dev/null
         echo "Installed NeoVim Python3 provider"
         py_provider_installed=true
     fi
     if ! $py_provider_installed
     then
-        if which pip > /dev/null
+        if [ -n "$PIP" ]
         then
-            pip install --user --upgrade neovim > /dev/null
+            $PIP install --user --upgrade neovim > /dev/null
         else
             echo "Could not find pip. No python providers installed"
         fi
