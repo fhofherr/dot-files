@@ -41,9 +41,9 @@ if !g:local_vim_minimal
     " I don't need all of those. But if I want to switch I want
     " the others handy. So they are just commented out.
     " Plug 'altercation/vim-colors-solarized'
-    " Plug 'drewtempelmeyer/palenight.vim'
+    Plug 'drewtempelmeyer/palenight.vim'
     " Plug 'morhetz/gruvbox'
-    Plug 'arcticicestudio/nord-vim'
+    " Plug 'arcticicestudio/nord-vim'
 
     " Git
     Plug 'tpope/vim-fugitive'
