@@ -33,3 +33,21 @@ then
 else
     ln -s "$DOTFILES_DIR/zsh/zshrc" "$HOME/.zshrc"
 fi
+
+if [ -z "$ZSH_CUSTOM" ]
+then
+    source "$HOME/.zshrc"
+fi
+
+# Download and install additional zsh plugins
+ZSH_NVM_REPO="https://github.com/lukechilds/zsh-nvm"
+ZSH_NVM_DIR="$ZSH_CUSTOM/plugins/zsh-nvm"
+if [ ! -e "$ZSH_NVM_REPO" ]
+then
+    git clone $ZSH_NVM_REPO $ZSH_NVM_DIR
+else
+    curdir=$PWD
+    cd $ZSH_NVM_DIR
+    git pull > /dev/null
+    cd $curdir
+fi

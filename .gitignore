@@ -19,6 +19,9 @@ tmux/plugins
 # Ignore quicklisp.lisp as it is downloaded
 sbcl/quicklisp.lisp
 
+# Ingore external zsh plugins
+zsh/custom/plugins/zsh-nvm/
+
 .cache/
 .venv/
 .vagrant/
