@@ -17,7 +17,7 @@ if !g:local_vim_minimal
     Plug 'godlygeek/tabular'
     Plug 'mileszs/ack.vim'
     Plug 'scrooloose/nerdtree'
-    Plug 'vim-syntastic/syntastic'
+    Plug 'w0rp/ale'
 
     Plug 'sirver/ultisnips'
 
