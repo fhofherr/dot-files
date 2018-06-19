@@ -64,5 +64,6 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 export EDITOR="nvim"
+export VISUAL="$EDITOR"
 export MANPAGER="nvim -c 'set ft=man' -"
 export PATH="$PATH:/usr/local/bin"
