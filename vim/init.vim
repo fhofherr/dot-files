@@ -43,6 +43,22 @@ if has('nvim') && !empty(s:python2)
     let g:python_host_prog=s:python2
 endif
 
+let s:neovim_ruby_host=s:find_executable([
+    \'/usr/local/bin/neovim-ruby-host'
+\])
+
+if has('nvim') && !empty(s:neovim_ruby_host)
+    let g:ruby_host_prog=s:neovim_ruby_host
+endif
+
+let s:neovim_node_host=s:find_executable([
+    \'/usr/local/bin/neovim-node-host'
+\])
+
+if has('nvim') && !empty(s:neovim_node_host)
+    let g:node_host_prog=s:neovim_node_host
+endif
+
 " ---------------------------------------------------------------------------
 "
 " General settings

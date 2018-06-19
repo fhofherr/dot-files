@@ -83,7 +83,15 @@ then
     PIP="/usr/bin/pip"
 fi
 
+if which /usr/local/bin/gem > /dev/null
+then
+    GEM="/usr/local/bin/gem"
+fi
 
+if which /usr/local/bin/npm > /dev/null
+then
+    NPM="/usr/local/bin/npm"
+fi
 
 if $USE_NVIM
 then
@@ -110,6 +118,16 @@ then
             echo "Could not find pip. No python providers installed"
         fi
     fi
+
+    if [ -n "$GEM" ]
+    then
+        $GEM install neovim
+    fi
+
+    if [ -n "$NPM" ]
+    then
+        $NPM install -g neovim
+    fi
 fi
 
 if [ ! -e "$DOTFILES_DIR/vim/local.vim" ]; then
@@ -124,3 +142,29 @@ fi
 
 echo "Installing vim plugins"
 $VIM -E -c 'PlugUpdate' -c 'qall!' > /dev/null
+
+echo "Installing ale linters"
+if [ -n "$GEM" ]
+then
+    $GEM install mdl
+fi
+
+if [ -n "$NPM" ]
+then
+    $NPM install -g markdownlint
+fi
+
+if [ -n "$PIP3" ]
+then
+    $PIP3 install --upgrade gitlint
+fi
+
+if [ -n "$PIP2" ]
+then
+    $PIP2 install --upgrade gitlint
+fi
+
+if [ -n "$PIP" ]
+then
+    $PIP install --upgrade gitlint
+fi
