@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config|
     ubuntu.vm.provision "shell", inline: <<-SHELL
       apt-get update
       apt-get upgrade
-      apt-get install -y build-essential
+      apt-get install -y build-essential zsh
     SHELL
   end
 end
