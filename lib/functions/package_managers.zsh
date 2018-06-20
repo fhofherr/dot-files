@@ -5,7 +5,7 @@ function brew_install() {
         echo "No packages to install"
         return 1
     fi
-    if [ "$OSTYPE" = "darwin*" ]
+    if [[ "$OSTYPE" = darwin* ]]
     then
         echo "Installing $pkgs"
         brew install $pkgs > /dev/null
@@ -19,7 +19,7 @@ function apt_install() {
         echo "No packages to install"
         return 1
     fi
-    if [ "$OSTYPE" = "linux*" ] && which apt-get > /dev/null
+    if [[ "$OSTYPE" = linux* ]] && which apt-get > /dev/null
     then
         echo "Installing $pkgs"
         sudo sh -c "apt-get install -y $pkgs > /dev/null"
