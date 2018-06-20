@@ -18,8 +18,9 @@ if !g:local_vim_minimal
     Plug 'mileszs/ack.vim'
     Plug 'scrooloose/nerdtree'
     Plug 'w0rp/ale'
-
     Plug 'sirver/ultisnips'
+    Plug 'tpope/vim-projectionist'
+    Plug 'tpope/vim-dispatch'
 
     if has('nvim')
         Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
