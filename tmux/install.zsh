@@ -8,24 +8,13 @@ else
     echo "Execute over-all install script!"
     exit 1
 fi
-
-TPM_REMOTE_REPO="https://github.com/tmux-plugins/tpm"
+source "$DOTFILES_DIR/lib/functions.zsh"
 
 TMUX_PLUGIN_DIR="$HOME/.tmux/plugins"
 mkdir -p $TMUX_PLUGIN_DIR
 
-if [ ! -e "$TMUX_PLUGIN_DIR/tpm" ]
-then
-    git clone $TPM_REMOTE_REPO "$TMUX_PLUGIN_DIR/tpm" > /dev/null
-elif [ -d "$TMUX_PLUGIN_DIR/tpm" ]
-then
-    curdir=$PWD
-    cd "$TMUX_PLUGIN_DIR/tpm"
-    git pull > /dev/null
-    cd "$curdir"
-else
-    echo "$TMUX_PLUGIN_DIR/tpm exists but is not a directory"
-fi
+TPM_REMOTE_REPO="https://github.com/tmux-plugins/tpm"
+git_clone_or_pull $TPM_REMOTE_REPO "$TMUX_PLUGIN_DIR/tpm"
 
 if [ ! -e "$HOME/.tmux.conf" ]
 then
