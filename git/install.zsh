@@ -8,6 +8,10 @@ else
     echo "Execute over-all install script!"
     exit 1
 fi
+source "$DOTFILES_DIR/lib/functions.zsh"
+
+# OS X: use the git that comes with Xcode
+apt_install git
 
 if [ ! -e "$HOME/.gitignore_global" ]
 then

@@ -8,6 +8,10 @@ else
     echo "Execute over-all install script!"
     exit 1
 fi
+source "$DOTFILES_DIR/lib/functions.zsh"
+
+brew_install neovim the_silver_searcher
+apt_install neovim silversearcher-ag
 
 MINIMAL=false
 while [ $# -gt 0 ]; do

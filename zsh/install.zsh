@@ -10,6 +10,9 @@ else
 fi
 source "$DOTFILES_DIR/lib/functions.zsh"
 
+brew_install zsh
+apt_install zsh
+
 OH_MY_ZSH_REPO="https://github.com/robbyrussell/oh-my-zsh.git"
 git_clone_or_pull $OH_MY_ZSH_REPO $ZSH
 

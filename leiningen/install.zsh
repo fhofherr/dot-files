@@ -8,6 +8,10 @@ else
     echo "Execute over-all install script!"
     exit 1
 fi
+source "$DOTFILES_DIR/lib/functions.zsh"
+
+brew_install leiningen
+# TODO ubuntu
 
 LEIN_HOME="$HOME/.lein"
 mkdir -p $LEIN_HOME

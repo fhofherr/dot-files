@@ -8,6 +8,10 @@ else
     echo "Execute over-all install script!"
     exit 1
 fi
+source "$DOTFILES_DIR/lib/functions.zsh"
+
+brew_install clojure
+# TODO Ubuntu
 
 CLOJURE_HOME="$HOME/.clojure"
 mkdir -p $CLOJURE_HOME

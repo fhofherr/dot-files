@@ -8,6 +8,10 @@ else
     echo "Execute over-all install script!"
     exit 1
 fi
+source "$DOTFILES_DIR/lib/functions.zsh"
+
+brew_install sbcl
+apt_install sbcl
 
 CURDIR=$PWD
 SBCL_DIR="$DOTFILES_DIR/sbcl"

@@ -10,6 +10,9 @@ else
 fi
 source "$DOTFILES_DIR/lib/functions.zsh"
 
+brew_install tmux
+apt_install tmux
+
 TMUX_PLUGIN_DIR="$HOME/.tmux/plugins"
 mkdir -p $TMUX_PLUGIN_DIR
 
