@@ -43,6 +43,13 @@ export DOTFILES_DIR=$DOTFILES_DIR
 export ZSH=${ZSH:="$HOME/.oh-my-zsh"}
 END
 
+if [ -e "$HOME/.editorconfig" ]
+then
+    echo "$HOME/.editorconfig exists"
+else
+    ln -s "$DOTFILES_DIR/.editorconfig" "$HOME/.editorconfig"
+fi
+
 $WITH_ZSH  && $DOTFILES_DIR/zsh/install.zsh $MINIMAL
 $WITH_VIM && $DOTFILES_DIR/vim/install.zsh $MINIMAL
 $WITH_TMUX && $DOTFILES_DIR/tmux/install.zsh $MINIMAL

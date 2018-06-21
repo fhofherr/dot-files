@@ -64,6 +64,8 @@ endif
 " General settings
 "
 " ---------------------------------------------------------------------------
+" Editorconfig will override those settings. We keep them around
+" nevertheless, in case ~/.editorconfig does not exist.
 set fileencoding=utf-8
 set nobackup                   " never keep backup files
 set showcmd                    " display incomplete commands
