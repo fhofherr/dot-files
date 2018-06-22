@@ -11,6 +11,7 @@ Plug 'nelstrom/vim-visual-star-search'
 Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
 Plug 'sgur/vim-editorconfig'
+Plug 'tpope/vim-unimpaired'
 
 if !g:local_vim_minimal
     Plug 'junegunn/fzf', {'do': './install --all'}

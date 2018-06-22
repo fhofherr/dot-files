@@ -7,12 +7,6 @@
 let mapleader = ' '
 let maplocalleader = ' '
 
-" Toggle list mode
-nnoremap <Leader>ls :set invlist<cr>:set list?<cr>
-
-" Turn off highlight search
-nnoremap <Leader>nh :set invhls<cr>:set hls?<cr>
-
 " Toggle NERDTree
 nnoremap <Leader>nt :NERDTreeToggle<cr>
 
@@ -28,3 +22,12 @@ imap <c-c> <Nop>
 imap <c-h> <Nop>
 imap <c-u> <Nop>
 imap <c-w> <Nop>
+
+" Re-map [ to - and ] to _.
+" See https://github.com/tpope/vim-unimpaired#faq
+nmap - [
+nmap _ ]
+omap - [
+omap _ ]
+xmap - [
+xmap _ ]
