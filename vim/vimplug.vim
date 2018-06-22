@@ -12,6 +12,9 @@ Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
 Plug 'sgur/vim-editorconfig'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-tbone'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
 
 if !g:local_vim_minimal
     Plug 'junegunn/fzf', {'do': './install --all'}
