@@ -3,6 +3,7 @@
 DOTFILES_MINIMAL=false
 
 WITH_ZSH=true
+WITH_PYENV=true
 WITH_VIM=true
 WITH_TMUX=true
 WITH_CLJ=true
@@ -12,6 +13,9 @@ while [ $# -gt 0 ]; do
     case "$1" in
         --no-zsh)
             WITH_ZSH=false
+            ;;
+        --no-pyenv)
+            WITH_PYENV=false
             ;;
         --no-vim)
             WITH_VIM=false
@@ -54,9 +58,10 @@ else
 fi
 
 $WITH_ZSH  && $DOTFILES_DIR/zsh/install.zsh
-$WITH_VIM && $DOTFILES_DIR/vim/install.zsh
+$WITH_PYENV  && $DOTFILES_DIR/pyenv/install.zsh
 $WITH_TMUX && $DOTFILES_DIR/tmux/install.zsh
 $WITH_CLJ && $DOTFILES_DIR/leiningen/install.zsh
 $WITH_CLJ && $DOTFILES_DIR/clojure/install.zsh
 $WITH_GIT && $DOTFILES_DIR/git/install.zsh
 $WITH_SBCL && $DOTFILES_DIR/sbcl/install.zsh
+$WITH_VIM && $DOTFILES_DIR/vim/install.zsh
