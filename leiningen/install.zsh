@@ -10,6 +10,12 @@ else
 fi
 source "$DOTFILES_DIR/lib/functions.zsh"
 
+if [ $DOTFILES_MINIMAL ]
+then
+    echo "Minimal installation. Skipping Leiningen"
+    exit 0
+fi
+
 brew_install leiningen
 # TODO ubuntu
 

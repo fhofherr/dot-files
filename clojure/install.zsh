@@ -10,6 +10,12 @@ else
 fi
 source "$DOTFILES_DIR/lib/functions.zsh"
 
+if [ $DOTFILES_MINIMAL ]
+then
+    echo "Minimal installation. Skipping Clojure"
+    exit 0
+fi
+
 brew_install clojure
 # TODO Ubuntu
 

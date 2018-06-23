@@ -11,22 +11,25 @@ Plug 'nelstrom/vim-visual-star-search'
 Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-tbone'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-git'
 
-if !g:local_vim_minimal
+if $DOTFILES_MINIMAL == 'false'
+    Plug 'godlygeek/tabular'
     Plug 'junegunn/fzf', {'do': './install --all'}
     Plug 'junegunn/fzf.vim'
-    Plug 'godlygeek/tabular'
     Plug 'mileszs/ack.vim'
     Plug 'scrooloose/nerdtree'
-    Plug 'w0rp/ale'
     Plug 'sirver/ultisnips'
-    Plug 'tpope/vim-projectionist'
+    Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-dispatch'
+    Plug 'tpope/vim-projectionist'
+    Plug 'tpope/vim-repeat'
+    Plug 'tpope/vim-tbone'
+    Plug 'tpope/vim-unimpaired'
+    Plug 'w0rp/ale'
 
+    " Code completion
     if has('nvim')
         Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     else
@@ -34,7 +37,6 @@ if !g:local_vim_minimal
         Plug 'roxma/nvim-yarp'
         Plug 'roxma/vim-hug-neovim-rpc'
     endif
-
     Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh' }
 
     " Eye candy and color schemes
@@ -50,10 +52,6 @@ if !g:local_vim_minimal
     Plug 'drewtempelmeyer/palenight.vim'
     " Plug 'morhetz/gruvbox'
     " Plug 'arcticicestudio/nord-vim'
-
-    " Git
-    Plug 'tpope/vim-fugitive'
-    Plug 'tpope/vim-git'
 
     " Clojure plugins
     if executable('clj') || executable('clojure') || executable('lein')

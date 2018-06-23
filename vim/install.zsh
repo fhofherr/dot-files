@@ -13,16 +13,6 @@ source "$DOTFILES_DIR/lib/functions.zsh"
 brew_install neovim the_silver_searcher
 apt_install neovim silversearcher-ag
 
-MINIMAL=false
-while [ $# -gt 0 ]; do
-    case "$1" in
-        --minimal)
-            MINIMAL=true
-            ;;
-    esac
-    shift
-done
-
 VIM=$(which nvim)
 USE_NVIM=true
 if [ -z "$VIM" ]
@@ -136,12 +126,6 @@ fi
 
 if [ ! -e "$DOTFILES_DIR/vim/local.vim" ]; then
     cp "$DOTFILES_DIR/vim/local.vim.template" "$DOTFILES_DIR/vim/local.vim"
-fi
-
-if $MINIMAL; then
-    sed -i .bak -e 's/local_vim_minimal=.*/local_vim_minimal=1/g' "$DOTFILES_DIR/vim/local.vim"
-else
-    sed -i .bak -e 's/local_vim_minimal=.*/local_vim_minimal=0/g' "$DOTFILES_DIR/vim/local.vim"
 fi
 
 echo "Installing vim plugins"

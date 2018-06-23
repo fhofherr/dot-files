@@ -3,34 +3,36 @@
 " Deoplete
 "
 " ---------------------------------------------------------------------------
-" See  https://afnan.io/2018-04-12/my-neovim-development-setup/
-let g:deoplete#enable_at_startup = 1
-let b:deoplete_disable_auto_complete=1
-let g:deoplete_disable_auto_complete=1
+if $DOTFILES_MINIMAL == 'false'
+    " See  https://afnan.io/2018-04-12/my-neovim-development-setup/
+    let g:deoplete#enable_at_startup = 1
+    let b:deoplete_disable_auto_complete=1
+    let g:deoplete_disable_auto_complete=1
 
-" Disable the candidates in Comment/String syntaxes.
-call deoplete#custom#source('_',
-            \ 'disabled_syntaxes', ['Comment', 'String'])
+    " Disable the candidates in Comment/String syntaxes.
+    call deoplete#custom#source('_',
+                \ 'disabled_syntaxes', ['Comment', 'String'])
 
-" set sources
-let g:deoplete#sources = {}
+    " set sources
+    let g:deoplete#sources = {}
 
-let g:deoplete#sources#clojure = ['LanguageClient']
+    let g:deoplete#sources#clojure = ['LanguageClient']
 
-let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
-let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-let g:deoplete#sources#go#package_dot = 1
+    let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+    let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+    let g:deoplete#sources#go#package_dot = 1
 
-let g:deoplete#sources#python = ['LanguageClient']
-let g:deoplete#sources#python3 = ['LanguageClient']
+    let g:deoplete#sources#python = ['LanguageClient']
+    let g:deoplete#sources#python3 = ['LanguageClient']
 
-let g:deoplete#sources#vim = ['vim']
+    let g:deoplete#sources#vim = ['vim']
 
-" Auto-close preview window upon completion
-" See https://github.com/Shougo/deoplete.nvim/issues/115
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+    " Auto-close preview window upon completion
+    " See https://github.com/Shougo/deoplete.nvim/issues/115
+    autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
-" deoplete tab-complete
-" See https://www.gregjs.com/vim/2016/configuring-the-deoplete-asynchronous-keyword-completion-plugin-with-tern-for-vim/
-inoremap <expr><s-tab> pumvisible() ? "\<c-j>" : "\<s-tab>"
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+    " deoplete tab-complete
+    " See https://www.gregjs.com/vim/2016/configuring-the-deoplete-asynchronous-keyword-completion-plugin-with-tern-for-vim/
+    inoremap <expr><s-tab> pumvisible() ? "\<c-j>" : "\<s-tab>"
+    inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+endif
