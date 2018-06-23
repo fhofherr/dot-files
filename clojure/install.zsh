@@ -21,12 +21,4 @@ brew_install clojure
 
 CLOJURE_HOME="$HOME/.clojure"
 mkdir -p $CLOJURE_HOME
-
-if [ ! -e "$CLOJURE_HOME/deps.edn" ]
-then
-    ln -s "$DOTFILES_DIR/clojure/deps.edn" "$CLOJURE_HOME/deps.edn"
-else
-    echo "$CLOJURE_HOME/deps.edn exists"
-fi
-
-
+link_file "$DOTFILES_DIR/clojure/deps.edn" "$CLOJURE_HOME/deps.edn"

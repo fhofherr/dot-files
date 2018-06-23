@@ -13,11 +13,5 @@ source "$DOTFILES_DIR/lib/functions.zsh"
 # OS X: use the git that comes with Xcode
 apt_install git
 
-if [ ! -e "$HOME/.gitignore_global" ]
-then
-    ln -s "$DOTFILES_DIR/git/gitignore_global" "$HOME/.gitignore_global"
-else
-    echo "$HOME/.gitignore_global exists"
-fi
-
+link_file "$DOTFILES_DIR/git/gitignore_global" "$HOME/.gitignore_global"
 git config --global core.excludesfile "$HOME/.gitignore_global"

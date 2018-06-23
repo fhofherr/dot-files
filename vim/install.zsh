@@ -32,26 +32,9 @@ then
 fi
 mkdir -p $XDG_CONFIG_HOME
 
-if [ -e "$HOME/.vim" ]
-then
-    echo "$HOME/.vim exists"
-else
-    ln -s "$DOTFILES_DIR/vim" "$HOME/.vim"
-fi
-
-if [ -e "$HOME/.vimrc" ]
-then
-    echo "$HOME/.vimrc exists"
-else
-    ln -s "$DOTFILES_DIR/vim/init.vim" "$HOME/.vimrc"
-fi
-
-if [ -e "$XDG_CONFIG_HOME/nvim" ];
-then
-    echo "$XDG_CONFIG_HOME/nvim exists"
-else
-    ln -s "$DOTFILES_DIR/vim" "$XDG_CONFIG_HOME/nvim"
-fi
+link_file "$DOTFILES_DIR/vim" "$HOME/.vim"
+link_file "$DOTFILES_DIR/vim/init.vim" "$HOME/.vimrc"
+link_file "$DOTFILES_DIR/vim" "$XDG_CONFIG_HOME/nvim"
 
 if which /usr/local/bin/pip2 > /dev/null
 then

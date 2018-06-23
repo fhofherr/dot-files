@@ -28,10 +28,4 @@ then
     curl -O https://beta.quicklisp.org/quicklisp.lisp
     sbcl --load "$SBCL_DIR/install.lisp"
 fi
-
-if [ -e "$HOME/.sbclrc" ]
-then
-    echo "$HOME/.sbclrc exists"
-else
-    ln -s "$SBCL_DIR/sbclrc" "$HOME/.sbclrc"
-fi
+link_file "$SBCL_DIR/sbclrc" "$HOME/.sbclrc"

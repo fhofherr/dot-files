@@ -6,5 +6,6 @@ else
     echo "Execute over-all install script!"
     exit 1
 fi
+source "$DOTFILES_DIR/lib/functions/files.zsh"
 source "$DOTFILES_DIR/lib/functions/git.zsh"
 source "$DOTFILES_DIR/lib/functions/package_managers.zsh"

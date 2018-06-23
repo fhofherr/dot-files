@@ -16,12 +16,7 @@ apt_install zsh
 OH_MY_ZSH_REPO="https://github.com/robbyrussell/oh-my-zsh.git"
 git_clone_or_pull $OH_MY_ZSH_REPO $ZSH
 
-if [ -e "$HOME/.zshrc" ]
-then
-    echo "$HOME/.zshrc exists"
-else
-    ln -s "$DOTFILES_DIR/zsh/zshrc" "$HOME/.zshrc"
-fi
+link_file "$DOTFILES_DIR/zsh/zshrc" "$HOME/.zshrc"
 
 if [ -z "$ZSH_CUSTOM" ]
 then

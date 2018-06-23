@@ -21,12 +21,4 @@ brew_install leiningen
 
 LEIN_HOME="$HOME/.lein"
 mkdir -p $LEIN_HOME
-
-if [ ! -e "$LEIN_HOME/profiles.clj" ]
-then
-    ln -s "$DOTFILES_DIR/leiningen/profiles.clj" "$LEIN_HOME/profiles.clj"
-else
-    echo "$LEIN_HOME/profiles.clj exists"
-fi
-
-
+link_file "$DOTFILES_DIR/leiningen/profiles.clj" "$LEIN_HOME/profiles.clj"
