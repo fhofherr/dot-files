@@ -23,24 +23,12 @@ function! s:find_executable(paths)
     return ''
 endfunction
 
-let s:python3 = s:find_executable([
-    \'/usr/local/bin/python3',
-    \'/home/linuxbrew/.linuxbrew/bin/python3',
-    \'~/.linuxbrew/bin/python3'
-\])
-
-let s:python2 = s:find_executable([
-    \'/usr/local/bin/python2',
-    \'/home/linuxbrew/.linuxbrew/bin/python2',
-    \'~/.linuxbrew/bin/python2'
-\])
-
-if has('nvim') && !empty(s:python3)
-    let g:python3_host_prog=s:python3
+if has('nvim') && exists("$NEOVIM_PYTHON3")
+    let g:python3_host_prog=$NEOVIM_PYTHON3
 endif
 
-if has('nvim') && !empty(s:python2)
-    let g:python_host_prog=s:python2
+if has('nvim') && exists("$NEOVIM_PYTHON2")
+    let g:python_host_prog=$NEOVIM_PYTHON2
 endif
 
 let s:neovim_ruby_host=s:find_executable([
