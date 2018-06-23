@@ -84,13 +84,13 @@ then
     $NEOVIM_PIP3 install --upgrade -r $DOTFILES_DIR/vim/neovim_requirements.txt > /dev/null
     pyenv deactivate > /dev/null
 
-    if grep "$NEOVIM_PYTHON3" "$HOME/.zsh_dotfiles_init" > /dev/null
+    if grep "NEOVIM_PYTHON3" "$HOME/.zsh_dotfiles_init" > /dev/null
     then
         sed -i'.bak' "s;export NEOVIM_PYTHON3=.*;export NEOVIM_PYTHON3=$NEOVIM_PYTHON3;g" $HOME/.zsh_dotfiles_init
     else
         echo "export NEOVIM_PYTHON3=$NEOVIM_PYTHON3" >> $HOME/.zsh_dotfiles_init
     fi
-    if grep "$NEOVIM_PYTHON2" "$HOME/.zsh_dotfiles_init" > /dev/null
+    if grep "NEOVIM_PYTHON2" "$HOME/.zsh_dotfiles_init" > /dev/null
     then
         sed -i'.bak' "s;export NEOVIM_PYTHON2=.*;export NEOVIM_PYTHON2=$NEOVIM_PYTHON2;g" $HOME/.zsh_dotfiles_init
     else
@@ -103,9 +103,20 @@ then
     GEM="/usr/local/bin/gem"
 fi
 
-if which /usr/local/bin/npm > /dev/null
+if which node > /dev/null && which npm > /dev/null
 then
-    NPM="/usr/local/bin/npm"
+    NEOVIM_NPM=$(which npm)
+fi
+if ! $DOTFILES_MINIMAL && $USE_NVIM && [ -n "$NEOVIM_NPM" ]
+then
+    $NEOVIM_NPM install -g neovim
+    NEOVIM_NODE_HOST=$(which neovim-node-host)
+    if grep "NEOVIM_NODE_HOST" "$HOME/.zsh_dotfiles_init" > /dev/null
+    then
+        sed -i'.bak' "s;export NEOVIM_NODE_HOST=.*;export NEOVIM_NODE_HOST=$NEOVIM_NODE_HOST;g" $HOME/.zsh_dotfiles_init
+    else
+        echo "export NEOVIM_NODE_HOST=$NEOVIM_NODE_HOST" >> $HOME/.zsh_dotfiles_init
+    fi
 fi
 
 if $USE_NVIM
@@ -113,11 +124,6 @@ then
     if [ -n "$GEM" ]
     then
         $GEM install neovim
-    fi
-
-    if [ -n "$NPM" ]
-    then
-        $NPM install -g neovim
     fi
 fi
 
