@@ -32,6 +32,11 @@ fi
 # -----------------------------------------------------------------------------
 # Go
 # -----------------------------------------------------------------------------
+if [ -d "/usr/local/go" ]
+then
+    export PATH="/usr/local/go/bin:$PATH"
+fi
+
 if which go > /dev/null; then
     if [ -e "/usr/local/opt/go/libexec/bin" ]; then
         export PATH="/usr/local/opt/go/libexec/bin:$PATH"
