@@ -22,4 +22,5 @@ if [[ "$OSTYPE" = linux* ]]
 then
     PYENV_ROOT="$HOME/.pyenv"
     git_clone_or_pull https://github.com/pyenv/pyenv.git $PYENV_ROOT
+    git_clone_or_pull https://github.com/pyenv/pyenv-virtualenv.git $PYENV_ROOT/plugins/pyenv-virtualenv
 fi
