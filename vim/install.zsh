@@ -148,9 +148,5 @@ then
     rvm "$NEOVIM_RUBY_VERSION@$NEOVIM_RUBY_GEMSET" do gem install mdl > /dev/null
 fi
 
-if [ ! -e "$DOTFILES_DIR/vim/local.vim" ]; then
-    cp "$DOTFILES_DIR/vim/local.vim.template" "$DOTFILES_DIR/vim/local.vim"
-fi
-
 echo "Installing vim plugins"
 $VIM -E -c 'PlugUpdate' -c 'qall!' > /dev/null
