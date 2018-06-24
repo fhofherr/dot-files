@@ -14,9 +14,3 @@ all of the configuration files execute:
 
 The installation script assumes that the necessary programs are
 installed and available on the path.
-
-If necessary the minimal pre-requisites can be installed using
-
-```bash
-./brew_install.zsh
-```
