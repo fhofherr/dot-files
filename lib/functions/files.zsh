@@ -20,7 +20,7 @@ function link_file() {
 
     if [ -e "$dest" ]
     then
-        backup="$(dirname $dest)/$dest.$FILES_TIMESTAMP"
+        backup="$dest.$FILES_TIMESTAMP"
         echo "$dest exists. Creating a backup $backup"
         mv $dest $backup
     fi
