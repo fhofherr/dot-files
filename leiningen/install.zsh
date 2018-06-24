@@ -21,6 +21,7 @@ if [[ "$OSTYPE" = linux* ]] && ! command -v lein > /dev/null
 then
     mkdir -p "$HOME/bin"
     curl https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein -o $HOME/bin/lein
+    chmod +x $HOME/bin/lein
 fi
 
 LEIN_HOME="$HOME/.lein"
