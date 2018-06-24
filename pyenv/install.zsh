@@ -21,9 +21,5 @@ brew_install pyenv pyenv-virtualenv
 if [[ "$OSTYPE" = linux* ]]
 then
     PYENV_ROOT="$HOME/.pyenv"
-    if [ ! -d "$PYENV_ROOT" ]
-    then
-        mkdir -p $PYENV_ROOT
-    fi
     git_clone_or_pull https://github.com/pyenv/pyenv.git $PYENV_ROOT
 fi
