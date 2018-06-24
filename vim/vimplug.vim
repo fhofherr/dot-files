@@ -29,6 +29,7 @@ if $DOTFILES_MINIMAL == 'false'
     Plug 'tpope/vim-unimpaired'
     Plug 'tpope/vim-obsession'
     Plug 'w0rp/ale'
+    Plug 'janko-m/vim-test'
 
     " Code completion
     if has('nvim')
