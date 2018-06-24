@@ -27,6 +27,7 @@ if $DOTFILES_MINIMAL == 'false'
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-tbone'
     Plug 'tpope/vim-unimpaired'
+    Plug 'tpope/vim-obsession'
     Plug 'w0rp/ale'
 
     " Code completion
