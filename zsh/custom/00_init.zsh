@@ -46,7 +46,8 @@ fi
 # See https://github.com/shyiko/jabba
 if [ -s "$HOME/.jabba/jabba.sh" ]; then
     source "$HOME/.jabba/jabba.sh"
-else
+elif [ -e "/usr/libexec/java_home" ]
+then
     export JAVA_HOME="$(/usr/libexec/java_home)"
 fi
 
