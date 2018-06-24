@@ -10,5 +10,11 @@ else
 fi
 source "$DOTFILES_DIR/lib/functions.zsh"
 
+if $DOTFILES_MINIMAL
+then
+    echo "Minimal installation. Skipping NVM"
+    exit 0
+fi
+
 brew_install pyenv pyenv-virtualenv
 # TODO ubuntu
