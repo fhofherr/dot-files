@@ -19,6 +19,7 @@ fi
 brew_install clojure
 if [[ "$OSTYPE" = linux* ]] && ! command -v clojure > /dev/null
 then
+    apt_install rlwrap
     CLOJURE_VERSION="1.9.0.381"
     curl -o- "https://download.clojure.org/install/linux-install-$CLOJURE_VERSION.sh" | sudo bash
 fi
