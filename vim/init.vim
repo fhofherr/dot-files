@@ -12,16 +12,8 @@ else
 endif
 
 " ---------------------------------------------------------------------------
-" Configure Python2 / Python 3 for nvim
+" Configure Providers for nvim
 " ---------------------------------------------------------------------------
-function! s:find_executable(paths)
-    for path in a:paths
-        if executable(path)
-            return path
-        endif
-    endfor
-    return ''
-endfunction
 
 if has('nvim') && exists("$NEOVIM_PYTHON3")
     let g:python3_host_prog=$NEOVIM_PYTHON3
@@ -31,12 +23,8 @@ if has('nvim') && exists("$NEOVIM_PYTHON2")
     let g:python_host_prog=$NEOVIM_PYTHON2
 endif
 
-let s:neovim_ruby_host=s:find_executable([
-    \'/usr/local/bin/neovim-ruby-host'
-\])
-
-if has('nvim') && !empty(s:neovim_ruby_host)
-    let g:ruby_host_prog=s:neovim_ruby_host
+if has('nvim') && exists("$NEOVIM_RUBY_HOST")
+    let g:ruby_host_prog=$NEOVIM_RUBY_HOST
 endif
 
 if has('nvim') && exists("$NEOVIM_NODE_HOST")
