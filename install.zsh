@@ -9,6 +9,7 @@ WITH_RVM=true
 WITH_VIM=true
 WITH_TMUX=true
 WITH_CLJ=true
+WITH_GO=true
 WITH_GIT=true
 WITH_SBCL=true
 while [ $# -gt 0 ]; do
@@ -33,6 +34,9 @@ while [ $# -gt 0 ]; do
             ;;
         --no-clj)
             WITH_CLJ=false
+            ;;
+        --no-go)
+            WITH_GO=false
             ;;
         --no-git)
             WITH_GIT=false
@@ -72,6 +76,7 @@ $WITH_RVM  && $DOTFILES_DIR/rvm/install.zsh
 $WITH_TMUX && $DOTFILES_DIR/tmux/install.zsh
 $WITH_CLJ && $DOTFILES_DIR/leiningen/install.zsh
 $WITH_CLJ && $DOTFILES_DIR/clojure/install.zsh
+$WITH_GO && $DOTFILES_DIR/go/install.zsh
 $WITH_GIT && $DOTFILES_DIR/git/install.zsh
 $WITH_SBCL && $DOTFILES_DIR/sbcl/install.zsh
 $WITH_VIM && $DOTFILES_DIR/vim/install.zsh
