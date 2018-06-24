@@ -9,6 +9,7 @@ else
     exit 1
 fi
 source "$DOTFILES_DIR/lib/functions.zsh"
+source "$DOTFILES_DIR/zsh/zshrc"
 
 brew_install neovim the_silver_searcher
 apt_install neovim silversearcher-ag
@@ -44,9 +45,6 @@ then
 
     NEOVIM_PYTHON2_VERSION="2.7.15"
     NEOVIM_PYTHON2_VENV="neovim-py2-venv"
-
-    eval "$(pyenv init - zsh)"
-    eval "$(pyenv virtualenv-init - zsh)"
 
     if ! pyenv versions | grep "$NEOVIM_PYTHON3_VERSION" > /dev/null
     then
@@ -96,11 +94,6 @@ then
     else
         echo "export NEOVIM_PYTHON2=$NEOVIM_PYTHON2" >> $HOME/.zsh_dotfiles_init
     fi
-fi
-
-if which /usr/local/bin/gem > /dev/null
-then
-    GEM="/usr/local/bin/gem"
 fi
 
 if which node > /dev/null && which npm > /dev/null
