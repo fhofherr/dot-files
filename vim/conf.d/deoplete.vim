@@ -3,7 +3,7 @@
 " Deoplete
 "
 " ---------------------------------------------------------------------------
-if $DOTFILES_MINIMAL == 'false'
+if $DOTFILES_MINIMAL == 'false' && exists('deoplete#custom#source')
     " See  https://afnan.io/2018-04-12/my-neovim-development-setup/
     let g:deoplete#enable_at_startup = 1
     let b:deoplete_disable_auto_complete=1
