@@ -12,9 +12,18 @@ source "$DOTFILES_DIR/lib/functions.zsh"
 
 if $DOTFILES_MINIMAL
 then
-    echo "Minimal installation. Skipping NVM"
+    echo "Minimal installation. Skipping Pyenv"
     exit 0
 fi
 
 brew_install pyenv pyenv-virtualenv
-# TODO ubuntu
+# Use manual installation for pyenv
+if [[ "$OSTYPE" = linux* ]]
+then
+    PYENV_ROOT="$HOME/.pyenv"
+    if [ ! -d "$PYENV_ROOT" ]
+    then
+        mkdir -p $PYENV_ROOT
+    fi
+    git_clone_or_pull https://github.com/pyenv/pyenv.git $PYENV_ROOT
+fi
