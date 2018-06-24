@@ -69,15 +69,15 @@ else
     ln -s "$DOTFILES_DIR/.editorconfig" "$HOME/.editorconfig"
 fi
 
-$WITH_ZSH  && $DOTFILES_DIR/zsh/install.zsh
 $WITH_PYENV  && $DOTFILES_DIR/pyenv/install.zsh
 $WITH_NVM  && $DOTFILES_DIR/nvm/install.zsh
 $WITH_RVM  && $DOTFILES_DIR/rvm/install.zsh
-$WITH_TMUX && $DOTFILES_DIR/tmux/install.zsh
 $WITH_CLJ && $DOTFILES_DIR/leiningen/install.zsh
 $WITH_CLJ && $DOTFILES_DIR/clojure/install.zsh
 $WITH_CLJ && $DOTFILES_DIR/jabba/install.zsh
 $WITH_GO && $DOTFILES_DIR/go/install.zsh
 $WITH_GIT && $DOTFILES_DIR/git/install.zsh
 $WITH_SBCL && $DOTFILES_DIR/sbcl/install.zsh
+$WITH_TMUX && $DOTFILES_DIR/tmux/install.zsh
+$WITH_ZSH  && $DOTFILES_DIR/zsh/install.zsh
 $WITH_VIM && $DOTFILES_DIR/vim/install.zsh
