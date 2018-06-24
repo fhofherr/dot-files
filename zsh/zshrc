@@ -67,3 +67,6 @@ export EDITOR="nvim"
 export VISUAL="$EDITOR"
 export MANPAGER="nvim -c 'set ft=man' -"
 export PATH="$PATH:/usr/local/bin"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
