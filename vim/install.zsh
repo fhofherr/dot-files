@@ -79,7 +79,7 @@ then
     NEOVIM_PYTHON2=$(pyenv which python)
     NEOVIM_PIP2=$(pyenv which pip)
     $NEOVIM_PIP2 install --upgrade pip > /dev/null
-    $NEOVIM_PIP3 install --upgrade -r $DOTFILES_DIR/vim/neovim_requirements.txt > /dev/null
+    $NEOVIM_PIP2 install --upgrade -r $DOTFILES_DIR/vim/neovim_requirements.txt > /dev/null
     pyenv deactivate > /dev/null
 
     if grep "NEOVIM_PYTHON3" "$HOME/.zsh_dotfiles_init" > /dev/null
