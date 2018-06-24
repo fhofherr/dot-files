@@ -17,7 +17,12 @@ then
 fi
 
 brew_install clojure
-# TODO Ubuntu
+if [[ "$OSTYPE" = linux* ]] && ! command -v clojure > /dev/null
+then
+    CLOJURE_VERSION="1.9.0.381"
+    curl -o- "https://download.clojure.org/install/linux-install-$CLOJURE_VERSION.sh" | sudo bash
+fi
+
 
 CLOJURE_HOME="$HOME/.clojure"
 mkdir -p $CLOJURE_HOME
