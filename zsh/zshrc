@@ -63,9 +63,13 @@ plugins=(
 # User configuration
 source $ZSH/oh-my-zsh.sh
 
-export EDITOR="nvim"
+if [ -n "$NVIM_LISTEN_ADDRESS" ] && [ -n "$NEOVIM_NVR" ]
+then
+    export EDITOR="$NEOVIM_NVR -cc split --remote-wait +'set bufhidden=wipe'"
+else
+    export EDITOR="nvim"
+fi
 export VISUAL="$EDITOR"
-export MANPAGER="nvim -c 'set ft=man' -"
 export PATH="$PATH:/usr/local/bin"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
