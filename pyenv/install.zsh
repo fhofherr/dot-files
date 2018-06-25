@@ -16,7 +16,8 @@ then
     exit 0
 fi
 
-brew_install pyenv pyenv-virtualenv
+brew_install pyenv
+brew install pyenv-virtualenv
 # Use manual installation for pyenv
 if [[ "$OSTYPE" = linux* ]]
 then
