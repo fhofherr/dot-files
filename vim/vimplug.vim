@@ -31,6 +31,10 @@ if $DOTFILES_MINIMAL == 'false'
     Plug 'w0rp/ale'
     Plug 'janko-m/vim-test'
 
+    if has('nvim')
+        Plug 'vimlab/split-term.vim'
+    endif
+
     " Code completion
     if has('nvim')
         Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
