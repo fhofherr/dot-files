@@ -14,15 +14,6 @@ if [ -e "$HOME/.linuxbrew" ]; then
 fi
 
 # -----------------------------------------------------------------------------
-# MacTeX
-# -----------------------------------------------------------------------------
-# Path helper adds in front of the path. It thus must come first, as it will
-# override other things.
-# if [ -f "/usr/libexec/path_helper" ]; then
-#     eval `/usr/libexec/path_helper -s`
-# fi
-
-# -----------------------------------------------------------------------------
 # FZF
 # -----------------------------------------------------------------------------
 if [ -f "$HOME/.fzf.zsh" ]; then
