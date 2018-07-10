@@ -17,10 +17,12 @@ endif
 
 if has('nvim') && exists("$NEOVIM_PYTHON3")
     let g:python3_host_prog=$NEOVIM_PYTHON3
+    let g:python3_bin_dir=fnamemodify(g:python3_host_prog, ':h')
 endif
 
 if has('nvim') && exists("$NEOVIM_PYTHON2")
     let g:python_host_prog=$NEOVIM_PYTHON2
+    let g:python_bin_dir=fnamemodify(g:python_host_prog, ':h')
 endif
 
 if has('nvim') && exists("$NEOVIM_RUBY_HOST")
