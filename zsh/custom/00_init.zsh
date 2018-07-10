@@ -18,9 +18,9 @@ fi
 # -----------------------------------------------------------------------------
 # Path helper adds in front of the path. It thus must come first, as it will
 # override other things.
-if [ -f "/usr/libexec/path_helper" ]; then
-    eval `/usr/libexec/path_helper -s`
-fi
+# if [ -f "/usr/libexec/path_helper" ]; then
+#     eval `/usr/libexec/path_helper -s`
+# fi
 
 # -----------------------------------------------------------------------------
 # FZF
@@ -42,7 +42,7 @@ if which go > /dev/null; then
         export PATH="/usr/local/opt/go/libexec/bin:$PATH"
     fi
     export GOPATH="$HOME/go"
-    export PATH="$PATH:$GOPATH/bin"
+    export PATH="$GOPATH/bin:$PATH"
 fi
 
 # -----------------------------------------------------------------------------
