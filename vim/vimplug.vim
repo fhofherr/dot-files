@@ -58,6 +58,7 @@ if $DOTFILES_MINIMAL == 'false'
     Plug 'drewtempelmeyer/palenight.vim'
     " Plug 'morhetz/gruvbox'
     " Plug 'arcticicestudio/nord-vim'
+    Plug 'reedes/vim-colors-pencil'
 
     " Clojure plugins
     if executable('clj') || executable('clojure') || executable('lein')

@@ -1,4 +1,4 @@
-set background=dark
+set background=light
 if has('termguicolors')
     set termguicolors
 elseif has('nvim')
@@ -18,10 +18,15 @@ if has('nvim') || has("gui_running") || &t_Co == 256
     let g:tmuxline_powerline_separators = 1
 
     " Comment/Un-comment those based on your color scheme selection below
-    let g:palenight_terminal_italics=1
+    " let g:palenight_terminal_italics=1
     " let g:gruvbox_italic=1
     " let g:nord_italic = 1
     " let g:nord_italic_comments = 1
+
+    let g:pencil_higher_contrast_ui = 0
+    let g:pencil_neutral_code_bg = 1
+    let g:pencil_terminal_italics = 1
+    let g:airline_theme = 'pencil'
 
     try
         " colorscheme solarized
@@ -30,7 +35,7 @@ if has('nvim') || has("gui_running") || &t_Co == 256
         " The palenight color scheme requires the respective color scheme for
         " your terminal emulator.
         " See https://github.com/JonathanSpeek/palenight-iterm2 for iterm2.
-        colorscheme palenight
+        "colorscheme palenight
 
         " The gruvbox color scheme requires the respective color scheme for
         " your terminal emulator.
@@ -43,6 +48,11 @@ if has('nvim') || has("gui_running") || &t_Co == 256
         " See https://github.com/arcticicestudio/nord-vim for a list
         " of supported terminals.
         " colorscheme nord
+
+        " The pencil color scheme requires the respective color scheme for
+        " your terminal emulator.
+        " See https://github.com/mattly/iterm-colors-pencil for iterm2.
+        colorscheme pencil
     catch E185
         " Do nothing.
     endtry
