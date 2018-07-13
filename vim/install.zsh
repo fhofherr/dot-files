@@ -46,6 +46,9 @@ then
     NEOVIM_PYTHON2_VERSION="2.7.15"
     NEOVIM_PYTHON2_VENV="neovim-py2-venv"
 
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+
     if ! pyenv versions | grep "$NEOVIM_PYTHON3_VERSION" > /dev/null
     then
         pyenv install "$NEOVIM_PYTHON3_VERSION" > /dev/null
