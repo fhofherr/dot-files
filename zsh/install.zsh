@@ -16,6 +16,7 @@ apt_install zsh
 OH_MY_ZSH_REPO="https://github.com/robbyrussell/oh-my-zsh.git"
 git_clone_or_pull $OH_MY_ZSH_REPO $ZSH
 
+link_file "$DOTFILES_DIR/zsh/zshenv" "$HOME/.zshenv"
 link_file "$DOTFILES_DIR/zsh/zshrc" "$HOME/.zshrc"
 
 if [ -z "$ZSH_CUSTOM" ]
