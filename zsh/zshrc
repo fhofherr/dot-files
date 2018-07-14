@@ -54,8 +54,8 @@ ZSH_CUSTOM="$DOTFILES_DIR/zsh/custom"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    pyenv
-    rvm
+    pyenv-lazy
+    rvm-lazy
     zsh-nvm
 )
 
