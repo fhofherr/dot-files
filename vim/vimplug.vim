@@ -30,6 +30,7 @@ if $DOTFILES_MINIMAL == 'false'
     Plug 'tpope/vim-obsession'
     Plug 'w0rp/ale'
     Plug 'janko-m/vim-test'
+    Plug 'majutsushi/tagbar'
 
     if has('nvim')
         Plug 'vimlab/split-term.vim'
