@@ -3,11 +3,9 @@
 " Deoplete
 "
 " ---------------------------------------------------------------------------
-if $DOTFILES_MINIMAL == 'false' && exists('deoplete#custom#source')
+if $DOTFILES_MINIMAL == 'false'
     " See  https://afnan.io/2018-04-12/my-neovim-development-setup/
-    let g:deoplete#enable_at_startup = 1
-    let b:deoplete_disable_auto_complete=1
-    let g:deoplete_disable_auto_complete=1
+    call deoplete#enable()
 
     " Disable the candidates in Comment/String syntaxes.
     call deoplete#custom#source('_',
