@@ -16,7 +16,7 @@ Plug 'tpope/vim-git'
 
 if $DOTFILES_MINIMAL == 'false'
     Plug 'godlygeek/tabular'
-    Plug 'junegunn/fzf', {'do': './install --all'}
+    Plug 'junegunn/fzf', {'do': './install --all --no-update-rc'}
     Plug 'junegunn/fzf.vim'
     Plug 'mileszs/ack.vim'
     Plug 'scrooloose/nerdtree'
