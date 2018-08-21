@@ -29,6 +29,8 @@ alias tnsd="tmux new-session -d -s"
 alias tnw="tmux new-window"
 alias tss="tmux switch-client -t"
 alias tas="tmux attach -t"
+
+alias wiki="tns wiki nvim -c :VimwikiIndex"
 # -----------------------------------------------------------------------------
 # todo.txt
 # -----------------------------------------------------------------------------
