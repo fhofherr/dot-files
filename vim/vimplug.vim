@@ -85,6 +85,8 @@ if $DOTFILES_MINIMAL == 'false'
     Plug 'reedes/vim-lexical', {'for': ['markdown', 'asciidoc', 'text']}
     Plug 'reedes/vim-pencil', {'for': ['markdown', 'asciidoc', 'text']}
     Plug 'reedes/vim-wordy', {'for': ['markdown', 'asciidoc', 'text']}
-    Plug 'vimwiki/vimwiki'
+    if $VIMWIKI == 'true'
+        Plug 'vimwiki/vimwiki'
+    endif
 endif
 call plug#end()            " required
