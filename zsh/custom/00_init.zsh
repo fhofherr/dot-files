@@ -48,13 +48,15 @@ then
 fi
 
 # -----------------------------------------------------------------------------
-# User-local programs
+# Utilities and user-local programs
 # -----------------------------------------------------------------------------
-
-if [ -e "$HOME/bin" ]; then
-    export PATH="$HOME/bin:$PATH"
+if [ -d "$DOTFILES_DIR/bin" ]; then
+    export PATH="$DOTFILES_DIR/bin:$PATH"
 fi
 
+if [ -d "$HOME/bin" ]; then
+    export PATH="$HOME/bin:$PATH"
+fi
 # -----------------------------------------------------------------------------
 # Local configuration and secrets
 # -----------------------------------------------------------------------------
