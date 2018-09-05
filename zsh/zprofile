@@ -1,0 +1,12 @@
+# If TOOLBOX_VERSION is set we are inside IntelliJ IDEA or
+# another Jetbrains IDE. In this case we don't want to start
+# TMUX, as this leads to display errors.
+if [ -z "$TOOLBOX_VERSION" ] && command -v tmux>/dev/null; then
+  if [[ ! $TERM =~ tmux ]] && [ -z $TMUX ]; then
+    export TERM=tmux-256color
+    export TMUX_DEFAULT_SESSION="default"
+    # Create a new session if it does not exists or attach
+    # to the existing one
+    exec tmux new-session -A -s $TMUX_DEFAULT_SESSION
+  fi
+fi
