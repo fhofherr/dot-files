@@ -18,3 +18,6 @@ else
     echo "Could not find '$HOME/.zsh_dotfiles_init'!"
     echo "Execute over-all install script!"
 fi
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8

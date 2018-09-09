@@ -1529,13 +1529,13 @@
 	<key>NSTableView Supports v2 KeyBingingTable</key>
 	<true/>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>980 902 918 512 0 0 2560 1417 </string>
+	<string>980 884 918 512 0 0 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 965 665 452 0 0 2560 1417 </string>
+	<string>810 487 650 452 0 0 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>0 927 665 452 0 0 2560 1417 </string>
+	<string>0 325 650 452 0 0 1280 800 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>364 158 905 577 0 0 2560 1440 </string>
+	<string>84 161 650 452 0 0 1280 800 </string>
 	<key>NeverWarnAboutShortLivedSessions_A3BE31AE-BAD9-4BAE-8137-E09EC20380A8</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_A3BE31AE-BAD9-4BAE-8137-E09EC20380A8_selection</key>
@@ -2155,6 +2155,8 @@
 				<real>0.71372549019607845</real>
 			</dict>
 			<key>Send Code When Idle</key>
+			<false/>
+			<key>Set Local Environment Vars</key>
 			<false/>
 			<key>Shortcut</key>
 			<string></string>
