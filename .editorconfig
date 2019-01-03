@@ -19,6 +19,12 @@ indent_style = tab
 [*.json]
 indent_size = 2
 
+[{*.html,*.htm}]
+indent_size = 2
+
+[*.xml]
+indent_size = 2
+
 [{*.clj,*.edn}]
 indent_size = 2
 
