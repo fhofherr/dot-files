@@ -44,7 +44,6 @@ if $DOTFILES_MINIMAL == 'false'
         Plug 'roxma/nvim-yarp'
         Plug 'roxma/vim-hug-neovim-rpc'
     endif
-    Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh' }
 
     " Eye candy and color schemes
     Plug 'vim-airline/vim-airline'

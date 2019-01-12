@@ -14,14 +14,9 @@ if $DOTFILES_MINIMAL == 'false'
     " set sources
     let g:deoplete#sources = {}
 
-    let g:deoplete#sources#clojure = ['LanguageClient']
-
     let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
     let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
     let g:deoplete#sources#go#package_dot = 1
-
-    let g:deoplete#sources#python = ['LanguageClient']
-    let g:deoplete#sources#python3 = ['LanguageClient']
 
     let g:deoplete#sources#vim = ['vim']
 
