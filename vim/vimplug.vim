@@ -83,9 +83,9 @@ if $DOTFILES_MINIMAL == 'false'
     endif
 
     " Text editing
-    Plug 'reedes/vim-lexical', {'for': ['markdown', 'asciidoc', 'text']}
-    Plug 'reedes/vim-pencil', {'for': ['markdown', 'asciidoc', 'text']}
-    Plug 'reedes/vim-wordy', {'for': ['markdown', 'asciidoc', 'text']}
+    Plug 'reedes/vim-lexical'
+    Plug 'reedes/vim-pencil'
+    Plug 'reedes/vim-wordy'
 
     " Required by vim-notes
     Plug 'xolox/vim-misc'

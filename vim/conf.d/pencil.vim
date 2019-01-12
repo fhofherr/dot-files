@@ -16,5 +16,5 @@ augroup pencil
                             \   })
   autocmd FileType asciidoc call pencil#init({'wrap': 'soft'})
   autocmd FileType text call pencil#init({'wrap': 'hard', 'autoformat': 0})
-  autocmd FileType mail call pencil#init({'wrap': 'hard', 'autoformat': 0})
+  autocmd FileType mail call pencil#init({'wrap': 'hard', 'textwidth': 72})
 augroup END
