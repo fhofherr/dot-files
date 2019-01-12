@@ -29,8 +29,6 @@ if $DOTFILES_MINIMAL == 'false'
     Plug 'tpope/vim-unimpaired'
     Plug 'tpope/vim-obsession'
     Plug 'w0rp/ale'
-    Plug 'janko-m/vim-test'
-    Plug 'majutsushi/tagbar'
 
     if has('nvim')
         Plug 'vimlab/split-term.vim'
@@ -69,11 +67,6 @@ if $DOTFILES_MINIMAL == 'false'
         Plug 'tpope/vim-fireplace', {'for': 'clojure'}
     endif
 
-    " CommonLisp plugins
-    if executable('sbcl')
-        Plug 'l04m33/vlime', {'rtp': './vim', 'for': 'lisp'}
-    endif
-
     " Go plugins
     if executable('go')
         Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries!'}
@@ -85,9 +78,5 @@ if $DOTFILES_MINIMAL == 'false'
     Plug 'reedes/vim-lexical'
     Plug 'reedes/vim-pencil'
     Plug 'reedes/vim-wordy'
-
-    " Required by vim-notes
-    Plug 'xolox/vim-misc'
-    Plug 'xolox/vim-notes'
 endif
 call plug#end()            " required
