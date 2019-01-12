@@ -23,10 +23,10 @@ if has('nvim') || has("gui_running") || &t_Co == 256
     " let g:nord_italic = 1
     " let g:nord_italic_comments = 1
 
-    let g:pencil_higher_contrast_ui = 0
-    let g:pencil_neutral_code_bg = 1
-    let g:pencil_terminal_italics = 1
-    let g:airline_theme = 'pencil'
+    " let g:pencil_higher_contrast_ui = 0
+    " let g:pencil_neutral_code_bg = 1
+    " let g:pencil_terminal_italics = 1
+    " let g:airline_theme = 'pencil'
 
     try
         " colorscheme solarized
@@ -52,7 +52,9 @@ if has('nvim') || has("gui_running") || &t_Co == 256
         " The pencil color scheme requires the respective color scheme for
         " your terminal emulator.
         " See https://github.com/mattly/iterm-colors-pencil for iterm2.
-        colorscheme pencil
+        " colorscheme pencil
+
+        colorscheme dracula
     catch E185
         " Do nothing.
     endtry

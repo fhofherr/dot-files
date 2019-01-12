@@ -56,10 +56,11 @@ if $DOTFILES_MINIMAL == 'false'
     " I don't need all of those. But if I want to switch I want
     " the others handy. So they are just commented out.
     " Plug 'altercation/vim-colors-solarized'
-    Plug 'drewtempelmeyer/palenight.vim'
+    " Plug 'drewtempelmeyer/palenight.vim'
     " Plug 'morhetz/gruvbox'
     " Plug 'arcticicestudio/nord-vim'
-    Plug 'reedes/vim-colors-pencil'
+    " Plug 'reedes/vim-colors-pencil'
+    Plug 'dracula/vim', {'as': 'dracula'}
 
     " Clojure plugins
     if executable('clj') || executable('clojure') || executable('lein')

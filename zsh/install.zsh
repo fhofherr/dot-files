@@ -29,3 +29,7 @@ fi
 ZSH_NVM_REPO="https://github.com/lukechilds/zsh-nvm"
 ZSH_NVM_DIR="$ZSH_CUSTOM/plugins/zsh-nvm"
 git_clone_or_pull $ZSH_NVM_REPO $ZSH_NVM_DIR
+
+DRACULA_ZSH_THEME="https://github.com/dracula/zsh.git"
+git_clone_or_pull $DRACULA_ZSH_THEME "$ZSH_CUSTOM/themes/dracula"
+link_file "$ZSH_CUSTOM/themes/dracula/dracula.zsh-theme" "$ZSH/themes/dracula.zsh-theme"
