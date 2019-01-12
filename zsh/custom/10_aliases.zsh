@@ -44,7 +44,3 @@ alias tnsd="tmux new-session -d -s"
 alias tnw="tmux new-window"
 alias tss="tmux switch-client -t"
 alias tas="tmux attach -t"
-# -----------------------------------------------------------------------------
-# todo.txt
-# -----------------------------------------------------------------------------
-alias todo="todo.sh"

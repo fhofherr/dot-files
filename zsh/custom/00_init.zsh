@@ -1,19 +1,4 @@
 # -----------------------------------------------------------------------------
-# Linuxbrew
-# -----------------------------------------------------------------------------
-if [ -e "/home/linuxbrew/.linuxbrew" ]; then
-    export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-    export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
-    export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
-fi
-
-if [ -e "$HOME/.linuxbrew" ]; then
-    export PATH="$HOME/.linuxbrew/bin:$PATH"
-    export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
-    export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
-fi
-
-# -----------------------------------------------------------------------------
 # FZF
 # -----------------------------------------------------------------------------
 if [ -f "$HOME/.fzf.zsh" ]; then
@@ -39,13 +24,7 @@ fi
 # -----------------------------------------------------------------------------
 # Java
 # -----------------------------------------------------------------------------
-# See https://github.com/shyiko/jabba
-if [ -s "$HOME/.jabba/jabba.sh" ]; then
-    source "$HOME/.jabba/jabba.sh"
-elif [ -e "/usr/libexec/java_home" ]
-then
-    export JAVA_HOME="$(/usr/libexec/java_home)"
-fi
+export JAVA_HOME="$(/usr/libexec/java_home)"
 
 # -----------------------------------------------------------------------------
 # Utilities and user-local programs
