@@ -11,7 +11,6 @@ WITH_TMUX=true
 WITH_CLJ=true
 WITH_GO=true
 WITH_GIT=true
-WITH_SBCL=true
 while [ $# -gt 0 ]; do
     case "$1" in
         --no-zsh)
@@ -40,9 +39,6 @@ while [ $# -gt 0 ]; do
             ;;
         --no-git)
             WITH_GIT=false
-            ;;
-        --no-sbcl)
-            WITH_SBCL=false
             ;;
         --minimal)
             DOTFILES_MINIMAL=true
@@ -74,10 +70,8 @@ $WITH_NVM  && $DOTFILES_DIR/nvm/install.zsh
 $WITH_RVM  && $DOTFILES_DIR/rvm/install.zsh
 $WITH_CLJ && $DOTFILES_DIR/leiningen/install.zsh
 $WITH_CLJ && $DOTFILES_DIR/clojure/install.zsh
-$WITH_CLJ && $DOTFILES_DIR/jabba/install.zsh
 $WITH_GO && $DOTFILES_DIR/go/install.zsh
 $WITH_GIT && $DOTFILES_DIR/git/install.zsh
-$WITH_SBCL && $DOTFILES_DIR/sbcl/install.zsh
 $WITH_TMUX && $DOTFILES_DIR/tmux/install.zsh
 $WITH_ZSH  && $DOTFILES_DIR/zsh/install.zsh
 $WITH_VIM && $DOTFILES_DIR/vim/install.zsh
