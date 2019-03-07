@@ -12,6 +12,21 @@ function brew_install() {
     fi
 }
 
+function brew_cask_install() {
+    local pkgs="$1"
+    if [ -z "$pkgs" ]
+    then
+        echo "No packages to install"
+        return 1
+    fi
+    if [[ "$OSTYPE" = darwin* ]]
+    then
+        echo "Installing $pkgs"
+        brew cask install $pkgs > /dev/null
+    fi
+}
+
+
 function apt_install() {
     local pkgs="$1"
     if [ -z "$pkgs" ]

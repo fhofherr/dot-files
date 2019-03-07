@@ -11,6 +11,7 @@ WITH_TMUX=true
 WITH_CLJ=true
 WITH_GO=true
 WITH_GIT=true
+WITH_VSCODE=true
 while [ $# -gt 0 ]; do
     case "$1" in
         --no-zsh)
@@ -39,6 +40,9 @@ while [ $# -gt 0 ]; do
             ;;
         --no-git)
             WITH_GIT=false
+            ;;
+        --no-vscode)
+            WITH_VSCODE=false
             ;;
         --minimal)
             DOTFILES_MINIMAL=true
@@ -75,3 +79,4 @@ $WITH_GIT && $DOTFILES_DIR/git/install.zsh
 $WITH_TMUX && $DOTFILES_DIR/tmux/install.zsh
 $WITH_ZSH  && $DOTFILES_DIR/zsh/install.zsh
 $WITH_VIM && $DOTFILES_DIR/vim/install.zsh
+$WITH_VSCODE && $DOTFILES_DIR/vscode/install.zsh
