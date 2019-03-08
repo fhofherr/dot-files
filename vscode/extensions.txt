@@ -1,4 +1,5 @@
 dracula-theme.theme-dracula
 isudox.vscode-jetbrains-keybindings
 mermade.openapi-lint
+PKief.material-icon-theme
 redhat.vscode-yaml
