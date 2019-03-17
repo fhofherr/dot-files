@@ -2,5 +2,6 @@ dracula-theme.theme-dracula
 EditorConfig.EditorConfig
 isudox.vscode-jetbrains-keybindings
 mermade.openapi-lint
+ms-vscode.Go
 PKief.material-icon-theme
 redhat.vscode-yaml
