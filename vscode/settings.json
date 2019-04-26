@@ -10,5 +10,6 @@
     "workbench.iconTheme": "material-icon-theme",
     "jetbrainsKeymap.promptV3Features": true,
     "editor.multiCursorModifier": "ctrlCmd",
-    "editor.formatOnPaste": true
+    "editor.formatOnPaste": true,
+    "workbench.startupEditor": "newUntitledFile"
 }
