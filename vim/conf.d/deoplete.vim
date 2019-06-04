@@ -5,20 +5,15 @@
 " ---------------------------------------------------------------------------
 if $DOTFILES_MINIMAL == 'false'
     " See  https://afnan.io/2018-04-12/my-neovim-development-setup/
-    call deoplete#enable()
+    let deoplete#enable_at_startup = 1
 
     " Disable the candidates in Comment/String syntaxes.
-    call deoplete#custom#source('_',
-                \ 'disabled_syntaxes', ['Comment', 'String'])
+    call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment', 'String'])
+    call deoplete#custom#source('ale', 'rank', 999)
 
-    " set sources
-    let g:deoplete#sources = {}
-
-    let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
-    let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-    let g:deoplete#sources#go#package_dot = 1
-
-    let g:deoplete#sources#vim = ['vim']
+    call deoplete#custom#source('go', 'gocode_binary', $GOPATH.'/bin/gocode')
+    call deoplete#custom#source('go', 'sort_class', ['package', 'func', 'type', 'var', 'const'])
+    call deoplete#custom#source('go', 'package_dot', 1)
 
     " Auto-close preview window upon completion
     " See https://github.com/Shougo/deoplete.nvim/issues/115
