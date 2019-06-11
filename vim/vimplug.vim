@@ -49,13 +49,11 @@ if $DOTFILES_MINIMAL == 'false'
         Plug 'roxma/vim-hug-neovim-rpc'
     endif
 
-    " Eye candy and color schemes
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
     if executable('tmux')
-        Plug 'edkolev/tmuxline.vim'
         Plug 'christoomey/vim-tmux-navigator'
     endif
+
+    " Eye candy and color schemes
     " I don't need all of those. But if I want to switch I want
     " the others handy. So they are just commented out.
     " Plug 'altercation/vim-colors-solarized'

@@ -20,7 +20,6 @@ TPM_REMOTE_REPO="https://github.com/tmux-plugins/tpm"
 git_clone_or_pull $TPM_REMOTE_REPO "$TMUX_PLUGIN_DIR/tpm"
 
 link_file "$DOTFILES_DIR/tmux/tmux.conf" "$HOME/.tmux.conf"
-link_file "$DOTFILES_DIR/tmux/tmuxline-snapshot.conf" "$HOME/.tmuxline-snapshot.conf"
 
 if ! infocmp tmux-256color > /dev/null 2>&1
 then

@@ -14,9 +14,6 @@ if has('nvim') || has("gui_running") || &t_Co == 256
     set numberwidth=5
     set number
 
-    let g:airline_powerline_fonts = 1
-    let g:tmuxline_powerline_separators = 1
-
     " Comment/Un-comment those based on your color scheme selection below
     " let g:palenight_terminal_italics=1
     " let g:gruvbox_italic=1
