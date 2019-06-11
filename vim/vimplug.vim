@@ -30,6 +30,12 @@ if $DOTFILES_MINIMAL == 'false'
     Plug 'tpope/vim-obsession'
     Plug 'w0rp/ale'
 
+    " Requires universal-ctags (https://ctags.io)
+    " Install with: brew install --HEAD universal-ctags/universal-ctags/universal-ctags on Mac
+    if has('ctags')
+        Plug 'majutsushi/tagbar'
+    endif
+
     if has('nvim')
         Plug 'vimlab/split-term.vim'
     endif
