@@ -11,9 +11,7 @@ if $DOTFILES_MINIMAL == 'false'
     call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment', 'String'])
     call deoplete#custom#source('ale', 'rank', 999)
 
-    call deoplete#custom#source('go', 'gocode_binary', $GOPATH.'/bin/gocode')
-    call deoplete#custom#source('go', 'sort_class', ['package', 'func', 'type', 'var', 'const'])
-    call deoplete#custom#source('go', 'package_dot', 1)
+    call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
 
     " Auto-close preview window upon completion
     " See https://github.com/Shougo/deoplete.nvim/issues/115

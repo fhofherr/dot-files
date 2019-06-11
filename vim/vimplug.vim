@@ -70,8 +70,6 @@ if $DOTFILES_MINIMAL == 'false'
     " Go plugins
     if executable('go')
         Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
-        Plug 'deoplete-plugins/deoplete-go', {'do': 'make'}
-        Plug 'stamblerre/gocode', { 'rtp': 'nvim', 'do': './nvim/symlink.sh' }
         Plug 'jodosha/vim-godebug'
     endif
 
