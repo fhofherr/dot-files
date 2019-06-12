@@ -5,7 +5,8 @@ if [ -n "$NVIM_LISTEN_ADDRESS" ]
 then
     if [ -n "$NEOVIM_NVR" ]
     then
-        alias nvim="$NEOVIM_NVR"
+        alias nvim="$NEOVIM_NVR -p"
+        alias nvr="$NEOVIM_NVR"
     else
         echo "Don't nest neovim!"
     fi
