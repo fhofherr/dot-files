@@ -32,7 +32,7 @@ if $DOTFILES_MINIMAL == 'false'
 
     " Requires universal-ctags (https://ctags.io)
     " Install with: brew install --HEAD universal-ctags/universal-ctags/universal-ctags on Mac
-    if has('ctags')
+    if executable('ctags')
         Plug 'majutsushi/tagbar'
     endif
 
