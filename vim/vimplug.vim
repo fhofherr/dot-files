@@ -29,6 +29,7 @@ if $DOTFILES_MINIMAL == 'false'
     Plug 'tpope/vim-unimpaired'
     Plug 'tpope/vim-obsession'
     Plug 'w0rp/ale'
+    Plug 'embear/vim-localvimrc'
 
     " Requires universal-ctags (https://ctags.io)
     " Install with: brew install --HEAD universal-ctags/universal-ctags/universal-ctags on Mac

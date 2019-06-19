@@ -14,6 +14,7 @@ vim/bundle/
 vim/autoload/gocomplete.vim
 vim/ftplugin/go/
 vim/local.vim
+vim/.localvimrc_persistent
 
 # Ignore tmux plugins as they are managed by tpm
 tmux/plugins
