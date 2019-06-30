@@ -13,6 +13,9 @@ trim_trailing_whitespace = true
 [Makefile]
 indent_style = tab
 
+[*.mk]
+indent_style = tab
+
 [*.go]
 indent_style = tab
 
