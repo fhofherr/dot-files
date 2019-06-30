@@ -21,3 +21,4 @@ let g:ale_gitcommit_gitlint_executable = g:python3_bin_dir.'/gitlint'
 let g:ale_gitcommit_gitlint_use_global = 1
 
 let g:ale_c_parse_compile_commands = 1
+let g:ale_c_parse_makefile = 1
