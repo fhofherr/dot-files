@@ -37,56 +37,26 @@ link_file "$DOTFILES_DIR/vim" "$HOME/.vim"
 link_file "$DOTFILES_DIR/vim/init.vim" "$HOME/.vimrc"
 link_file "$DOTFILES_DIR/vim" "$XDG_CONFIG_HOME/nvim"
 
+GLOBAL_PYTHON=$(command -v python3)
 
-if ! $DOTFILES_MINIMAL && $USE_NVIM && command -v pyenv > /dev/null
+if ! $DOTFILES_MINIMAL && $USE_NVIM && [ -n "$GLOBAL_PYTHON" ]
 then
-    NEOVIM_PYTHON3_VERSION="3.6.5"
-    NEOVIM_PYTHON3_VENV="neovim-py3-venv"
+    NEOVIM_VENV="$HOME/.neovim_venv"
+    $GLOBAL_PYTHON -m venv $NEOVIM_VENV
 
-    NEOVIM_PYTHON2_VERSION="2.7.15"
-    NEOVIM_PYTHON2_VENV="neovim-py2-venv"
+    # TODO necessary?
+    #source $NEOVIM_VENV/bin/activate
 
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-
-    if ! pyenv versions | grep "$NEOVIM_PYTHON3_VERSION" > /dev/null
-    then
-        pyenv install "$NEOVIM_PYTHON3_VERSION" > /dev/null
-    fi
-
-    if ! pyenv versions | grep "$NEOVIM_PYTHON2_VERSION" > /dev/null
-    then
-        pyenv install "$NEOVIM_PYTHON2_VERSION" > /dev/null
-    fi
-
-    if ! pyenv virtualenvs | grep "$NEOVIM_PYTHON3_VENV" > /dev/null
-    then
-        pyenv virtualenv "$NEOVIM_PYTHON3_VERSION" "$NEOVIM_PYTHON3_VENV" > /dev/null
-    fi
-
-    if ! pyenv virtualenvs | grep "$NEOVIM_PYTHON2_VENV" > /dev/null
-    then
-        pyenv virtualenv "$NEOVIM_PYTHON2_VERSION" "$NEOVIM_PYTHON2_VENV" > /dev/null
-    fi
+    VENV_PYTHON=$NEOVIM_VENV/bin/python
+    VENV_PIP=$NEOVIM_VENV/bin/pip
 
     # Install Python 3 Packages
-    pyenv activate "$NEOVIM_PYTHON3_VENV" > /dev/null 2>&1
-    NEOVIM_PYTHON3=$(pyenv which python)
-    NEOVIM_PIP3=$(pyenv which pip)
-    $NEOVIM_PIP3 install --upgrade pip > /dev/null
-    $NEOVIM_PIP3 install --upgrade -r $DOTFILES_DIR/vim/neovim_requirements.txt > /dev/null
-    $NEOVIM_PIP3 install --upgrade neovim-remote > /dev/null
-    NEOVIM_NVR=$(pyenv which nvr)
-    pyenv deactivate > /dev/null
+    $VENV_PIP install --upgrade pip > /dev/null
+    $VENV_PIP install --upgrade -r $DOTFILES_DIR/vim/neovim_requirements.txt > /dev/null
+    NEOVIM_NVR=$NEOVIM_VENV/bin/nvr
 
-    # Install Python 2 Packages
-    pyenv activate "$NEOVIM_PYTHON2_VENV" > /dev/null 2>&1
-    NEOVIM_PYTHON2=$(pyenv which python)
-    NEOVIM_PIP2=$(pyenv which pip)
-    $NEOVIM_PIP2 install --upgrade pip > /dev/null
-    $NEOVIM_PIP2 install --upgrade -r $DOTFILES_DIR/vim/neovim_requirements.txt > /dev/null
-    pyenv deactivate > /dev/null
-
+    # export it as we start neovim farther down
+    export NEOVIM_PYTHON3=$VENV_PYTHON
     if grep "NEOVIM_PYTHON3" "$HOME/.zsh_dotfiles_init" > /dev/null
     then
         sed -i'.bak' "s;export NEOVIM_PYTHON3=.*;export NEOVIM_PYTHON3=$NEOVIM_PYTHON3;g" $HOME/.zsh_dotfiles_init
@@ -102,13 +72,6 @@ then
         else
             echo "export NEOVIM_NVR=$NEOVIM_NVR" >> $HOME/.zsh_dotfiles_init
         fi
-    fi
-
-    if grep "NEOVIM_PYTHON2" "$HOME/.zsh_dotfiles_init" > /dev/null
-    then
-        sed -i'.bak' "s;export NEOVIM_PYTHON2=.*;export NEOVIM_PYTHON2=$NEOVIM_PYTHON2;g" $HOME/.zsh_dotfiles_init
-    else
-        echo "export NEOVIM_PYTHON2=$NEOVIM_PYTHON2" >> $HOME/.zsh_dotfiles_init
     fi
 fi
 

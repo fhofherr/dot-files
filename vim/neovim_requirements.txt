@@ -1,4 +1,4 @@
 pynvim
-neovim
 gitlint
 yamllint
+neovim-remote
