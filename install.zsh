@@ -2,6 +2,7 @@
 
 DOTFILES_MINIMAL=false
 
+WITH_ASDF=true
 WITH_ZSH=true
 WITH_PYENV=true
 WITH_NVM=true
@@ -14,6 +15,9 @@ WITH_GIT=true
 WITH_VSCODE=true
 while [ $# -gt 0 ]; do
     case "$1" in
+        --no-asdf)
+            WITH_ASDF=false
+            ;;
         --no-zsh)
             WITH_ZSH=false
             ;;
@@ -69,6 +73,7 @@ else
     ln -s "$DOTFILES_DIR/.editorconfig" "$HOME/.editorconfig"
 fi
 
+$WITH_ASDF  && $DOTFILES_DIR/asdf/install.zsh
 $WITH_PYENV  && $DOTFILES_DIR/pyenv/install.zsh
 $WITH_NVM  && $DOTFILES_DIR/nvm/install.zsh
 $WITH_RVM  && $DOTFILES_DIR/rvm/install.zsh

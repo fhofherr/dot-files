@@ -1,4 +1,20 @@
 # -----------------------------------------------------------------------------
+# ASDF
+# -----------------------------------------------------------------------------
+if [ -d "$HOME/.asdf" ]; then
+   source "$HOME/.asdf/asdf.sh"
+   source "$HOME/.asdf/completions/asdf.bash"
+fi
+
+# Check if asdf java plugin is installed and set JAVA_HOME to the current
+# version of java.
+# The 10_aliases.zsh file contains a wrapper around asdf which changes the
+# JAVA_HOME whenever a new package local or global version of java is selected.
+if [ -d "$HOME/.asdf/plugins/java" ] && [[ "$(\asdf current java 2>&1)" =~ "^([-_.a-zA-Z0-9]+)[[:space:]]*\(set by.*$" ]]; then
+    export JAVA_HOME=$(\asdf where java ${match[1]})
+fi
+
+# -----------------------------------------------------------------------------
 # FZF
 # -----------------------------------------------------------------------------
 if [ -f "$HOME/.fzf.zsh" ]; then
@@ -20,11 +36,6 @@ if which go > /dev/null; then
     export GOPATH="$HOME/go"
     export PATH="$GOPATH/bin:$PATH"
 fi
-
-# -----------------------------------------------------------------------------
-# Java
-# -----------------------------------------------------------------------------
-export JAVA_HOME="$(/usr/libexec/java_home)"
 
 # -----------------------------------------------------------------------------
 # Utilities and user-local programs
