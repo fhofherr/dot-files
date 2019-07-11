@@ -3,7 +3,8 @@
 " vim-plug
 "
 " ---------------------------------------------------------------------------
-call plug#begin($VIMHOME."/bundle")
+let $VIMPLUGHOME = $HOME . '/.vimplug'
+call plug#begin($VIMPLUGHOME)
 Plug 'junegunn/vim-plug'
 
 Plug 'tpope/vim-sensible'
