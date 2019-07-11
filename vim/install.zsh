@@ -136,31 +136,5 @@ then
     npm install -g markdownlint
 fi
 
-if ! $DOTFILES_MINIMAL && $USE_NVIM && command -v rvm
-then
-    NEOVIM_RUBY_VERSION="ruby-2.4.2"
-    NEOVIM_RUBY_GEMSET="neovim-ruby"
-    if ! rvm list | grep "$NEOVIM_RUBY_VERSION" > /dev/null
-    then
-        rvm install $NEOVIM_RUBY_VERSION > /dev/null
-    fi
-
-    if ! rvm gemset list | grep "$NEOVIM_RUBY_GEMSET" > /dev/null
-    then
-        rvm $NEOVIM_RUBY_VERSION gemset create $NEOVIM_RUBY_GEMSET > /dev/null
-    fi
-    rvm "$NEOVIM_RUBY_VERSION@$NEOVIM_RUBY_GEMSET" do gem install neovim > /dev/null
-
-    if grep "NEOVIM_RUBY_HOST" "$HOME/.zsh_dotfiles_init" > /dev/null
-    then
-        sed -i'.bak' "s;export NEOVIM_RUBY_HOST=.*;export NEOVIM_RUBY_HOST=\"rvm $NEOVIM_RUBY_VERSION@$NEOVIM_RUBY_GEMSET do neovim-ruby-host\";g" $HOME/.zsh_dotfiles_init
-    else
-        echo "export NEOVIM_RUBY_HOST=\"rvm $NEOVIM_RUBY_VERSION@$NEOVIM_RUBY_GEMSET do neovim-ruby-host\"" >> $HOME/.zsh_dotfiles_init
-    fi
-
-    # ALE linters
-    rvm "$NEOVIM_RUBY_VERSION@$NEOVIM_RUBY_GEMSET" do gem install mdl > /dev/null
-fi
-
 echo "Installing vim plugins"
 $VIM -E -c 'PlugUpdate' -c 'qall!' > /dev/null

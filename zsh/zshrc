@@ -56,7 +56,6 @@ ZSH_CUSTOM="$DOTFILES_DIR/zsh/custom"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     pyenv
-    rvm
 )
 
 # User configuration
