@@ -73,7 +73,9 @@ else
     ln -s "$DOTFILES_DIR/.editorconfig" "$HOME/.editorconfig"
 fi
 
+# Need to install ASDF first.
 $WITH_ASDF  && $DOTFILES_DIR/asdf/install.zsh
+
 $WITH_PYENV  && $DOTFILES_DIR/pyenv/install.zsh
 $WITH_NVM  && $DOTFILES_DIR/nvm/install.zsh
 $WITH_RVM  && $DOTFILES_DIR/rvm/install.zsh
