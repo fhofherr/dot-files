@@ -17,19 +17,22 @@ then
 fi
 
 ASDF_VERSION="0.7.2"
+PYTHON_VERSION="3.7.4"
+NODEJS_VERSION="12.6.0"
+GOLANG_VERSION="1.12.7"
 
 git_clone_or_pull https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch "v$ASDF_VERSION"
 
 if [ -d "$HOME/.asdf" ]; then
    source "$HOME/.asdf/asdf.sh"
-   source "$HOME/.asdf/completions/asdf.bash"
 
-   asdf plugin-add python
-   asdf install python 3.7.4
-   asdf global python 3.7.4
+   # Python is required by many neovim plugins
+   asdf_install_global python $PYTHON_VERSION
 
-   asdf plugin-add nodejs
-   asdf install nodejs 12.6.0
-   asdf global nodejs 12.6.0
+   # Nodejs is required by a frew neovim plugin
+   asdf_install_global nodejs $NODEJS_VERSION
+
+   # I simply love go
+   asdf_install_global golang $GOLANG_VERSION
 fi
 
