@@ -1,4 +1,6 @@
 pynvim
 gitlint
 yamllint
+yapf
+flake8
 neovim-remote

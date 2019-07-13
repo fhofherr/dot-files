@@ -80,6 +80,11 @@ if $DOTFILES_MINIMAL == 'false'
         Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
     endif
 
+    " Python plugins
+    if executable('python') || executable('python3')
+        Plug 'deoplete-plugins/deoplete-jedi'
+    endif
+
     " Text editing
     Plug 'reedes/vim-lexical'
     Plug 'reedes/vim-pencil'
