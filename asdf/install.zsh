@@ -20,6 +20,8 @@ ASDF_VERSION="0.7.2"
 PYTHON_VERSION="3.7.4"
 NODEJS_VERSION="12.6.0"
 GOLANG_VERSION="1.12.7"
+JAVA_VERSION="openjdk-11"
+CLOJURE_VERSION="1.10.1"
 
 git_clone_or_pull https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch "v$ASDF_VERSION"
 
@@ -32,7 +34,27 @@ if [ -d "$HOME/.asdf" ]; then
    # Nodejs is required by a frew neovim plugin
    asdf_install_global nodejs $NODEJS_VERSION
 
-   # I simply love go
-   asdf_install_global golang $GOLANG_VERSION
+   if [ "$WITH_GO" = true ]; then
+       asdf_install_global golang $GOLANG_VERSION
+   fi
+   if [ "$WITH_JAVA" = true ]; then
+       asdf_install_global java $JAVA_VERSION
+   fi
+   if [ "$WITH_CLJ" = true ]; then
+       asdf_install_global java $JAVA_VERSION
+       asdf_install_global clojure $CLOJURE_VERSION
+
+       CLOJURE_HOME="$HOME/.clojure"
+       mkdir -p $CLOJURE_HOME
+       link_file "$DOTFILES_DIR/asdf/clojure/deps.edn" "$CLOJURE_HOME/deps.edn"
+
+       mkdir -p "$HOME/bin"
+       curl https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein -o $HOME/bin/lein
+       chmod +x $HOME/bin/lein
+       LEIN_HOME="$HOME/.lein"
+       mkdir -p $LEIN_HOME
+       link_file "$DOTFILES_DIR/asdf/leiningen/profiles.clj" "$LEIN_HOME/profiles.clj"
+   fi
+
 fi
 

@@ -4,11 +4,9 @@ DOTFILES_MINIMAL=false
 
 WITH_ASDF=true
 WITH_ZSH=true
-WITH_PYENV=true
-WITH_NVM=true
-WITH_RVM=true
 WITH_VIM=true
 WITH_TMUX=true
+WITH_JAVA=true
 WITH_CLJ=true
 WITH_GO=true
 WITH_GIT=true
@@ -21,15 +19,6 @@ while [ $# -gt 0 ]; do
         --no-zsh)
             WITH_ZSH=false
             ;;
-        --no-pyenv)
-            WITH_PYENV=false
-            ;;
-        --no-nvm)
-            WITH_NVM=false
-            ;;
-        --no-rvm)
-            WITH_RVM=false
-            ;;
         --no-vim)
             WITH_VIM=false
             ;;
@@ -38,6 +27,9 @@ while [ $# -gt 0 ]; do
             ;;
         --no-clj)
             WITH_CLJ=false
+            ;;
+        --no-java)
+            WITH_JAVA=false
             ;;
         --no-go)
             WITH_GO=false
@@ -74,14 +66,11 @@ else
 fi
 
 # Need to install ASDF first.
-$WITH_ASDF  && $DOTFILES_DIR/asdf/install.zsh
+export WITH_GO
+export WITH_CLJ
+export WITH_JAVA
+$WITH_ASDF && $DOTFILES_DIR/asdf/install.zsh
 
-$WITH_PYENV  && $DOTFILES_DIR/pyenv/install.zsh
-$WITH_NVM  && $DOTFILES_DIR/nvm/install.zsh
-$WITH_RVM  && $DOTFILES_DIR/rvm/install.zsh
-$WITH_CLJ && $DOTFILES_DIR/leiningen/install.zsh
-$WITH_CLJ && $DOTFILES_DIR/clojure/install.zsh
-$WITH_GO && $DOTFILES_DIR/go/install.zsh
 $WITH_GIT && $DOTFILES_DIR/git/install.zsh
 $WITH_TMUX && $DOTFILES_DIR/tmux/install.zsh
 $WITH_ZSH  && $DOTFILES_DIR/zsh/install.zsh
