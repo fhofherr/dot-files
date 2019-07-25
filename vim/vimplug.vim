@@ -83,5 +83,8 @@ if $DOTFILES_MINIMAL == 'false'
     Plug 'reedes/vim-lexical'
     Plug 'reedes/vim-pencil'
     Plug 'reedes/vim-wordy'
+
+    " PlantUML
+    Plug 'aklt/plantuml-syntax'
 endif
 call plug#end()            " required
