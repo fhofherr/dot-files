@@ -56,9 +56,19 @@ function _tmux_new_session {
         TERM=tmux-256color tmux switch-client -t $session_name
     fi
 }
+
+function _tmux_new_project_session {
+    local session_name=$(basename $PWD)
+
+    TERM=tmux-256color tmux new-session -s $session_name -d
+    TERM=tmux-256color tmux switch-client -t $session_name > /dev/null 2>&1
+}
+
 alias tmux="TERM=tmux-256color tmux"
 alias tls="tmux ls"
 alias tns="_tmux_new_session"
+alias tks="tmux kill-session -t"
+alias tnsp="_tmux_new_project_session"
 alias tnsd="tmux new-session -d -s"
 alias tnw="tmux new-window"
 alias tss="tmux switch-client -t"

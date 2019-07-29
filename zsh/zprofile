@@ -1,3 +1,7 @@
+# Set ZDOTDIR to $HOME, as something inside the Jetbrains IDE terminal emulator
+# seems to set it to ''.
+export ZDOTDIR=$HOME
+
 # If TERMINAL_EMULATOR equals 'JetBrains-JediTerm' we are inside IntelliJ IDEA
 # or another Jetbrains IDE. In this case we don't want to start TMUX, as this
 # leads to display errors.
