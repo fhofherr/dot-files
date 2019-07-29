@@ -1,27 +1,21 @@
 # -----------------------------------------------------------------------------
 # ASDF
 # -----------------------------------------------------------------------------
+function _asdf_set_java_home() {
+    if command -v asdf > /dev/null 2>&1
+    then
+        if [[ "$(\asdf current java 2>&1)" =~ "^([-_.a-zA-Z0-9]+)[[:space:]]*\(set by.*$" ]]; then
+            export JAVA_HOME=$(\asdf where java ${match[1]})
+        else
+            export JAVA_HOME=''
+        fi
+        if [ $DOTFILES_VERBOSE ]; then
+            echo "asdf_java_wrapper: set JAVA_HOME to '$JAVA_HOME'"
+        fi
 
-# Modified version of: https://github.com/halcyon/asdf-java/blob/master/asdf-java-wrapper.zsh
-# In contrast to the original it remembers the asdf commands exit code and
-# sets JAVA_HOME only if a package local or global version was selected.
-asdf_java_wrapper() {
-  \asdf "$@"
-  local ec=$?
-  if [ $ec ] && [[ "$@" =~ "^[[:space:]]*(local|global)[[:space:]]*java.*$" ]]; then
-    if [[ "$(\asdf current java 2>&1)" =~ "^([-_.a-zA-Z0-9]+)[[:space:]]*\(set by.*$" ]]; then
-      export JAVA_HOME=$(\asdf where java ${match[1]})
-    else
-      export JAVA_HOME=''
     fi
-  fi
-  if [ $DOTFILES_VERBOSE ]; then
-      echo "asdf_java_wrapper: set JAVA_HOME to '$JAVA_HOME'"
-  fi
-  return $ec
 }
-
-alias asdf='asdf_java_wrapper'
+alias asdf-set-java-home="_asdf_set_java_home"
 # -----------------------------------------------------------------------------
 # Nvim/Vim
 # -----------------------------------------------------------------------------

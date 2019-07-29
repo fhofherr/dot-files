@@ -6,14 +6,6 @@ if [ -d "$HOME/.asdf" ]; then
    source "$HOME/.asdf/completions/asdf.bash"
 fi
 
-# Check if asdf java plugin is installed and set JAVA_HOME to the current
-# version of java.
-# The 10_aliases.zsh file contains a wrapper around asdf which changes the
-# JAVA_HOME whenever a new package local or global version of java is selected.
-if [ -d "$HOME/.asdf/plugins/java" ] && [[ "$(\asdf current java 2>&1)" =~ "^([-_.a-zA-Z0-9]+)[[:space:]]*\(set by.*$" ]]; then
-    export JAVA_HOME=$(\asdf where java ${match[1]})
-fi
-
 # -----------------------------------------------------------------------------
 # FZF
 # -----------------------------------------------------------------------------
