@@ -29,7 +29,7 @@ if $DOTFILES_MINIMAL == 'false'
     Plug 'tpope/vim-tbone'
     Plug 'tpope/vim-unimpaired'
     Plug 'tpope/vim-obsession'
-    Plug 'w0rp/ale'
+    Plug 'dense-analysis/ale'
     Plug 'embear/vim-localvimrc'
 
     " Requires universal-ctags (https://ctags.io)
