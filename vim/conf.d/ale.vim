@@ -4,6 +4,18 @@
 "
 " ---------------------------------------------------------------------------
 
+let g:ale_linters = {
+            \   'go': [ 'golangci-lint', 'golint' ]
+            \ }
+
+let g:ale_fixers = {
+            \   'go': [ 'goimports' ]
+            \}
+
+" TODO consider setting this based on filetype, i.e. use autocommands to set
+"      b:ale_fix_on_save instead.
+let g:ale_fix_on_save = 1
+
 " Disable ALE completion, we use deoplete for that
 let g:ale_completion_enabled = 0
 let g:ale_sign_column_always = 1
