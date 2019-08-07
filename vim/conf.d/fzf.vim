@@ -10,6 +10,7 @@ else
     let g:fzf_layout = { 'down': '~40%' }
 endif
 
+nmap <F1> :Helptags<CR>
 nmap <c-p> :Files<cr>
 
 " Customize fzf colors to match your color scheme
