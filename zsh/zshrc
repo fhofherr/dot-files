@@ -54,7 +54,7 @@ ZSH_CUSTOM="$DOTFILES_DIR/zsh/custom"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(colored-man-pages gpg-agent zsh-autosuggestions)
+plugins=(colored-man-pages golangxx gpg-agent zsh-autosuggestions)
 
 # User configuration
 source $ZSH/oh-my-zsh.sh
