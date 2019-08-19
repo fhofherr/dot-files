@@ -25,3 +25,9 @@ Thumbs.db
 # M$ Office #
 #############
 ~$*.*
+
+# Commonly ignored directories #
+################################
+
+tmp/
+logs/
