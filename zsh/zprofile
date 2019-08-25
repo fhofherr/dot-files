@@ -2,11 +2,11 @@
 # seems to set it to ''.
 export ZDOTDIR=$HOME
 
-# If TERMINAL_EMULATOR equals 'JetBrains-JediTerm' we are inside IntelliJ IDEA
-# or another Jetbrains IDE. In this case we don't want to start TMUX, as this
-# leads to display errors.
-if [ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ] && [ "$TERM_PROGRAM" != "vscode" ] && command -v tmux>/dev/null; then
-  if [[ ! $TERM =~ tmux ]] && [ -z $TMUX ]; then
+# This requires the determine-term utility.
+# See https://github.com/fhofherr/determine-term
+if command -v determine-term > /dev/null 2>&1 && command -v tmux > /dev/null 2>&1; then
+  export TERMINAL_EMULATOR=$(determine-term konsole alacritty)
+  if [[ ! $TERM =~ tmux ]] && [ -z "$TMUX" ] && [ -n "$TERMINAL_EMULATOR" ]; then
     export TERM=tmux-256color
     export TMUX_DEFAULT_SESSION="default"
     # Create a new session if it does not exists or attach
