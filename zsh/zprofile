@@ -4,7 +4,7 @@ export ZDOTDIR=$HOME
 
 # This requires the determine-term utility.
 # See https://github.com/fhofherr/determine-term
-if command -v determine-term > /dev/null 2>&1 && command -v tmux > /dev/null 2>&1; then
+if command -v determine-term > /dev/null 2>&1 && command -v tmux > /dev/null 2>&1 && [ -z "$TERMINAL_EMULATOR" ]; then
   export TERMINAL_EMULATOR=$(determine-term konsole alacritty)
   if [[ ! $TERM =~ tmux ]] && [ -z "$TMUX" ] && [ -n "$TERMINAL_EMULATOR" ]; then
     export TERM=tmux-256color
