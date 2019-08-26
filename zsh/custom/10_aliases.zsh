@@ -73,3 +73,12 @@ alias tnsd="tmux new-session -d -s"
 alias tnw="tmux new-window"
 alias tss="tmux switch-client -t"
 alias tas="tmux attach -t"
+
+# -----------------------------------------------------------------------------
+# pbcopy/pbpaste for Linux
+# -----------------------------------------------------------------------------
+
+if command -v xclip > /dev/null 2>&1; then
+    alias pbcopy='xclip -selection clipboard'
+    alias pbpaste='xclip -selection clipboard -o'
+fi
