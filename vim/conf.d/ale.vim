@@ -5,7 +5,7 @@
 " ---------------------------------------------------------------------------
 
 let g:ale_linters = {
-            \   'go': [ 'golangci-lint', 'golint' ],
+            \   'go': [ 'golangci-lint', 'golint', 'gopls' ],
             \   'python': ['flake8']
             \ }
 
