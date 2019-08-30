@@ -81,12 +81,7 @@ then
 fi
 if ! $DOTFILES_MINIMAL && $USE_NVIM && [ -n "$NEOVIM_NPM" ]
 then
-    if [ -w "/usr/local/lib" ]
-    then
-        $NEOVIM_NPM install -g neovim
-    else
-        sudo $NEOVIM_NPM install -g neovim
-    fi
+    $NEOVIM_NPM install -g neovim
     NEOVIM_NODE_HOST=$(which neovim-node-host)
     if grep "NEOVIM_NODE_HOST" "$HOME/.zsh_dotfiles_init" > /dev/null
     then
