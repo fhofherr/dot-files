@@ -20,6 +20,11 @@ brew_cask_install visual-studio-code
 if [[ "$OSTYPE" = darwin* ]]
 then
     VSCODE_HOME="$HOME/Library/Application Support/Code/User"
+elif [[ "$OSTYPE" = linux* ]]
+then
+    VSCODE_HOME="$HOME/.config/Code/User"
+    mkdir -p $VSCODE_HOME
+    ln -s $HOME/.config/Code $HOME/.config/Code\ -\ OSS
 fi
 
 # Link settings. Inspired by
