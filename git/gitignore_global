@@ -21,6 +21,7 @@ Thumbs.db
 *.iml
 .lsp/
 .lein-repl-history
+.vscode/
 
 # M$ Office #
 #############
