@@ -2,6 +2,7 @@ blzjns.vscode-raml
 dracula-theme.theme-dracula
 EditorConfig.EditorConfig
 mermade.openapi-lint
+ms-python.python
 ms-vscode.cpptools
 ms-vscode.Go
 PKief.material-icon-theme
