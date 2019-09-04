@@ -1,6 +1,5 @@
 {
     "editor.fontFamily": "Fira Code",
-    "editor.fontSize": 16,
     "editor.rulers": [
         80,
         120
@@ -10,5 +9,9 @@
     "workbench.iconTheme": "material-icon-theme",
     "editor.multiCursorModifier": "ctrlCmd",
     "editor.formatOnPaste": true,
-    "workbench.startupEditor": "newUntitledFile"
+    "workbench.startupEditor": "newUntitledFile",
+    "go.useLanguageServer": true,
+    "go.formatTool": "goimports",
+    "go.lintTool": "golangci-lint",
+    "window.zoomLevel": 1.5
 }
