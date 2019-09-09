@@ -1,0 +1,7 @@
+" See https://github.com/JetBrains/ideavim/blob/master/doc/set-commands.md
+" for supported commands
+set ideajoin
+set ideamarks
+set surround
+set commentary
+set multiple-cursors
