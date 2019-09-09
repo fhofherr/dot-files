@@ -31,6 +31,7 @@ if $DOTFILES_MINIMAL == 'false'
     Plug 'tpope/vim-obsession'
     Plug 'dense-analysis/ale'
     Plug 'embear/vim-localvimrc'
+    Plug 'terryma/vim-multiple-cursors'
 
     " Requires universal-ctags (https://ctags.io)
     " Install with: brew install --HEAD universal-ctags/universal-ctags/universal-ctags on Mac
