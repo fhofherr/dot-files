@@ -28,4 +28,5 @@ fi
 DRACULA_ZSH_THEME="https://github.com/dracula/zsh.git"
 git_clone_or_pull $DRACULA_ZSH_THEME "$ZSH_CUSTOM/themes/dracula"
 git_clone_or_pull "https://github.com/zsh-users/zsh-autosuggestions" "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
+git_clone_or_pull "https://github.com/wfxr/forgit" "$ZSH_CUSTOM/plugins/forgit"
 link_file "$ZSH_CUSTOM/themes/dracula/dracula.zsh-theme" "$ZSH/themes/dracula.zsh-theme"

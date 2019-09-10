@@ -25,6 +25,7 @@ sbcl/quicklisp.lisp
 # Ingore external zsh plugins
 zsh/custom/plugins/zsh-nvm/
 zsh/custom/plugins/zsh-autosuggestions
+zsh/custom/plugins/forgit
 zsh/custom/themes/
 
 .cache/
