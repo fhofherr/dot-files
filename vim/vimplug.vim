@@ -79,6 +79,7 @@ if $DOTFILES_MINIMAL == 'false'
     " Go plugins
     if executable('go')
         Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
+        Plug 'sebdah/vim-delve'
     endif
 
     " Python plugins
