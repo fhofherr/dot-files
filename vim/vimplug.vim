@@ -16,6 +16,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
 
 if $DOTFILES_MINIMAL == 'false'
+    Plug 'ervandew/supertab'
     Plug 'godlygeek/tabular'
     Plug 'junegunn/fzf', {'do': './install --all --no-update-rc'}
     Plug 'junegunn/fzf.vim'

@@ -16,9 +16,4 @@ if $DOTFILES_MINIMAL == 'false'
     " Auto-close preview window upon completion
     " See https://github.com/Shougo/deoplete.nvim/issues/115
     autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-
-    " deoplete tab-complete
-    " See https://www.gregjs.com/vim/2016/configuring-the-deoplete-asynchronous-keyword-completion-plugin-with-tern-for-vim/
-    inoremap <expr><s-tab> pumvisible() ? "\<c-j>" : "\<s-tab>"
-    inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 endif
