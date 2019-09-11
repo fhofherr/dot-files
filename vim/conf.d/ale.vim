@@ -41,6 +41,8 @@ let g:ale_python_yapf_use_global = 1
 let g:ale_c_parse_compile_commands = 1
 let g:ale_c_parse_makefile = 1
 
+let g:ale_go_golangci_lint_package = 1
+
 augroup ale
     autocmd!
     au FileType python,go let b:ale_fix_on_save = 1
