@@ -6,7 +6,7 @@
 
 let g:ale_linters = {
             \   'go': [ 'golangci-lint', 'golint', 'gopls' ],
-            \   'python': ['flake8']
+            \   'python': ['flake8', 'pyls']
             \ }
 
 let g:ale_fixers = {
@@ -26,6 +26,8 @@ let g:ale_lint_on_insert_leave = 1
 
 let g:ale_pattern_options = {'\.git/index$': {'ale_enabled': 0}}
 
+let g:ale_ansible_ansible_lint_executable = g:python3_bin_dir.'/ansible-lint'
+
 let g:ale_yaml_yamllint_executable = g:python3_bin_dir.'/yamllint'
 let g:ale_yaml_yamllint_use_global = 1
 
@@ -35,6 +37,8 @@ let g:ale_gitcommit_gitlint_use_global = 1
 let g:ale_python_flake8_executable = g:python3_bin_dir.'/flake8'
 let g:ale_python_flake8_use_global = 1
 
+let g:ale_python_pyls_executable = g:python3_bin_dir.'/pyls'
+let g:ale_python_pyls_use_global = 1
 let g:ale_python_yapf_executable = g:python3_bin_dir.'/yapf'
 let g:ale_python_yapf_use_global = 1
 

@@ -1,9 +1,5 @@
 # vim: set ft=zsh:
 
-if [ -f "$ZSH/plugins/golang/golang.plugin.zsh" ]; then
-    source "$ZSH/plugins/golang/golang.plugin.zsh"
-fi
-
 function go-cov-pkg {
     local pkg=$1
     local coverage_file=$2
