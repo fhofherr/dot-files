@@ -79,6 +79,22 @@ function _install_plugin_vim {
     _install_plugin_vim_python_dependencies
 }
 
+function _make_vim_plugin_aliases {
+    if [ -n "$NVIM_LISTEN_ADDRESS" ]
+    then
+        if [ -n "$NEOVIM_NVR" ]
+        then
+            alias nvim="$NEOVIM_NVR -p"
+            alias nvr="$NEOVIM_NVR"
+        else
+            echo "Don't nest neovim!"
+        fi
+    fi
+    alias e="nvim"
+    alias vim="nvim"
+    alias view="nvim -R"
+}
+
 # echo "Installing vim plugins"
 
 if command -v nvim > /dev/null 2>&1
@@ -102,7 +118,7 @@ then
 
     _load_plugin_vim_python_config
     _load_plugin_vim_nodejs_config
-
+    _make_vim_plugin_aliases
 else
     echo "Could not find neovim. Please install it."
 fi
