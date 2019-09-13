@@ -32,6 +32,7 @@ zplug "zsh-users/zsh-autosuggestions"
 zplug "dracula/zsh", as:theme
 
 zplug "$DOTFILES_DIR/asdf", from:local
+zplug "$DOTFILES_DIR/fzf", from:local
 zplug "$DOTFILES_DIR/vim", from:local
 
 # Load some plugin specific settings we don't want to clutter our main
@@ -50,3 +51,20 @@ fi
 
 # Then, source plugins and add commands to $PATH
 zplug load
+
+# -----------------------------------------------------------------------------
+# Utilities and user-local programs
+# -----------------------------------------------------------------------------
+if [ -d "$DOTFILES_DIR/bin" ]; then
+    export PATH="$DOTFILES_DIR/bin:$PATH"
+fi
+
+if [ -d "$HOME/bin" ]; then
+    export PATH="$HOME/bin:$PATH"
+fi
+# -----------------------------------------------------------------------------
+# Local configuration and secrets
+# -----------------------------------------------------------------------------
+if [ -f "$HOME/.zsh_local" ];then
+    source "$HOME/.zsh_local"
+fi
