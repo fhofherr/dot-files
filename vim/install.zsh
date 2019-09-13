@@ -51,8 +51,8 @@ then
     VENV_PIP=$NEOVIM_VENV/bin/pip
 
     # Install Python 3 Packages
-    $VENV_PIP install --upgrade pip > /dev/null
-    $VENV_PIP install --upgrade -r $DOTFILES_DIR/vim/neovim_requirements.txt > /dev/null
+    $VENV_PIP install --no-user --upgrade pip > /dev/null
+    $VENV_PIP install --no-user --upgrade -r $DOTFILES_DIR/vim/neovim_requirements.txt > /dev/null
     NEOVIM_NVR=$NEOVIM_VENV/bin/nvr
 
     # export it as we start neovim farther down
