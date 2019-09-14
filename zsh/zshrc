@@ -34,6 +34,7 @@ zplug "dracula/zsh", as:theme
 zplug "$DOTFILES_DIR/asdf", from:local
 zplug "$DOTFILES_DIR/fzf", from:local
 zplug "$DOTFILES_DIR/golang", from:local
+zplug "$DOTFILES_DIR/python", from:local
 zplug "$DOTFILES_DIR/tmux", from:local
 zplug "$DOTFILES_DIR/vim", from:local
 
