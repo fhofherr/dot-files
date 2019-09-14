@@ -7,25 +7,21 @@ fi
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="yyyy-mm-dd"
 
-# Make '..' work like 'cd ..'
-setopt autocd
+## Make '..' work like 'cd ..'
+## The theme-and-appearance function import below sets it as well. We keep it
+## here for reference.
+# setopt auto_cd
 
 source ~/.zplug/init.zsh
 
 zplug "zplug/zplug", hook-build:"zplug --self-manage"
 
-zplug "lib/clipboard", from:oh-my-zsh
-zplug "lib/compfix", from:oh-my-zsh
-zplug "lib/completion", from:oh-my-zsh
-zplug "lib/correction", from:oh-my-zsh
 zplug "lib/directories", from:oh-my-zsh
-zplug "lib/functions", from:oh-my-zsh
 zplug "lib/git", from:oh-my-zsh
 zplug "lib/grep", from:oh-my-zsh
 zplug "lib/history", from:oh-my-zsh
-zplug "lib/key-bindings", from:oh-my-zsh
-zplug "lib/spectrum", from:oh-my-zsh
-zplug "lib/termsupport", from:oh-my-zsh
+## Provides spectrum_ls and spectrum_bls. Enable if necessary.
+# zplug "lib/spectrum", from:oh-my-zsh
 zplug "lib/theme-and-appearance", from:oh-my-zsh
 zplug "zsh-users/zsh-autosuggestions"
 
@@ -44,13 +40,14 @@ for x in $(ls $DOTFILES_DIR/zsh/conf.d/*.zsh); do
     source "$x"
 done
 
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
+## Install plugins if there are plugins that have not been installed
+## This increases the startup time rather much. It is therefore disabled.
+# if ! zplug check --verbose; then
+#     printf "Install? [y/N]: "
+#     if read -q; then
+#         echo; zplug install
+#     fi
+# fi
 
 # Then, source plugins and add commands to $PATH
 zplug load
