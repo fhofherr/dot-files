@@ -19,3 +19,16 @@ function go-cov-pkg {
         go tool cover -html=$coverage_file
     fi
 }
+
+function godoc-serve {
+    local port="$1"
+    if [ -z "$port" ]; then
+        port="6060"
+    fi
+    local godoc="$(go env GOPATH)/bin/godoc"
+    if [ ! -f "$godoc" ]; then
+        echo "godoc is not installed"
+        return 1
+    fi
+    $(go env GOPATH)/bin/godoc -http localhost:"$port"
+}
