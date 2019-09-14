@@ -103,17 +103,35 @@ let g:ale_gitcommit_gitlint_use_global = 1
 " Python specific settings
 "
 " ---------------------------------------------------------------------------
-let g:ale_python_flake8_executable = g:python3_bin_dir.'/flake8'
-let g:ale_python_flake8_use_global = 1
+function! s:set_ale_python_config(argstr)
+    let b:ale_fix_on_save = 1
+    let b:ale_linters = ['flake8', 'pyls']
+    let b:ale_fixers = ['yapf']
 
-let g:ale_python_pyls_executable = g:python3_bin_dir.'/pyls'
-let g:ale_python_pyls_use_global = 1
-let g:ale_python_yapf_executable = g:python3_bin_dir.'/yapf'
-let g:ale_python_yapf_use_global = 1
+    if !exists("$DOTFILES_USE_DOTFILES_PYTHON")
+        return
+    endif
+    if !exists("$DOTFILES_PYTHON_BIN")
+        return
+    endif
+    let py_pybin = $DOTFILES_GLOBAL_PYTHON_BIN
+    if executable(py_pybin . '/flake8')
+        let b:ale_python_flake8_executable = py_pybin . '/flake8'
+        let b:ale_python_flake8_use_global = 1
+    endif
+    if executable(py_pybin . '/yapf')
+        let b:ale_python_yapf_executable = py_pybin . '/yapf'
+        let b:ale_python_yapf_use_global = 1
+    endif
+    if executable(py_pybin . '/pyls')
+        let b:ale_python_pyls_executable = py_pybin . '/pyls'
+        let b:ale_python_pyls_use_global = 1
+    endif
+endfunction
 
 augroup fh_ale_python
     autocmd!
-    au FileType python let b:ale_fix_on_save = 1
+    au FileType python call s:set_ale_python_config()
 augroup END
 
 " ---------------------------------------------------------------------------
