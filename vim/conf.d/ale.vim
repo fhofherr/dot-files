@@ -3,14 +3,6 @@
 " ALE common options
 "
 " ---------------------------------------------------------------------------
-let g:ale_linters = {
-            \   'python': ['flake8', 'pyls']
-            \ }
-
-let g:ale_fixers = {
-            \   'python': ['yapf']
-            \}
-
 " Disable ALE completion, we use deoplete for that
 " See: https://github.com/dense-analysis/ale#2iii-completion
 let g:ale_completion_enabled = 0
