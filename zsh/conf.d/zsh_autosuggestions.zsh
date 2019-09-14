@@ -9,9 +9,8 @@
 # The number was determined by runing spectrum_ls and selecting a color we
 # like.
 #
-# The TERMINAL_EMULATOR environment variable was set by determine-term in
-# zprofile.
-if [ "$TERMINAL_EMULATOR" = "konsole" ] || [ "$TERMINAL_EMULATOR" = "yakuake" ]
+# This requires the detterm utility: https://github.com/fhofherr/detterm
+if [ -n "$(DETTERM_EMULATORS="konsole yakuake" detterm)" ]
 then
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=239"
 fi

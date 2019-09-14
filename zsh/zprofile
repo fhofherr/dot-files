@@ -1,16 +1,3 @@
 # Set ZDOTDIR to $HOME, as something inside the Jetbrains IDE terminal emulator
 # seems to set it to ''.
 export ZDOTDIR=$HOME
-
-# This requires the determine-term utility.
-# See https://github.com/fhofherr/determine-term
-if command -v determine-term > /dev/null 2>&1 && command -v tmux > /dev/null 2>&1 && [ -z "$TERMINAL_EMULATOR" ]; then
-  export TERMINAL_EMULATOR=$(determine-term konsole alacritty)
-  if [[ ! $TERM =~ tmux ]] && [ -z "$TMUX" ] && [ -n "$TERMINAL_EMULATOR" ]; then
-    export TERM=tmux-256color
-    export TMUX_DEFAULT_SESSION="default"
-    # Create a new session if it does not exists or attach
-    # to the existing one
-    exec tmux new-session -A -s $TMUX_DEFAULT_SESSION
-  fi
-fi
