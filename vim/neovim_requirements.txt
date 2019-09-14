@@ -1,11 +1,5 @@
 ansible-lint
-flake8
 gitlint
 neovim-remote
-pyls-mypy
 pynvim
-python-language-server
-python-language-server[rope]
-reorder-python-imports
 yamllint
-yapf

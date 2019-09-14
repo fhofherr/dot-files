@@ -13,7 +13,7 @@ function _load_plugin_vim_python_config {
         return 1
     fi
 
-    NEOVIM_VENV="$HOME/.neovim_venv"
+    NEOVIM_VENV="$HOME/.local/dotfiles/neovim_venv"
     NEOVIM_NVR="$NEOVIM_VENV/bin/nvr"
     NEOVIM_PYTHON3="$NEOVIM_VENV/bin/python"
     NEOVIM_PIP="$NEOVIM_VENV/bin/pip"
@@ -50,15 +50,11 @@ function _install_plugin_vim_nodejs_dependencies {
 }
 
 function _install_plugin_vim_python_dependencies {
-    if ! _load_plugin_vim_python_config
-    then
-        return 1
-    fi
     if [ ! -d "$NEOVIM_VENV" ]
     then
+        mkdir -p $(dirname $NEOVIM_VENV)
         ## Path to the system wide global python interpreter
-        local global_python=$(command -v python3)
-        $global_python -m venv $NEOVIM_VENV
+        command python3 -m venv $NEOVIM_VENV
     fi
 
     $NEOVIM_PIP install --no-user --upgrade pip > /dev/null
@@ -100,7 +96,7 @@ function _make_vim_plugin_aliases {
 if command -v nvim > /dev/null 2>&1
 then
 
-    if [ ! -f "$HOME/.local/dot-files/vim_installed" ]
+    if _load_plugin_vim_python_config && [ ! -d "$NEOVIM_VENV" ]
     then
         printf "Install vim plugin dependencies? [y/N]: "
         if read -q; then
@@ -109,16 +105,13 @@ then
             _install_plugin_vim_nodejs_dependencies
 
             # Install all nvim plugins
-            nvim -E -c 'PlugUpdate' -c 'qall!' > /dev/null
-
-            mkdir -p "$HOME/.local/dot-files/"
-            touch "$HOME/.local/dot-files/vim_installed"
+            command nvim -E -c 'PlugUpdate' -c 'qall!' > /dev/null
         fi
+    else
+        _load_plugin_vim_nodejs_config
+        _make_vim_plugin_aliases
     fi
 
-    _load_plugin_vim_python_config
-    _load_plugin_vim_nodejs_config
-    _make_vim_plugin_aliases
 else
     echo "Could not find neovim. Please install it."
 fi
