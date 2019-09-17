@@ -3,6 +3,9 @@
 " Vim Pencil
 "
 " ---------------------------------------------------------------------------
+if !has_key(g:plugs, 'vim-pencil') || !has_key(g:plugs, 'vim-wordy') || !has_key(g:plugs, 'vim-lexical')
+    finish
+endif
 
 let g:pencil#textwidth = 72
 let g:pencil#conceallevel = 0

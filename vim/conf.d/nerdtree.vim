@@ -3,5 +3,8 @@
 " NERDTree
 "
 " ---------------------------------------------------------------------------
+if !has_key(g:plugs, 'nerdtree')
+    finish
+endif
 
 let NERDTreeIgnore=['\~$', '__pycache__', '.egg-info']

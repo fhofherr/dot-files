@@ -3,6 +3,10 @@
 " Deoplete
 "
 " ---------------------------------------------------------------------------
+if !has_key(g:plugs, 'deoplete.nvim')
+    finish
+endif
+
 " See  https://afnan.io/2018-04-12/my-neovim-development-setup/
 let deoplete#enable_at_startup = 1
 

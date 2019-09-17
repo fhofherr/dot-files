@@ -3,6 +3,9 @@
 " lightline
 "
 " ---------------------------------------------------------------------------
+if !has_key(g:plugs, 'lightline.vim')
+    finish
+endif
 
 " lightline shows the mode for us
 set noshowmode

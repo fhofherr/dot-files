@@ -3,6 +3,10 @@
 " ALE common options
 "
 " ---------------------------------------------------------------------------
+if !has_key(g:plugs, 'ale')
+    finish
+endif
+
 " Disable ALE completion, we use deoplete for that
 " See: https://github.com/dense-analysis/ale#2iii-completion
 let g:ale_completion_enabled = 0
@@ -65,10 +69,12 @@ function! s:set_ale_go_config()
         let b:ale_go_golint_executable = gobin . '/golint'
         let b:ale_linters = b:ale_linters + ['golint']
     endif
-    if executable(gobin . '/gopls')
-        let b:ale_go_gopls_executable = gobin . '/gopls'
-        let b:ale_linters = b:ale_linters + ['gopls']
-    endif
+    " TODO vim-go starts a gopls process. This would start another one. I'm
+    " not sure if this is worth it.
+    " if executable(gobin . '/gopls')
+    "     let b:ale_go_gopls_executable = gobin . '/gopls'
+    "     let b:ale_linters = b:ale_linters + ['gopls']
+    " endif
 
     " Configure fixers
     if executable(gobin . '/goimports')

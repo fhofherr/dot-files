@@ -3,4 +3,8 @@
 " nord.vim
 "
 " ---------------------------------------------------------------------------
+if !has_key(g:plugs, 'nord.vim')
+    finish
+endif
+
 let g:nord_comment_brightness = 15

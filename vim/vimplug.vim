@@ -22,7 +22,6 @@ Plug 'reedes/vim-pencil'
 Plug 'reedes/vim-wordy'
 Plug 'scrooloose/nerdtree'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/neco-vim'
 Plug 'sirver/ultisnips'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-commentary'
@@ -40,7 +39,6 @@ Plug 'vimlab/split-term.vim'
 
 " Eye candy and color schemes
 Plug 'itchyny/lightline.vim'
-Plug 'maximbaz/lightline-ale'
 " I don't need all of those. But if I want to switch I want
 " the others handy. So they are just commented out.
 " Plug 'altercation/vim-colors-solarized'
@@ -53,6 +51,9 @@ Plug 'dracula/vim', {'as': 'dracula'}
 " Some plugins require Python 3 to work properly.
 if exists("g:python3_host_prog")
     Plug 'dense-analysis/ale'
+    if has_key(g:plugs, 'lightline.vim')
+        Plug 'maximbaz/lightline-ale'
+    endif
 endif
 
 " Requires universal-ctags (https://ctags.io)
@@ -79,9 +80,13 @@ if executable('go')
     Plug 'sebdah/vim-delve'
 endif
 
-" Python plugins
-if executable('python') || executable('python3')
-    Plug 'deoplete-plugins/deoplete-jedi'
+" Deoplete extensions
+if has_key(g:plugs, 'deoplete.nvim')
+    Plug 'Shougo/neco-vim'
+
+    if executable('python') || executable('python3')
+        Plug 'deoplete-plugins/deoplete-jedi'
+    endif
 endif
 
-call plug#end()            " required
+call plug#end()

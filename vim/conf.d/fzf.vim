@@ -3,6 +3,10 @@
 " fzf.vim
 "
 " ---------------------------------------------------------------------------
+if !has_key(g:plugs, 'fzf') || !has_key(g:plugs, 'fzf.vim')
+    finish
+endif
+
 " Default fzf layout
 if has('nvim')
     let g:fzf_layout = { 'window': '10split enew' }
