@@ -47,7 +47,7 @@ set softtabstop=4
 
 " Set the characters that listmode should highlight
 set lcs=eol:$,tab:>-,trail:·
-set list
+set nolist
 
 " When spliting horizontaly always split below the current window,
 " when spliting verticaly always open the window on the right.
