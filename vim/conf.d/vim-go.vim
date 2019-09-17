@@ -10,10 +10,6 @@ endif
 let g:go_auto_type_info = 1
 let g:go_snippet_engine = "ultisnips"
 
-" We use Deoplete for code completion. Therefore we disable vim-go's
-" completion.
-let g:go_code_completion_enabled = 0
-
 " We use ALE for linting. Therefore we disable all linters for vim-go.
 let g:go_metalinter_autosave = 0
 
