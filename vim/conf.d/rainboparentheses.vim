@@ -3,6 +3,9 @@
 " Rainbow Parentheses
 "
 " ---------------------------------------------------------------------------
+if !has_key(g:plugs, 'rainbow_parentheses')
+    finish
+endif
 
 " Enable rainbow parentheses for Clojure buffers
 augroup rainbow_parentheses

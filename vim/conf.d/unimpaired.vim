@@ -3,6 +3,9 @@
 " Unimpaired
 "
 " ---------------------------------------------------------------------------
+if !has_key(g:plugs, 'vim-unimpaired')
+    finish
+endif
  let g:nremap = {"[": "-", "]": "_"}
  let g:xremap = {"[": "-", "]": "_"}
  let g:oremap = {"[": "-", "]": "_"}

@@ -3,6 +3,10 @@
 " ALE common options
 "
 " ---------------------------------------------------------------------------
+if !has_key(g:plugs, 'ale')
+    finish
+endif
+
 " Disable ALE completion, we use deoplete for that
 " See: https://github.com/dense-analysis/ale#2iii-completion
 let g:ale_completion_enabled = 0

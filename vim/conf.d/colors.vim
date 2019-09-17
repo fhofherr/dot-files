@@ -51,7 +51,9 @@ if has('nvim') || has("gui_running") || &t_Co == 256
         " See https://github.com/mattly/iterm-colors-pencil for iterm2.
         " colorscheme pencil
 
-        colorscheme dracula
+        if has_key(g:plugs, 'dracula')
+            colorscheme dracula
+        endif
     catch E185
         " Do nothing.
     endtry

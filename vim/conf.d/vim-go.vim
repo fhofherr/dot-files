@@ -3,6 +3,10 @@
 " vim-go
 "
 " ---------------------------------------------------------------------------
+if !has_key(g:plugs, 'vim-go')
+    finish
+endif
+
 let g:go_auto_type_info = 1
 let g:go_snippet_engine = "ultisnips"
 

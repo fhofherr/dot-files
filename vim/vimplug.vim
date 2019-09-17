@@ -22,6 +22,7 @@ Plug 'reedes/vim-pencil'
 Plug 'reedes/vim-wordy'
 Plug 'scrooloose/nerdtree'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" TODO neco-vim should only be loaded if deoplete is loaded
 Plug 'Shougo/neco-vim'
 Plug 'sirver/ultisnips'
 Plug 'terryma/vim-multiple-cursors'
@@ -40,6 +41,7 @@ Plug 'vimlab/split-term.vim'
 
 " Eye candy and color schemes
 Plug 'itchyny/lightline.vim'
+" load only if ale is loaded
 Plug 'maximbaz/lightline-ale'
 " I don't need all of those. But if I want to switch I want
 " the others handy. So they are just commented out.
