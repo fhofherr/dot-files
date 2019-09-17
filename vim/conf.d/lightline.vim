@@ -10,8 +10,16 @@ endif
 " lightline shows the mode for us
 set noshowmode
 
+if has_key(g:plugs, 'dracula')
+    let s:colorscheme = 'dracula'
+elif has_key(g:plugs, 'vim-colors-solarized')
+    let s:colorscheme = 'solarized_light'
+else
+    let s:colorscheme = 'powerline'
+endif
+
 let g:lightline = {
-      \ 'colorscheme': 'dracula',
+      \ 'colorscheme': s:colorscheme,
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
