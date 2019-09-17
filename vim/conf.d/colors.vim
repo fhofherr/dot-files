@@ -1,4 +1,3 @@
-set background=light
 if has('termguicolors')
     set termguicolors
 elseif has('nvim')
@@ -52,7 +51,12 @@ if has('nvim') || has("gui_running") || &t_Co == 256
         " colorscheme pencil
 
         if has_key(g:plugs, 'dracula')
+            set background=dark
             colorscheme dracula
+        endif
+        if has_key(g:plugs, 'vim-colors-solarized')
+            set background=light
+            colorscheme solarized
         endif
     catch E185
         " Do nothing.

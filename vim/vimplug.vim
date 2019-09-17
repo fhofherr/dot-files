@@ -41,12 +41,15 @@ Plug 'vimlab/split-term.vim'
 Plug 'itchyny/lightline.vim'
 " I don't need all of those. But if I want to switch I want
 " the others handy. So they are just commented out.
-" Plug 'altercation/vim-colors-solarized'
 " Plug 'drewtempelmeyer/palenight.vim'
 " Plug 'morhetz/gruvbox'
 " Plug 'arcticicestudio/nord-vim'
 " Plug 'reedes/vim-colors-pencil'
-Plug 'dracula/vim', {'as': 'dracula'}
+if exists('$DOTFILES_COLOR_PROFILE') && $DOTFILES_COLOR_PROFILE == 'dark'
+    Plug 'dracula/vim', {'as': 'dracula'}
+else
+    Plug 'altercation/vim-colors-solarized'
+endif
 
 " Some plugins require Python 3 to work properly.
 if exists("g:python3_host_prog")
