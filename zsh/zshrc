@@ -55,6 +55,9 @@ done
 # Then, source plugins and add commands to $PATH
 zplug load
 
+# Make sure we use emacs keybindings
+bindkey -e
+
 # -----------------------------------------------------------------------------
 # Utilities and user-local programs
 # -----------------------------------------------------------------------------
