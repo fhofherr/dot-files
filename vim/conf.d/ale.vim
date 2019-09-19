@@ -33,8 +33,10 @@ let g:ale_fixers = {
             \   'go': [ 'goimports' ]
             \ }
 
-nmap <silent> gd <Plug>(ale_go_to_definition_in_tab)
-nmap <silent> gy <Plug>(ale_go_to_type_definition_in_tab)
+nmap <silent> gd <Plug>(ale_go_to_definition)
+nmap <silent> gD <Plug>(ale_go_to_definition_in_tab)
+nmap <silent> gy <Plug>(ale_go_to_type_definition)
+nmap <silent> gY <Plug>(ale_go_to_type_definition_in_tab)
 
 " ---------------------------------------------------------------------------
 "
