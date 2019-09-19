@@ -1,5 +1,18 @@
 # vim: set ft=zsh:
 
+DOTFILES_GOLANG_PLUGIN_E_NOT_FOUND=254
+
+function _go_shim {
+    local binname=$1
+    shift
+    local binpath="$(go env GOPATH)/bin/$binname"
+    if [ ! -e  $binpath ]; then
+        echo "not found: $binpath"
+        return $DOTFILES_GOLANG_PLUGIN_E_NOT_FOUND
+    fi
+    $binpath $@
+}
+
 function go-cov-pkg {
     local pkg=$1
     local coverage_file=$2
@@ -30,5 +43,7 @@ function godoc-serve {
         echo "godoc is not installed"
         return 1
     fi
-    $(go env GOPATH)/bin/godoc -http localhost:"$port"
+    _go_shim godoc -http localhost:"$port"
 }
+
+export PATH="$DOTFILES_DIR/golang/shims:$PATH"

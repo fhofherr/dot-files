@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+
+source "$DOTFILES_DIR/golang/golang.plugin.zsh"
+
+_go_shim golangci-lint $@
