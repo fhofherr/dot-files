@@ -6,8 +6,8 @@ endif
 
 " 256 Color setup
 if has('nvim') || has("gui_running") || &t_Co == 256
-    " Highlight the 80th colum
-    set colorcolumn=80
+    " Highlight the 80th and 120th columns
+    set colorcolumn=80,120
 
     " Width of line number column
     set numberwidth=5
