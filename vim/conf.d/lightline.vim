@@ -12,7 +12,7 @@ set noshowmode
 
 if has_key(g:plugs, 'dracula')
     let s:colorscheme = 'dracula'
-elif has_key(g:plugs, 'vim-colors-solarized')
+elseif has_key(g:plugs, 'vim-colors-solarized')
     let s:colorscheme = 'solarized_light'
 else
     let s:colorscheme = 'powerline'
