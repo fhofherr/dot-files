@@ -1,0 +1,26 @@
+snippet testf "test function" t
+func Test${1:Name}(t *testing.T) {
+	${2:body}
+}
+endsnippet
+
+snippet tt "tests table" t
+tests := []struct{
+	name string
+	${1:fields}
+}{
+	{
+		name: "${2:name}",
+		${3:values}
+	},
+}
+endsnippet
+
+snippet fortt "iterate over tests" t
+for _, tt := range ${1:tests} {
+	tt := tt
+	t.Run(${2:tt.name}, func(t *testing.T) {
+		${3}
+	})
+}
+endsnippet

@@ -19,6 +19,9 @@ indent_style = tab
 [*.go]
 indent_style = tab
 
+[*.snippets]
+indent_style = tab
+
 [*.json]
 indent_size = 2
 
