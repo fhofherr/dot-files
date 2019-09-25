@@ -28,7 +28,7 @@ zplug "lib/history", from:oh-my-zsh
 zplug "lib/theme-and-appearance", from:oh-my-zsh
 zplug "zsh-users/zsh-autosuggestions"
 
-zplug "dracula/zsh", as:theme
+zplug "agkozak/agkozak-zsh-prompt"
 
 zplug "$DOTFILES_DIR/asdf", from:local
 zplug "$DOTFILES_DIR/fzf", from:local
