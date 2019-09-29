@@ -19,6 +19,7 @@ function _go_mod_get {
         return 1
     fi
     local curdir=$PWD
+    cd /tmp
     echo -n "Getting ${@[-1]}: "
     if $(GO111MODULE=on command go get $@ > /dev/null 2>&1); then
         echo "OK"
