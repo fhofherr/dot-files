@@ -6,6 +6,7 @@ fi
 
 # The default color profile if nothing else is set
 : ${DOTFILES_COLOR_PROFILE:=dark}
+export DOTFILES_COLOR_PROFILE
 
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="yyyy-mm-dd"
