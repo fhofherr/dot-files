@@ -29,7 +29,7 @@ zplug "lib/history", from:oh-my-zsh
 zplug "lib/theme-and-appearance", from:oh-my-zsh
 zplug "zsh-users/zsh-autosuggestions"
 
-zplug "agkozak/agkozak-zsh-prompt"
+zplug "agkozak/agkozak-zsh-prompt", at:stashed-changes
 
 zplug "$DOTFILES_DIR/asdf", from:local
 zplug "$DOTFILES_DIR/fzf", from:local
