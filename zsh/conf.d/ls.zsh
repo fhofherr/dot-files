@@ -1,0 +1,1 @@
+CLICOLOR=1
