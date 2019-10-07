@@ -52,10 +52,30 @@ function _tmux_new_session {
 }
 
 function _tmux_new_project_session {
-    local session_name=$(basename $PWD)
+    local session_name curdir sessiondir
 
+    curdir=$PWD
+    if [ -n "$1" ]; then
+        sessiondir=$1
+        session_name=$(basename $1)
+    else
+        sessiondir=$PWD
+        session_name=$(basename $PWD)
+    fi
+
+    if [ ! -e "$sessiondir" ]; then
+        echo "does not exist: $sessiondir"
+        return 1
+    fi
+    if [ ! -d "$sessiondir" ]; then
+        echo "not a directory: $sessiondir"
+        return 1
+    fi
+
+    cd $sessiondir
     TERM=tmux-256color tmux new-session -s $session_name -d
     TERM=tmux-256color tmux switch-client -t $session_name > /dev/null 2>&1
+    cd $curdir
 }
 
 function _make_tmux_plugin_aliases {
