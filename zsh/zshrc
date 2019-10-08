@@ -31,7 +31,7 @@ zplug "$DOTFILES_DIR/vim", from:local
 
 # Load some plugin specific settings we don't want to clutter our main
 # zshrc file with
-for x in $(ls $DOTFILES_DIR/zsh/conf.d/*.zsh); do
+for x in $(/bin/ls $DOTFILES_DIR/zsh/conf.d/*.zsh); do
     source "$x"
 done
 
