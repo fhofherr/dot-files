@@ -75,18 +75,15 @@ let g:ale_go_golangci_lint_options = ''
 " Python specific settings
 "
 " ---------------------------------------------------------------------------
-function! s:set_ale_python_config(argstr)
+function! s:set_ale_python_config()
     let b:ale_fix_on_save = 1
     let b:ale_linters = ['flake8', 'pyls']
     let b:ale_fixers = ['yapf']
 
-    if !exists("$DOTFILES_USE_DOTFILES_PYTHON")
-        return
-    endif
     if !exists("$DOTFILES_PYTHON_BIN")
         return
     endif
-    let py_pybin = $DOTFILES_GLOBAL_PYTHON_BIN
+    let py_pybin = $DOTFILES_PYTHON_BIN
     if executable(py_pybin . '/flake8')
         let b:ale_python_flake8_executable = py_pybin . '/flake8'
         let b:ale_python_flake8_use_global = 1

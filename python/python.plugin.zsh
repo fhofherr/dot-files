@@ -29,6 +29,8 @@ then
             _install_python_plugin_dependencies
         fi
     fi
+    export DOTFILES_PYTHON_VENV
+    export DOTFILES_PYTHON_BIN
 
 else
     echo "Could not find python. Please install it."
