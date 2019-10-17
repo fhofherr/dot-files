@@ -63,11 +63,12 @@ let g:ale_gitcommit_gitlint_use_global = 1
 
 " ---------------------------------------------------------------------------
 "
-" Git specific settings
+" Go specific settings
 "
 " ---------------------------------------------------------------------------
 
 let g:ale_go_golangci_lint_package = 1
+let g:ale_go_golangci_lint_options = ''
 
 " ---------------------------------------------------------------------------
 "
