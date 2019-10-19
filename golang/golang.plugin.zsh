@@ -32,10 +32,14 @@ function _go_mod_get {
 function _go_update_binaries {
     _go_mod_get github.com/go-delve/delve/cmd/dlv@latest
     _go_mod_get github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-    _go_mod_get github.com/psampaz/go-mod-outdated
+    _go_mod_get github.com/psampaz/go-mod-outdated@latest
     _go_mod_get golang.org/x/lint/golint@latest
     _go_mod_get golang.org/x/tools/cmd/goimports@latest
     _go_mod_get golang.org/x/tools/gopls@latest
+
+    if command -v protoc > /dev/null 2>&1; then
+        _go_mod_get github.com/golang/protobuf/protoc-gen-go@latest
+    fi
 }
 
 function go-cov-pkg {
