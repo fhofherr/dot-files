@@ -21,7 +21,6 @@ Plug 'Raimondi/delimitMate'
 Plug 'reedes/vim-lexical'
 Plug 'reedes/vim-pencil'
 Plug 'reedes/vim-wordy'
-Plug 'scrooloose/nerdtree'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'sirver/ultisnips'
 Plug 'terryma/vim-multiple-cursors'
