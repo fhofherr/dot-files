@@ -80,6 +80,9 @@ function! s:set_ale_python_config()
     let b:ale_linters = ['flake8', 'pyls']
     let b:ale_fixers = ['yapf']
 
+    if !exists("$VIRTUAL_ENV")
+        return
+    fi
     if !exists("$DOTFILES_PYTHON_BIN")
         return
     endif
