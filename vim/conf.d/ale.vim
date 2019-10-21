@@ -12,6 +12,8 @@ endif
 let g:ale_completion_enabled = 0
 let g:ale_sign_column_always = 1
 
+let g:ale_disable_lsp = 1
+
 " Don't lint on text changes ...
 let g:ale_lint_on_text_changed = 0
 " ... lint when leaving insert mode instead
@@ -26,7 +28,7 @@ let g:ale_pattern_options = {
             \ }
 
 let g:ale_linters = {
-            \   'go': [ 'golangci-lint', 'golint', 'gopls' ]
+            \   'go': [ 'golangci-lint', 'golint' ]
             \ }
 
 let g:ale_fixers = {
@@ -77,7 +79,7 @@ let g:ale_go_golangci_lint_options = ''
 " ---------------------------------------------------------------------------
 function! s:set_ale_python_config()
     let b:ale_fix_on_save = 1
-    let b:ale_linters = ['flake8', 'pyls']
+    let b:ale_linters = ['flake8']
     let b:ale_fixers = ['yapf']
 
     if !exists("$VIRTUAL_ENV")
@@ -94,10 +96,6 @@ function! s:set_ale_python_config()
     if executable(py_pybin . '/yapf')
         let b:ale_python_yapf_executable = py_pybin . '/yapf'
         let b:ale_python_yapf_use_global = 1
-    endif
-    if executable(py_pybin . '/pyls')
-        let b:ale_python_pyls_executable = py_pybin . '/pyls'
-        let b:ale_python_pyls_use_global = 1
     endif
 endfunction
 
