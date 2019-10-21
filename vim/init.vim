@@ -24,10 +24,6 @@ if has('nvim') && exists("$NEOVIM_RUBY_HOST")
     let g:ruby_host_prog=$NEOVIM_RUBY_HOST
 endif
 
-if has('nvim') && exists("$NEOVIM_NODE_HOST")
-    let g:node_host_prog=$NEOVIM_NODE_HOST
-endif
-
 " ---------------------------------------------------------------------------
 "
 " General settings

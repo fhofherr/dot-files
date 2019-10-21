@@ -32,7 +32,6 @@ function _load_plugin_vim_nodejs_config {
     then
         return 1
     fi
-    export NEOVIM_NODE_HOST=$(command -v neovim-node-host)
 }
 
 
