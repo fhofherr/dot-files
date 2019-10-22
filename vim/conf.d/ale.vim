@@ -24,21 +24,21 @@ let g:ale_pattern_options = {
             \   },
             \   'go': {
             \     'ale_fix_on_save': 1
+            \   },
+            \   'python': {
+            \     'ale_fix_on_save': 1
             \   }
             \ }
 
 let g:ale_linters = {
-            \   'go': [ 'golangci-lint', 'golint' ]
+            \   'go': [ 'golangci-lint', 'golint' ],
+            \   'python': [ 'flake8' ]
             \ }
 
 let g:ale_fixers = {
-            \   'go': [ 'goimports' ]
+            \   'go': [ 'goimports' ],
+            \   'python': [ 'yapf' ]
             \ }
-
-nmap <silent> gd <Plug>(ale_go_to_definition)
-nmap <silent> gD <Plug>(ale_go_to_definition_in_tab)
-nmap <silent> gy <Plug>(ale_go_to_type_definition)
-nmap <silent> gY <Plug>(ale_go_to_type_definition_in_tab)
 
 " ---------------------------------------------------------------------------
 "
@@ -77,32 +77,8 @@ let g:ale_go_golangci_lint_options = ''
 " Python specific settings
 "
 " ---------------------------------------------------------------------------
-function! s:set_ale_python_config()
-    let b:ale_fix_on_save = 1
-    let b:ale_linters = ['flake8']
-    let b:ale_fixers = ['yapf']
-
-    if !exists("$VIRTUAL_ENV")
-        return
-    fi
-    if !exists("$DOTFILES_PYTHON_BIN")
-        return
-    endif
-    let py_pybin = $DOTFILES_PYTHON_BIN
-    if executable(py_pybin . '/flake8')
-        let b:ale_python_flake8_executable = py_pybin . '/flake8'
-        let b:ale_python_flake8_use_global = 1
-    endif
-    if executable(py_pybin . '/yapf')
-        let b:ale_python_yapf_executable = py_pybin . '/yapf'
-        let b:ale_python_yapf_use_global = 1
-    endif
-endfunction
-
-augroup fh_ale_python
-    autocmd!
-    au FileType python call s:set_ale_python_config()
-augroup END
+let g:ale_python_flake8_use_global = 1
+let g:ale_python_yapf_use_global = 1
 
 " ---------------------------------------------------------------------------
 "

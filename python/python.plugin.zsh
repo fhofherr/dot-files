@@ -26,7 +26,7 @@ EOF
     chmod +x $shimfile
 }
 
-function _install_python_plugin_dependencies {
+function _python_update_binaries {
     if [ -f "$HOME/.zsh_dotfiles_init" ]
     then
         source "$HOME/.zsh_dotfiles_init"
@@ -41,7 +41,9 @@ function _install_python_plugin_dependencies {
     $DOTFILES_PYTHON_PIP install --no-user --upgrade pip > /dev/null
     $DOTFILES_PYTHON_PIP install --no-user --upgrade -r $DOTFILES_DIR/python/python_requirements.txt > /dev/null
 
+    _py_add_shim flake8
     _py_add_shim pyls
+    _py_add_shim yapf
 }
 
 if command -v python3 > /dev/null 2>&1
@@ -52,7 +54,7 @@ then
         printf "Install python plugin dependencies? [y/N]: "
         if read -q; then
             echo
-            _install_python_plugin_dependencies
+            _python_update_binaries
         fi
     fi
     export DOTFILES_PYTHON_VENV
