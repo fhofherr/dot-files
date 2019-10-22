@@ -87,7 +87,7 @@ endif
 if has_key(g:plugs, 'deoplete.nvim')
     Plug 'Shougo/neco-vim'
 
-    if executable('python') || executable('python3')
+    if !has_key(g:plugs,  'LanguageClient-neovim') && (executable('python') || executable('python3'))
         Plug 'deoplete-plugins/deoplete-jedi'
     endif
 endif

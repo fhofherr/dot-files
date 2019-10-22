@@ -35,3 +35,4 @@ zsh/custom/themes/
 .cache/
 .venv/
 .vagrant/
+.mypy_cache
