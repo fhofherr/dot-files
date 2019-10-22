@@ -7,6 +7,7 @@ let $VIMPLUGHOME = $HOME . '/.vimplug'
 call plug#begin($VIMPLUGHOME)
 Plug 'junegunn/vim-plug'
 
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'aklt/plantuml-syntax'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'embear/vim-localvimrc'
