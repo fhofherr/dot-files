@@ -10,17 +10,6 @@ fi
 
 DOTFILES_GOLANG_PLUGIN_E_NOT_FOUND=254
 
-function _go_shim {
-    local binname=$1
-    shift
-    local binpath="$(command go env GOPATH)/bin/$binname"
-    if [ ! -e  $binpath ]; then
-        echo "not found: $binpath"
-        return $DOTFILES_GOLANG_PLUGIN_E_NOT_FOUND
-    fi
-    $binpath $@
-}
-
 function _go_mod_get {
     if [ $#@ = 0 ]; then
         echo "Usage: _go_get [flags] <repo>"
@@ -49,11 +38,13 @@ function _go_add_shim {
         return 0
     fi
     cat  > $shimfile <<EOF
-#!/usr/bin/env zsh
-
-source "\$DOTFILES_DIR/golang/golang.plugin.zsh"
-
-_go_shim $binname \$@
+#!/usr/bin/env bash
+if [ ! -x "\$(go env GOPATH)/bin/$binname" ]
+then
+    echo "$binname not found"
+    exit 1
+fi
+\$(go env GOPATH)/bin/$binname "\$@"
 EOF
     chmod +x $shimfile
 }

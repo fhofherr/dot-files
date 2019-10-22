@@ -20,7 +20,7 @@ if [ -z "\$VIRTUAL_ENV" ] || [ ! -e "\$VIRTUAL_ENV/bin/$binname" ]
 then
     exec "$DOTFILES_PYTHON_VENV/bin/$binname"
 else
-    exec "\$VIRTUAL_ENV/bin/$binname"
+    exec "\$VIRTUAL_ENV/bin/$binname" "\$@"
 fi
 EOF
     chmod +x $shimfile
