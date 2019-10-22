@@ -56,6 +56,7 @@ function _go_update_binaries {
     _go_mod_get golang.org/x/lint/golint@latest && _go_add_shim "golint"
     _go_mod_get golang.org/x/tools/cmd/goimports@latest && _go_add_shim "goimports"
     _go_mod_get golang.org/x/tools/gopls@latest && _go_add_shim "gopls"
+    _go_mod_get golang.org/x/tools/cmd/godoc@latest && _go_add_shim "godoc"
 
     if command -v protoc > /dev/null 2>&1; then
         _go_mod_get github.com/golang/protobuf/protoc-gen-go@latest && _go_add_shim "protoc-gen-go"
@@ -92,7 +93,7 @@ function godoc-serve {
         echo "godoc is not installed"
         return 1
     fi
-    _go_shim godoc -http localhost:"$port"
+    "$DOTFILES_DIR/golang/shims/godoc" -http localhost:"$port"
 }
 
 export PATH="$DOTFILES_DIR/golang/shims:$PATH"
