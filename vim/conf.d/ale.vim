@@ -25,7 +25,7 @@ let g:ale_pattern_options = {
             \   'go': {
             \     'ale_fix_on_save': 1
             \   },
-            \   'python': {
+            \   'py': {
             \     'ale_fix_on_save': 1
             \   }
             \ }
