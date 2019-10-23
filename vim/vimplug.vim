@@ -13,6 +13,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'embear/vim-localvimrc'
 Plug 'ervandew/supertab'
 Plug 'godlygeek/tabular'
+Plug 'hashivim/vim-terraform'
 Plug 'janko/vim-test'
 Plug 'junegunn/fzf', {'do': './install --all --no-update-rc'}
 Plug 'junegunn/fzf.vim'
