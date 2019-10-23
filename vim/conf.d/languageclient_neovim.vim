@@ -8,6 +8,8 @@ let g:LanguageClient_serverCommands = {
     \ 'python': ['pyls'],
     \ 'go': ['gopls'],
     \ }
+" Looks very cool but is distracting
+let g:LanguageClient_useVirtualText = 0
 
 " Copied and adapted from ALE function ale#definition#UpdateTagStack().
 " See: https://github.com/dense-analysis/ale/blob/v2.6.0/autoload/ale/definition.vim#L23
