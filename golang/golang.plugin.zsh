@@ -50,16 +50,17 @@ EOF
 }
 
 function _go_update_binaries {
-    _go_mod_get github.com/go-delve/delve/cmd/dlv@latest && _go_add_shim "dlv"
-    _go_mod_get github.com/golangci/golangci-lint/cmd/golangci-lint@latest && _go_add_shim "golangci-lint"
-    _go_mod_get github.com/psampaz/go-mod-outdated@latest && _go_add_shim "go-mod-outdated"
-    _go_mod_get golang.org/x/lint/golint@latest && _go_add_shim "golint"
-    _go_mod_get golang.org/x/tools/cmd/goimports@latest && _go_add_shim "goimports"
-    _go_mod_get golang.org/x/tools/gopls@latest && _go_add_shim "gopls"
-    _go_mod_get golang.org/x/tools/cmd/godoc@latest && _go_add_shim "godoc"
+    _go_mod_get "github.com/go-delve/delve/cmd/dlv@latest" && _go_add_shim "dlv"
+    _go_mod_get "github.com/golangci/golangci-lint/cmd/golangci-lint@latest" && _go_add_shim "golangci-lint"
+    _go_mod_get "github.com/psampaz/go-mod-outdated@latest" && _go_add_shim "go-mod-outdated"
+    _go_mod_get "golang.org/x/lint/golint@latest" && _go_add_shim "golint"
+    _go_mod_get "golang.org/x/tools/cmd/goimports@latest" && _go_add_shim "goimports"
+    _go_mod_get "golang.org/x/tools/gopls@latest" && _go_add_shim "gopls"
+    _go_mod_get "golang.org/x/tools/cmd/godoc@latest" && _go_add_shim "godoc"
+    _go_mod_get "github.com/fatih/gomodifytags" && _go_add_shim "gomodifytags"
 
     if command -v protoc > /dev/null 2>&1; then
-        _go_mod_get github.com/golang/protobuf/protoc-gen-go@latest && _go_add_shim "protoc-gen-go"
+        _go_mod_get "github.com/golang/protobuf/protoc-gen-go@latest" && _go_add_shim "protoc-gen-go"
     fi
 }
 
