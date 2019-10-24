@@ -4,10 +4,13 @@ endif
 
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_autoStop = 1
+let g:LanguageClient_settingsPath = $VIMHOME . '/conf.d/ls_settings.json'
+
 let g:LanguageClient_serverCommands = {
     \ 'python': ['pyls'],
     \ 'go': ['gopls'],
     \ }
+
 " Looks very cool but is distracting
 let g:LanguageClient_useVirtualText = 0
 

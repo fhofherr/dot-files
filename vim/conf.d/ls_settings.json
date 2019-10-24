@@ -1,0 +1,5 @@
+{
+  "gopls.usePlaceHolders": true,
+  "gopls.completeUnimported": true,
+  "gopls.deepCompletion": true
+}
