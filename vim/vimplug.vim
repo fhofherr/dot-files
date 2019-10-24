@@ -9,6 +9,7 @@ Plug 'junegunn/vim-plug'
 
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'aklt/plantuml-syntax'
+Plug 'cespare/vim-toml'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'embear/vim-localvimrc'
 Plug 'ervandew/supertab'
