@@ -17,6 +17,7 @@ Plug 'hashivim/vim-terraform'
 Plug 'janko/vim-test'
 Plug 'junegunn/fzf', {'do': './install --all --no-update-rc'}
 Plug 'junegunn/fzf.vim'
+Plug 'mhinz/vim-signify'
 Plug 'mileszs/ack.vim'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'Raimondi/delimitMate'

@@ -41,6 +41,9 @@ set shiftwidth=4               " Set default indentation width
 "" of tabs and spaces in order to reduce the size of a file.
 set softtabstop=4
 
+" default updatetime 4000ms is not good for async update
+set updatetime=100
+
 " Set the characters that listmode should highlight
 set lcs=eol:$,tab:>-,trail:·
 set nolist
