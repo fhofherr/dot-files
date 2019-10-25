@@ -3,9 +3,10 @@
 " vim-test
 "
 " ---------------------------------------------------------------------------
-if !has_key(g:plugs, 'vim-test')
+if !dotfiles#plugin#selected('vim-test') || exists('g:did_cfg_vim_test')
     finish
 endif
+let g:did_cfg_vim_test = 1
 
 let test#strategy = "dispatch"
 let g:test#preserve_screen = 1
