@@ -3,9 +3,10 @@
 " Rainbow Parentheses
 "
 " ---------------------------------------------------------------------------
-if !has_key(g:plugs, 'rainbow_parentheses')
+if !dotfiles#plugin#selected('rainbow_parentheses') || exists('g:did_cfg_rainbow_parentheses')
     finish
 endif
+let g:did_cfg_rainbow_parentheses = 1
 
 " Enable rainbow parentheses for Clojure buffers
 augroup rainbow_parentheses
