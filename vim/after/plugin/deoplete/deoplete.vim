@@ -3,7 +3,7 @@
 " Deoplete
 "
 " ---------------------------------------------------------------------------
-if !exists('g:plugs') || !has_key(g:plugs, 'deoplete.nvim') || exists('g:did_cfg_deoplete')
+if  !dotfiles#plugin#selected('deoplete.nvim') || exists('g:did_cfg_deoplete')
     finish
 endif
 let g:did_cfg_deoplete = 1

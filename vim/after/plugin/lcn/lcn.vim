@@ -1,4 +1,4 @@
-if !exists('g:plugs') || !has_key(g:plugs, 'lcn') || exists('g:did_cfg_lcn')
+if !dotfiles#plugin#selected('lcn') || exists('g:did_cfg_lcn')
     finish
 endif
 let g:did_cfg_lcn = 1

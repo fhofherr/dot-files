@@ -3,7 +3,7 @@
 " ALE common options
 "
 " ---------------------------------------------------------------------------
-if !exists('g:plugs') || !has_key(g:plugs, 'ale') || exists('g:did_cfg_ale')
+if !dotfiles#plugin#selected('ale') || exists('g:did_cfg_ale')
     finish
 endif
 let g:did_cfg_ale = 1
