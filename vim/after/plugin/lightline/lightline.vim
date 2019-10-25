@@ -3,9 +3,10 @@
 " lightline
 "
 " ---------------------------------------------------------------------------
-if !has_key(g:plugs, 'lightline.vim')
+if !dotfiles#plugin#selected('lightline.vim') || exists('g:did_cfg_lightline')
     finish
 endif
+let g:did_cfg_lightline = 1
 
 " lightline shows the mode for us
 set noshowmode
