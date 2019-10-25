@@ -29,6 +29,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'sirver/ultisnips'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-obsession'
