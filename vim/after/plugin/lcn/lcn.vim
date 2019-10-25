@@ -53,22 +53,6 @@ let g:LanguageClient_diagnosticsDisplay = {
             \        },
             \    }
 
-" Copied and adapted from ALE function ale#definition#UpdateTagStack().
-" See: https://github.com/dense-analysis/ale/blob/v2.6.0/autoload/ale/definition.vim#L23
-function! Dotfiles_lc_with_tagstack(func, ...) abort
-    if exists('*gettagstack') && exists('*settagstack')
-        " Grab the old location (to jump back to) and the word under the
-        " cursor (as a label for the tagstack)
-        let l:old_location = [bufnr('%'), line('.'), col('.'), 0]
-        let l:tagname = expand('<cword>')
-        let l:winid = win_getid()
-        call settagstack(l:winid, {'items': [{'from': l:old_location, 'tagname': l:tagname}]}, 'a')
-        call settagstack(l:winid, {'curidx': len(gettagstack(l:winid)['items']) + 1})
-    endif
-
-    return call(a:func, a:000)
-endfunction
-
 function! s:lc_buffer_settings()
     if !has_key(g:LanguageClient_serverCommands, &filetype)
         return
@@ -79,12 +63,12 @@ function! s:lc_buffer_settings()
     nnoremap <buffer> <F5> :call LanguageClient_contextMenu()<CR>
     " Or map each action separately
     nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<CR>
-    nnoremap <buffer> <silent> gd :call Dotfiles_lc_with_tagstack('LanguageClient#textDocument_definition')<CR>
-    nnoremap <buffer> <silent> gD :call Dotfiles_lc_with_tagstack('LanguageClient#textDocument_definition', {
+    nnoremap <buffer> <silent> gd :call dotfiles#editor#with_tag_stack('LanguageClient#textDocument_definition')<CR>
+    nnoremap <buffer> <silent> gD :call dotfiles#editor#with_tag_stack('LanguageClient#textDocument_definition', {
                 \  'gotoCmd': 'tabnew',
                 \})<CR>
-    nnoremap <buffer> <silent> gy :call Dotfiles_lc_with_tagstack('LanguageClient#textDocument_typeDefinition')<CR>
-    nnoremap <buffer> <silent> gY :call Dotfiles_lc_with_tagstack('LanguageClient#textDocument_typeDefinition', {
+    nnoremap <buffer> <silent> gy :call dotfiles#editor#with_tag_stack('LanguageClient#textDocument_typeDefinition')<CR>
+    nnoremap <buffer> <silent> gY :call dotfiles#editor#with_tag_stack('LanguageClient#textDocument_typeDefinition', {
                 \  'gotoCmd': 'tabnew',
                 \})<CR>
     nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
