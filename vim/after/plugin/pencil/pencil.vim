@@ -3,9 +3,10 @@
 " Vim Pencil
 "
 " ---------------------------------------------------------------------------
-if !has_key(g:plugs, 'vim-pencil') || !has_key(g:plugs, 'vim-wordy') || !has_key(g:plugs, 'vim-lexical')
+if !dotfiles#plugin#selected('vim-pencil') || !dotfiles#plugin#selected('vim-wordy') || !dotfiles#plugin#selected('vim-lexical') || exists('g:did_cfg_pencil')
     finish
 endif
+let g:did_cfg_pencil = 1
 
 let g:pencil#textwidth = 72
 let g:pencil#conceallevel = 0
