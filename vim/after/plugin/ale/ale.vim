@@ -3,9 +3,10 @@
 " ALE common options
 "
 " ---------------------------------------------------------------------------
-if !has_key(g:plugs, 'ale')
+if !exists('g:plugs') || !has_key(g:plugs, 'ale') || exists('g:did_cfg_ale')
     finish
 endif
+let g:did_cfg_ale = 1
 
 " Disable ALE completion, we use deoplete for that
 " See: https://github.com/dense-analysis/ale#2iii-completion
