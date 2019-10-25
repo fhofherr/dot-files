@@ -10,7 +10,7 @@ let g:did_cfg_deoplete = 1
 
 " Use deoplete#enable instead of g:deoplete#enable_at_startup since the latter
 " needs to be set before loading deoplete.
-let deoplete#enable_at_startup = 1
+call  deoplete#enable()
 
 " Disable the candidates in Comment/String syntaxes.
 call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment', 'String'])
