@@ -15,6 +15,44 @@ let g:LanguageClient_serverCommands = {
 " Looks very cool but is distracting
 let g:LanguageClient_useVirtualText = 0
 
+" Explicitly  configure diagosticsDisplay to avoid overriding the highlight
+" groups of ALE.
+"
+" This seems to happen if ALE gets loaded after LCN. In this case LCN clears
+" the ALE* highlight groups.
+"
+" See: https://github.com/autozimu/LanguageClient-neovim/issues/569
+let g:LanguageClient_diagnosticsDisplay = {
+            \        1: {
+            \            "name": "Error",
+            \            "texthl": "ALEError",
+            \            "signText": "✖",
+            \            "signTexthl": "Error",
+            \            "virtualTexthl": "Error",
+            \        },
+            \        2: {
+            \            "name": "Warning",
+            \            "texthl": "ALEWarning",
+            \            "signText": "⚠",
+            \            "signTexthl": "Todo",
+            \            "virtualTexthl": "Todo",
+            \        },
+            \        3: {
+            \            "name": "Information",
+            \            "texthl": "ALEInfo",
+            \            "signText": "ℹ",
+            \            "signTexthl": "Todo",
+            \            "virtualTexthl": "Todo",
+            \        },
+            \        4: {
+            \            "name": "Hint",
+            \            "texthl": "ALEInfo",
+            \            "signText": "➤",
+            \            "signTexthl": "Todo",
+            \            "virtualTexthl": "Todo",
+            \        },
+            \    }
+
 " Copied and adapted from ALE function ale#definition#UpdateTagStack().
 " See: https://github.com/dense-analysis/ale/blob/v2.6.0/autoload/ale/definition.vim#L23
 function! Dotfiles_lc_with_tagstack(func, ...) abort
