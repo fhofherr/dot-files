@@ -58,13 +58,17 @@ set splitright
 language messages en_US.UTF-8
 set diffopt=filler,vertical
 
-" When editing a file, always jump to the last known cursor position.
-" Don't do it when the position is invalid or when inside an event handler
-" (happens when dropping a file on gvim).
-autocmd BufReadPost *
-            \ if line("'\"") > 0 && line("'\"") <= line("$") |
-            \   exe "normal g`\"" |
-            \ endif
+augroup dotfiles_vim_init
+    autocmd!
+
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    " (happens when dropping a file on gvim).
+    autocmd BufReadPost *
+                \ if line("'\"") > 0 && line("'\"") <= line("$") |
+                \   exe "normal g`\"" |
+                \ endif
+augroup end
 
 source $VIMHOME/shortcuts.vim
 source $VIMHOME/vimplug.vim
