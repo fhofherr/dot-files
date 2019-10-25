@@ -18,6 +18,19 @@ call deoplete#custom#source('ale', 'rank', 999)
 
 call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
 
+" Use tab to cycle through possible completion candidates.
+" See: https://github.com/Shougo/deoplete.nvim/blob/dafd92e17b55c001008a7cdb5a339a30fbacf9d5/doc/deoplete.txt#L432
+inoremap <silent><expr> <TAB>
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ deoplete#mappings#manual_complete()
+
+function! s:check_back_space() abort "{{{
+    let l:col = col('.') - 1
+    return !l:col || getline('.')[l:col - 1]  =~ '\s'
+endfunction"}}}
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
 augroup dotfiles_deoplete
     autocmd!
 
