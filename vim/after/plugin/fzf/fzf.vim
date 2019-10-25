@@ -3,9 +3,10 @@
 " fzf.vim
 "
 " ---------------------------------------------------------------------------
-if !has_key(g:plugs, 'fzf') || !has_key(g:plugs, 'fzf.vim')
+if !dotfiles#plugin#selected('fzf') || !dotfiles#plugin#selected('fzf.vim') || exists('g:did_cfg_fzf')
     finish
 endif
+let g:did_cfg_fzf = 1
 
 " Default fzf layout
 if has('nvim')
