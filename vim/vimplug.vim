@@ -27,7 +27,6 @@ Plug 'reedes/vim-pencil'
 Plug 'reedes/vim-wordy'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'sirver/ultisnips'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
