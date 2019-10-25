@@ -16,8 +16,6 @@ if has('nvim') || has("gui_running") || &t_Co == 256
     " Comment/Un-comment those based on your color scheme selection below
     " let g:palenight_terminal_italics=1
     " let g:gruvbox_italic=1
-    " let g:nord_italic = 1
-    " let g:nord_italic_comments = 1
 
     " let g:pencil_higher_contrast_ui = 0
     " let g:pencil_neutral_code_bg = 1
@@ -38,12 +36,6 @@ if has('nvim') || has("gui_running") || &t_Co == 256
         " See https://github.com/morhetz/gruvbox-contrib for a list
         " of supported terminals.
         " colorscheme gruvbox
-
-        " The nord color scheme requires the respective color scheme for
-        " your terminal emulator.
-        " See https://github.com/arcticicestudio/nord-vim for a list
-        " of supported terminals.
-        " colorscheme nord
 
         " The pencil color scheme requires the respective color scheme for
         " your terminal emulator.

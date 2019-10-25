@@ -47,7 +47,6 @@ Plug 'itchyny/lightline.vim'
 " the others handy. So they are just commented out.
 " Plug 'drewtempelmeyer/palenight.vim'
 " Plug 'morhetz/gruvbox'
-" Plug 'arcticicestudio/nord-vim'
 " Plug 'reedes/vim-colors-pencil'
 if exists('$DOTFILES_COLOR_PROFILE') && $DOTFILES_COLOR_PROFILE == 'dark'
     Plug 'dracula/vim', {'as': 'dracula'}
