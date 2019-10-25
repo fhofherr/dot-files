@@ -12,7 +12,6 @@ Plug 'aklt/plantuml-syntax'
 Plug 'cespare/vim-toml'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'embear/vim-localvimrc'
-Plug 'ervandew/supertab'
 Plug 'godlygeek/tabular'
 Plug 'hashivim/vim-terraform'
 Plug 'janko/vim-test'
@@ -56,7 +55,7 @@ endif
 " Some plugins require Python 3 to work properly.
 if exists("g:python3_host_prog")
     Plug 'dense-analysis/ale'
-    if has_key(g:plugs, 'lightline.vim')
+    if dotfiles#plugin#selected('lightline.vim')
         Plug 'maximbaz/lightline-ale'
     endif
 endif

@@ -11,9 +11,9 @@ let g:did_cfg_lightline = 1
 " lightline shows the mode for us
 set noshowmode
 
-if has_key(g:plugs, 'dracula')
+if dotfiles#plugin#selected('dracula')
     let s:colorscheme = 'dracula'
-elseif has_key(g:plugs, 'vim-colors-solarized')
+elseif dotfiles#plugin#selected('vim-colors-solarized')
     let s:colorscheme = 'solarized_light'
 else
     let s:colorscheme = 'powerline'
@@ -47,3 +47,5 @@ let g:lightline = {
       \   'linter_ok': 'left',
       \}}
 
+" Call lightline#enable() **after** we have configured it.
+call lightline#enable()
