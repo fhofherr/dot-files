@@ -93,3 +93,4 @@ if has_key(g:plugs, 'deoplete.nvim')
 endif
 
 call plug#end()
+call dotfiles#plugin#load_config($VIMHOME . '/plugin.conf.d')
