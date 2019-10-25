@@ -36,11 +36,14 @@ set nobackup                   " never keep backup files
 set showcmd                    " display incomplete commands
 set expandtab                  " Use spaces for indenting only
 set shiftwidth=4               " Set default indentation width
+
 "" Set the number of spaces a tab counts while editing. When expandtab is
 "" enabled, vim will only insert spaces. Else it will insert a combination
 "" of tabs and spaces in order to reduce the size of a file.
 set softtabstop=4
 
+set numberwidth=5
+set number
 " default updatetime 4000ms is not good for async update
 set updatetime=100
 
@@ -66,7 +69,10 @@ autocmd BufReadPost *
 source $VIMHOME/shortcuts.vim
 source $VIMHOME/vimplug.vim
 
-let s:cfg_files = globpath($VIMHOME . '/conf.d/', '*.vim', 0, 1)
-for plugincfg in s:cfg_files
-    execute 'source ' . plugincfg
-endfor
+" ---------------------------------------------------------------------------
+"
+" Color settings
+"
+" ---------------------------------------------------------------------------
+set termguicolors
+set colorcolumn=80,120
