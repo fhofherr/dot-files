@@ -1,10 +1,11 @@
-if !has_key(g:plugs, 'LanguageClient-neovim')
+if !exists('g:plugs') || !has_key(g:plugs, 'lcn') || exists('g:did_cfg_lcn')
     finish
 endif
+let g:did_cfg_lcn = 1
 
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_autoStop = 1
-let g:LanguageClient_settingsPath = $VIMHOME . '/conf.d/ls_settings.json'
+let g:LanguageClient_settingsPath = $VIMHOME . '/after/plugin/lcn/ls_settings.json'
 
 let g:LanguageClient_serverCommands = {
     \ 'python': ['pyls'],

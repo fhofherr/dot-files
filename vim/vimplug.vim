@@ -7,7 +7,7 @@ let $VIMPLUGHOME = $HOME . '/.vimplug'
 call plug#begin($VIMPLUGHOME)
 Plug 'junegunn/vim-plug'
 
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', 'as': 'lcn' }
 Plug 'aklt/plantuml-syntax'
 Plug 'cespare/vim-toml'
 Plug 'editorconfig/editorconfig-vim'
@@ -90,7 +90,7 @@ endif
 if has_key(g:plugs, 'deoplete.nvim')
     Plug 'Shougo/neco-vim'
 
-    if !has_key(g:plugs,  'LanguageClient-neovim') && (executable('python') || executable('python3'))
+    if !has_key(g:plugs,  'lcn') && (executable('python') || executable('python3'))
         Plug 'deoplete-plugins/deoplete-jedi'
     endif
 endif
