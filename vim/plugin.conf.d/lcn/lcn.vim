@@ -15,6 +15,10 @@ let g:LanguageClient_serverCommands = {
 " Looks very cool but is distracting
 let g:LanguageClient_useVirtualText = 0
 
+" Interfers with other plugins that populate the quickfix list, e.g. ack or
+" vim-grepper.
+let g:LanguageClient_diagnosticsList = 'Disabled'
+
 " Explicitly  configure diagosticsDisplay to avoid overriding the highlight
 " groups of ALE.
 "
