@@ -6,6 +6,7 @@
 let $VIMPLUGHOME = $HOME . '/.vimplug'
 call plug#begin($VIMPLUGHOME)
 Plug 'junegunn/vim-plug'
+Plug 'tpope/vim-sensible'
 
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', 'as': 'lcn' }
 Plug 'aklt/plantuml-syntax'
@@ -34,7 +35,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-unimpaired'
