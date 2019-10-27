@@ -23,7 +23,7 @@ call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
 inoremap <silent><expr> <TAB>
     \ pumvisible() ? "\<C-n>" :
     \ <SID>check_back_space() ? "\<TAB>" :
-    \ deoplete#mappings#manual_complete()
+    \ deoplete#manual_complete()
 
 function! s:check_back_space() abort "{{{
     let l:col = col('.') - 1
