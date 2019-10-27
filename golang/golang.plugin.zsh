@@ -84,17 +84,27 @@ function go-cov-pkg {
     fi
 }
 
+## TODO move this into a separate shell script.
 function godoc-serve {
     local port="$1"
     if [ -z "$port" ]; then
         port="6060"
     fi
-    local godoc="$(go env GOPATH)/bin/godoc"
-    if [ ! -f "$godoc" ]; then
-        echo "godoc is not installed"
-        return 1
+    local docker=$(command -v podman 2> /dev/null)
+    if [ -z "$docker" ]; then
+        docker=$(command -v docker 2> /dev/null)
     fi
-    "$DOTFILES_DIR/golang/shims/godoc" -http localhost:"$port"
+    if [ -z "$docker" ]; then
+        "$DOTFILES_DIR/golang/shims/godoc" -http "127.0.0.1:$port"
+        return 0
+    fi
+    local volflag modpath
+    if [ -e "$PWD/go.mod" ]; then
+        local module=$(basename $PWD)
+        volflag="--volume $PWD:/tmp/go/src/$module"
+        modpath="/pkg/$module"
+    fi
+    eval "$docker run --rm --env GOPATH=/tmp/go $volflag --publish 127.0.0.1:$port:$port golang bash -c 'go get golang.org/x/tools/cmd/godoc && echo http://localhost:$port/$modpath && /tmp/go/bin/godoc -http=:$port'"
 }
 
 export PATH="$DOTFILES_DIR/golang/shims:$PATH"

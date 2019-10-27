@@ -37,10 +37,15 @@ set showcmd                    " display incomplete commands
 set expandtab                  " Use spaces for indenting only
 set shiftwidth=4               " Set default indentation width
 
-"" Set the number of spaces a tab counts while editing. When expandtab is
-"" enabled, vim will only insert spaces. Else it will insert a combination
-"" of tabs and spaces in order to reduce the size of a file.
+" Set the number of spaces a tab counts while editing. When expandtab is
+" enabled, vim will only insert spaces. Else it will insert a combination
+" of tabs and spaces in order to reduce the size of a file.
 set softtabstop=4
+
+" Hide buffers when abandoning them. This makes the use of language server
+" rename operations possible. The downside is that changes may be lost when
+" :qa or :q! is used carelessly.
+set hidden
 
 set numberwidth=5
 set number
