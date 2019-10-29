@@ -50,6 +50,17 @@ done
 # Then, source plugins and add commands to $PATH
 zplug load
 
+# If the $_zplug_lock file exists CTRL-Z is not working because zplug disables
+# the job controll. Removing the file fixes the issue for subsequent
+# invocations. Additionally set call setopt monitor to ensure job control is
+# enabled even if zplug disabled it before we removed the lock file.
+#
+# See: https://github.com/zplug/zplug/issues/322
+if [ -e "$_zplug_lock" ]; then
+    rm -f "$_zplug_lock"
+fi
+setopt monitor
+
 # -----------------------------------------------------------------------------
 # Utilities and user-local programs
 # -----------------------------------------------------------------------------
