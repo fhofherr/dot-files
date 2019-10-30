@@ -32,7 +32,7 @@ let g:lightline = {
       \   'charvaluehex': '0x%B',
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
+      \   'gitbranch': 'dotfiles#lightline#gitbranch'
       \ },
       \ 'component_expand': {
       \   'linter_checking': 'lightline#ale#checking',
