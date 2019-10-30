@@ -62,11 +62,10 @@ if exists("g:python3_host_prog")
     endif
 endif
 
-" Requires universal-ctags (https://ctags.io)
+" Works best with universal-ctags (https://ctags.io)
 " Install with: brew install --HEAD universal-ctags/universal-ctags/universal-ctags on Mac
-if executable('ctags')
-    Plug 'majutsushi/tagbar'
-endif
+Plug 'majutsushi/tagbar'
+Plug 'ludovicchabant/vim-gutentags'
 
 if executable('tmux')
     Plug 'christoomey/vim-tmux-navigator'

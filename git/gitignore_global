@@ -23,6 +23,7 @@ Thumbs.db
 .lein-repl-history
 .vscode/
 .mypy_cache
+tags
 
 # M$ Office #
 #############
