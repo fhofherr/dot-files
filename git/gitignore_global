@@ -24,6 +24,8 @@ Thumbs.db
 .vscode/
 .mypy_cache
 tags
+tags.lock
+tags.temp
 
 # M$ Office #
 #############
