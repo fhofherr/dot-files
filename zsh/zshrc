@@ -21,7 +21,7 @@ zplug "zpm-zsh/ls"
 # zplug "lib/spectrum", from:oh-my-zsh
 zplug "zsh-users/zsh-autosuggestions"
 
-zplug "agkozak/agkozak-zsh-prompt", at:stashed-changes
+zplug "agkozak/agkozak-zsh-prompt"
 zplug "agkozak/zsh-z"
 
 zplug "$DOTFILES_DIR/asdf", from:local
