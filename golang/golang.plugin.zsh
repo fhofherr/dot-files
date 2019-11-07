@@ -84,7 +84,6 @@ function go-cov-pkg {
     fi
 }
 
-## TODO move this into a separate shell script.
 function godoc-serve {
     local port="$1"
     if [ -z "$port" ]; then
@@ -102,7 +101,7 @@ function godoc-serve {
     if [ -e "$PWD/go.mod" ]; then
         local module=$(basename $PWD)
         volflag="--volume $PWD:/tmp/go/src/$module"
-        modpath="/pkg/$module"
+        modpath="pkg/$module"
     fi
     eval "$docker run --rm --env GOPATH=/tmp/go $volflag --publish 127.0.0.1:$port:$port golang bash -c 'go get golang.org/x/tools/cmd/godoc && echo http://localhost:$port/$modpath && /tmp/go/bin/godoc -http=:$port'"
 }
