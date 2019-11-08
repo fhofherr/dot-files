@@ -32,6 +32,8 @@ zplug "$DOTFILES_DIR/python", from:local
 zplug "$DOTFILES_DIR/tmux", from:local
 zplug "$DOTFILES_DIR/vim", from:local
 
+zplug "$DOTFILES_DIR/kitty", from:local, defer:2
+
 # Load some plugin specific settings we don't want to clutter our main
 # zshrc file with
 for x in $(/bin/ls $DOTFILES_DIR/zsh/conf.d/*.zsh); do

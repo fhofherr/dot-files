@@ -13,8 +13,8 @@ set noshowmode
 
 if dotfiles#plugin#selected('dracula')
     let s:colorscheme = 'dracula'
-elseif dotfiles#plugin#selected('vim-colors-solarized')
-    let s:colorscheme = 'solarized_light'
+elseif dotfiles#plugin#selected('falcon')
+    let s:colorscheme = 'falcon'
 else
     let s:colorscheme = 'powerline'
 endif

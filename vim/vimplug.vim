@@ -48,10 +48,10 @@ Plug 'itchyny/lightline.vim'
 " Plug 'drewtempelmeyer/palenight.vim'
 " Plug 'morhetz/gruvbox'
 " Plug 'reedes/vim-colors-pencil'
-if exists('$DOTFILES_COLOR_PROFILE') && $DOTFILES_COLOR_PROFILE == 'dark'
+if $DOTFILES_COLOR_THEME == 'dracula'
     Plug 'dracula/vim', {'as': 'dracula'}
-else
-    Plug 'altercation/vim-colors-solarized'
+elseif $DOTFILES_COLOR_THEME == 'falcon'
+    Plug 'fenetikm/falcon'
 endif
 
 " Some plugins require Python 3 to work properly.
