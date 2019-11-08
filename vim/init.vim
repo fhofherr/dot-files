@@ -88,5 +88,14 @@ source $VIMHOME/vimplug.vim
 " Color settings
 "
 " ---------------------------------------------------------------------------
-set termguicolors
+if has('nvim') || has('termguicolors')
+    set termguicolors
+endif
+
+if $DOTFILES_COLOR_PROFILE == 'light'
+    set background=light
+else
+    set background=dark
+endif
+
 set colorcolumn=80,120

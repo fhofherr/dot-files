@@ -43,12 +43,12 @@ Plug 'vimlab/split-term.vim'
 
 " Eye candy and color schemes
 Plug 'itchyny/lightline.vim'
+
 " I don't need all of those. But if I want to switch I want
 " the others handy. So they are just commented out.
-" Plug 'drewtempelmeyer/palenight.vim'
-" Plug 'morhetz/gruvbox'
-" Plug 'reedes/vim-colors-pencil'
-if $DOTFILES_COLOR_THEME == 'dracula'
+if $DOTFILES_COLOR_THEME == 'challenger-deep'
+    Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+elseif $DOTFILES_COLOR_THEME == 'dracula'
     Plug 'dracula/vim', {'as': 'dracula'}
 elseif $DOTFILES_COLOR_THEME == 'falcon'
     Plug 'fenetikm/falcon'

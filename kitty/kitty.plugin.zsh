@@ -16,7 +16,7 @@ fi
 
 # Set a default color theme and profile. The profile is only relevant if
 # the theme supports it.
-: ${DOTFILES_COLOR_THEME:=falcon}
+: ${DOTFILES_COLOR_THEME:=challenger-deep}
 : ${DOTFILES_COLOR_PROFILE:=dark}
 
 export DOTFILES_COLOR_THEME
@@ -37,6 +37,10 @@ function _kitty_install_theme {
     rm -f "$color_theme_file"
     mkdir -p "themes_dir"
     case "$DOTFILES_COLOR_THEME" in
+        "challenger-deep")
+            git_clone_or_pull "https://github.com/challenger-deep-theme/kitty" "$themes_dir/challenger-deep"
+            link_file "$themes_dir/challenger-deep/challenger-deep.conf" "$color_theme_file"
+            ;;
         "dracula")
             git_clone_or_pull "https://github.com/dexpota/kitty-themes" "$themes_dir/kitty-themes"
             link_file "$themes_dir/kitty-themes/Dracula.conf" "$color_theme_file"
@@ -46,6 +50,9 @@ function _kitty_install_theme {
             link_file "$themes_dir/falcon/kitty/kitty.falcon.conf" "$color_theme_file"
             ;;
         *)
+            if [ -n "$DOTFILES_COLOR_THEME" ]; then
+                echo "Unknown color theme: $DOTFILES_COLOR_THEME"
+            fi
             # Don't install a color theme
             echo -n "" > "$color_theme_file"
             ;;
