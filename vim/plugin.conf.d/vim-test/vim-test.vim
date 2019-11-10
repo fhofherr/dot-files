@@ -8,7 +8,9 @@ if !dotfiles#plugin#selected('vim-test') || exists('g:did_cfg_vim_test')
 endif
 let g:did_cfg_vim_test = 1
 
-let test#strategy = "dispatch"
+if dotfiles#plugin#selected('vim-dispatch')
+    let test#strategy = 'dispatch'
+endif
 let g:test#preserve_screen = 1
 
 " Copied directly from vim-test's README
