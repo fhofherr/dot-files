@@ -64,8 +64,10 @@ endif
 
 " Works best with universal-ctags (https://ctags.io)
 " Install with: brew install --HEAD universal-ctags/universal-ctags/universal-ctags on Mac
-Plug 'majutsushi/tagbar'
-Plug 'ludovicchabant/vim-gutentags'
+if executable('ctags')
+    Plug 'majutsushi/tagbar'
+    Plug 'ludovicchabant/vim-gutentags'
+endif
 
 if executable('tmux')
     Plug 'christoomey/vim-tmux-navigator'
