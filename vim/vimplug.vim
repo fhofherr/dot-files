@@ -39,7 +39,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-unimpaired'
-Plug 'vimlab/split-term.vim'
+" Plug 'vimlab/split-term.vim'
+Plug 'kassio/neoterm'
 
 " Eye candy and color schemes
 Plug 'itchyny/lightline.vim'
