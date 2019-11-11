@@ -67,7 +67,7 @@ endif
 " Install with: brew install --HEAD universal-ctags/universal-ctags/universal-ctags on Mac
 if executable('ctags')
     Plug 'majutsushi/tagbar'
-    Plug 'ludovicchabant/vim-gutentags'
+    " Plug 'ludovicchabant/vim-gutentags'
 endif
 
 if executable('tmux')
