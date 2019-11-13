@@ -24,11 +24,11 @@ let g:ale_pattern_options = {
             \     'ale_enabled': 0
             \   },
             \   'go': {
-            \     'ale_fix_on_save': 1
+            \     'ale_fix_on_save': 0
             \   },
             \   'py': {
             \     'ale_enabled': 0,
-            \     'ale_fix_on_save': 1
+            \     'ale_fix_on_save': 0
             \   }
             \ }
 
