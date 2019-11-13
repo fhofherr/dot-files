@@ -1,0 +1,22 @@
+{
+  "diagnostic.displayByAle": true,
+
+  "python.jediEnabled": false,
+  "python.formatting.provider": "yapf",
+  "python.linting.flake8Enabled": true,
+
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"],
+      "initializationOptions": {
+        "completionDocumentation": true,
+        "completeUnimported": true,
+        "deepCompletion": true,
+        "fuzzyMatching": true,
+        "usePlaceholders": true
+      }
+    }
+  }
+}

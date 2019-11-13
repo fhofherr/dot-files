@@ -33,6 +33,7 @@ endif
 " nevertheless, in case ~/.editorconfig does not exist.
 set fileencoding=utf-8
 set nobackup                   " never keep backup files
+set nowritebackup              " don't create backup files before writing
 set showcmd                    " display incomplete commands
 set expandtab                  " Use spaces for indenting only
 set shiftwidth=4               " Set default indentation width
@@ -46,6 +47,12 @@ set softtabstop=4
 " rename operations possible. The downside is that changes may be lost when
 " :qa or :q! is used carelessly.
 set hidden
+
+set cmdheight=2
+set signcolumn=yes
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
 
 set numberwidth=5
 set number

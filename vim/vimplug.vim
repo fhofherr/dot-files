@@ -8,7 +8,7 @@ call plug#begin($VIMPLUGHOME)
 Plug 'junegunn/vim-plug'
 Plug 'tpope/vim-sensible'
 
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', 'as': 'lcn' }
+" Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', 'as': 'lcn' }
 Plug 'aklt/plantuml-syntax'
 Plug 'cespare/vim-toml'
 Plug 'editorconfig/editorconfig-vim'
@@ -27,7 +27,8 @@ Plug 'Raimondi/delimitMate'
 " Plug 'reedes/vim-lexical'
 " Plug 'reedes/vim-pencil'
 " Plug 'reedes/vim-wordy'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sirver/ultisnips'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
@@ -88,12 +89,17 @@ if executable('go')
 endif
 
 " Deoplete extensions
+" if has_key(g:plugs, 'deoplete.nvim')
+"     Plug 'Shougo/neco-vim'
+"
+"     if !has_key(g:plugs,  'lcn') && (executable('python') || executable('python3'))
+"         Plug 'deoplete-plugins/deoplete-jedi'
+"     endif
+" endif
+
 if has_key(g:plugs, 'deoplete.nvim')
     Plug 'Shougo/neco-vim'
-
-    if !has_key(g:plugs,  'lcn') && (executable('python') || executable('python3'))
-        Plug 'deoplete-plugins/deoplete-jedi'
-    endif
+    Plug 'neoclide/coc-neco'
 endif
 
 call plug#end()

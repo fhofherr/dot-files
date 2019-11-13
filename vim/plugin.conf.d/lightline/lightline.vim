@@ -26,7 +26,8 @@ let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
-      \   'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
+      \   'right': [ [ 'cocstatus' ],
+      \              [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
       \              [ 'percent', 'lineinfo' ],
       \              [ 'charvaluehex', 'fileformat', 'fileencoding', 'filetype' ] ]
       \ },
@@ -34,6 +35,7 @@ let g:lightline = {
       \   'charvaluehex': '0x%B',
       \ },
       \ 'component_function': {
+      \   'cocstatus': 'coc#status',
       \   'gitbranch': 'dotfiles#lightline#gitbranch'
       \ },
       \ 'component_expand': {
@@ -51,3 +53,8 @@ let g:lightline = {
 
 " Call lightline#enable() **after** we have configured it.
 call lightline#enable()
+
+augroup dotfiles_coc_status
+    autocmd!
+    autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+augroup END
