@@ -5,7 +5,8 @@ let g:did_cfg_coc = 1
 
 let g:coc_global_extensions = [
             \ 'coc-json',
-            \ 'coc-python'
+            \ 'coc-python',
+            \ 'coc-ultisnips'
             \ ]
 
 inoremap <silent><expr> <TAB>
