@@ -48,7 +48,9 @@ Plug 'itchyny/lightline.vim'
 
 " I don't need all of those. But if I want to switch I want
 " the others handy. So they are just commented out.
-if $DOTFILES_COLOR_THEME == 'challenger-deep'
+if $DOTFILES_COLOR_THEME == 'ayu'
+    Plug 'ayu-theme/ayu-vim'
+elseif $DOTFILES_COLOR_THEME == 'challenger-deep'
     Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 elseif $DOTFILES_COLOR_THEME == 'dracula'
     Plug 'dracula/vim', {'as': 'dracula'}

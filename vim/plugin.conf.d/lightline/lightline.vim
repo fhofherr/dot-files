@@ -11,7 +11,9 @@ let g:did_cfg_lightline = 1
 " lightline shows the mode for us
 set noshowmode
 
-if dotfiles#plugin#selected('challenger-deep')
+if dotfiles#plugin#selected('ayu-vim')
+    let s:colorscheme = 'ayu'
+elseif dotfiles#plugin#selected('challenger-deep')
     let s:colorscheme = 'challenger_deep'
 elseif dotfiles#plugin#selected('dracula')
     let s:colorscheme = 'dracula'

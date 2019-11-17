@@ -16,8 +16,8 @@ fi
 
 # Set a default color theme and profile. The profile is only relevant if
 # the theme supports it.
-: ${DOTFILES_COLOR_THEME:=onehalf}
-: ${DOTFILES_COLOR_PROFILE:=light}
+: ${DOTFILES_COLOR_THEME:=ayu}
+: ${DOTFILES_COLOR_PROFILE:=dark}
 
 export DOTFILES_COLOR_THEME
 export DOTFILES_COLOR_PROFILE
@@ -37,13 +37,21 @@ function _kitty_install_theme {
     rm -f "$color_theme_file"
     mkdir -p "themes_dir"
     case "$DOTFILES_COLOR_THEME" in
+        "ayu")
+            git_clone_or_pull "https://github.com/dexpota/kitty-themes" "$themes_dir/kitty-themes"
+            if [ "$DOTFILES_COLOR_PROFILE" = "light" ]; then
+                link_file "$themes_dir/kitty-themes/themes/ayu_light.conf" "$color_theme_file"
+            else
+                link_file "$themes_dir/kitty-themes/themes/ayu_mirage.conf" "$color_theme_file"
+            fi
+            ;;
         "challenger-deep")
             git_clone_or_pull "https://github.com/challenger-deep-theme/kitty" "$themes_dir/challenger-deep"
             link_file "$themes_dir/challenger-deep/challenger-deep.conf" "$color_theme_file"
             ;;
         "dracula")
             git_clone_or_pull "https://github.com/dexpota/kitty-themes" "$themes_dir/kitty-themes"
-            link_file "$themes_dir/kitty-themes/Dracula.conf" "$color_theme_file"
+            link_file "$themes_dir/kitty-themes/themes/Dracula.conf" "$color_theme_file"
             ;;
         "falcon")
             git_clone_or_pull "https://github.com/fenetikm/falcon" "$themes_dir/falcon"
