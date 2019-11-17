@@ -16,7 +16,7 @@ fi
 
 # Set a default color theme and profile. The profile is only relevant if
 # the theme supports it.
-: ${DOTFILES_COLOR_THEME:=iceberg}
+: ${DOTFILES_COLOR_THEME:=ayu}
 : ${DOTFILES_COLOR_PROFILE:=dark}
 
 export DOTFILES_COLOR_THEME
