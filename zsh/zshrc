@@ -4,10 +4,6 @@ else
     echo "Warning: could not find $HOME/.zsh_dotfiles_init"
 fi
 
-# The default color profile if nothing else is set
-: ${DOTFILES_COLOR_PROFILE:=dark}
-export DOTFILES_COLOR_PROFILE
-
 # Make sure we use emacs keybindings
 bindkey -e
 

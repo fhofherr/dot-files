@@ -16,8 +16,8 @@ fi
 
 # Set a default color theme and profile. The profile is only relevant if
 # the theme supports it.
-: ${DOTFILES_COLOR_THEME:=challenger-deep}
-: ${DOTFILES_COLOR_PROFILE:=dark}
+: ${DOTFILES_COLOR_THEME:=onehalf}
+: ${DOTFILES_COLOR_PROFILE:=light}
 
 export DOTFILES_COLOR_THEME
 export DOTFILES_COLOR_PROFILE
@@ -48,6 +48,14 @@ function _kitty_install_theme {
         "falcon")
             git_clone_or_pull "https://github.com/fenetikm/falcon" "$themes_dir/falcon"
             link_file "$themes_dir/falcon/kitty/kitty.falcon.conf" "$color_theme_file"
+            ;;
+        "onehalf")
+            git_clone_or_pull "https://github.com/sonph/onehalf" "$themes_dir/onehalf"
+            if [ "$DOTFILES_COLOR_PROFILE" = "light" ]; then
+                link_file "$themes_dir/onehalf/kitty/onehalf-light.conf" "$color_theme_file"
+            else
+                link_file "$themes_dir/onehalf/kitty/onehalf-dark.conf" "$color_theme_file"
+            fi
             ;;
         *)
             if [ -n "$DOTFILES_COLOR_THEME" ]; then
