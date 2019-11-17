@@ -56,6 +56,8 @@ elseif $DOTFILES_COLOR_THEME == 'dracula'
     Plug 'dracula/vim', {'as': 'dracula'}
 elseif $DOTFILES_COLOR_THEME == 'falcon'
     Plug 'fenetikm/falcon'
+elseif $DOTFILES_COLOR_THEME == 'iceberg'
+    Plug 'cocopon/iceberg.vim'
 elseif $DOTFILES_COLOR_THEME == 'onehalf'
     Plug 'sonph/onehalf', {'rtp': 'vim'}
 endif

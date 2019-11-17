@@ -16,7 +16,7 @@ fi
 
 # Set a default color theme and profile. The profile is only relevant if
 # the theme supports it.
-: ${DOTFILES_COLOR_THEME:=ayu}
+: ${DOTFILES_COLOR_THEME:=iceberg}
 : ${DOTFILES_COLOR_PROFILE:=dark}
 
 export DOTFILES_COLOR_THEME
@@ -56,6 +56,10 @@ function _kitty_install_theme {
         "falcon")
             git_clone_or_pull "https://github.com/fenetikm/falcon" "$themes_dir/falcon"
             link_file "$themes_dir/falcon/kitty/kitty.falcon.conf" "$color_theme_file"
+            ;;
+        "iceberg")
+            git_clone_or_pull "https://gist.github.com/9b6f3e86d44542f73b526183095d5c3a.git" "$themes_dir/iceberg"
+            link_file "$themes_dir/iceberg/kitty-iceberg-config" "$color_theme_file"
             ;;
         "onehalf")
             git_clone_or_pull "https://github.com/sonph/onehalf" "$themes_dir/onehalf"

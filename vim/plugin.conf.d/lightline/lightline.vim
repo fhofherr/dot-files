@@ -19,6 +19,8 @@ elseif dotfiles#plugin#selected('dracula')
     let s:colorscheme = 'dracula'
 elseif dotfiles#plugin#selected('falcon')
     let s:colorscheme = 'falcon'
+elseif dotfiles#plugin#selected('iceberg.vim')
+    let s:colorscheme = 'iceberg'
 elseif dotfiles#plugin#selected('onehalf')
     if $DOTFILES_COLOR_PROFILE == 'light'
         " onehalf does not have a light colorscheme for lightline yet.
