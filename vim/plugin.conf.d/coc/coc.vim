@@ -38,8 +38,7 @@ augroup dotfiles_coc_vim
     " Update signature help on jump placeholder
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
-    " Todo: Does not work for some reason :-(
-    " autocmd BufWritePre *.go silent call CocAction('runCommand', 'editor.action.organizeImport')
+    autocmd BufWritePre *.go silent call CocAction('runCommand', 'editor.action.organizeImport')
 augroup end
 
 function! s:show_documentation()
