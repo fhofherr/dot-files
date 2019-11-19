@@ -21,3 +21,7 @@ for _, tt := range ${1:tests} {
 	})
 }
 endsnippet
+
+snippet pkg "add a package line" b
+package `!v expand('%:p:h:t')`${0}
+endsnippet
