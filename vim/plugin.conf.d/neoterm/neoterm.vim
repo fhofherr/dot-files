@@ -7,6 +7,6 @@ let g:neoterm_default_mod = ':tab'
 let g:neoterm_autoinsert = 1
 
 " split-term.vim compatibility
-command Term :Tnew
+command Term :botright :Tnew
 command VTerm :vertical :Tnew
 command TTerm :tab :Tnew
