@@ -5,15 +5,6 @@
 if [ -f "$HOME/.zsh_dotfiles_init" ]
 then
     source "$HOME/.zsh_dotfiles_init"
-
-    if [ -n "$NVIM_LISTEN_ADDRESS" ] && [ -n "$NEOVIM_NVR" ]
-    then
-        export EDITOR="$NEOVIM_NVR -p"
-        export VISUAL="$EDITOR"
-    else
-        export EDITOR="nvim"
-        export VISUAL="$EDITOR"
-    fi
 else
     echo "Could not find '$HOME/.zsh_dotfiles_init'!"
     echo "Execute over-all install script!"

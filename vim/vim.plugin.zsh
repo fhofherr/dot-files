@@ -7,6 +7,8 @@ else
     echo "Execute over-all install script!"
 fi
 
+NEOVIM_BINARY=$(command -v nvim 2> /dev/null)
+
 function _load_plugin_vim_python_config {
     if ! command -v python3 > /dev/null 2>&1
     then
@@ -74,27 +76,25 @@ function _install_plugin_vim {
     _install_plugin_vim_python_dependencies
 }
 
-function _make_vim_plugin_aliases {
+function _nvim {
     if [ -n "$NVIM_LISTEN_ADDRESS" ]
     then
-        if [ -n "$NEOVIM_NVR" ]
+        if  [ -z "$NEOVIM_NVR" ]
         then
-            alias nvim="$NEOVIM_NVR -p"
-            alias nvr="$NEOVIM_NVR"
-        else
             echo "Don't nest neovim!"
+            echo "Install neovim-remote!"
+            return 1
         fi
+        "$NEOVIM_NVR" $@
+    else
+        "$NEOVIM_BINARY" $@
     fi
-    alias e="nvim"
-    alias vim="nvim"
-    alias view="nvim -R"
 }
 
 # echo "Installing vim plugins"
 
-if command -v nvim > /dev/null 2>&1
+if [ -n "$NEOVIM_BINARY" ]
 then
-
     if _load_plugin_vim_python_config && [ ! -d "$NEOVIM_VENV" ]
     then
         printf "Install vim plugin dependencies? [y/N]: "
@@ -106,11 +106,13 @@ then
             # Install all nvim plugins
             command nvim -E -c 'PlugUpdate' -c 'qall!' > /dev/null
         fi
-    else
-        _load_plugin_vim_nodejs_config
-        _make_vim_plugin_aliases
     fi
 
+    _load_plugin_vim_nodejs_config
+
+    alias nvim="_nvim"
+    alias vim="_nvim"
+    alias view="_nvim -R"
 else
     echo "Could not find neovim. Please install it."
 fi

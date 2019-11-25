@@ -25,6 +25,16 @@ if has('nvim') && exists("$NEOVIM_RUBY_HOST")
 endif
 
 " ---------------------------------------------------------------------------
+" neovim-remote settings
+" ---------------------------------------------------------------------------
+if has('nvim') && exists('$NEOVIM_NVR')
+    let $GIT_EDITOR = $NEOVIM_NVR . ' -cc split --remote-wait'
+    augroup dotfiles_nvr
+        autocmd FileType gitcommit,gitrebase,gitconfig setlocal bufhidden=delete
+    augroup END
+endif
+
+" ---------------------------------------------------------------------------
 "
 " General settings
 "
