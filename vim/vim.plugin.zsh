@@ -7,7 +7,12 @@ else
     echo "Execute over-all install script!"
 fi
 
+NEOVIM_APPIMAGE="$HOME/Applications/nvim.appimage"
 NEOVIM_BINARY=$(command -v nvim 2> /dev/null)
+if [ -x "$NEOVIM_APPIMAGE" ]
+then
+    NEOVIM_BINARY="$NEOVIM_APPIMAGE"
+fi
 
 function _load_plugin_vim_python_config {
     if ! command -v python3 > /dev/null 2>&1
