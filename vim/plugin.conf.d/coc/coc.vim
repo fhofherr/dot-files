@@ -16,19 +16,21 @@ inoremap <silent><expr> <TAB>
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<CR>"
 
-nnoremap <buffer> <silent> gd :call dotfiles#editor#with_tag_stack('<SID>coc_action', 'jumpDefinition', '')<CR>
-nnoremap <buffer> <silent> gD :call dotfiles#editor#with_tag_stack('<SID>coc_action', 'jumpDefinition', 'tabedit')<CR>
-nnoremap <buffer> <silent> gy :call dotfiles#editor#with_tag_stack('<SID>coc_action', 'jumpTypeDefinition', '')<CR>
-nnoremap <buffer> <silent> gY :call dotfiles#editor#with_tag_stack('<SID>coc_action', 'jumpTypeDefinition', 'tabedit')<CR>
-nnoremap <buffer> <silent> gi :call dotfiles#editor#with_tag_stack('<SID>coc_action', 'jumpImplementation', '')<CR>
-nnoremap <buffer> <silent> gI :call dotfiles#editor#with_tag_stack('<SID>coc_action', 'jumpImplementation', 'tabedit')<CR>
-nnoremap <buffer> <silent> gr :call dotfiles#editor#with_tag_stack('<SID>coc_action', 'jumpReferences', '')<CR>
-nnoremap <buffer> <silent> gR :call dotfiles#editor#with_tag_stack('<SID>coc_action', 'jumpReferences', 'tabedit')<CR>
+nnoremap <silent> gd :call dotfiles#editor#with_tag_stack('<SID>coc_action', 'jumpDefinition', '')<CR>
+nnoremap <silent> gD :call dotfiles#editor#with_tag_stack('<SID>coc_action', 'jumpDefinition', 'tabedit')<CR>
+nnoremap <silent> gy :call dotfiles#editor#with_tag_stack('<SID>coc_action', 'jumpTypeDefinition', '')<CR>
+nnoremap <silent> gY :call dotfiles#editor#with_tag_stack('<SID>coc_action', 'jumpTypeDefinition', 'tabedit')<CR>
+nnoremap <silent> gi :call dotfiles#editor#with_tag_stack('<SID>coc_action', 'jumpImplementation', '')<CR>
+nnoremap <silent> gI :call dotfiles#editor#with_tag_stack('<SID>coc_action', 'jumpImplementation', 'tabedit')<CR>
+nnoremap <silent> gr :call dotfiles#editor#with_tag_stack('<SID>coc_action', 'jumpReferences', '')<CR>
+nnoremap <silent> gR :call dotfiles#editor#with_tag_stack('<SID>coc_action', 'jumpReferences', 'tabedit')<CR>
 
-nnoremap <silent> K :call s:show_documentation()<CR>
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+"inoremap <expr> <CR> <SID>select_completion()
 
 " Remap for rename current word
-nnoremap <buffer> <silent> <F2> <Plug>(coc-rename)
+nnoremap <silent> <F2> <Plug>(coc-rename)
 
 augroup dotfiles_coc_vim
     autocmd!
@@ -40,6 +42,13 @@ augroup dotfiles_coc_vim
 
     autocmd BufWritePre *.go silent call CocAction('runCommand', 'editor.action.organizeImport')
 augroup end
+
+" function! s:select_completion()
+"     if complete_info()['selected'] != '-1'
+"         return "\<C-g>u\<C-y>"
+"     endif
+"     return "\<CR>"
+" endfunction
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
