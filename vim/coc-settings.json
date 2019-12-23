@@ -3,6 +3,9 @@
     "go"
   ],
 
+  // Disable CoC snippets. UltiSnips still works
+  "coc.preferences.snippets.enable": false,
+
   "diagnostic.displayByAle": true,
 
   "python.jediEnabled": false,
