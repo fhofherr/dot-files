@@ -25,7 +25,7 @@ zplug "$DOTFILES_DIR/fzf", from:local
 zplug "$DOTFILES_DIR/golang", from:local
 zplug "$DOTFILES_DIR/pbpaste", from:local
 zplug "$DOTFILES_DIR/python", from:local
-zplug "$DOTFILES_DIR/tmux", from:local
+# zplug "$DOTFILES_DIR/tmux", from:local
 zplug "$DOTFILES_DIR/vim", from:local
 
 zplug "$DOTFILES_DIR/kitty", from:local, defer:2
