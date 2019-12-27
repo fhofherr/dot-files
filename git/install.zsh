@@ -11,7 +11,7 @@ fi
 source "$DOTFILES_DIR/lib/functions.zsh"
 
 # OS X: use the git that comes with Xcode
-apt_install git
+# apt_install git
 
 link_file "$DOTFILES_DIR/git/gitignore_global" "$HOME/.gitignore_global"
 git config --global core.excludesfile "$HOME/.gitignore_global"
