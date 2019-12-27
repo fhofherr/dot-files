@@ -14,6 +14,13 @@ then
     NEOVIM_BINARY="$NEOVIM_APPIMAGE"
 fi
 
+if [ -n "$NVIM_LISTEN_ADDRESS" ] && [ -n "$NEOVIM_NVR" ]
+then
+    export EDITOR="$NEOVIM_NVR"
+else
+    export EDITOR="$NEOVIM_BINARY"
+fi
+
 function _load_plugin_vim_python_config {
     if ! command -v python3 > /dev/null 2>&1
     then
