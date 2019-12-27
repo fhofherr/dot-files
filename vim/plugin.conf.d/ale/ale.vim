@@ -23,12 +23,12 @@ let g:ale_pattern_options = {
             \   '\.git/index$': {
             \     'ale_enabled': 0
             \   },
-            \   'go': {
+            \   '\.go': {
             \     'ale_fix_on_save': 0
             \   },
-            \   'py': {
-            \     'ale_enabled': 0,
-            \     'ale_fix_on_save': 0
+            \   '\.py': {
+            \     'ale_enabled': 1,
+            \     'ale_fix_on_save': 1
             \   }
             \ }
 
