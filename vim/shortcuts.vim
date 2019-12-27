@@ -20,6 +20,13 @@ imap <c-h> <Nop>
 imap <c-u> <Nop>
 imap <c-w> <Nop>
 
+if !dotfiles#plugin#selected('vim-tmux-navigator')
+    nnoremap <C-J> <C-W><C-J>
+    nnoremap <C-K> <C-W><C-K>
+    nnoremap <C-L> <C-W><C-L>
+    nnoremap <C-H> <C-W><C-H>
+endif
+
 " Re-map [ to - and ] to _.
 " See https://github.com/tpope/vim-unimpaired#faq
 nmap - [
