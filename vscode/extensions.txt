@@ -5,6 +5,4 @@ mermade.openapi-lint
 ms-python.python
 ms-vscode.cpptools
 ms-vscode.Go
-PKief.material-icon-theme
-platformio.platformio-ide
 redhat.vscode-yaml
