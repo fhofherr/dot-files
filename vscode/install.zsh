@@ -10,12 +10,6 @@ else
 fi
 source "$DOTFILES_DIR/lib/functions.zsh"
 
-if $DOTFILES_MINIMAL
-then
-    echo "Minimal installation. Skipping Clojure"
-    exit 0
-fi
-
 brew_cask_install visual-studio-code
 if [[ "$OSTYPE" = darwin* ]]
 then
@@ -23,8 +17,6 @@ then
 elif [[ "$OSTYPE" = linux* ]]
 then
     VSCODE_HOME="$HOME/.config/Code/User"
-    mkdir -p $VSCODE_HOME
-    ln -s $HOME/.config/Code $HOME/.config/Code\ -\ OSS
 fi
 
 # Link settings. Inspired by
