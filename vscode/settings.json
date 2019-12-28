@@ -5,13 +5,16 @@
         120
     ],
     "editor.fontLigatures": true,
-    "workbench.colorTheme": "Dracula",
-    "workbench.iconTheme": "material-icon-theme",
-    "editor.multiCursorModifier": "ctrlCmd",
+    "workbench.colorTheme": "Ayu Mirage Bordered",
     "editor.formatOnPaste": true,
     "workbench.startupEditor": "newUntitledFile",
     "go.useLanguageServer": true,
     "go.formatTool": "goimports",
     "go.lintTool": "golangci-lint",
-    "window.zoomLevel": 1
+    "workbench.iconTheme": "ayu",
+    "workbench.sideBar.location": "left",
+    "window.menuBarVisibility": "toggle",
+    "window.zoomLevel": 1,
+    "go.inferGopath": true,
+    "go.toolsGopath": "~/.local/Code/go-tools"
 }
