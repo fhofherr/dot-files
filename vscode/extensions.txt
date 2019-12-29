@@ -5,6 +5,7 @@ mermade.openapi-lint
 ms-python.python
 ms-vscode.cpptools
 ms-vscode.Go
+mtxr.sqltools
 redhat.vscode-yaml
 teabyii.ayu
 timonwong.shellcheck
