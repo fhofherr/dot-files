@@ -11,10 +11,21 @@
     "go.useLanguageServer": true,
     "go.formatTool": "goimports",
     "go.lintTool": "golangci-lint",
+    "go.lintOnSave": "package",
+    "go.lintFlags": [
+      "--fast"
+    ],
+    "go.vetOnSave": "package",
+    "go.inferGopath": true,
+    "go.toolsGopath": "~/.local/Code/go-tools",
+    "[go]": {
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+      }
+    },
     "workbench.iconTheme": "ayu",
     "workbench.sideBar.location": "left",
     "window.menuBarVisibility": "toggle",
-    "window.zoomLevel": 1,
-    "go.inferGopath": true,
-    "go.toolsGopath": "~/.local/Code/go-tools"
+    "window.zoomLevel": 1
 }
