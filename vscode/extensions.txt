@@ -1,6 +1,7 @@
 blzjns.vscode-raml
 dracula-theme.theme-dracula
 EditorConfig.EditorConfig
+Gruntfuggly.todo-tree
 mermade.openapi-lint
 ms-python.python
 ms-vscode.cpptools
