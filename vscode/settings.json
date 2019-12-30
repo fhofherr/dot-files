@@ -27,5 +27,8 @@
     "workbench.iconTheme": "ayu",
     "workbench.sideBar.location": "left",
     "window.menuBarVisibility": "toggle",
-    "window.zoomLevel": 1
+    "window.zoomLevel": 1,
+    "shellcheck.disableVersionCheck": true,
+    "todo-tree.highlights.enabled": true,
+    "go.autocompleteUnimportedPackages": true
 }
