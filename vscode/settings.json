@@ -30,5 +30,7 @@
     "window.zoomLevel": 1,
     "shellcheck.disableVersionCheck": true,
     "todo-tree.highlights.enabled": true,
-    "go.autocompleteUnimportedPackages": true
+    "go.autocompleteUnimportedPackages": true,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
 }
