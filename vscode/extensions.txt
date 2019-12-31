@@ -12,6 +12,7 @@ ms-vscode.cpptools
 ms-vscode.Go
 mtxr.sqltools
 redhat.vscode-yaml
+streetsidesoftware.code-spell-checker
 teabyii.ayu
 tecosaur.latex-utilities
 timonwong.shellcheck
