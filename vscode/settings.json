@@ -24,6 +24,11 @@
         "source.organizeImports": true
       }
     },
+    "[markdown]": {
+      "editor.wordWrap": "wordWrapColumn",
+      "editor.wordWrapColumn": 72,
+      "editor.quickSuggestions": false
+    },
     "workbench.iconTheme": "ayu",
     "workbench.sideBar.location": "left",
     "window.menuBarVisibility": "toggle",
