@@ -1,41 +1,46 @@
 {
-    "editor.fontFamily": "Fira Code",
+  "editor.fontFamily": "Fira Code",
+  "editor.rulers": [
+    80
+  ],
+  "editor.fontLigatures": true,
+  "workbench.colorTheme": "Ayu Mirage Bordered",
+  "editor.formatOnPaste": true,
+  "workbench.startupEditor": "newUntitledFile",
+  "go.useLanguageServer": true,
+  "go.formatTool": "goimports",
+  "go.lintTool": "golangci-lint",
+  "go.lintOnSave": "package",
+  "go.lintFlags": [
+    "--fast"
+  ],
+  "go.vetOnSave": "package",
+  "go.inferGopath": true,
+  "go.toolsGopath": "~/.local/Code/go-tools",
+  "[go]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    },
     "editor.rulers": [
-        80,
-        120
-    ],
-    "editor.fontLigatures": true,
-    "workbench.colorTheme": "Ayu Mirage Bordered",
-    "editor.formatOnPaste": true,
-    "workbench.startupEditor": "newUntitledFile",
-    "go.useLanguageServer": true,
-    "go.formatTool": "goimports",
-    "go.lintTool": "golangci-lint",
-    "go.lintOnSave": "package",
-    "go.lintFlags": [
-      "--fast"
-    ],
-    "go.vetOnSave": "package",
-    "go.inferGopath": true,
-    "go.toolsGopath": "~/.local/Code/go-tools",
-    "[go]": {
-      "editor.formatOnSave": true,
-      "editor.codeActionsOnSave": {
-        "source.organizeImports": true
-      }
-    },
-    "[markdown]": {
-      "editor.wordWrap": "wordWrapColumn",
-      "editor.wordWrapColumn": 72,
-      "editor.quickSuggestions": false
-    },
-    "workbench.iconTheme": "ayu",
-    "workbench.sideBar.location": "left",
-    "window.menuBarVisibility": "toggle",
-    "window.zoomLevel": 1,
-    "shellcheck.disableVersionCheck": true,
-    "todo-tree.highlights.enabled": true,
-    "go.autocompleteUnimportedPackages": true,
-    "editor.suggestSelection": "first",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
+      120
+    ]
+  },
+  "[markdown]": {
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 72,
+    "editor.quickSuggestions": false,
+    "editor.rulers": [
+      72
+    ]
+  },
+  "workbench.iconTheme": "ayu",
+  "workbench.sideBar.location": "left",
+  "window.menuBarVisibility": "toggle",
+  "window.zoomLevel": 1,
+  "shellcheck.disableVersionCheck": true,
+  "todo-tree.highlights.enabled": true,
+  "go.autocompleteUnimportedPackages": true,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
 }
