@@ -1,5 +1,6 @@
 blzjns.vscode-raml
 christian-kohler.path-intellisense
+DavidAnson.vscode-markdownlint
 dracula-theme.theme-dracula
 eamodio.gitlens
 EditorConfig.EditorConfig
