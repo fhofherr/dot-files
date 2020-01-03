@@ -43,6 +43,7 @@ function _python_update_binaries {
 
     _py_add_shim flake8
     _py_add_shim pyls
+    _py_add_shim virtualenv
     _py_add_shim yapf
 }
 

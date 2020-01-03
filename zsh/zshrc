@@ -17,6 +17,8 @@ zplug "zpm-zsh/ls"
 # zplug "lib/spectrum", from:oh-my-zsh
 zplug "zsh-users/zsh-autosuggestions"
 
+zplug "MichaelAquilina/zsh-autoswitch-virtualenv"
+
 zplug "agkozak/agkozak-zsh-prompt"
 zplug "agkozak/zsh-z"
 
