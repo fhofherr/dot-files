@@ -4,6 +4,19 @@ else
     echo "Warning: could not find $HOME/.zsh_dotfiles_init"
 fi
 
+# -----------------------------------------------------------------------------
+# Local binaries
+# -----------------------------------------------------------------------------
+if [ -d "$DOTFILES_DIR/bin" ]; then
+    export PATH="$DOTFILES_DIR/bin:$PATH"
+fi
+export DOTFILES_LOCAL_BIN_DIR="$HOME/bin"
+export PATH="$HOME/bin:$PATH"
+
+# -----------------------------------------------------------------------------
+# ZSH Plugins
+# -----------------------------------------------------------------------------
+
 # Make sure we use emacs keybindings
 bindkey -e
 
@@ -17,9 +30,7 @@ zplug "zpm-zsh/ls"
 # zplug "lib/spectrum", from:oh-my-zsh
 zplug "zsh-users/zsh-autosuggestions"
 
-zplug "MichaelAquilina/zsh-autoswitch-virtualenv"
-
-zplug "agkozak/agkozak-zsh-prompt"
+# zplug "agkozak/agkozak-zsh-prompt"
 zplug "agkozak/zsh-z"
 
 zplug "$DOTFILES_DIR/asdf", from:local
@@ -29,6 +40,7 @@ zplug "$DOTFILES_DIR/pbpaste", from:local
 zplug "$DOTFILES_DIR/python", from:local
 # zplug "$DOTFILES_DIR/tmux", from:local
 zplug "$DOTFILES_DIR/vim", from:local
+zplug "$DOTFILES_DIR/starship", from:local
 
 zplug "$DOTFILES_DIR/kitty", from:local, defer:2
 zplug "$DOTFILES_DIR/direnv", from:local, defer:2
@@ -62,16 +74,6 @@ if [ -e "$_zplug_lock" ]; then
 fi
 setopt monitor
 
-# -----------------------------------------------------------------------------
-# Utilities and user-local programs
-# -----------------------------------------------------------------------------
-if [ -d "$DOTFILES_DIR/bin" ]; then
-    export PATH="$DOTFILES_DIR/bin:$PATH"
-fi
-
-if [ -d "$HOME/bin" ]; then
-    export PATH="$HOME/bin:$PATH"
-fi
 # -----------------------------------------------------------------------------
 # Local configuration and secrets
 # -----------------------------------------------------------------------------
