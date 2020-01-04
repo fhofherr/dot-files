@@ -70,8 +70,8 @@ function _install_plugin_vim_python_dependencies {
         command python3 -m venv $NEOVIM_VENV
     fi
 
-    $NEOVIM_PIP install --no-user --upgrade pip > /dev/null
-    $NEOVIM_PIP install --no-user --upgrade -r $DOTFILES_DIR/vim/neovim_requirements.txt > /dev/null
+    $NEOVIM_PIP install --no-user --upgrade pip
+    $NEOVIM_PIP install --no-user --upgrade -r $DOTFILES_DIR/vim/neovim_requirements.txt
 }
 
 function _install_plugin_vim {
