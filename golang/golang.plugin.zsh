@@ -1,12 +1,6 @@
 # vim: set ft=zsh:
-if [ -f "$HOME/.zsh_dotfiles_init" ]
-then
-    source "$HOME/.zsh_dotfiles_init"
-else
-    echo "Could not find '$HOME/.zsh_dotfiles_init'!"
-    echo "Execute over-all install script!"
-fi
 
+: ${DOTFILES_DIR:=$HOME/dot-files}
 
 DOTFILES_GOLANG_PLUGIN_E_NOT_FOUND=254
 

@@ -1,3 +1,4 @@
+: ${DOTFILES_DIR:=$HOME/dot-files}
 : ${DOTFILES_PYTHON_VENV:=$HOME/.local/dotfiles/python_venv}
 : ${DOTFILES_PYTHON_BIN:=$DOTFILES_PYTHON_VENV/bin}
 : ${DOTFILES_PYTHON_PIP:=$DOTFILES_PYTHON_BIN/pip}
@@ -27,19 +28,11 @@ EOF
 }
 
 function _python_update_binaries {
-    if [ -f "$HOME/.zsh_dotfiles_init" ]
-    then
-        source "$HOME/.zsh_dotfiles_init"
-    else
-        echo "Could not find '$HOME/.zsh_dotfiles_init'!"
-        echo "Execute over-all install script!"
-        return 1
-    fi
     command mkdir -p $(dirname $DOTFILES_PYTHON_VENV)
     command python3 -m venv $DOTFILES_PYTHON_VENV
 
-    $DOTFILES_PYTHON_PIP install --no-user --upgrade pip > /dev/null
-    $DOTFILES_PYTHON_PIP install --no-user --upgrade -r $DOTFILES_DIR/python/python_requirements.txt > /dev/null
+    $DOTFILES_PYTHON_PIP install --no-user --upgrade pip
+    $DOTFILES_PYTHON_PIP install --no-user --upgrade -r $DOTFILES_DIR/python/python_requirements.txt
 
     _py_add_shim flake8
     _py_add_shim pipenv
