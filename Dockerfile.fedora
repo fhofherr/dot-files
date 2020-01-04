@@ -1,0 +1,12 @@
+# vim: set ft=dockerfile:
+FROM fedora:31
+
+RUN dnf update -y \
+    && dnf install -y findutils gcc git python3-devel neovim zsh \
+    && useradd -m -s /usr/bin/zsh dftest
+
+COPY --chown=dftest:dftest . /home/dftest/dot-files
+
+USER dftest
+WORKDIR /home/dftest
+ENTRYPOINT ["/usr/bin/zsh", "-l"]
