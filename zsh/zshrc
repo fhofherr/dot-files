@@ -34,6 +34,7 @@ zplug "zsh-users/zsh-autosuggestions"
 zplug "agkozak/zsh-z"
 
 zplug "$DOTFILES_DIR/asdf", from:local
+zplug "$DOTFILES_DIR/git", from:local
 zplug "$DOTFILES_DIR/fzf", from:local
 zplug "$DOTFILES_DIR/golang", from:local
 zplug "$DOTFILES_DIR/pbpaste", from:local
