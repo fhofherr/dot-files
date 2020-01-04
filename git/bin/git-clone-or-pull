@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+URL=$1
+DEST=$2
+
+if [ -z "$URL" ] || [ -z "$DEST" ]; then
+    echo "Usage:"
+    echo
+    echo "    $0 <url> <dest>"
+    exit 1
+fi
+
+if [ ! -e "$DEST" ];
+then
+    command git clone "$URL" "$DEST"
+elif [ -d "$DEST" ]
+then
+    CURDIR="$PWD"
+    cd "$DEST" || exit 1
+    command git pull
+    cd "$CURDIR" || exit 1
+else
+    echo "$DEST exists but is not a directory"
+    exit 1
+fi

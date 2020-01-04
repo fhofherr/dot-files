@@ -1,3 +1,4 @@
+# Deprecated use ../git/bin/git_clone_or_pull instead
 function git_clone_or_pull() {
     local url=$1
     local dest=$2
