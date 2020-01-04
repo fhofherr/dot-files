@@ -1,8 +1,16 @@
-#!/usr/bin/env bash
+# vim: set ft=zsh:
+: ${DOTFILES_USE_ASDF_DIRENV:=false}
+: ${DOTFILES_ASDF_HOME:=$HOME/.asdf}
+
+# Configure the use of the asdf direnv plugin
+#
+# See https://github.com/asdf-community/asdf-direnv#global-asdf-direnv-integration
+if $DOTFILES_USE_ASDF_DIRENV; then
+    source "$($DOTFILES_ASDF_HOME/bin/asdf which direnv_use_asdf)"
+fi
 
 # Configure a python-venv layout
 # See https://github.com/direnv/direnv/wiki/Python#venv-stdlib-module
-
 realpath() {
     [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
 }
