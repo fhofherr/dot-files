@@ -1,5 +1,4 @@
 : ${DOTFILES_DIR:=$HOME/dot-files}
-: ${DOTFILES_BIN_DIR:=$DOTFILES_DIR/bin}
 : ${DOTFILES_ASDF_REPO:=https://github.com/asdf-vm/asdf.git}
 : ${DOTFILES_ASDF_HOME:=$HOME/.asdf}
 : ${DOTFILES_USE_ASDF_DIRENV:=false}
@@ -15,7 +14,7 @@ fi
 
 function _dotfiles_install_asdf {
     source "$DOTFILES_DIR/lib/functions.zsh"
-    "$DOTFILES_BIN_DIR/git_clone_or_pull" "$DOTFILES_ASDF_REPO" "$DOTFILES_ASDF_HOME"
+    "$DOTFILES_DIR/git/bin/git-clone-or-pull" "$DOTFILES_ASDF_REPO" "$DOTFILES_ASDF_HOME"
 
     local curdir="$PWD"
     cd "$DOTFILES_ASDF_HOME"
