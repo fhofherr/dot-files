@@ -1,34 +1,50 @@
-#!/usr/bin/env zsh
+: ${DOTFILES_DIR:=$HOME/dot-files}
+: ${DOTFILES_BIN_DIR:=$DOTFILES_DIR/bin}
+: ${DOTFILES_ASDF_REPO:=https://github.com/asdf-vm/asdf.git}
+: ${DOTFILES_ASDF_HOME:=$HOME/.asdf}
+: ${DOTFILES_USE_ASDF_DIRENV:=false}
 
-if [ -f "$HOME/.zsh_dotfiles_init" ]
-then
-    source "$HOME/.zsh_dotfiles_init"
-else
-    echo "Could not find '$HOME/.zsh_dotfiles_init'!"
-    echo "Execute over-all install script!"
-    exit 1
+DOTFILES_REQUIRED_ASDF_PLUGINS=(
+        "python"
+        "golang"
+    )
+
+if $DOTFILES_USE_ASDF_DIRENV; then
+    DOTFILES_REQUIRED_ASDF_PLUGINS+="direnv"
 fi
 
-function _install_plugin_asdf_dependencies {
+function _dotfiles_install_asdf {
     source "$DOTFILES_DIR/lib/functions.zsh"
-    git_clone_or_pull https://github.com/asdf-vm/asdf.git $HOME/.asdf
+    "$DOTFILES_BIN_DIR/git_clone_or_pull" "$DOTFILES_ASDF_REPO" "$DOTFILES_ASDF_HOME"
 
-    local curdir=$PWD
-    cd $HOME/.asdf
-    git checkout "$(git describe --abbrev=0 --tags)"
-    cd $curdir
+    local curdir="$PWD"
+    cd "$DOTFILES_ASDF_HOME"
+    command git checkout "$(git describe --abbrev=0 --tags)"
+    cd "$curdir"
 }
 
-if [ ! -d "$HOME/.asdf" ]
+function _dotfiles_install_required_asdf_plugins {
+    local plugin
+    for plugin in $DOTFILES_REQUIRED_ASDF_PLUGINS; do
+        "$DOTFILES_ASDF_HOME/bin/asdf" plugin add "$plugin"
+    done
+}
+
+if [ ! -d "$DOTFILES_ASDF_HOME" ]
 then
     printf "Install asdf plugin dependencies? [y/N]: "
     if read -q; then
         echo
-        _install_plugin_asdf_dependencies
+        _dotfiles_install_asdf
+        _dotfiles_install_required_asdf_plugins
     fi
 fi
 
-if [ -d "$HOME/.asdf" ]; then
-   source "$HOME/.asdf/asdf.sh"
-   source "$HOME/.asdf/completions/asdf.bash"
+if $DOTFILES_USE_ASDF_DIRENV; then
+    export PATH="$DOTFILES_ASDF_HOME/bin:$PATH"
+else
+    if [ -d "$DOTFILES_ASDF_HOME" ]; then
+        source "$DOTFILES_ASDF_HOME/asdf.sh"
+        source "$DOTFILES_ASDF_HOME/completions/asdf.bash"
+    fi
 fi
