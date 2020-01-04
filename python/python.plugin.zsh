@@ -42,6 +42,7 @@ function _python_update_binaries {
     $DOTFILES_PYTHON_PIP install --no-user --upgrade -r $DOTFILES_DIR/python/python_requirements.txt > /dev/null
 
     _py_add_shim flake8
+    _py_add_shim pipenv
     _py_add_shim pyls
     _py_add_shim virtualenv
     _py_add_shim yapf
