@@ -3,6 +3,8 @@
 # Installation:
 #
 #   Fedora: dnf install direnv
+#
+# TODO figure out if the asdf-direnv plugin is interesting: https://github.com/asdf-community/asdf-direnv
 
 : ${XDG_CONFIG_HOME:=$HOME/.config}
 
