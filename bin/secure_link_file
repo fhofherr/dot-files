@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+FILES_TIMESTAMP=$(date "+%Y-%m-%d-%H-%M-%S")
+
+SRC="$1"
+DEST=$2
+
+if [ -z "$SRC" ] || [ -z "$DEST" ]; then
+    echo "Usage:"
+    echo
+    echo "    $0 <src> <dest>"
+    exit 1
+fi
+
+if [ ! -e "$SRC" ]; then
+    echo "$: $SRC does not exist"
+    exit 1
+fi
+
+if [ "$SRC" -ef "$DEST" ]; then
+    echo "$0: $SRC and $DEST are the same file."
+    exit 0
+fi
+
+if [ -e "$DEST" ]; then
+    BACKUP="$DEST.$FILES_TIMESTAMP"
+    echo "$0: $DEST exists. Creating a backup $BACKUP"
+    mv "$DEST" "$BACKUP"
+fi
+
+ln -s "$SRC" "$DEST"

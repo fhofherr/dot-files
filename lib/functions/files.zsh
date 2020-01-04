@@ -1,4 +1,5 @@
 FILES_TIMESTAMP=$(date "+%Y-%m-%d-%H-%M-%S")
+# DEPRECATED: Use secure_link_file instead
 function link_file() {
     local src="$1"
     local dest=$2
