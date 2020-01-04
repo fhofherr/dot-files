@@ -1,0 +1,1 @@
+export DOTFILES_USE_ASDF_DIRENV=true
