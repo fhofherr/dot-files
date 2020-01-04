@@ -35,7 +35,7 @@ function _dotfiles_install_direnv {
     _dotfiles_install_asdf_direnv
 }
 
-if ! command -v direnv > /dev/null 2>&1 && "$DOTFILES_ASDF_HOME/bin/asdf" which direnv > /dev/null; then
+if ! command -v direnv > /dev/null 2>&1 && ! "$DOTFILES_ASDF_HOME/bin/asdf" which direnv > /dev/null; then
     printf "Install direnv plugin dependencies? [y/N]: "
     if read -q; then
         echo
