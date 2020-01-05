@@ -15,20 +15,16 @@ endif
 " Configure Providers for nvim
 " ---------------------------------------------------------------------------
 
-if has('nvim') && exists("$NEOVIM_PYTHON3")
-    let g:python3_host_prog=$NEOVIM_PYTHON3
+if has('nvim') && exists("$DOTFILES_NEOVIM_PYTHON3")
+    let g:python3_host_prog=$DOTFILES_NEOVIM_PYTHON3
     let g:python3_bin_dir=fnamemodify(g:python3_host_prog, ':h')
-endif
-
-if has('nvim') && exists("$NEOVIM_RUBY_HOST")
-    let g:ruby_host_prog=$NEOVIM_RUBY_HOST
 endif
 
 " ---------------------------------------------------------------------------
 " neovim-remote settings
 " ---------------------------------------------------------------------------
-if has('nvim') && exists('$NEOVIM_NVR')
-    let $GIT_EDITOR = $NEOVIM_NVR . ' -cc split --remote-wait'
+if has('nvim') && exists('$DOTFILES_NEOVIM_NVR')
+    let $GIT_EDITOR = $DOTFILES_NEOVIM_NVR . ' -cc split --remote-wait'
     augroup dotfiles_nvr
         autocmd FileType gitcommit,gitrebase,gitconfig setlocal bufhidden=delete
     augroup END
