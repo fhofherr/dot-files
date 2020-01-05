@@ -20,7 +20,6 @@ function _dotfiles_install_asdf_direnv {
     fi
     "$DOTFILES_ASDF_HOME/bin/asdf" install direnv "$latest_direnv_version"
     "$DOTFILES_ASDF_HOME/bin/asdf" global direnv "$latest_direnv_version"
-    alias direnv="$DOTFILES_ASDF_HOME/bin/asdf exec direnv"
 }
 
 function _dotfiles_install_direnv {
@@ -47,6 +46,7 @@ fi
 
 if $DOTFILES_USE_ASDF_DIRENV && "$DOTFILES_ASDF_HOME/bin/asdf" which direnv > /dev/null 2>&1; then
     eval "$($DOTFILES_ASDF_HOME/bin/asdf exec direnv hook zsh)"
+    alias direnv="$DOTFILES_ASDF_HOME/bin/asdf exec direnv"
 elif command -v direnv > /dev/null 2>&1; then
     eval "$(direnv hook zsh)"
 else
