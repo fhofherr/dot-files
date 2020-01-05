@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+
+import os
+import argparse
+import sys
+import re
+import subprocess
+
+USER_HOME = os.path.expanduser("~")
+PROJECT_DIR = os.getenv("DOTFILES_PROJECT_DIR",
+                        os.path.join(USER_HOME, "Projects"))
+
+HTTP_URL_RE = re.compile(r"^https?://(?P<path>.+?)(\.git)?$")
+GIT_URL_RE = re.compile(r"^[^@]+@(?P<host>[^:]+):(?P<path>.+?)(\.git)?$")
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Checkout a git repository into your projects directory")
+    parser.add_argument('repo_url', help="URL of the repository")
+    return parser.parse_args()
+
+
+def infer_repo_dir(repo_url):
+    git_url_match = GIT_URL_RE.match(repo_url)
+    if git_url_match:
+        return os.path.join(PROJECT_DIR, git_url_match.group('host'),
+                            git_url_match.group('path'))
+
+    http_url_match = HTTP_URL_RE.match(repo_url)
+    if http_url_match:
+        return os.path.join(PROJECT_DIR, http_url_match.group('path'))
+
+    print(f"Unsupported repo_url: {repo_url}")
+    sys.exit(1)
+
+
+def clone_repo(repo_url, repo_dir):
+    parent_dir = os.path.dirname(repo_dir)
+    os.makedirs(parent_dir, exist_ok=True)
+    cp = subprocess.run(["git", "clone", repo_url, repo_dir])
+    if cp.returncode != 0:
+        print(f"git clone {repo_url} {repo_dir} failed")
+        sys.exit(cp.returncode)
+
+
+if __name__ == "__main__":
+    args = parse_args()
+    repo_dir = infer_repo_dir(args.repo_url)
+    if not os.path.exists(repo_dir):
+        clone_repo(args.repo_url, repo_dir)
+    else:
+        print("Repository already exists")
+        sys.exit(1)
