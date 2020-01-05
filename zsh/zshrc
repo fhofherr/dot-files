@@ -26,8 +26,6 @@ zplug "zplug/zplug", hook-build:"zplug --self-manage"
 
 zplug "yous/vanilli.sh"
 zplug "zpm-zsh/ls"
-## Provides spectrum_ls and spectrum_bls. Enable if necessary.
-# zplug "lib/spectrum", from:oh-my-zsh
 zplug "zsh-users/zsh-autosuggestions"
 
 # zplug "agkozak/agkozak-zsh-prompt"
@@ -36,15 +34,18 @@ zplug "agkozak/zsh-z"
 zplug "$DOTFILES_DIR/asdf", from:local
 zplug "$DOTFILES_DIR/git", from:local
 zplug "$DOTFILES_DIR/fzf", from:local
-zplug "$DOTFILES_DIR/golang", from:local
-zplug "$DOTFILES_DIR/pbpaste", from:local
-zplug "$DOTFILES_DIR/python", from:local
-# zplug "$DOTFILES_DIR/tmux", from:local
-zplug "$DOTFILES_DIR/vim", from:local
 zplug "$DOTFILES_DIR/starship", from:local
 
+zplug "$DOTFILES_DIR/direnv", from:local, defer:1
+
+zplug "$DOTFILES_DIR/golang", from:local, defer:2
+zplug "$DOTFILES_DIR/python", from:local, defer:2
+# zplug "$DOTFILES_DIR/tmux", from:local, defer:2
 zplug "$DOTFILES_DIR/kitty", from:local, defer:2
-zplug "$DOTFILES_DIR/direnv", from:local, defer:2
+zplug "$DOTFILES_DIR/vim", from:local, defer:2
+zplug "$DOTFILES_DIR/pbpaste", from:local, defer:2
+## Provides spectrum_ls and spectrum_bls. Enable if necessary.
+# zplug "lib/spectrum", from:oh-my-zsh, defer: 2
 
 # Load some plugin specific settings we don't want to clutter our main
 # zshrc file with
