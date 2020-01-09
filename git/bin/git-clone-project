@@ -10,7 +10,10 @@ USER_HOME = os.path.expanduser("~")
 PROJECT_DIR = os.getenv("DOTFILES_PROJECT_DIR",
                         os.path.join(USER_HOME, "Projects"))
 
-HTTP_URL_RE = re.compile(r"^https?://(?P<path>.+?)(\.git)?$")
+HTTP_URL_RE = re.compile(
+    r"^https?://([^@]+@)?(?P<host>[^:/]+)(:\d+)?/(?P<path>.+?)(\.git)?$")
+SSH_URL_RE = re.compile(
+    r"^ssh://([^@]+@)?(?P<host>[^:/]+)(:\d+)?/(?P<path>.+?)(\.git)?$")
 GIT_URL_RE = re.compile(r"^[^@]+@(?P<host>[^:]+):(?P<path>.+?)(\.git)?$")
 
 
@@ -22,14 +25,20 @@ def parse_args():
 
 
 def infer_repo_dir(repo_url):
+    http_url_match = HTTP_URL_RE.match(repo_url)
+    if http_url_match:
+        return os.path.join(PROJECT_DIR, http_url_match.group('host'),
+                            http_url_match.group('path'))
+
+    ssh_url_match = SSH_URL_RE.match(repo_url)
+    if ssh_url_match:
+        return os.path.join(PROJECT_DIR, ssh_url_match.group('host'),
+                            ssh_url_match.group('path'))
+
     git_url_match = GIT_URL_RE.match(repo_url)
     if git_url_match:
         return os.path.join(PROJECT_DIR, git_url_match.group('host'),
                             git_url_match.group('path'))
-
-    http_url_match = HTTP_URL_RE.match(repo_url)
-    if http_url_match:
-        return os.path.join(PROJECT_DIR, http_url_match.group('path'))
 
     print(f"Unsupported repo_url: {repo_url}")
     sys.exit(1)
