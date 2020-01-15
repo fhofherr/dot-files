@@ -40,8 +40,9 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-unimpaired'
 " Plug 'vimlab/split-term.vim'
-Plug 'kassio/neoterm'
 Plug 'jiangmiao/auto-pairs'
+Plug 'kassio/neoterm'
+Plug 'kylef/apiblueprint.vim'
 
 " Eye candy and color schemes
 Plug 'itchyny/lightline.vim'
