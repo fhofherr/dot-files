@@ -33,12 +33,34 @@ function _go_add_shim {
     fi
     cat  > $shimfile <<EOF
 #!/usr/bin/env bash
-if [ ! -x "\$(go env GOPATH)/bin/$binname" ]
+
+GO=\$(command -v go)
+ASDF=\$(command -v asdf)
+
+if [ -n "\$ASDF" ]
+then
+    ASDF_GO=\$(\$ASDF which go 2> /dev/null)
+    if [ -n "\$ASDF_GO" ]
+    then
+        GO="\$ASDF_GO"
+    fi
+fi
+
+if [ -z "\$GO" ]
+then
+    echo "Could not find go"
+    exit 1
+fi
+
+GOPATH="\$(go env GOPATH)"
+
+if [ ! -x "\$GOPATH/bin/$binname" ]
 then
     echo "$binname not found"
     exit 1
 fi
-\$(go env GOPATH)/bin/$binname "\$@"
+
+exec "\$GOPATH/bin/$binname" "\$@"
 EOF
     chmod +x $shimfile
 }
