@@ -18,6 +18,7 @@ ms-vscode.cpptools
 ms-vscode.Go
 mtxr.sqltools
 PKief.material-icon-theme
+platformio.platformio-ide
 redhat.vscode-yaml
 streetsidesoftware.code-spell-checker
 teabyii.ayu

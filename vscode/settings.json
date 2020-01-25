@@ -50,6 +50,7 @@
   },
   "workbench.iconTheme": "material-icon-theme",
   "workbench.sideBar.location": "left",
+  "workbench.editor.enablePreviewFromQuickOpen": false,
   "window.zoomLevel": 1,
   // Ensure the menubar is black if we select a black theme.
   // See: https://stackoverflow.com/a/52331466
@@ -70,10 +71,10 @@
     "strings": false
   },
   "editor.renderWhitespace": "all",
-  "workbench.editor.enablePreviewFromQuickOpen": false,
   "cSpell.diagnosticLevel": "Hint",
   "python.linting.flake8Enabled": true,
   "python.formatting.provider": "yapf",
   "explorer.autoReveal": false,
-  "explorer.openEditors.visible": 0
+  "explorer.openEditors.visible": 0,
+  "platformio-ide.activateOnlyOnPlatformIOProject": true
 }
