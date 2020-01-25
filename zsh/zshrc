@@ -41,6 +41,7 @@ zplug "$DOTFILES_DIR/starship", from:local
 zplug "$DOTFILES_DIR/direnv", from:local, defer:1
 
 zplug "$DOTFILES_DIR/golang", from:local, defer:2
+zplug "$DOTFILES_DIR/platformio", from:local, defer:2
 zplug "$DOTFILES_DIR/python", from:local, defer:2
 # zplug "$DOTFILES_DIR/tmux", from:local, defer:2
 zplug "$DOTFILES_DIR/kitty", from:local, defer:2
