@@ -43,7 +43,7 @@ zplug "$DOTFILES_DIR/python", from:local, defer:2
 # zplug "$DOTFILES_DIR/tmux", from:local, defer:2
 zplug "$DOTFILES_DIR/kitty", from:local, defer:2
 zplug "$DOTFILES_DIR/vim", from:local, defer:2
-zplug "$DOTFILES_DIR/pbpaste", from:local, defer:2
+zplug "$DOTFILES_DIR/mac-compat", from:local, defer:2
 zplug "$DOTFILES_DIR/k8s", from:local, defer:2
 zplug "$DOTFILES_DIR/httpie", from:local, defer:2
 ## Provides spectrum_ls and spectrum_bls. Enable if necessary.
