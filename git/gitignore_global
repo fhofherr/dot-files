@@ -45,3 +45,10 @@ logs/
 *_BASE_*
 *_LOCAL_*
 *_REMOTE_*
+
+
+# PlatformIO #
+##############
+.ccls
+.clang_complete
+.gcc-flags.json
