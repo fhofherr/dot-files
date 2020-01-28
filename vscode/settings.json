@@ -18,6 +18,7 @@
   "go.inferGopath": true,
   "go.toolsGopath": "~/.local/Code/go-tools",
   "[go]": {
+    "editor.snippetSuggestions": "none",
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
       "source.organizeImports": true
@@ -25,6 +26,12 @@
     "editor.rulers": [
       120
     ]
+  },
+  "gopls": {
+    "usePlaceholders": true, // add parameter placeholders when completing a function
+    // Experimental settings
+    "completeUnimported": true, // autocomplete unimported packages
+    "deepCompletion": true, // enable deep completion
   },
   "[markdown]": {
     "editor.wordWrap": "wordWrapColumn",
