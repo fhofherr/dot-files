@@ -72,9 +72,20 @@
   },
   "editor.renderWhitespace": "all",
   "cSpell.diagnosticLevel": "Hint",
+  "cSpell.allowCompoundWords": true,
   "python.linting.flake8Enabled": true,
   "python.formatting.provider": "yapf",
   "explorer.autoReveal": false,
   "explorer.openEditors.visible": 0,
-  "platformio-ide.activateOnlyOnPlatformIOProject": true
+  "platformio-ide.activateOnlyOnPlatformIOProject": true,
+
+  // Use system clang-format, as the one shipped with vscode does not work
+  // on fedora.
+  //
+  // Install with
+  //
+  //     dnf install clang
+  //
+  // See https://github.com/microsoft/vscode-cpptools/issues/3174#issuecomment-463944461
+  "C_Cpp.clang_format_path": "/usr/bin/clang-format"
 }
