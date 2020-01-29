@@ -1,13 +1,11 @@
 // Place your key bindings in this file to override the defaults
 [
     {
-        "key": "alt+left",
-        "command": "cursorHome",
-        "when": "textInputFocus"
+        "key": "ctrl+n",
+        "command": "explorer.newFile"
     },
     {
-        "key": "alt+right",
-        "command": "cursorEnd",
-        "when": "textInputFocus"
+        "key": "ctrl+n",
+        "command": "-workbench.action.files.newUntitledFile"
     }
 ]
