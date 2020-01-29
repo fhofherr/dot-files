@@ -32,7 +32,7 @@
     ]
   },
   "gopls": {
-    "usePlaceholders": true, // add parameter placeholders when completing a function
+    "usePlaceholders": false, // add parameter placeholders when completing a function
     // Experimental settings
     "completeUnimported": true, // autocomplete unimported packages
     "deepCompletion": true, // enable deep completion
@@ -57,5 +57,6 @@
   "python.jediEnabled": false,
   "workbench.editor.enablePreview": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
-  "editor.showFoldingControls": "always"
+  "editor.showFoldingControls": "always",
+  "editor.parameterHints.enabled": false
 }
