@@ -17,6 +17,10 @@
   "go.vetOnSave": "package",
   "go.inferGopath": true,
   "go.toolsGopath": "~/.local/Code/go-tools",
+  "go.addTags": {
+    "promptForTags": true,
+    "transform": "camelcase"
+  },
   "[go]": {
     "editor.snippetSuggestions": "none",
     "editor.formatOnSave": true,
@@ -52,5 +56,6 @@
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "python.jediEnabled": false,
   "workbench.editor.enablePreview": false,
-  "workbench.editor.enablePreviewFromQuickOpen": false
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "editor.showFoldingControls": "always"
 }
