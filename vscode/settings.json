@@ -58,5 +58,6 @@
   "workbench.editor.enablePreview": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "editor.showFoldingControls": "always",
-  "editor.parameterHints.enabled": false
+  "editor.parameterHints.enabled": false,
+  "editor.suggest.showTypeParameters": false
 }
