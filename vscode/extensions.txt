@@ -19,4 +19,5 @@ teabyii.ayu
 tecosaur.latex-utilities
 timonwong.shellcheck
 VisualStudioExptTeam.vscodeintellicode
+vscoss.vscode-ansible
 will-wow.vscode-alternate-file
