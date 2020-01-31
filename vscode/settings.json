@@ -47,8 +47,10 @@
   },
   "workbench.iconTheme": "ayu",
   "workbench.sideBar.location": "left",
-  "window.menuBarVisibility": "toggle",
   "window.zoomLevel": 1,
+  // Ensure the menubar is black if we select a black theme.
+  // See: https://stackoverflow.com/a/52331466
+  "window.titleBarStyle": "custom",
   "shellcheck.disableVersionCheck": true,
   "todo-tree.highlights.enabled": true,
   "go.autocompleteUnimportedPackages": true,
