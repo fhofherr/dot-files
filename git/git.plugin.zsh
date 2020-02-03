@@ -11,7 +11,7 @@ fi
 function _dotfiles_configure_git {
     "$DOTFILES_BIN_DIR/secure_link_file" "$DOTFILES_DIR/git/gitignore_global" "$HOME/.gitignore_global"
 
-    command git config --global core.excludesfile "$HOME/.gitignore_global"
+    command git config --global include.path "$DOTFILES_DIR/git/gitconfig.common"
 }
 
 if [ ! -e "$HOME/.gitignore_global" ]
