@@ -45,6 +45,7 @@ zplug "$DOTFILES_DIR/kitty", from:local, defer:2
 zplug "$DOTFILES_DIR/vim", from:local, defer:2
 zplug "$DOTFILES_DIR/pbpaste", from:local, defer:2
 zplug "$DOTFILES_DIR/k8s", from:local, defer:2
+zplug "$DOTFILES_DIR/httpie", from:local, defer:2
 ## Provides spectrum_ls and spectrum_bls. Enable if necessary.
 # zplug "lib/spectrum", from:oh-my-zsh, defer: 2
 
