@@ -36,12 +36,15 @@ then
     fi
 fi
 
-if $DOTFILES_GIT_PRE_COMMIT_ENABLED && [ ! -d "$DOTFILES_GIT_PRE_COMMIT_VENV" ]
+if $DOTFILES_GIT_PRE_COMMIT_ENABLED
 then
-    printf "Install pre-commit? [y/N]: "
-    if read -q; then
-        echo
-        _dotfiles_git_install_pre_commit
+    if [ ! -d "$DOTFILES_GIT_PRE_COMMIT_VENV" ]
+    then
+        printf "Install pre-commit? [y/N]: "
+        if read -q; then
+            echo
+            _dotfiles_git_install_pre_commit
+        fi
     fi
     export PATH="$DOTFILES_GIT_PRE_COMMIT_BIN:$PATH"
 fi
