@@ -73,7 +73,8 @@ function _go_update_binaries {
     _go_mod_get "golang.org/x/tools/cmd/goimports@latest" && _go_add_shim "goimports"
     _go_mod_get "golang.org/x/tools/gopls@latest" && _go_add_shim "gopls"
     _go_mod_get "golang.org/x/tools/cmd/godoc@latest" && _go_add_shim "godoc"
-    _go_mod_get "github.com/fatih/gomodifytags" && _go_add_shim "gomodifytags"
+    _go_mod_get "github.com/fatih/gomodifytags@latest" && _go_add_shim "gomodifytags"
+    _go_mod_get "golang.org/x/tools/cmd/stringer@latest" && _go_add_shim "stringer"
 
     if command -v protoc > /dev/null 2>&1; then
         _go_mod_get "github.com/golang/protobuf/protoc-gen-go@latest" && _go_add_shim "protoc-gen-go"
