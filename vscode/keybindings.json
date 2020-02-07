@@ -7,5 +7,10 @@
     {
         "key": "ctrl+n",
         "command": "-workbench.action.files.newUntitledFile"
+    },
+    {
+      "key": "ctrl+k t",
+      "command": "go.test.cursor",
+      "when": "editorLangId == go"
     }
 ]
