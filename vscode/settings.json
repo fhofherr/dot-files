@@ -22,7 +22,7 @@
     "transform": "camelcase"
   },
   "[go]": {
-    "editor.snippetSuggestions": "none",
+    "editor.snippetSuggestions": "bottom",
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
       "source.organizeImports": true
@@ -61,5 +61,11 @@
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "editor.showFoldingControls": "always",
   "editor.parameterHints.enabled": false,
-  "editor.suggest.showTypeParameters": false
+  "editor.suggest.showTypeParameters": false,
+  "editor.tabCompletion": "onlySnippets",
+  "editor.quickSuggestions": {
+    "other": false,
+    "comments": false,
+    "strings": false
+  }
 }
