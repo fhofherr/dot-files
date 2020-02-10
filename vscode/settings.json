@@ -4,7 +4,7 @@
     80
   ],
   "editor.fontLigatures": true,
-  "workbench.colorTheme": "Ayu Mirage Bordered",
+  "workbench.colorTheme": "Atom One Light",
   "editor.formatOnPaste": true,
   "workbench.startupEditor": "newUntitledFile",
   "go.useLanguageServer": true,
@@ -45,7 +45,7 @@
       72
     ]
   },
-  "workbench.iconTheme": "ayu",
+  "workbench.iconTheme": "material-icon-theme",
   "workbench.sideBar.location": "left",
   "window.zoomLevel": 1,
   // Ensure the menubar is black if we select a black theme.
