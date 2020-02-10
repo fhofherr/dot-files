@@ -57,8 +57,6 @@
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "python.jediEnabled": false,
-  "workbench.editor.enablePreview": false,
-  "workbench.editor.enablePreviewFromQuickOpen": false,
   "editor.showFoldingControls": "always",
   "editor.parameterHints.enabled": false,
   "editor.suggest.showTypeParameters": false,
@@ -68,5 +66,6 @@
     "comments": false,
     "strings": false
   },
-  "editor.renderWhitespace": "all"
+  "editor.renderWhitespace": "all",
+  "workbench.editor.enablePreviewFromQuickOpen": false
 }
