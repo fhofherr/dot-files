@@ -12,4 +12,7 @@ case "$DOTFILES_COLOR_THEME" in
         # we like.
         ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=239"
         ;;
+    "onehalf")
+        ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=250"
+        ;;
 esac

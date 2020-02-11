@@ -13,6 +13,8 @@ fi
 export DOTFILES_LOCAL_BIN_DIR="$HOME/bin"
 export PATH="$HOME/bin:$PATH"
 
+export DOTFILES_COLOR_THEME="onehalf"
+export DOTFILES_COLOR_PROFILE="light"
 # -----------------------------------------------------------------------------
 # ZSH Plugins
 # -----------------------------------------------------------------------------
@@ -47,7 +49,7 @@ zplug "$DOTFILES_DIR/mac-compat", from:local, defer:2
 zplug "$DOTFILES_DIR/k8s", from:local, defer:2
 zplug "$DOTFILES_DIR/httpie", from:local, defer:2
 ## Provides spectrum_ls and spectrum_bls. Enable if necessary.
-# zplug "lib/spectrum", from:oh-my-zsh, defer: 2
+# zplug "lib/spectrum", from:oh-my-zsh, defer:2
 
 # Load some plugin specific settings we don't want to clutter our main
 # zshrc file with
