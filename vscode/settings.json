@@ -67,5 +67,8 @@
     "strings": false
   },
   "editor.renderWhitespace": "all",
-  "workbench.editor.enablePreviewFromQuickOpen": false
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "cSpell.diagnosticLevel": "Hint",
+  "python.linting.flake8Enabled": true,
+  "python.formatting.provider": "yapf"
 }
