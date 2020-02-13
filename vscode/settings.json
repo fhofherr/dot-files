@@ -31,6 +31,9 @@
       80,120
     ]
   },
+  "[python]": {
+    "editor.formatOnSave": true
+  },
   "gopls": {
     "usePlaceholders": false, // add parameter placeholders when completing a function
     // Experimental settings
