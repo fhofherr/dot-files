@@ -4,9 +4,32 @@
     80
   ],
   "editor.fontLigatures": true,
-  "workbench.colorTheme": "Atom One Light",
   "editor.formatOnPaste": true,
+  "editor.showFoldingControls": "always",
+  "editor.parameterHints.enabled": false,
+  "editor.suggest.showTypeParameters": false,
+  "editor.tabCompletion": "onlySnippets",
+  "editor.quickSuggestions": {
+    "other": false,
+    "comments": false,
+    "strings": false
+  },
+  "editor.renderWhitespace": "all",
+  "editor.suggestSelection": "first",
+  "explorer.autoReveal": false,
+  "explorer.openEditors.visible": 0,
+  "workbench.colorTheme": "Atom One Light",
   "workbench.startupEditor": "newUntitledFile",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.sideBar.location": "left",
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "window.zoomLevel": 1,
+  // Ensure the menubar is black if we select a black theme.
+  // See: https://stackoverflow.com/a/52331466
+  "window.titleBarStyle": "custom",
+  "cSpell.diagnosticLevel": "Hint",
+  "cSpell.allowCompoundWords": true,
+  "go.autocompleteUnimportedPackages": true,
   "go.useLanguageServer": true,
   "go.formatTool": "goimports",
   "go.lintTool": "golangci-lint",
@@ -31,14 +54,17 @@
       80,120
     ]
   },
-  "[python]": {
-    "editor.formatOnSave": true
-  },
   "gopls": {
     "usePlaceholders": false, // add parameter placeholders when completing a function
     // Experimental settings
     "completeUnimported": true, // autocomplete unimported packages
     "deepCompletion": true, // enable deep completion
+  },
+  "python.jediEnabled": false,
+  "python.linting.flake8Enabled": true,
+  "python.formatting.provider": "yapf",
+  "[python]": {
+    "editor.formatOnSave": true
   },
   "[markdown]": {
     "editor.wordWrap": "wordWrapColumn",
@@ -48,35 +74,9 @@
       72
     ]
   },
-  "workbench.iconTheme": "material-icon-theme",
-  "workbench.sideBar.location": "left",
-  "workbench.editor.enablePreviewFromQuickOpen": false,
-  "window.zoomLevel": 1,
-  // Ensure the menubar is black if we select a black theme.
-  // See: https://stackoverflow.com/a/52331466
-  "window.titleBarStyle": "custom",
   "shellcheck.disableVersionCheck": true,
   "todo-tree.highlights.enabled": true,
-  "go.autocompleteUnimportedPackages": true,
-  "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "python.jediEnabled": false,
-  "editor.showFoldingControls": "always",
-  "editor.parameterHints.enabled": false,
-  "editor.suggest.showTypeParameters": false,
-  "editor.tabCompletion": "onlySnippets",
-  "editor.quickSuggestions": {
-    "other": false,
-    "comments": false,
-    "strings": false
-  },
-  "editor.renderWhitespace": "all",
-  "cSpell.diagnosticLevel": "Hint",
-  "cSpell.allowCompoundWords": true,
-  "python.linting.flake8Enabled": true,
-  "python.formatting.provider": "yapf",
-  "explorer.autoReveal": false,
-  "explorer.openEditors.visible": 0,
   "platformio-ide.activateOnlyOnPlatformIOProject": true,
 
   // Use system clang-format, as the one shipped with vscode does not work
