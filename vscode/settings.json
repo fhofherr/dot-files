@@ -73,5 +73,7 @@
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "cSpell.diagnosticLevel": "Hint",
   "python.linting.flake8Enabled": true,
-  "python.formatting.provider": "yapf"
+  "python.formatting.provider": "yapf",
+  "explorer.autoReveal": false,
+  "explorer.openEditors.visible": 0
 }
