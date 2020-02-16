@@ -37,6 +37,10 @@ let g:ale_linters = {
             \   'python': [ 'flake8' ]
             \ }
 
+if executable('buf')
+    let g:ale_linters['proto'] = ['buf-check-lint']
+endif
+
 let g:ale_fixers = {
             \   'go': [ 'goimports' ],
             \   'python': [ 'yapf' ]

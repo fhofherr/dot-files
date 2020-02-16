@@ -104,5 +104,9 @@ if has_key(g:plugs, 'deoplete.nvim')
     endif
 endif
 
+if has_key(g:plugs, 'ale') && executable('buf')
+    Plug 'bufbuild/vim-buf'
+endif
+
 call plug#end()
 call dotfiles#plugin#load_config($VIMHOME . '/plugin.conf.d')
