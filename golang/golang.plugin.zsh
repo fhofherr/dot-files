@@ -3,6 +3,12 @@
 : ${DOTFILES_DIR:=$HOME/dot-files}
 : ${GOBIN:=$HOME/go/bin}
 
+# Some distros disable GOPROXY, which leads to awkward bugs.
+# See
+#  * https://github.com/golang/go/issues/37140#issuecomment-583776533
+#  * https://github.com/golang/go/issues/34092
+: ${GOPROXY:=https://proxy.golang.org,direct}
+
 
 DOTFILES_GOLANG_PLUGIN_E_NOT_FOUND=254
 
@@ -48,6 +54,7 @@ function godoc-serve {
     eval "$docker run --rm --env GOPATH=/tmp/go $volflag --publish 127.0.0.1:$port:$port golang bash -c 'go get golang.org/x/tools/cmd/godoc && echo http://localhost:$port/$modpath && /tmp/go/bin/godoc -http=:$port'"
 }
 
+export GOPROXY
 if [ -d "$GOBIN" ]; then
     export GOBIN
     export PATH="$GOBIN:$PATH"
