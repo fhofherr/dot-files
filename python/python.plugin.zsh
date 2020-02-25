@@ -59,3 +59,11 @@ then
 else
     echo "Could not find python. Please install it."
 fi
+
+# Pipenv configuration
+if command -v pipenv > /dev/null 2>&1
+then
+    export PIPENV_VENV_IN_PROJECT=1
+
+    eval "$(pipenv --completion)"
+fi
