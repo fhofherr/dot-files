@@ -18,7 +18,7 @@
   "editor.suggestSelection": "first",
   "explorer.autoReveal": false,
   "explorer.openEditors.visible": 0,
-  "workbench.colorTheme": "Atom One Light",
+  "workbench.colorTheme": "Base16 Solarized Light",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.sideBar.location": "left",

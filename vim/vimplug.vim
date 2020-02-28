@@ -51,6 +51,8 @@ Plug 'itchyny/lightline.vim'
 " the others handy. So they are just commented out.
 if $DOTFILES_COLOR_THEME == 'ayu'
     Plug 'ayu-theme/ayu-vim'
+elseif $DOTFILES_COLOR_THEME =~ 'base16-.*'
+    Plug 'chriskempson/base16-vim'
 elseif $DOTFILES_COLOR_THEME == 'challenger-deep'
     Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 elseif $DOTFILES_COLOR_THEME == 'dracula'

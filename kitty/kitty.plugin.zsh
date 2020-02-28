@@ -16,8 +16,9 @@ fi
 
 # Set a default color theme and profile. The profile is only relevant if
 # the theme supports it.
-: ${DOTFILES_COLOR_THEME:=onehalf}
+: ${DOTFILES_COLOR_THEME:=base16-solarized}
 : ${DOTFILES_COLOR_PROFILE:=light}
+: ${DOTFILES_COLOR_BASE16_256MODE:=true}
 
 export DOTFILES_COLOR_THEME
 export DOTFILES_COLOR_PROFILE
@@ -37,7 +38,7 @@ function _kitty_install_theme {
     rm -f "$color_theme_file"
     mkdir -p "themes_dir"
     case "$DOTFILES_COLOR_THEME" in
-        "ayu")
+        ayu)
             git_clone_or_pull "https://github.com/dexpota/kitty-themes" "$themes_dir/kitty-themes"
             if [ "$DOTFILES_COLOR_PROFILE" = "light" ]; then
                 link_file "$themes_dir/kitty-themes/themes/ayu_light.conf" "$color_theme_file"
@@ -45,23 +46,34 @@ function _kitty_install_theme {
                 link_file "$themes_dir/kitty-themes/themes/ayu_mirage.conf" "$color_theme_file"
             fi
             ;;
-        "challenger-deep")
+        base16-*)
+            local light 256mode
+            if [ "$DOTFILES_COLOR_PROFILE" = "light" ]; then
+                light="-light"
+            fi
+            if [ "$DOTFILES_COLOR_BASE16_256MODE" = "true" ]; then
+                256mode="-256"
+            fi
+            git_clone_or_pull "https://github.com/kdrag0n/base16-kitty" "$themes_dir/base16-kitty"
+            link_file "$themes_dir/base16-kitty/colors/${DOTFILES_COLOR_THEME}${light}"${256mode}".conf" "$color_theme_file"
+            ;;
+        challenger-deep)
             git_clone_or_pull "https://github.com/challenger-deep-theme/kitty" "$themes_dir/challenger-deep"
             link_file "$themes_dir/challenger-deep/challenger-deep.conf" "$color_theme_file"
             ;;
-        "dracula")
+        dracula)
             git_clone_or_pull "https://github.com/dexpota/kitty-themes" "$themes_dir/kitty-themes"
             link_file "$themes_dir/kitty-themes/themes/Dracula.conf" "$color_theme_file"
             ;;
-        "falcon")
+        falcon)
             git_clone_or_pull "https://github.com/fenetikm/falcon" "$themes_dir/falcon"
             link_file "$themes_dir/falcon/kitty/kitty.falcon.conf" "$color_theme_file"
             ;;
-        "iceberg")
+        iceberg)
             git_clone_or_pull "https://gist.github.com/9b6f3e86d44542f73b526183095d5c3a.git" "$themes_dir/iceberg"
             link_file "$themes_dir/iceberg/kitty-iceberg-config" "$color_theme_file"
             ;;
-        "onehalf")
+        onehalf)
             git_clone_or_pull "https://github.com/sonph/onehalf" "$themes_dir/onehalf"
             if [ "$DOTFILES_COLOR_PROFILE" = "light" ]; then
                 link_file "$themes_dir/onehalf/kitty/onehalf-light.conf" "$color_theme_file"

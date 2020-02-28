@@ -8,6 +8,7 @@ donjayamanne.githistory
 dracula-theme.theme-dracula
 eamodio.gitlens
 EditorConfig.EditorConfig
+golf1052.base16-generator
 Gruntfuggly.todo-tree
 James-Yu.latex-workshop
 liviuschera.noctis
