@@ -121,14 +121,14 @@ if command -v tmux > /dev/null 2>&1
 then
     if [ ! -f "$HOME/.tmux.conf" ]
     then
-        printf "Install vim plugin dependencies? [y/N]: "
+        printf "Install tmux plugin dependencies? [y/N]: "
         if read -q; then
             echo
             _install_tmux_plugin_dependencies
         fi
     fi
     _make_tmux_plugin_aliases
-    _tmux_plugin_autostart_tmux
+    # _tmux_plugin_autostart_tmux
 else
     echo "Could not find tmux. Please install it."
 fi
