@@ -2,19 +2,7 @@
 	excludesfile = /home/fh/.gitignore_global
 	autocrlf = input
 [merge]
-    tool = meld
-[mergetool "meld"]
-    cmd = meld --auto-merge \"$LOCAL\" \"$BASE\" \"$REMOTE\" --output \"$MERGED\" --label \"MERGE (REMOTE BASE MY)\"
-    trustExitCode = false
-[mergetool]
-    # don't ask if we want to skip merge
-    prompt = false
-    # don't create backup *.orig files
-    keepBackup = false
-[diff]
-    guitool = meld
-[difftool "meld"]
-    cmd = meld \"$LOCAL\" \"$REMOTE\" --label \"DIFF (ORIGINAL MY)\"
+	conflictstyle = diff3
 [url "ssh://git@github.com/fhofherr"]
     insteadOf = https://github.com/fhofherr
 [url "ssh://git@gitlab.com/fhofherr"]
