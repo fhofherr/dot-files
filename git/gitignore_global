@@ -24,6 +24,8 @@ Thumbs.db
 .vscode/
 .envrc
 .direnv/
+.vagrant/
+.venv/
 .mypy_cache
 tags
 tags.lock
