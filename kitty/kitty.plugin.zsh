@@ -47,15 +47,15 @@ function _kitty_install_theme {
             fi
             ;;
         base16-*)
-            local light 256mode
+            local light color_mode
             if [ "$DOTFILES_COLOR_PROFILE" = "light" ]; then
                 light="-light"
             fi
             if [ "$DOTFILES_COLOR_BASE16_256MODE" = "true" ]; then
-                256mode="-256"
+                color_mode="-256"
             fi
             git_clone_or_pull "https://github.com/kdrag0n/base16-kitty" "$themes_dir/base16-kitty"
-            link_file "$themes_dir/base16-kitty/colors/${DOTFILES_COLOR_THEME}${light}"${256mode}".conf" "$color_theme_file"
+            link_file "$themes_dir/base16-kitty/colors/${DOTFILES_COLOR_THEME}${light}"${color_mode}".conf" "$color_theme_file"
             ;;
         challenger-deep)
             git_clone_or_pull "https://github.com/challenger-deep-theme/kitty" "$themes_dir/challenger-deep"
