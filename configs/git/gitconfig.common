@@ -1,0 +1,8 @@
+[core]
+	autocrlf = input
+[merge]
+	conflictstyle = diff3
+[url "ssh://git@github.com/fhofherr"]
+    insteadOf = https://github.com/fhofherr
+[url "ssh://git@gitlab.com/fhofherr"]
+    insteadOf = https://gitlab.com/fhofherr

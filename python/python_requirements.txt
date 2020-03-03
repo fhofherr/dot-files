@@ -1,8 +1,0 @@
-flake8
-pipenv
-pyls-mypy
-python-language-server
-python-language-server[rope]
-reorder-python-imports
-virtualenv
-yapf

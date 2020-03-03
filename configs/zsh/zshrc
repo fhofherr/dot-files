@@ -1,0 +1,98 @@
+if [ -z "$DOTFILES_ZSH_DID_INIT" ]; then
+    source "$HOME/.zsh_dotfiles_init"
+fi
+
+source "$DOTFILES_ZSH_LOCAL_ENV"
+source "$DOTFILES_ZSH_LOCAL_ALIASES"
+
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
+
+source "$DOTFILES_ZSH_AFTER_COMPINIT_SCRIPT"
+
+
+
+## -----------------------------------------------------------------------------
+## Colors
+## -----------------------------------------------------------------------------
+#export DOTFILES_COLOR_THEME="base16-solarized"
+#export DOTFILES_COLOR_PROFILE="light"
+#export DOTFILES_COLOR_BASE16_256MODE="true"
+
+## -----------------------------------------------------------------------------
+## ZSH Plugins
+## -----------------------------------------------------------------------------
+
+## Make sure we use emacs keybindings
+#bindkey -e
+
+#source ~/.zplug/init.zsh
+
+#zplug "zplug/zplug", hook-build:"zplug --self-manage"
+
+#zplug "yous/vanilli.sh"
+#zplug "zpm-zsh/ls"
+#zplug "zsh-users/zsh-autosuggestions"
+
+## zplug "agkozak/agkozak-zsh-prompt"
+#zplug "agkozak/zsh-z"
+
+#zplug "$DOTFILES_DIR/asdf", from:local
+#zplug "$DOTFILES_DIR/git", from:local
+#zplug "$DOTFILES_DIR/fzf", from:local
+#zplug "$DOTFILES_DIR/starship", from:local
+
+#zplug "$DOTFILES_DIR/direnv", from:local, defer:1
+
+#zplug "$DOTFILES_DIR/golang", from:local, defer:2
+#zplug "$DOTFILES_DIR/platformio", from:local, defer:2
+#zplug "$DOTFILES_DIR/python", from:local, defer:2
+## zplug "$DOTFILES_DIR/tmux", from:local, defer:2
+#zplug "$DOTFILES_DIR/kitty", from:local, defer:2
+#zplug "$DOTFILES_DIR/vim", from:local, defer:2
+#zplug "$DOTFILES_DIR/mac-compat", from:local, defer:2
+#zplug "$DOTFILES_DIR/k8s", from:local, defer:2
+#zplug "$DOTFILES_DIR/httpie", from:local, defer:2
+#zplug "$DOTFILES_DIR/dbcli", from:local, defer:2
+#zplug "$DOTFILES_DIR/bat", from:local, defer:2
+### Provides spectrum_ls and spectrum_bls. Enable if necessary.
+## zplug "lib/spectrum", from:oh-my-zsh, defer:2
+
+## Load some plugin specific settings we don't want to clutter our main
+## zshrc file with
+#for x in $(/bin/ls $DOTFILES_DIR/zsh/conf.d/*.zsh); do
+#    source "$x"
+#done
+
+### Install plugins if there are plugins that have not been installed
+### This increases the startup time rather much. It is therefore disabled.
+## if ! zplug check --verbose; then
+##     printf "Install? [y/N]: "
+##     if read -q; then
+##         echo; zplug install
+##     fi
+## fi
+
+## Then, source plugins and add commands to $PATH
+#zplug load
+
+## If the $_zplug_lock file exists CTRL-Z is not working because zplug disables
+## the job controll. Removing the file fixes the issue for subsequent
+## invocations. Additionally set call setopt monitor to ensure job control is
+## enabled even if zplug disabled it before we removed the lock file.
+##
+## See: https://github.com/zplug/zplug/issues/322
+#if [ -e "$_zplug_lock" ]; then
+#    rm -f "$_zplug_lock"
+#fi
+#setopt monitor
+
+# -----------------------------------------------------------------------------
+# Local configuration and secrets
+# -----------------------------------------------------------------------------
+if [ -f "$HOME/.zsh_local" ];then
+    source "$HOME/.zsh_local"
+fi
