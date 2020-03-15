@@ -9,12 +9,14 @@ from invoke import task
 from dotfiles import chksum, common, fs, git, logging, state
 
 _LOG = logging.get_logger(__name__)
+BASE16_SHELL_REPO_URL = "https://github.com/chriskempson/base16-shell.git"
 
 
 @task
 def install(c, home_dir=common.HOME_DIR):
     install_starship_prompt(c, home_dir)
     configure_starship_prompt(c, home_dir)
+    install_base16_shell(c, home_dir)
     configure(c, home_dir)
 
 
@@ -100,6 +102,27 @@ def configure_starship_prompt(c, home_dir=common.HOME_DIR):
 
 
 @task
+def install_base16_shell(c, home_dir=common.HOME_DIR):
+    base16_shell_dir = base16_shell_dir_path(home_dir)
+
+    cloned = git.clone(c, BASE16_SHELL_REPO_URL, base16_shell_dir)
+    if not cloned:
+        with c.cd(base16_shell_dir):
+            c.run("git pull")
+
+    base16_shell_state = state.State("base16-shell")
+    zsh_hook_out = io.StringIO()
+    try:
+        hook_cmd = os.path.join(base16_shell_dir, "profile_helper.sh")
+        c.run(hook_cmd, out_stream=zsh_hook_out)
+        base16_shell_state.after_compinit_script = zsh_hook_out.getvalue()
+    finally:
+        zsh_hook_out.close()
+
+    state.write_state(home_dir, base16_shell_state)
+
+
+@task
 def write_dotfiles_zsh_config(c, home_dir=common.HOME_DIR):
     zsh_local_settings_dir = local_settings_dir_path(home_dir, mkdir=True)
 
@@ -132,6 +155,13 @@ def starship_cmd_path(home_dir, mkdir=True):
 
 def local_settings_dir_path(home_dir, mkdir=False):
     path = os.path.join(home_dir, ".local", "dotfiles", "zsh")
+    if mkdir:
+        os.makedirs(path, exist_ok=True)
+    return path
+
+
+def base16_shell_dir_path(home_dir, mkdir=False):
+    path = os.path.join(home_dir, ".local", "dotfiles", "base16-shell")
     if mkdir:
         os.makedirs(path, exist_ok=True)
     return path

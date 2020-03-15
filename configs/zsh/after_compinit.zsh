@@ -27,3 +27,18 @@ fi
 if command -v xdg-open > /dev/null 2>&1; then
     alias open='xdg-open'
 fi
+
+###
+### colors
+###
+
+function dotfiles_set_shell_colors {
+    if [[ "$DOTFILES_COLOR_THEME" != 'base16-'* ]]; then
+        return 0
+    fi
+
+    local fn_name
+
+    fn_name="${DOTFILES_COLOR_THEME//base16-/base16_}-${DOTFILES_COLOR_PROFILE}"
+    "$fn_name"
+}
