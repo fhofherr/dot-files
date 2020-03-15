@@ -38,7 +38,6 @@ function dotfiles_set_shell_colors {
     fi
 
     local fn_name
-
     fn_name="${DOTFILES_COLOR_THEME//base16-/base16_}-${DOTFILES_COLOR_PROFILE}"
-    "$fn_name"
+    eval "$fn_name"
 }

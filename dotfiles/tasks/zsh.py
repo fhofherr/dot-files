@@ -35,7 +35,7 @@ def configure(c, home_dir=common.HOME_DIR):
     zsh_after_compinit_script = os.path.join(common.ROOT_DIR, "configs", "zsh",
                                              "after_compinit.zsh")
     with open(zsh_after_compinit_script) as f:
-        zsh_state.after_compinit = f.read()
+        zsh_state.after_compinit_script = f.read()
 
     state.write_state(home_dir, zsh_state)
 

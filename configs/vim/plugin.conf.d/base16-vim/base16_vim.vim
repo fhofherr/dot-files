@@ -1,4 +1,4 @@
-if exists('g:did_cfg_base16_vim') || dotfiles#plugin#selected('base16-vim')
+if exists('g:did_cfg_base16_vim') || !dotfiles#plugin#selected('base16-vim')
     finish
 endif
 let g:did_cfg_base16_vim = 1
