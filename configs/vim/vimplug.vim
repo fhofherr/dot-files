@@ -52,9 +52,7 @@ Plug 'itchyny/lightline.vim'
 if $DOTFILES_COLOR_THEME == 'ayu'
     Plug 'ayu-theme/ayu-vim'
 elseif $DOTFILES_COLOR_THEME =~ 'base16-.*'
-    if !filereadable(expand("~/.vimrc_background"))
-        Plug 'chriskempson/base16-vim'
-    fi
+    Plug 'chriskempson/base16-vim'
 elseif $DOTFILES_COLOR_THEME == 'challenger-deep'
     Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 elseif $DOTFILES_COLOR_THEME == 'dracula'
