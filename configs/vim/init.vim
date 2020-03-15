@@ -23,8 +23,8 @@ endif
 " ---------------------------------------------------------------------------
 " neovim-remote settings
 " ---------------------------------------------------------------------------
-if has('nvim') && exists('$DOTFILES_NEOVIM_NVR')
-    let $GIT_EDITOR = $DOTFILES_NEOVIM_NVR . ' -cc split --remote-wait'
+if has('nvim') && executable('nvr')
+    let $GIT_EDITOR = 'nvr -cc split --remote-wait'
     augroup dotfiles_nvr
         autocmd FileType gitcommit,gitrebase,gitconfig setlocal bufhidden=delete
     augroup END

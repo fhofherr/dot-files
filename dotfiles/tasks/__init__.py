@@ -2,8 +2,9 @@ from invoke import Collection, task
 
 from dotfiles import common
 from dotfiles.tasks import (asdf, buf, dbcli, direnv, editorconfig, git,
-                            golang, golangci_lint, httpie, kubectl, overmind,
-                            pipx, platformio, pre_commit, python, tests, zsh)
+                            golang, golangci_lint, httpie, kubectl, neovim,
+                            overmind, pipx, platformio, pre_commit, python,
+                            tests, zsh)
 
 
 @task
@@ -21,6 +22,7 @@ def install(c, home_dir=common.HOME_DIR):
     platformio.install(c, home_dir=home_dir)
     pre_commit.install(c, home_dir=home_dir)
     python.install(c, home_dir=home_dir, install_missing_poetry=False)
+    neovim.install(c, home_dir=home_dir)
     zsh.install(c, home_dir=home_dir)
 
     kubectl.configure(c, home_dir=home_dir)
@@ -54,6 +56,7 @@ def get_ns():
     ns.add_collection(platformio)
     ns.add_collection(pre_commit)
     ns.add_collection(python)
+    ns.add_collection(neovim)
     ns.add_collection(zsh)
 
     ns.add_collection(tests)

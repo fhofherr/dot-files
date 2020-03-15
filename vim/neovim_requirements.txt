@@ -1,5 +1,0 @@
-ansible-lint
-gitlint
-neovim-remote
-pynvim
-yamllint
