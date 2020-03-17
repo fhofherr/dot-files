@@ -2,9 +2,9 @@ from invoke import Collection, task
 
 from dotfiles import common
 from dotfiles.tasks import (asdf, buf, dbcli, direnv, editorconfig, git,
-                            golang, golangci_lint, httpie, kubectl, neovim,
-                            overmind, pipx, platformio, pre_commit, python,
-                            tests, zsh)
+                            golang, golangci_lint, httpie, kitty, kubectl,
+                            neovim, overmind, pipx, platformio, pre_commit,
+                            python, tests, zsh)
 
 
 @task
@@ -27,6 +27,7 @@ def install(c, home_dir=common.HOME_DIR):
 
     kubectl.configure(c, home_dir=home_dir)
     editorconfig.configure(c, home_dir)
+    kitty.configure(c, home_dir)
 
     zsh.write_dotfiles_zsh_config(c, home_dir)
 
@@ -45,6 +46,7 @@ def get_ns():
     ns.add_collection(asdf)
     ns.add_collection(direnv)
     ns.add_collection(editorconfig)
+    ns.add_collection(kitty)
     ns.add_collection(git)
     ns.add_collection(buf)
     ns.add_collection(golang)
