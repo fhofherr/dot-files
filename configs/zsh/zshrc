@@ -5,6 +5,8 @@ fi
 source "$DOTFILES_ZSH_LOCAL_ENV"
 source "$DOTFILES_ZSH_LOCAL_ALIASES"
 
+source "$DOTFILES_ZSH_BEFORE_COMPINIT_SCRIPT"
+
 autoload -Uz compinit
 for dump in ~/.zcompdump(N.mh+24); do
   compinit

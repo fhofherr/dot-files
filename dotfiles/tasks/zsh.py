@@ -129,12 +129,15 @@ def write_dotfiles_zsh_config(c, home_dir=common.HOME_DIR):
     zsh_local_env_file = os.path.join(zsh_local_settings_dir, "env.zsh")
     zsh_local_aliases_file = os.path.join(zsh_local_settings_dir,
                                           "aliases.zsh")
+    zsh_before_compinit_script = os.path.join(zsh_local_settings_dir,
+                                              "before_compinit.zsh")
     zsh_after_compinit_script = os.path.join(zsh_local_settings_dir,
                                              "after_compinit.zsh")
 
     complete_state = state.load_all(home_dir)
     complete_state.write_env(zsh_local_env_file)
     complete_state.write_aliases(zsh_local_aliases_file)
+    complete_state.write_before_compinit_script(zsh_before_compinit_script)
     complete_state.write_after_compinit_script(zsh_after_compinit_script)
 
     zsh_dotfiles_init_file = os.path.join(home_dir, ".zsh_dotfiles_init")
@@ -142,6 +145,9 @@ def write_dotfiles_zsh_config(c, home_dir=common.HOME_DIR):
         f.write("# File auto-generated; DO NOT EDIT\n\n")
         f.write(f"DOTFILES_ZSH_LOCAL_ENV={zsh_local_env_file}\n")
         f.write(f"DOTFILES_ZSH_LOCAL_ALIASES={zsh_local_aliases_file}\n")
+        f.write(
+            f"DOTFILES_ZSH_BEFORE_COMPINIT_SCRIPT={zsh_before_compinit_script}\n"
+        )
         f.write(
             f"DOTFILES_ZSH_AFTER_COMPINIT_SCRIPT={zsh_after_compinit_script}\n"
         )

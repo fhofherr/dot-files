@@ -1,14 +1,15 @@
 from invoke import Collection, task
 
 from dotfiles import common
-from dotfiles.tasks import (asdf, buf, dbcli, direnv, editorconfig, git,
-                            golang, golangci_lint, httpie, kitty, kubectl,
+from dotfiles.tasks import (antibody, asdf, buf, dbcli, direnv, editorconfig,
+                            git, golang, golangci_lint, httpie, kitty, kubectl,
                             neovim, overmind, pipx, platformio, pre_commit,
                             python, tests, zsh)
 
 
 @task
 def install(c, home_dir=common.HOME_DIR):
+    antibody.install(c, home_dir=home_dir)
     dbcli.install(c, home_dir=home_dir)
     asdf.install(c, home_dir=home_dir)
     direnv.install(c, home_dir=home_dir)
@@ -42,6 +43,7 @@ def get_ns():
     ns.add_task(install)
     ns.add_task(test)
 
+    ns.add_collection(antibody)
     ns.add_collection(dbcli)
     ns.add_collection(asdf)
     ns.add_collection(direnv)

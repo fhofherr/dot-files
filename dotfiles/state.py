@@ -32,6 +32,7 @@ class State:
         self.depends_on = depends_on
         self.env = {}
         self.aliases = {}
+        self.before_compinit_script = None
         self.after_compinit_script = None
 
     def put_env(self, key, value):
@@ -51,6 +52,8 @@ class State:
             state.env = data["env"]
         if "aliases" in data:
             state.aliases = data["aliases"]
+        if "before_compinit_script" in data:
+            state.before_compinit_script = data["before_compinit_script"]
         if "after_compinit_script" in data:
             state.after_compinit_script = data["after_compinit_script"]
         return state
@@ -63,6 +66,8 @@ class State:
             state_dict["env"] = self.env
         if self.aliases:
             state_dict["aliases"] = self.aliases
+        if self.before_compinit_script:
+            state_dict["before_compinit_script"] = self.before_compinit_script
         if self.after_compinit_script:
             state_dict["after_compinit_script"] = self.after_compinit_script
         return json.dumps(state_dict)
@@ -122,6 +127,15 @@ class AggregatedState:
             for k in sorted(aliases.keys()):
                 value = aliases[k]["value"]
                 f.write(f'alias {k}="{value}"\n')
+
+    def write_before_compinit_script(self, dest_file):
+        with open(dest_file, "w") as f:
+            f.write("# File auto-generated; DO NOT EDIT\n\n\n")
+            for name, state in self.states.items():
+                if not state.before_compinit_script:
+                    continue
+                f.write(f"###\n### {name}\n###\n\n")
+                f.write(state.before_compinit_script)
 
     def write_after_compinit_script(self, dest_file):
         with open(dest_file, "w") as f:
