@@ -26,14 +26,15 @@ def install(c, home_dir=common.HOME_DIR, install_missing_poetry=False):
 
 
 @task
-def install_poetry(c, home_dir):
+def install_poetry(c, home_dir=common.HOME_DIR):
     raise NotImplementedError
 
 
 @task
-def configure_poetry(c, home_dir):
+def configure_poetry(c, home_dir=common.HOME_DIR):
     poetry_state = state.State("python_poetry")
     poetry_state.put_env("PATH", poetry_bin_dir_path(home_dir))
+    state.write_state(home_dir, poetry_state)
 
 
 @task
