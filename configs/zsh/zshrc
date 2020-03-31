@@ -20,7 +20,7 @@ source "$DOTFILES_ZSH_AFTER_COMPINIT_SCRIPT"
 ## -----------------------------------------------------------------------------
 ## Colors
 ## -----------------------------------------------------------------------------
-export DOTFILES_COLOR_THEME="base16-solarized"
+export DOTFILES_COLOR_THEME="base16-google"
 export DOTFILES_COLOR_PROFILE="light"
 export DOTFILES_COLOR_BASE16_256MODE="true"
 
