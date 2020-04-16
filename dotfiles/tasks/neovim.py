@@ -4,7 +4,7 @@ import venv
 
 from invoke import task
 
-from dotfiles import common, logging, state, fs
+from dotfiles import common, logging, state, fs, git
 from dotfiles.tasks import pipx
 
 _LOG = logging.get_logger(__name__)
@@ -51,6 +51,21 @@ def install(c, home_dir=common.HOME_DIR, install_nvim_plugins=False):
         nvim_state.after_compinit_script = f.read()
 
     state.write_state(home_dir, nvim_state)
+
+
+@task
+def install_appimage(c, home_dir=common.HOME_DIR, version="nightly"):
+    _LOG.info("Install nvim appimage")
+
+    nvim_cmd = appimage_cmd_path(home_dir, mkdir=True)
+    with git.github_release("neovim/neovim", version=version) as gh_r:
+        asset = gh_r.download_asset("nvim.appimage")
+        shutil.copy(asset, nvim_cmd)
+        os.chmod(nvim_cmd, 0o755)
+
+
+def appimage_cmd_path(home_dir, mkdir=False):
+    return os.path.join(common.bin_dir(home_dir, mkdir=mkdir), "nvim")
 
 
 def venv_dir_path(home_dir, mkdir=False, recreate=False):
