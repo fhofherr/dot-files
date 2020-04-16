@@ -18,7 +18,11 @@ OFFICIAL_DEV_TOOLS = [
     "golang.org/x/tools/gopls@latest",
 ]
 
-THIRD_PARTY_DEV_TOOLS = ["github.com/go-delve/delve/cmd/dlv@latest"]
+THIRD_PARTY_DEV_TOOLS = [
+    "github.com/go-delve/delve/cmd/dlv@latest",
+    "github.com/aarzilli/gdlv@latest",
+    "github.com/psampaz/go-mod-outdated@latest"
+]
 
 
 @task
