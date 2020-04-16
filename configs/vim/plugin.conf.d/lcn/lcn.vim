@@ -5,7 +5,7 @@ let g:did_cfg_lcn = 1
 
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_autoStop = 1
-let g:LanguageClient_settingsPath = $VIMHOME . '/after/plugin/lcn/ls_settings.json'
+let g:LanguageClient_settingsPath = $VIMHOME . '/after/plugin/lcn/settings.json'
 
 let g:LanguageClient_serverCommands = {
     \ 'python': ['pyls'],
@@ -13,7 +13,7 @@ let g:LanguageClient_serverCommands = {
     \ }
 
 " Looks very cool but is distracting
-let g:LanguageClient_useVirtualText = 0
+let g:LanguageClient_useVirtualText = "CodeLens"
 
 " Interfers with other plugins that populate the quickfix list, e.g. ack or
 " vim-grepper.

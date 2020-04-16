@@ -8,7 +8,6 @@ call plug#begin($VIMPLUGHOME)
 Plug 'junegunn/vim-plug'
 Plug 'tpope/vim-sensible'
 
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', 'as': 'lcn' }
 Plug 'aklt/plantuml-syntax'
 Plug 'cespare/vim-toml'
 Plug 'editorconfig/editorconfig-vim'
@@ -108,6 +107,16 @@ endif
 
 if has_key(g:plugs, 'ale') && executable('buf')
     Plug 'bufbuild/vim-buf'
+endif
+
+if executable('nnn')
+    Plug 'mcchrish/nnn.vim'
+endif
+
+if has('nvim-0.5')
+    Plug 'neovim/nvim-lsp'
+else
+    Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', 'as': 'lcn' }
 endif
 
 call plug#end()
