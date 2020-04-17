@@ -35,11 +35,13 @@ class State:
         self.before_compinit_script = None
         self.after_compinit_script = None
 
-    def put_env(self, key, value):
+    def put_env(self, key, value, guard=None):
         # TODO validate key and value
         # TODO remember to de-duplicate the values of PATH for multiple state
         #     files when creating the shell init file
-        self.env[key] = value
+        self.env[key] = {"value": value}
+        if guard:
+            self.env[key]["guard"] = guard
 
     def add_alias(self, key, value):
         self.aliases[key] = value
@@ -101,12 +103,23 @@ class AggregatedState:
                     provider = env_vars[k]["provider"]
                     raise StateError(
                         f"{name} can't set env {k}: {provider} already did")
-                env_vars[k] = {"provider": name, "value": v}
+                # Backwards compatibility with old states
+                if type(v) == dict:
+                    env_vars[k] = {"provider": name, "value": v["value"]}
+                    if "guard" in v:
+                        env_vars[k]["guard"] = v["guard"]
+                else:
+                    env_vars[k] = {"provider": name, "value": v}
         with open(dest_file, "w") as f:
             f.write("# File auto-generated; DO NOT EDIT\n\n\n")
             for k in sorted(env_vars.keys()):
                 value = env_vars[k]["value"]
-                f.write(f'export {k}="{value}"\n')
+                guard = env_vars[k].get("guard")
+                if guard:
+                    f.write(
+                        f'if {guard}; then\n    export {k}="{value}"\nfi\n')
+                else:
+                    f.write(f'export {k}="{value}"\n')
 
             path_str = ":".join(path)
             f.write(f'export PATH="{path_str}:$PATH"\n')

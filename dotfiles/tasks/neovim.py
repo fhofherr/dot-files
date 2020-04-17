@@ -41,7 +41,7 @@ def install(c, home_dir=common.HOME_DIR, install_nvim_plugins=False):
 
     nvim_state = state.State(name="nvim")
     nvim_state.put_env("DOTFILES_NEOVIM_PYTHON3", python_cmd)
-    nvim_state.put_env("EDITOR", nvim_cmd)
+    nvim_state.put_env("EDITOR", nvim_cmd, guard='[ -z "$EDITOR" ]')
     nvim_state.add_alias("vim", nvim_cmd)
     nvim_state.add_alias("view", f"{nvim_cmd} -R")
 

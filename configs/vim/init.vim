@@ -24,6 +24,7 @@ endif
 " neovim-remote settings
 " ---------------------------------------------------------------------------
 if has('nvim') && executable('nvr')
+    let $EDITOR = 'nvr'
     let $GIT_EDITOR = 'nvr -cc split --remote-wait'
     augroup dotfiles_nvr
         autocmd FileType gitcommit,gitrebase,gitconfig setlocal bufhidden=delete
