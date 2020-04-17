@@ -15,9 +15,15 @@ else
     let g:fzf_layout = { 'down': '~40%' }
 endif
 
-nmap <F1> :Helptags<CR>
-nmap <c-p> :Files<cr>
+augroup fzf
+  autocmd! FileType fzf
+  autocmd  FileType fzf set laststatus=0 noshowmode noruler
+    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+augroup end
 
+nmap <F1> :Helptags<CR>
+noremap<c-p> :Files<cr>
+"
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
   \ { 'fg':      ['fg', 'Normal'],
