@@ -3,8 +3,4 @@ if !dotfiles#plugin#selected('onehalf') || exists('g:did_cfg_onehalf')
 endif
 let g:did_cfg_onehalf = 1
 
-if $DOTFILES_COLOR_PROFILE == 'light'
-    colorscheme onehalflight
-else
-    colorscheme onehalfdark
-endif
+colorscheme onehalflight

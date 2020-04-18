@@ -21,15 +21,10 @@ elseif dotfiles#plugin#selected('falcon')
     let s:colorscheme = 'falcon'
 elseif dotfiles#plugin#selected('iceberg.vim')
     let s:colorscheme = 'iceberg'
+elseif dotfiles#plugin#selected('palenight.vim')
+    let s:colorscheme = 'palenight'
 elseif dotfiles#plugin#selected('onehalf')
-    if $DOTFILES_COLOR_PROFILE == 'light'
-        " onehalf does not have a light colorscheme for lightline yet.
-        " We just use the dark one.
-        " See https://github.com/sonph/onehalf/issues/14
-        let s:colorscheme = 'onehalfdark'
-    else
-        let s:colorscheme = 'onehalfdark'
-    endif
+    let s:colorscheme = 'onehalfdark'
 else
     let s:colorscheme = 'powerline'
 endif

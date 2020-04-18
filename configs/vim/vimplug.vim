@@ -48,21 +48,13 @@ Plug 'itchyny/lightline.vim'
 
 " I don't need all of those. But if I want to switch I want
 " the others handy. So they are just commented out.
-if $DOTFILES_COLOR_THEME == 'ayu'
-    Plug 'ayu-theme/ayu-vim'
-elseif $DOTFILES_COLOR_THEME =~ 'base16-.*'
-    Plug 'chriskempson/base16-vim'
-elseif $DOTFILES_COLOR_THEME == 'challenger-deep'
-    Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
-elseif $DOTFILES_COLOR_THEME == 'dracula'
-    Plug 'dracula/vim', {'as': 'dracula'}
-elseif $DOTFILES_COLOR_THEME == 'falcon'
-    Plug 'fenetikm/falcon'
-elseif $DOTFILES_COLOR_THEME == 'iceberg'
-    Plug 'cocopon/iceberg.vim'
-elseif $DOTFILES_COLOR_THEME == 'onehalf'
-    Plug 'sonph/onehalf', {'rtp': 'vim'}
-endif
+" Plug 'ayu-theme/ayu-vim'
+"  Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+Plug 'chriskempson/base16-vim'
+"  Plug 'cocopon/iceberg.vim'
+"  Plug 'drewtempelmeyer/palenight.vim'
+"  Plug 'dracula/vim', {'as': 'dracula'}
+"  Plug 'sonph/onehalf', {'rtp': 'vim'}
 
 " Some plugins require Python 3 to work properly.
 if exists("g:python3_host_prog")
