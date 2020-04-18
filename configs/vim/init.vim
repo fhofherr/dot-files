@@ -82,6 +82,9 @@ set diffopt=filler,vertical
 set ignorecase
 set smartcase
 
+" Folding
+set foldnestmax=10
+
 augroup dotfiles_vim_init
     autocmd!
 

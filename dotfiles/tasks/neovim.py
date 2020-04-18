@@ -43,6 +43,10 @@ def install(c, home_dir=common.HOME_DIR, install_nvim_plugins=False):
     nvim_state.put_env("DOTFILES_NEOVIM_PYTHON3", python_cmd)
     nvim_state.put_env("EDITOR", nvim_cmd, guard='[ -z "$EDITOR" ]')
     nvim_state.add_alias("vim", nvim_cmd)
+    nvim_state.add_alias("e", nvim_cmd)
+    nvim_state.add_alias("et", nvim_cmd)
+    nvim_state.add_alias("es", nvim_cmd)
+    nvim_state.add_alias("ev", nvim_cmd)
     nvim_state.add_alias("view", f"{nvim_cmd} -R")
 
     after_compinit_script = os.path.join(common.ROOT_DIR, "configs", "vim",
