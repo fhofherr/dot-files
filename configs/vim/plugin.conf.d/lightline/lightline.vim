@@ -19,6 +19,8 @@ elseif dotfiles#plugin#selected('dracula')
     let s:colorscheme = 'dracula'
 elseif dotfiles#plugin#selected('falcon')
     let s:colorscheme = 'falcon'
+elseif dotfiles#plugin#selected('gruvbox')
+    let s:colorscheme = 'gruvbox'
 elseif dotfiles#plugin#selected('iceberg.vim')
     let s:colorscheme = 'iceberg'
 elseif dotfiles#plugin#selected('palenight.vim')

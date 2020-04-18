@@ -16,7 +16,7 @@ BASE16_SHELL_REPO_URL = "https://github.com/chriskempson/base16-shell.git"
 def install(c, home_dir=common.HOME_DIR):
     install_starship_prompt(c, home_dir)
     configure_starship_prompt(c, home_dir)
-    install_base16_shell(c, home_dir)
+    # install_base16_shell(c, home_dir)
     configure(c, home_dir)
 
 

@@ -68,13 +68,19 @@ function! s:lc_buffer_settings()
     " Or map each action separately
     nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<CR>
     nnoremap <buffer> <silent> gd :call dotfiles#editor#with_tag_stack('LanguageClient#textDocument_definition')<CR>
-    nnoremap <buffer> <silent> gD :call dotfiles#editor#with_tag_stack('LanguageClient#textDocument_definition', {
+    nnoremap <buffer> <silent> gdt :call dotfiles#editor#with_tag_stack('LanguageClient#textDocument_definition', {
                 \  'gotoCmd': 'tabnew',
                 \})<CR>
-    nnoremap <buffer> <silent> gy :call dotfiles#editor#with_tag_stack('LanguageClient#textDocument_typeDefinition')<CR>
-    nnoremap <buffer> <silent> gY :call dotfiles#editor#with_tag_stack('LanguageClient#textDocument_typeDefinition', {
+    nnoremap <buffer> <silent> gD :call dotfiles#editor#with_tag_stack('LanguageClient#textDocument_implementation')<CR>
+    nnoremap <buffer> <silent> gDt :call dotfiles#editor#with_tag_stack('LanguageClient#textDocument_implementation', {
                 \  'gotoCmd': 'tabnew',
                 \})<CR>
+    nnoremap <buffer> <silent> 1gD :call dotfiles#editor#with_tag_stack('LanguageClient#textDocument_typeDefinition')<CR>
+    nnoremap <buffer> <silent> 1gDt :call dotfiles#editor#with_tag_stack('LanguageClient#textDocument_typeDefinition', {
+                \  'gotoCmd': 'tabnew',
+                \})<CR>
+    nnoremap <buffer> <silent> gr :call dotfiles#editor#with_tag_stack('LanguageClient#textDocument_references')<CR>
+    nnoremap <buffer> <silent> g0 :call dotfiles#editor#with_tag_stack('LanguageClient#textDocument_documentSymbol')<CR>
     nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 endfunction
 

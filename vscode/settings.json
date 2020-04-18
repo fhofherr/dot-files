@@ -14,11 +14,10 @@
     "comments": false,
     "strings": false
   },
-  "editor.renderWhitespace": "all",
   "editor.suggestSelection": "first",
   "explorer.autoReveal": false,
   "explorer.openEditors.visible": 0,
-  "workbench.colorTheme": "Base16 Solarized Light",
+  "workbench.colorTheme": "Atom One Light",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.sideBar.location": "left",
@@ -87,5 +86,9 @@
   //     dnf install clang
   //
   // See https://github.com/microsoft/vscode-cpptools/issues/3174#issuecomment-463944461
-  "C_Cpp.clang_format_path": "/usr/bin/clang-format"
+  "C_Cpp.clang_format_path": "/usr/bin/clang-format",
+  "cSpell.enableFiletypes": [
+    "!plaintext"
+  ],
+  "editor.renderWhitespace": "none"
 }

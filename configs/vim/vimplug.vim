@@ -49,11 +49,12 @@ Plug 'itchyny/lightline.vim'
 " I don't need all of those. But if I want to switch I want
 " the others handy. So they are just commented out.
 " Plug 'ayu-theme/ayu-vim'
-"  Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
-Plug 'chriskempson/base16-vim'
-"  Plug 'cocopon/iceberg.vim'
+" Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+" Plug 'chriskempson/base16-vim'
+" Plug 'cocopon/iceberg.vim'
 "  Plug 'drewtempelmeyer/palenight.vim'
 "  Plug 'dracula/vim', {'as': 'dracula'}
+Plug 'gruvbox-community/gruvbox'
 "  Plug 'sonph/onehalf', {'rtp': 'vim'}
 
 " Some plugins require Python 3 to work properly.
