@@ -8,21 +8,25 @@ source "$DOTFILES_ZSH_LOCAL_ALIASES"
 source "$DOTFILES_ZSH_BEFORE_COMPINIT_SCRIPT"
 
 autoload -Uz compinit
-for dump in ~/.zcompdump(N.mh+24); do
-  compinit
-done
+
+(){
+    setopt extendedglob local_options
+    for dump in $HOME/.zcompdump(#qN.m1); do
+        compinit
+        if [[ -s "$dump" && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc") ]]; then
+            zcompile "$dump"
+        fi
+    done
+}
 compinit -C
 
 source "$DOTFILES_ZSH_AFTER_COMPINIT_SCRIPT"
 
-
-
 ## -----------------------------------------------------------------------------
 ## Base16 Colors
 ## -----------------------------------------------------------------------------
-export DOTFILES_COLOR_THEME="base16-google-light"
-# export DOTFILES_COLOR_THEME="base16-material-palenight"
-dotfiles_set_shell_colors
+# export DOTFILES_COLOR_THEME="base16-google-light"
+# dotfiles_set_shell_colors
 
 ## Make sure we use emacs keybindings
 #bindkey -e

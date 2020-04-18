@@ -42,18 +42,30 @@ def download(c, home_dir=common.HOME_DIR):
 
 @task
 def configure(c, home_dir=common.HOME_DIR):
-    zsh_plugins_txt = os.path.join(common.ROOT_DIR, "configs", "antibody",
-                                   "zsh_plugins.txt")
+    def antibody_bundle(antibody_cmd, plugins_txt):
+        init_out = io.StringIO()
+        try:
+            with open(plugins_txt) as f:
+                c.run(f"{antibody_cmd} bundle",
+                      in_stream=f,
+                      out_stream=init_out)
+            return init_out.getvalue()
+        finally:
+            init_out.close()
+
+    zsh_before_compinit_plugins_txt = os.path.join(
+        common.ROOT_DIR, "configs", "antibody",
+        "zsh_before_compinit_plugins.txt")
+    zsh_after_compinit_plugins_txt = os.path.join(
+        common.ROOT_DIR, "configs", "antibody",
+        "zsh_after_compinit_plugins.txt")
     antibody_cmd = cmd_path(home_dir)
 
     antibody_state = state.State("antibody")
-    init_out = io.StringIO()
-    try:
-        with open(zsh_plugins_txt) as f:
-            c.run(f"{antibody_cmd} bundle", in_stream=f, out_stream=init_out)
-        antibody_state.after_compinit_script = init_out.getvalue()
-    finally:
-        init_out.close()
+    antibody_state.before_compinit_script = antibody_bundle(
+        antibody_cmd, zsh_before_compinit_plugins_txt)
+    antibody_state.after_compinit_script = antibody_bundle(
+        antibody_cmd, zsh_after_compinit_plugins_txt)
 
     state.write_state(home_dir, antibody_state)
 

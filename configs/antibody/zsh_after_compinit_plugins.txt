@@ -1,4 +1,3 @@
 yous/vanilli.sh
 zpm-zsh/ls
 zsh-users/zsh-autosuggestions
-agkozak/zsh-z
