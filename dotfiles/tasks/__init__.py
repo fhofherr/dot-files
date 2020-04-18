@@ -1,10 +1,10 @@
 from invoke import Collection, task
 
 from dotfiles import common
-from dotfiles.tasks import (antibody, asdf, buf, dbcli, direnv, editorconfig,
-                            git, golang, golangci_lint, httpie, kitty, kubectl,
-                            neovim, overmind, pipx, platformio, pre_commit,
-                            python, tests, zsh)
+from dotfiles.tasks import (alacritty, antibody, asdf, buf, dbcli, direnv,
+                            editorconfig, git, golang, golangci_lint, httpie,
+                            kitty, kubectl, neovim, overmind, pipx, platformio,
+                            pre_commit, python, tests, zsh)
 
 
 @task
@@ -28,6 +28,7 @@ def install(c, home_dir=common.HOME_DIR):
 
     kubectl.configure(c, home_dir=home_dir)
     editorconfig.configure(c, home_dir)
+    alacritty.configure(c, home_dir)
     kitty.configure(c, home_dir)
 
     zsh.write_dotfiles_zsh_config(c, home_dir)
@@ -43,6 +44,7 @@ def get_ns():
     ns.add_task(install)
     ns.add_task(test)
 
+    ns.add_collection(alacritty)
     ns.add_collection(antibody)
     ns.add_collection(dbcli)
     ns.add_collection(asdf)
