@@ -45,6 +45,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kassio/neoterm'
 Plug 'kylef/apiblueprint.vim'
+Plug 'zhimsel/vim-stay'
 
 " Eye candy and color schemes
 Plug 'itchyny/lightline.vim'
