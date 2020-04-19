@@ -32,9 +32,7 @@ if has('nvim') && executable('nvr')
 endif
 
 " ---------------------------------------------------------------------------
-"
 " General settings
-"
 " ---------------------------------------------------------------------------
 " Editorconfig will override those settings. We keep them around
 " nevertheless, in case ~/.editorconfig does not exist.
@@ -82,9 +80,6 @@ set diffopt=filler,vertical
 set ignorecase
 set smartcase
 
-" Folding
-set foldnestmax=3
-
 augroup dotfiles_vim_init
     autocmd!
 
@@ -97,22 +92,27 @@ augroup dotfiles_vim_init
                 \ endif
 augroup end
 
-source $VIMHOME/shortcuts.vim
-source $VIMHOME/vimplug.vim
-
 " ---------------------------------------------------------------------------
-"
 " Color settings
-"
 " ---------------------------------------------------------------------------
 if has('nvim') || has('termguicolors')
     set termguicolors
 endif
 
-if $DOTFILES_COLOR_PROFILE == 'light'
-    set background=light
-else
-    set background=dark
-endif
-
 set colorcolumn=80,120
+
+" ---------------------------------------------------------------------------
+" Folding
+" ---------------------------------------------------------------------------
+set foldlevelstart=0 " initial foldlevel; all folds with higher level are closed
+
+set foldnestmax=3    " three fold levels should be enough for most of our needs
+                     " we can always add more on a filetype specific level.
+                     " See after/ftplugin/go.vim for an example.
+
+" ---------------------------------------------------------------------------
+" Source other files
+" ---------------------------------------------------------------------------
+
+source $VIMHOME/shortcuts.vim
+source $VIMHOME/vimplug.vim
