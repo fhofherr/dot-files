@@ -3,8 +3,8 @@ from invoke import Collection, task
 from dotfiles import common
 from dotfiles.tasks import (alacritty, antibody, asdf, buf, dbcli, direnv,
                             editorconfig, git, golang, golangci_lint, httpie,
-                            kitty, kubectl, neovim, overmind, pipx, platformio,
-                            pre_commit, python, tests, zsh)
+                            kitty, kubectl, neovim, nerd_fonts, overmind, pipx,
+                            platformio, pre_commit, python, tests, zsh)
 
 
 @task
@@ -63,6 +63,7 @@ def get_ns():
     ns.add_collection(pre_commit)
     ns.add_collection(python)
     ns.add_collection(neovim)
+    ns.add_collection(nerd_fonts)
     ns.add_collection(zsh)
 
     ns.add_collection(tests)

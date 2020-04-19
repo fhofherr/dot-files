@@ -9,15 +9,17 @@ import requests
 from dotfiles import common
 
 
-def clone(c, src_url: str, dest_dir: str, branch=""):
+def clone(c, src_url: str, dest_dir: str, branch="", depth=""):
     """Clones the git repository from src_url if dest_dir does not exist.
 
     Returns True if the repository was cloned.
     """
     if branch:
         branch = f"--branch {branch}"
+    if depth:
+        depth = f"--depth {depth}"
     if not os.path.exists(dest_dir):
-        c.run(f"git clone {branch} {src_url} {dest_dir}")
+        c.run(f"git clone {depth} {branch} {src_url} {dest_dir}")
         return True
     return False
 
