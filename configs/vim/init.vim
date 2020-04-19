@@ -83,7 +83,7 @@ set ignorecase
 set smartcase
 
 " Folding
-set foldnestmax=10
+set foldnestmax=3
 
 augroup dotfiles_vim_init
     autocmd!

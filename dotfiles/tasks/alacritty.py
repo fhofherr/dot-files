@@ -23,4 +23,5 @@ def configure(c, home_dir=common.HOME_DIR):
     fs.safe_link_file(alacritty_cfg_src, alacritty_cfg_dest)
 
     alacritty_state = state.State(name="alacritty")
+    alacritty_state.add_alias("ssh", f"TERM=xterm-256color ssh")
     state.write_state(home_dir, alacritty_state)
