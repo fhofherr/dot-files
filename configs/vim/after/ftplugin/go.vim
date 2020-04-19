@@ -1,7 +1,9 @@
-if exists('b:dotfiles_did_go_ftplugin')
+if exists('g:dotfiles_did_go_ftplugin')
   finish
 endif
-let b:dotfiles_did_go_ftplugin = 1
+let g:dotfiles_did_go_ftplugin = 1
+
+let g:go_highlight_trailing_whitespace_error = 0
 
 augroup dotfiles_go
   autocmd!
