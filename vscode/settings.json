@@ -17,7 +17,7 @@
   "editor.suggestSelection": "first",
   "explorer.autoReveal": false,
   "explorer.openEditors.visible": 0,
-  "workbench.colorTheme": "Atom One Light",
+  "workbench.colorTheme": "GitHub Plus",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.sideBar.location": "left",
@@ -90,5 +90,21 @@
   "cSpell.enableFiletypes": [
     "!plaintext"
   ],
-  "editor.renderWhitespace": "none"
+  "files.insertFinalNewline": true,
+  "editor.renderLineHighlight": "gutter",
+  "sqltools.formatLanguages": [],
+  "terraform.indexing": {
+    "enabled": false,
+    "liveIndexing": false,
+    "delay": 500,
+    "exclude": [
+      ".terraform/**/*",
+      "**/.terraform/**/*"
+    ]
+  },
+  "terraform.languageServer": {
+    "enabled": true,
+    "args": []
+  },
+  "editor.minimap.enabled": false
 }
