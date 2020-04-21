@@ -46,6 +46,9 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'kassio/neoterm'
 Plug 'kylef/apiblueprint.vim'
 Plug 'zhimsel/vim-stay'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plug 'justinmk/vim-dirvish'
+Plug 'kristijanhusak/vim-dirvish-git'
 
 " Eye candy and color schemes
 Plug 'itchyny/lightline.vim'
