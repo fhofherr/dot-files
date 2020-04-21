@@ -47,6 +47,14 @@ def install_pkg(c, pkg, home_dir=common.HOME_DIR, warn=False):
     c.run(f"{pipx_cmd} install {pkg}", env=env(home_dir), warn=warn)
 
 
+@task
+def upgrade_pkg(c, pkg, home_dir=common.HOME_DIR, warn=False):
+    pipx_cmd = cmd_path(home_dir)
+    if not os.path.exists(pipx_cmd):
+        install(c, home_dir=home_dir)
+    c.run(f"{pipx_cmd} upgrade {pkg}", env=env(home_dir), warn=warn)
+
+
 def venv_dir_path(home_dir, mkdir=False, recreate=False):
     venv_dir = os.path.join(home_dir, ".local", "dotfiles", "pipx.venv")
     if mkdir and (not os.path.exists(venv_dir) or recreate):

@@ -10,3 +10,8 @@ _LOG = logging.get_logger(__name__)
 def install(c, home_dir=common.HOME_DIR):
     _LOG.info("Install pre-commit")
     pipx.install_pkg(c, "pre-commit", home_dir=home_dir)
+
+
+@task
+def update(c, home_dir=common.HOME_DIR):
+    pipx.upgrade_pkg(c, "pre-commit", home_dir=home_dir)

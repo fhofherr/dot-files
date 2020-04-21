@@ -19,6 +19,13 @@ def install(c, home_dir=common.HOME_DIR):
 
 
 @task
+def update(c, home_dir=common.HOME_DIR, reconfigure=False):
+    download(c, home_dir)
+    if reconfigure:
+        configure(c, home_dir)
+
+
+@task
 def download(c, home_dir=common.HOME_DIR):
     direnv_cmd = cmd_path(home_dir, mkdir=True)
     with git.github_release("direnv/direnv") as gh_r:

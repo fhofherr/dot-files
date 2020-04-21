@@ -49,6 +49,11 @@ def install_dev_tools(c, home_dir=common.HOME_DIR, go_cmd="go"):
 
 
 @task
+def update_dev_tools(c, home_dir=common.HOME_DIR, go_cmd="go"):
+    install_dev_tools(c, home_dir=home_dir, go_cmd=go_cmd)
+
+
+@task
 def configure(c, home_dir=common.HOME_DIR):
     go_tools_state = state.State(name="go_tools")
     go_tools_state.put_env("PATH", _go_bin_dir(home_dir))

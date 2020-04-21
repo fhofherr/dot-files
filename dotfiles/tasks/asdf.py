@@ -20,6 +20,13 @@ def install(c, home_dir=common.HOME_DIR):
 
 
 @task
+def update(c, home_dir=common.HOME_DIR, reconfigure=False):
+    clone_or_update(c, home_dir)
+    if reconfigure:
+        configure(c, home_dir)
+
+
+@task
 def clone_or_update(c, home_dir=common.HOME_DIR):
     _LOG.info("Clone or update asdf")
 

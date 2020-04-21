@@ -10,3 +10,9 @@ _LOG = logging.get_logger(__name__)
 def install(c, home_dir=common.HOME_DIR):
     _LOG.info("Install httpie")
     pipx.install_pkg(c, "httpie", home_dir=home_dir)
+
+
+@task
+def update(c, home_dir=common.HOME_DIR):
+    _LOG.info("Install httpie")
+    pipx.upgrade_pkg(c, "httpie", home_dir=home_dir)

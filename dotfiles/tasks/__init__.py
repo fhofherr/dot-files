@@ -19,7 +19,6 @@ def install(c, home_dir=common.HOME_DIR):
     golangci_lint.install(c, home_dir=home_dir)
     httpie.install(c, home_dir=home_dir)
     overmind.install(c, home_dir=home_dir)
-    pipx.install(c, home_dir=home_dir)
     platformio.install(c, home_dir=home_dir)
     pre_commit.install(c, home_dir=home_dir)
     python.install(c, home_dir=home_dir, install_missing_poetry=False)
@@ -35,6 +34,24 @@ def install(c, home_dir=common.HOME_DIR):
 
 
 @task
+def update(c, home_dir=common.HOME_DIR, upgrade=False, reconfigure=False):
+    antibody.update(c, home_dir, upgrade=upgrade, reconfigure=reconfigure)
+    dbcli.update(c, home_dir=home_dir)
+    asdf.update(c, home_dir, reconfigure=reconfigure)
+    direnv.update(c, home_dir=home_dir, reconfigure=reconfigure)
+    buf.update(c, home_dir=home_dir, reconfigure=reconfigure)
+    golang.update_dev_tools(c, home_dir=home_dir)
+    golangci_lint.update(c, home_dir=home_dir, reconfigure=reconfigure)
+    httpie.update(c, home_dir=home_dir)
+    overmind.update(c, home_dir=home_dir, reconfigure=reconfigure)
+    platformio.update(c, home_dir=home_dir)
+    pre_commit.update(c, home_dir=home_dir)
+
+    if reconfigure:
+        zsh.write_dotfiles_zsh_config(c, home_dir)
+
+
+@task
 def test(c):
     print("test")
 
@@ -42,6 +59,7 @@ def test(c):
 def get_ns():
     ns = Collection()
     ns.add_task(install)
+    ns.add_task(update)
     ns.add_task(test)
 
     ns.add_collection(alacritty)

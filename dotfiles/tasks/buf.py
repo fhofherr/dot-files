@@ -21,6 +21,13 @@ def install(c, home_dir=common.HOME_DIR):
 
 
 @task
+def update(c, home_dir=common.HOME_DIR, reconfigure=False):
+    download(c, home_dir)
+    if reconfigure:
+        configure(c, home_dir)
+
+
+@task
 def download(c, home_dir=common.HOME_DIR):
     _LOG.info("Install buf")
 

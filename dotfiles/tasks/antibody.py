@@ -20,6 +20,16 @@ def install(c, home_dir=common.HOME_DIR):
 
 
 @task
+def update(c, home_dir=common.HOME_DIR, upgrade=False, reconfigure=False):
+    antibody_cmd = cmd_path(home_dir)
+    if upgrade:
+        download(c, home_dir)
+    if reconfigure:
+        configure(c, home_dir)
+    c.run(f"{antibody_cmd} update")
+
+
+@task
 def download(c, home_dir=common.HOME_DIR):
     antibody_cmd = cmd_path(home_dir, mkdir=True)
     with git.github_release("getantibody/antibody") as gh_r:
