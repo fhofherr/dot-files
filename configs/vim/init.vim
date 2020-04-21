@@ -108,7 +108,6 @@ set foldlevelstart=0 " initial foldlevel; all folds with higher level are closed
 
 set foldnestmax=3    " three fold levels should be enough for most of our needs
                      " we can always add more on a filetype specific level.
-                     " See after/ftplugin/go.vim for an example.
 
 " ---------------------------------------------------------------------------
 " Source other files

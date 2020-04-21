@@ -10,7 +10,6 @@ augroup dotfiles_go
   autocmd BufEnter *.go setlocal
         \ formatoptions+=r
         \ foldmethod=indent
-        \ foldnestmax=1
         \ spell spelllang=en_us
 augroup END
 
