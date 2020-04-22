@@ -27,6 +27,7 @@ Plug 'nelstrom/vim-visual-star-search'
 " Plug 'reedes/vim-pencil'
 " Plug 'reedes/vim-wordy'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/echodoc.vim'
 Plug 'sirver/ultisnips'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
