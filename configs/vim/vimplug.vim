@@ -110,10 +110,6 @@ if has_key(g:plugs, 'ale') && executable('buf')
     Plug 'bufbuild/vim-buf'
 endif
 
-if executable('nnn')
-    Plug 'mcchrish/nnn.vim'
-endif
-
 if has('nvim-0.5')
     Plug 'neovim/nvim-lsp'
 else

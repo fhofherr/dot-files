@@ -3,6 +3,8 @@ if !dotfiles#plugin#selected('vim-dirvish') || exists('g:did_cfg_vim_dirvish')
 endif
 let g:did_cfg_vim_dirvish = 1
 
+nnoremap <silent> <leader>d :Dirvish<CR>
+
 augroup dotfiles_dirvish_config
     autocmd!
 
