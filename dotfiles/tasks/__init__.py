@@ -1,7 +1,7 @@
 from invoke import Collection, task
 
 from dotfiles import common
-from dotfiles.tasks import (alacritty, antibody, asdf, buf, dbcli, direnv,
+from dotfiles.tasks import (alacritty, antibody, asdf, bat, buf, dbcli, direnv,
                             editorconfig, fzf, git, golang, golangci_lint,
                             httpie, kitty, kubectl, neovim, nerd_fonts,
                             overmind, pipx, platformio, pre_commit, python,
@@ -27,9 +27,10 @@ def install(c, home_dir=common.HOME_DIR):
     neovim.install(c, home_dir=home_dir)
     zsh.install(c, home_dir=home_dir)
 
+    alacritty.configure(c, home_dir)
+    bat.configure(c, home_dir=home_dir)
     kubectl.configure(c, home_dir=home_dir)
     editorconfig.configure(c, home_dir)
-    alacritty.configure(c, home_dir)
     kitty.configure(c, home_dir)
 
     zsh.write_dotfiles_zsh_config(c, home_dir)
@@ -68,6 +69,7 @@ def get_ns():
 
     ns.add_collection(alacritty)
     ns.add_collection(antibody)
+    ns.add_collection(bat)
     ns.add_collection(dbcli)
     ns.add_collection(asdf)
     ns.add_collection(direnv)
