@@ -15,13 +15,13 @@ else
     let g:fzf_layout = { 'down': '~40%' }
 endif
 
-nmap <F1> :Helptags<CR>
-nnoremap <c-p> :Files<cr>
-nnoremap <c-g><c-f> :Files<cr>
-nnoremap <c-b> :Buffers<cr>
-nnoremap <c-g><c-b> :Buffers<cr>
-nnoremap <c-g><c-t> :Tags<cr>
-nnoremap <c-g><c-m> :Marks<cr>
+nmap <silent> <F1> :Helptags<CR>
+nnoremap <silent> <c-p> :Files<cr>
+nnoremap <silent> <c-g><c-f> :Files<cr>
+nnoremap <silent> <c-b> :Buffers<cr>
+nnoremap <silent> <c-g><c-b> :Buffers<cr>
+nnoremap <silent> <c-g><c-t> :Tags<cr>
+nnoremap <silent> <c-g><c-m> :Marks<cr>
 
 let s:laststatus = &laststatus
 let s:showmode = &showmode
