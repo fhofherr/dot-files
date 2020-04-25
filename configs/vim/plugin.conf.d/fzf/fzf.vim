@@ -16,7 +16,9 @@ else
 endif
 
 nmap <F1> :Helptags<CR>
+nnoremap <c-p> :Files<cr>
 nnoremap <c-g><c-f> :Files<cr>
+nnoremap <c-b> :Buffers<cr>
 nnoremap <c-g><c-b> :Buffers<cr>
 nnoremap <c-g><c-t> :Tags<cr>
 nnoremap <c-g><c-m> :Marks<cr>
