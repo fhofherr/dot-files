@@ -27,7 +27,6 @@ Plug 'nelstrom/vim-visual-star-search'
 " Plug 'reedes/vim-pencil'
 " Plug 'reedes/vim-wordy'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/echodoc.vim'
 Plug 'sirver/ultisnips'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
@@ -75,9 +74,10 @@ endif
 
 " Works best with universal-ctags (https://ctags.io)
 " Install with: brew install --HEAD universal-ctags/universal-ctags/universal-ctags on Mac
+" Compile it yourself from https://github.com/universal-ctags on Linux
 if executable('ctags')
     Plug 'majutsushi/tagbar'
-    " Plug 'ludovicchabant/vim-gutentags'
+    Plug 'ludovicchabant/vim-gutentags'
 endif
 
 if executable('tmux')
@@ -114,6 +114,12 @@ if has('nvim-0.5')
     Plug 'neovim/nvim-lsp'
 else
     Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', 'as': 'lcn' }
+endif
+
+
+Plug 'Shougo/echodoc.vim'
+if dotfiles#plugin#selected('echodoc.vim')
+    Plug 'Shougo/context_filetype.vim'
 endif
 
 call plug#end()
