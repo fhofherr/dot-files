@@ -16,7 +16,7 @@ Plug 'embear/vim-localvimrc'
 Plug 'junegunn/vim-easy-align'
 Plug 'hashivim/vim-terraform'
 Plug 'janko/vim-test'
-Plug 'junegunn/fzf', {'do': './install --all --no-update-rc'}
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
 Plug 'mhinz/vim-signify'

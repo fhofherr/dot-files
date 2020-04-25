@@ -2,9 +2,10 @@ from invoke import Collection, task
 
 from dotfiles import common
 from dotfiles.tasks import (alacritty, antibody, asdf, buf, dbcli, direnv,
-                            editorconfig, git, golang, golangci_lint, httpie,
-                            kitty, kubectl, neovim, nerd_fonts, overmind, pipx,
-                            platformio, pre_commit, python, tests, zsh)
+                            editorconfig, fzf, git, golang, golangci_lint,
+                            httpie, kitty, kubectl, neovim, nerd_fonts,
+                            overmind, pipx, platformio, pre_commit, python,
+                            tests, zsh)
 
 
 @task
@@ -21,6 +22,7 @@ def install(c, home_dir=common.HOME_DIR):
     overmind.install(c, home_dir=home_dir)
     platformio.install(c, home_dir=home_dir)
     pre_commit.install(c, home_dir=home_dir)
+    fzf.install(c, home_dir=home_dir)
     python.install(c, home_dir=home_dir, install_missing_poetry=False)
     neovim.install(c, home_dir=home_dir)
     zsh.install(c, home_dir=home_dir)
@@ -47,6 +49,7 @@ def update(c, home_dir=common.HOME_DIR, upgrade=False, reconfigure=False):
     overmind.update(c, home_dir=home_dir, reconfigure=reconfigure)
     platformio.update(c, home_dir=home_dir)
     pre_commit.update(c, home_dir=home_dir)
+    fzf.update(c, home_dir)
 
     if reconfigure:
         zsh.write_dotfiles_zsh_config(c, home_dir)
@@ -69,6 +72,7 @@ def get_ns():
     ns.add_collection(asdf)
     ns.add_collection(direnv)
     ns.add_collection(editorconfig)
+    ns.add_collection(fzf)
     ns.add_collection(kitty)
     ns.add_collection(git)
     ns.add_collection(buf)
