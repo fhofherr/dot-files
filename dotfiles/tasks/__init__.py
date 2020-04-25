@@ -50,7 +50,7 @@ def update(c, home_dir=common.HOME_DIR, upgrade=False, reconfigure=False):
     overmind.update(c, home_dir=home_dir, reconfigure=reconfigure)
     platformio.update(c, home_dir=home_dir)
     pre_commit.update(c, home_dir=home_dir)
-    fzf.update(c, home_dir)
+    fzf.update(c, home_dir=home_dir, reconfigure=reconfigure)
 
     if reconfigure:
         zsh.write_dotfiles_zsh_config(c, home_dir)
