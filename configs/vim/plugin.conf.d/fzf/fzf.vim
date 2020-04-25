@@ -15,30 +15,33 @@ else
     let g:fzf_layout = { 'down': '~40%' }
 endif
 
-augroup fzf
-  autocmd! FileType fzf
-  autocmd  FileType fzf set laststatus=0 noshowmode noruler
-    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-augroup end
-
 nmap <F1> :Helptags<CR>
 nnoremap <c-g><c-f> :Files<cr>
 nnoremap <c-g><c-b> :Buffers<cr>
 nnoremap <c-g><c-t> :Tags<cr>
 nnoremap <c-g><c-m> :Marks<cr>
 
-" Customize fzf colors to match your color scheme
-let g:fzf_colors =
-  \ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+let s:laststatus = &laststatus
+let s:showmode = &showmode
+let s:ruler = &ruler
+let s:timeoutlen = &timeoutlen
+
+function! s:fzf_disable_settings()
+    set laststatus=0
+    set noshowmode
+    set noruler
+    set timeoutlen=0 " ensures that CTRL-V works without delay
+endfunction
+
+function! s:fzf_enable_settings()
+    let &laststatus = s:laststatus
+    let &showmode = s:showmode
+    let &ruler =  s:ruler
+    let &timeoutlen = s:timeoutlen
+endfunction
+
+augroup dotfiles_fzf
+  autocmd!
+  autocmd FileType fzf :call <SID>fzf_disable_settings()
+              \| autocmd BufLeave <buffer> :call <SID>fzf_enable_settings()
+augroup end
