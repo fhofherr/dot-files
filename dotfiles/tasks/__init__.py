@@ -36,6 +36,7 @@ def install(c, home_dir=common.HOME_DIR):
 @task
 def update(c, home_dir=common.HOME_DIR, upgrade=False, reconfigure=False):
     antibody.update(c, home_dir, upgrade=upgrade, reconfigure=reconfigure)
+    neovim.update(c, home_dir, reconfigure=reconfigure)
     dbcli.update(c, home_dir=home_dir)
     asdf.update(c, home_dir, reconfigure=reconfigure)
     direnv.update(c, home_dir=home_dir, reconfigure=reconfigure)

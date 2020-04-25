@@ -15,6 +15,23 @@ PYTHON_TOOLS_AND_LINTERS = [
 
 
 @task
+def update(c, home_dir=common.HOME_DIR, reconfigure=False):
+    pip_cmd = venv_pip_path(home_dir, mkdir=True, recreate=reconfigure)
+    if not os.path.exists(pip_cmd):
+        _LOG.warn("neovim is not installed")
+        return
+
+    c.run(f"{pip_cmd} install --upgrade pip")
+    c.run(f"{pip_cmd} install --upgrade pynvim")
+
+    for tool in PYTHON_TOOLS_AND_LINTERS:
+        pipx.upgrade_pkg(c, tool, home_dir=home_dir)
+
+    if reconfigure:
+        configure(c, home_dir=home_dir)
+
+
+@task
 def install(c, home_dir=common.HOME_DIR, install_nvim_plugins=False):
     nvim_cmd = shutil.which("nvim")
     if not nvim_cmd:
@@ -38,6 +55,21 @@ def install(c, home_dir=common.HOME_DIR, install_nvim_plugins=False):
         c.run(f"{nvim_cmd} -E -c 'PlugUpdate' -c 'qall!'",
               hide="stdout",
               env={"DOTFILES_NEOVIM_PYTHON3": python_cmd})
+
+    configure(c, home_dir=home_dir)
+
+
+@task
+def configure(c, home_dir=common.HOME_DIR):
+    nvim_cmd = shutil.which("nvim")
+    if not nvim_cmd:
+        _LOG.warn("neovim is not installed")
+        return
+
+    python_cmd = venv_python_path(home_dir)
+    if not os.path.exists(python_cmd):
+        _LOG.warn("neovim venv missing")
+        return
 
     nvim_state = state.State(name="nvim")
     nvim_state.put_env("DOTFILES_NEOVIM_PYTHON3", python_cmd)
