@@ -11,7 +11,7 @@ Plug 'tpope/vim-sensible'
 Plug 'aklt/plantuml-syntax'
 Plug 'cespare/vim-toml'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'embear/vim-localvimrc'
+"Plug 'embear/vim-localvimrc'
 "Plug 'godlygeek/tabular'
 Plug 'junegunn/vim-easy-align'
 Plug 'hashivim/vim-terraform'
@@ -39,13 +39,12 @@ Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-unimpaired'
 " Plug 'vimlab/split-term.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kassio/neoterm'
 Plug 'kylef/apiblueprint.vim'
-Plug 'zhimsel/vim-stay'
+" Plug 'zhimsel/vim-stay'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'justinmk/vim-dirvish'
 Plug 'kristijanhusak/vim-dirvish-git'
@@ -83,9 +82,10 @@ if executable('ctags')
     Plug 'ludovicchabant/vim-gutentags'
 endif
 
-if executable('tmux')
-    Plug 'christoomey/vim-tmux-navigator'
-endif
+" if executable('tmux')
+"     Plug 'tpope/vim-tbone'
+"     Plug 'christoomey/vim-tmux-navigator'
+" endif
 
 " Clojure plugins
 if executable('clj') || executable('clojure') || executable('lein')
