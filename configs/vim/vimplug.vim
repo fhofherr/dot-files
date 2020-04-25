@@ -52,6 +52,9 @@ Plug 'kristijanhusak/vim-dirvish-git'
 
 " Eye candy and color schemes
 Plug 'itchyny/lightline.vim'
+if dotfiles#plugin#selected('lightline.vim')
+    Plug 'mengelbrecht/lightline-bufferline'
+endif
 
 " I don't need all of those. But if I want to switch I want
 " the others handy. So they are just commented out.

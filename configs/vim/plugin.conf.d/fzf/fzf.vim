@@ -22,8 +22,11 @@ augroup fzf
 augroup end
 
 nmap <F1> :Helptags<CR>
-noremap<c-p> :Files<cr>
-"
+nnoremap <c-g><c-f> :Files<cr>
+nnoremap <c-g><c-b> :Buffers<cr>
+nnoremap <c-g><c-t> :Tags<cr>
+nnoremap <c-g><c-m> :Marks<cr>
+
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
   \ { 'fg':      ['fg', 'Normal'],

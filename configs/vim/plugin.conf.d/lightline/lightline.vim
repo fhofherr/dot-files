@@ -61,11 +61,32 @@ let g:lightline = {
       \   'linter_ok': 'left',
       \}}
 
+
+if dotfiles#plugin#selected('vim-gutentags')
+    augroup dotfiles_lightline_gutentags
+        autocmd!
+        autocmd User GutentagsUpdating call lightline#update()
+        autocmd User GutentagsUpdated call lightline#update()
+    augroup END
+endif
+
+if dotfiles#plugin#selected('lightline-bufferline')
+    let g:lightline#bufferline#show_number  = 1
+    let g:lightline#bufferline#shorten_path = 0
+    let g:lightline#bufferline#unnamed      = '[No Name]'
+
+    let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
+    let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+    let g:lightline.component_type   = {'buffers': 'tabsel'}
+
+    set showtabline=2 " always show tabline
+
+    augroup dotfiles_lightline_bufferline
+        autocmd!
+        autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
+        autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
+    augroup END
+endif
+
 " Call lightline#enable() **after** we have configured it.
 call lightline#enable()
-
-augroup dotfiles_lightline_gutentags
-    autocmd!
-    autocmd User GutentagsUpdating call lightline#update()
-    autocmd User GutentagsUpdated call lightline#update()
-augroup END

@@ -10,6 +10,9 @@ let maplocalleader = ' '
 command Cd cd %:p:h
 command Lcd lcd %:p:h
 
+nnoremap <c-n> :bnext<cr>
+nnoremap <c-p> :bprev<cr>
+
 " Identify active highlight group.
 " Source: http://vim.wikia.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
