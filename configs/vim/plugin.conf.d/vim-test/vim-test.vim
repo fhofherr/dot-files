@@ -13,6 +13,9 @@ if dotfiles#plugin#selected('vim-dispatch')
 endif
 let g:test#preserve_screen = 1
 
+" Default options for go test
+let g:test#go#gotest#options = '-timeout 30s'
+
 " Copied directly from vim-test's README
 nmap <silent> t<C-n> :TestNearest<CR>
 nmap <silent> t<C-f> :TestFile<CR>
