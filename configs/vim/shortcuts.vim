@@ -10,8 +10,12 @@ let maplocalleader = ' '
 command Cd cd %:p:h
 command Lcd lcd %:p:h
 
+" Buffer management
+"
+" Additional mappings are defined in plugin.conf.d/fzf/fzf.vim
 nnoremap <silent> <tab> :bnext<cr>
-nnoremap <silent> <s-tab> :bprev<cr>
+nnoremap <silent> <s-tab> :bprevious<cr>
+nnoremap <silent> Q :bdelete<cr>
 
 " Identify active highlight group.
 " Source: http://vim.wikia.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
