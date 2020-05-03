@@ -13,8 +13,8 @@ command Lcd lcd %:p:h
 " Buffer management
 "
 " Additional mappings are defined in plugin.conf.d/fzf/fzf.vim
-nnoremap <silent> <tab> :bnext<cr>
-nnoremap <silent> <s-tab> :bprevious<cr>
+nnoremap <silent> <tab> :call dotfiles#buffer#next()<cr>
+nnoremap <silent> <s-tab> :call dotfiles#buffer#prev()<cr>
 nnoremap <silent> Q :bdelete<cr>
 
 " Identify active highlight group.
