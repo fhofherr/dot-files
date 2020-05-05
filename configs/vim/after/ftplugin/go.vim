@@ -9,7 +9,6 @@ augroup dotfiles_go
   autocmd!
   autocmd BufEnter *.go setlocal
         \ formatoptions+=r
-        " \ foldmethod=indent
         \ spell spelllang=en_us
 augroup END
 
