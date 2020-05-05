@@ -78,7 +78,8 @@ endif
 " Install with: brew install --HEAD universal-ctags/universal-ctags/universal-ctags on Mac
 " Compile it yourself from https://github.com/universal-ctags on Linux
 if executable('ctags')
-    Plug 'majutsushi/tagbar'
+    " Plug 'majutsushi/tagbar'
+    Plug 'liuchengxu/vista.vim'
     Plug 'ludovicchabant/vim-gutentags'
 endif
 
