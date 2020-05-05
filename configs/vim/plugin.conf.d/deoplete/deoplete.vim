@@ -14,6 +14,10 @@ call  deoplete#enable()
 
 " Disable the candidates in Comment/String syntaxes.
 call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment', 'String'])
+
+" Disable truncating keywords if they exceed a certain width.
+call deoplete#custom#source('_', 'max_abbr_width', 0)
+
 call deoplete#custom#source('ale', 'rank', 999)
 
 call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
