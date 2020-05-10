@@ -7,6 +7,8 @@ from invoke import task
 from dotfiles import common, logging, state, fs, git
 from dotfiles.tasks import pipx
 
+from dotfiles.neovim import snippets
+
 _LOG = logging.get_logger(__name__)
 
 PYTHON_TOOLS_AND_LINTERS = [
@@ -57,6 +59,21 @@ def install(c, home_dir=common.HOME_DIR, install_nvim_plugins=False):
               env={"DOTFILES_NEOVIM_PYTHON3": python_cmd})
 
     configure(c, home_dir=home_dir)
+
+
+@task
+def generate_snippets(c):
+    vim_cfg_src = os.path.join(common.ROOT_DIR, "configs", "vim")
+    snippets_dir = os.path.join(vim_cfg_src, "UltiSnips")
+
+    closer_snippets_file = os.path.join(snippets_dir, "all", "closer.snippets")
+    with open(closer_snippets_file, "w") as f:
+        f.write("# File auto-generated; DO NOT EDIT\n\n")
+        f.write("\n\n".join(snippets.same_line_closers()))
+        f.write("\n\n")
+        f.write("\n\n".join(snippets.multi_line_closers()))
+        f.write("\n\n")
+        f.write("\n\n".join(snippets.multi_line_sfx_closers()))
 
 
 @task
