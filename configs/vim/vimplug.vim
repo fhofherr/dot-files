@@ -53,7 +53,7 @@ Plug 'kristijanhusak/vim-dirvish-git'
 " Eye candy and color schemes
 Plug 'itchyny/lightline.vim'
 if dotfiles#plugin#selected('lightline.vim')
-    Plug 'mengelbrecht/lightline-bufferline'
+    "Plug 'mengelbrecht/lightline-bufferline'
 endif
 
 " I don't need all of those. But if I want to switch I want
