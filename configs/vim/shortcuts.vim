@@ -36,12 +36,3 @@ if !dotfiles#plugin#selected('vim-tmux-navigator')
     nnoremap <C-L> <C-W><C-L>
     nnoremap <C-H> <C-W><C-H>
 endif
-
-" Re-map [ to - and ] to _.
-" See https://github.com/tpope/vim-unimpaired#faq
-nmap - [
-nmap _ ]
-omap - [
-omap _ ]
-xmap - [
-xmap _ ]
