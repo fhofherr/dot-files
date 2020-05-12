@@ -1,144 +1,148 @@
-_same_line_closer_tmpl = """
-snippet {trigger} "{description}" {opts}
-{lhs}${{1}}{rhs}${{0}}
+import jinja2
+
+_closers_tmpl = jinja2.Template("""
+# File auto-generated; DO NOT EDIT
+
+global !p
+from snippets import *
+endglobal
+{% for c in closers %}
+{%- if c.context %}
+context "{{ c.context }}"
+{% else %}
+{#- add white space #}
+{% endif -%}
+snippet {{ c.trigger }} "{{ c.description }}" {{ c.opts }}
+{{ c.lhs }}${1}{{ c.rhs }}{% if c.sfx %}{{ c.sfx }}{% endif %}${0}
 endsnippet
-""".strip()
+{% endfor %}
+""".strip())
 
-_multi_line_closer_tmpl = """
-snippet {trigger} "{description}" {opts}
-{lhs}
-\t${{1}}
-{rhs}${{0}}
-endsnippet
-""".strip()
+_closer_data = [{
+    "trigger": "'",
+    "lhs": "'",
+    "rhs": "'",
+    "opts": "ie",
+    "description": "",
+    "context": "not cursor_before(snip, '\\'')",
+}, {
+    "trigger": "`",
+    "lhs": "\\`",
+    "rhs": "\\`",
+    "opts": "ie",
+    "description": "",
+    "context": "not cursor_before(snip, '`')",
+}, {
+    "trigger": '"',
+    "lhs": '"',
+    "rhs": '"',
+    "opts": "ie",
+    "description": "",
+    "context": "not cursor_before(snip, '\"')",
+}, {
+    "trigger":
+    "(",
+    "lhs":
+    "(",
+    "rhs":
+    ")",
+    "opts":
+    "ie",
+    "description":
+    "",
+    "context":
+    "not (cursor_after(snip, '((') or cursor_before(snip, ')'))"
+}, {
+    "trigger":
+    "[",
+    "lhs":
+    "[",
+    "rhs":
+    "]",
+    "opts":
+    "ie",
+    "description":
+    "",
+    "context":
+    "not (cursor_after(snip, '[[') or cursor_before(snip, ']'))"
+}, {
+    "trigger":
+    "{",
+    "lhs":
+    "\\{",
+    "rhs":
+    "\\}",
+    "opts":
+    "i",
+    "description":
+    "",
+    "context":
+    "not (cursor_after(snip, '{{') or cursor_before(snip, '}'))"
+}, {
+    "trigger": "((",
+    "lhs": "(\n\t",
+    "rhs": "\n)",
+    "opts": "ie",
+    "description": "",
+    "context": "not cursor_before(snip, ')')"
+}, {
+    "trigger": "[[",
+    "lhs": "[\n\t",
+    "rhs": "\n]",
+    "opts": "ie",
+    "description": "",
+    "context": "not cursor_before(snip, ']')"
+}, {
+    "trigger": "{{",
+    "lhs": "\\{\n\t",
+    "rhs": "\n\\}",
+    "opts": "ie",
+    "description": "",
+    "context": "not cursor_before(snip, '}')"
+}, {
+    "trigger": "(,",
+    "lhs": "(\n\t",
+    "rhs": "\n)",
+    "sfx": ",",
+    "opts": "i",
+    "description": ""
+}, {
+    "trigger": "[,",
+    "lhs": "[\n\t",
+    "rhs": "\n]",
+    "sfx": ",",
+    "opts": "i",
+    "description": ""
+}, {
+    "trigger": "{,",
+    "lhs": "\\{\n\t",
+    "rhs": "\n\\}",
+    "sfx": ",",
+    "opts": "i",
+    "description": ""
+}, {
+    "trigger": "(;",
+    "lhs": "(\n\t",
+    "rhs": "\n)",
+    "sfx": ";",
+    "opts": "i",
+    "description": ""
+}, {
+    "trigger": "[;",
+    "lhs": "[\n\t",
+    "rhs": "\n]",
+    "sfx": ";",
+    "opts": "i",
+    "description": ""
+}, {
+    "trigger": "{;",
+    "lhs": "\\{\n\t",
+    "rhs": "\n\\}",
+    "sfx": ";",
+    "opts": "i",
+    "description": ""
+}]
 
-_multi_line_sfx_closer_tmpl = """
-snippet {trigger} "{description}" {opts}
-{lhs}
-\t${{1}}
-{rhs}{sfx}${{0}}
-endsnippet
-""".strip()
 
-
-def same_line_closers():
-    data = [{
-        "trigger": "'",
-        "lhs": "'",
-        "rhs": "'",
-        "opts": "",
-        "description": ""
-    }, {
-        "trigger": "`",
-        "lhs": "\\`",
-        "rhs": "\\`",
-        "opts": "",
-        "description": ""
-    }, {
-        "trigger": '"',
-        "lhs": '"',
-        "rhs": '"',
-        "opts": "",
-        "description": ""
-    }, {
-        "trigger": "(",
-        "lhs": "(",
-        "rhs": ")",
-        "opts": "i",
-        "description": ""
-    }, {
-        "trigger": "[",
-        "lhs": "[",
-        "rhs": "]",
-        "opts": "i",
-        "description": ""
-    }, {
-        "trigger": "{",
-        "lhs": "\\{",
-        "rhs": "\\}",
-        "opts": "i",
-        "description": ""
-    }]
-    return [_same_line_closer_tmpl.format(**d) for d in data]
-
-
-def multi_line_closers():
-    data = [{
-        "trigger": '"""',
-        "lhs": '"""',
-        "rhs": '"""',
-        "opts": "",
-        "description": ""
-    }, {
-        "trigger": "'''",
-        "lhs": "'''",
-        "rhs": "'''",
-        "opts": "",
-        "description": ""
-    }, {
-        "trigger": "(>",
-        "lhs": "(",
-        "rhs": ")",
-        "opts": "",
-        "description": ""
-    }, {
-        "trigger": "[>",
-        "lhs": "[",
-        "rhs": "]",
-        "opts": "",
-        "description": ""
-    }, {
-        "trigger": "{>",
-        "lhs": "\\{",
-        "rhs": "\\}",
-        "opts": "s",
-        "description": ""
-    }]
-    return [_multi_line_closer_tmpl.format(**d) for d in data]
-
-
-def multi_line_sfx_closers():
-    data = [{
-        "trigger": "(,",
-        "lhs": "(",
-        "rhs": ")",
-        "sfx": ",",
-        "opts": "",
-        "description": ""
-    }, {
-        "trigger": "[,",
-        "lhs": "[",
-        "rhs": "]",
-        "sfx": ",",
-        "opts": "",
-        "description": ""
-    }, {
-        "trigger": "{,",
-        "lhs": "\\{",
-        "rhs": "\\}",
-        "sfx": ",",
-        "opts": "",
-        "description": ""
-    }, {
-        "trigger": "(;",
-        "lhs": "(",
-        "rhs": ")",
-        "sfx": ";",
-        "opts": "",
-        "description": ""
-    }, {
-        "trigger": "[;",
-        "lhs": "[",
-        "rhs": "]",
-        "sfx": ";",
-        "opts": "",
-        "description": ""
-    }, {
-        "trigger": "{;",
-        "lhs": "\\{",
-        "rhs": "\\}",
-        "sfx": ";",
-        "opts": "",
-        "description": ""
-    }]
-    return [_multi_line_sfx_closer_tmpl.format(**d) for d in data]
+def render_closers():
+    return _closers_tmpl.render(closers=_closer_data)

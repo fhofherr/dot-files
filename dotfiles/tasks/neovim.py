@@ -68,12 +68,7 @@ def generate_snippets(c):
 
     closer_snippets_file = os.path.join(snippets_dir, "all", "closer.snippets")
     with open(closer_snippets_file, "w") as f:
-        f.write("# File auto-generated; DO NOT EDIT\n\n")
-        f.write("\n\n".join(snippets.same_line_closers()))
-        f.write("\n\n")
-        f.write("\n\n".join(snippets.multi_line_closers()))
-        f.write("\n\n")
-        f.write("\n\n".join(snippets.multi_line_sfx_closers()))
+        f.write(snippets.render_closers())
 
 
 @task

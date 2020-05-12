@@ -13,6 +13,7 @@ python = ">=3.6, <=3.8"
 invoke = "^1.4.1"
 colorlog = "^4.1.0"
 requests = "^2.23.0"
+Jinja2 = "^2.11.2"
 
 [tool.poetry.dev-dependencies]
 tox = "^3.14.5"
