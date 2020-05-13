@@ -33,7 +33,7 @@ let g:ale_pattern_options = {
             \ }
 
 let g:ale_linters = {
-            \   'go': [ 'golangci-lint', 'golint' ],
+            \   'go': [ 'golangci-lint' ],
             \   'python': [ 'flake8' ]
             \ }
 
