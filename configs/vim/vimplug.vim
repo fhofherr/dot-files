@@ -51,6 +51,7 @@ Plug 'kylef/apiblueprint.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'justinmk/vim-dirvish'
 Plug 'kristijanhusak/vim-dirvish-git'
+Plug 'unblevable/quick-scope'
 
 " Eye candy and color schemes
 Plug 'itchyny/lightline.vim'
