@@ -20,6 +20,7 @@ call deoplete#custom#source('_', 'max_abbr_width', 0)
 
 call deoplete#custom#source('ale', 'rank', 999)
 
+call deoplete#custom#option('auto_complete_delay', 200)
 call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
 
 " Use tab to cycle through possible completion candidates.
