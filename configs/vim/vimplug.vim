@@ -119,9 +119,10 @@ if has_key(g:plugs, 'ale') && executable('buf')
     Plug 'bufbuild/vim-buf'
 endif
 
+let s:dotfiles_enable_lcn = 0
 if has('nvim-0.5')
     Plug 'neovim/nvim-lsp'
-else
+elseif s:dotfiles_enable_lcn
     Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', 'as': 'lcn' }
 endif
 

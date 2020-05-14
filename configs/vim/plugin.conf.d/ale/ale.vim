@@ -13,8 +13,6 @@ let g:did_cfg_ale = 1
 let g:ale_completion_enabled = 0
 let g:ale_sign_column_always = 1
 
-let g:ale_disable_lsp = 1
-
 " Don't lint on text changes ...
 let g:ale_lint_on_text_changed = 0
 " ... lint when leaving insert mode instead
@@ -38,6 +36,13 @@ let g:ale_linters = {
             \   'go': [ 'golangci-lint' ],
             \   'python': [ 'flake8' ]
             \ }
+
+if dotfiles#plugin#selected('lcn') || dotfiles#plugin#selected('nvim-lsp')
+    let g:ale_disable_lsp = 1
+else
+    let g:ale_linters.go = g:ale_linters.go + [ 'gopls' ]
+    let g:ale_linters.python = g:ale_linters.python + [ 'pyls' ]
+endif
 
 if executable('buf')
     let g:ale_linters['proto'] = ['buf-check-lint']
@@ -65,6 +70,18 @@ function! s:ale_update_after_manual_fix() abort
         return
     endif
     update
+    ALELint
+endfunction
+
+function! s:ale_lsp_buffer_settings() abort
+    if get(g:, 'ale_disable_lsp', 0)
+        return
+    endif
+    nnoremap <buffer> <silent> K :ALEHover<CR>
+    nnoremap <buffer> <silent> gd :ALEGoToDefinition<CR>
+    nnoremap <buffer> <silent> 1gD :ALEGoToTypeDefinition<CR>
+    nnoremap <buffer> <silent> gr :ALEFindReferences<CR>
+    nnoremap <buffer> <silent> <F2> :ALERename<CR>
 endfunction
 
 nmap <silent> <F9> :call <SID>ale_fix_manual()<CR>
@@ -72,6 +89,7 @@ nmap <silent> <F9> :call <SID>ale_fix_manual()<CR>
 augroup dotfiles_ale
     autocmd!
     autocmd User ALEFixPost call <SID>ale_update_after_manual_fix()
+    autocmd FileType * call <SID>ale_lsp_buffer_settings()
 augroup END
 
 " ---------------------------------------------------------------------------
@@ -104,6 +122,7 @@ let g:ale_go_golangci_lint_options = '--fast'
 "
 " ---------------------------------------------------------------------------
 let g:ale_python_flake8_use_global = 1
+let g:ale_python_pyls_use_global = 1
 let g:ale_python_yapf_use_global = 1
 
 " ---------------------------------------------------------------------------
