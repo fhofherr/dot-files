@@ -37,6 +37,7 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-jdaddy'
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim' " requires fugitive
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-repeat'
