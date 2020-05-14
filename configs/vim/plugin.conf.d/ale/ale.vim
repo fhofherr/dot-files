@@ -19,16 +19,18 @@ let g:ale_disable_lsp = 1
 let g:ale_lint_on_text_changed = 0
 " ... lint when leaving insert mode instead
 let g:ale_lint_on_insert_leave = 1
+" ... and when saving the file
+let g:ale_lint_on_save = 1
+
 let g:ale_pattern_options = {
             \   '\.git/index$': {
             \     'ale_enabled': 0
             \   },
             \   '\.go': {
-            \     'ale_fix_on_save': 1
+            \     'ale_enabled': 1,
             \   },
             \   '\.py': {
             \     'ale_enabled': 1,
-            \     'ale_fix_on_save': 1
             \   }
             \ }
 
@@ -46,12 +48,31 @@ let g:ale_fixers = {
             \   'python': [ 'yapf' ]
             \ }
 
-" ---------------------------------------------------------------------------
-"
-" Ansible specific settings
-"
-" ---------------------------------------------------------------------------
-let g:ale_ansible_ansible_lint_executable = g:python3_bin_dir.'/ansible-lint'
+nmap [W <Plug>(ale_first)
+nmap [w <Plug>(ale_previous)
+nmap ]w <Plug>(ale_next)
+nmap ]W <Plug>(ale_last)
+
+function! s:ale_fix_manual() abort
+    if get(g:, 'ale_fix_on_save', 0) || get(b:, 'ale_fix_on_save', 0)
+        return
+    endif
+    ALEFix
+endfunction
+
+function! s:ale_update_after_manual_fix() abort
+    if get(g:, 'ale_fix_on_save', 0) || get(b:, 'ale_fix_on_save', 0)
+        return
+    endif
+    update
+endfunction
+
+nmap <silent> <F9> :call <SID>ale_fix_manual()<CR>
+
+augroup dotfiles_ale
+    autocmd!
+    autocmd User ALEFixPost call <SID>ale_update_after_manual_fix()
+augroup END
 
 " ---------------------------------------------------------------------------
 "
@@ -66,7 +87,6 @@ let g:ale_c_parse_makefile = 1
 " Git specific settings
 "
 " ---------------------------------------------------------------------------
-let g:ale_gitcommit_gitlint_executable = g:python3_bin_dir.'/gitlint'
 let g:ale_gitcommit_gitlint_use_global = 1
 
 " ---------------------------------------------------------------------------
@@ -76,7 +96,7 @@ let g:ale_gitcommit_gitlint_use_global = 1
 " ---------------------------------------------------------------------------
 
 let g:ale_go_golangci_lint_package = 1
-let g:ale_go_golangci_lint_options = ''
+let g:ale_go_golangci_lint_options = '--fast'
 
 " ---------------------------------------------------------------------------
 "
@@ -91,5 +111,4 @@ let g:ale_python_yapf_use_global = 1
 " YAML specific settings
 "
 " ---------------------------------------------------------------------------
-let g:ale_yaml_yamllint_executable = g:python3_bin_dir.'/yamllint'
 let g:ale_yaml_yamllint_use_global = 1

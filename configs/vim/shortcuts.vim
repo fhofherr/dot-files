@@ -4,6 +4,21 @@
 "
 " ---------------------------------------------------------------------------
 
+" Somehow neovim seems to freeze when pressing an F key in insert mode.
+" We map them to a nop to stop this
+inoremap <F1> <nop>
+inoremap <F2> <nop>
+inoremap <F3> <nop>
+inoremap <F4> <nop>
+inoremap <F5> <nop>
+inoremap <F6> <nop>
+inoremap <F7> <nop>
+inoremap <F8> <nop>
+inoremap <F9> <nop>
+inoremap <F10> <nop>
+inoremap <F11> <nop>
+inoremap <F12> <nop>
+
 let mapleader = ' '
 let maplocalleader = ' '
 
