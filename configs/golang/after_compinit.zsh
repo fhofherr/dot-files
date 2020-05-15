@@ -54,6 +54,27 @@ function godoc-serve {
     eval "$docker run --rm --env GOPATH=/tmp/go $volflag --publish 127.0.0.1:$port:$port golang bash -c 'go get golang.org/x/tools/cmd/godoc && echo http://localhost:$port/$modpath && /tmp/go/bin/godoc -http=:$port'"
 }
 
+function go-outdated {
+    local go_mod_outdated go
+
+    go="$(command -v go 2> /dev/null)"
+    if [ -z "$go" ]; then
+        echo "go not installed"
+    fi
+
+    go_mod_outdated="$(command -v go-mod-outdated 2> /dev/null)"
+    if [ -z "$go_mod_outdated" ]; then
+        echo "go-mod-outdated not installed"
+    fi
+
+    if [ "$1" = "help" ]; then
+        "$go_mod_outdated" -help
+        return 0
+    fi
+
+    "$go" list -u -m -json all | "$go_mod_outdated" "$@"
+}
+
 export GOPROXY
 if [ -d "$GOBIN" ]; then
     export GOBIN
