@@ -77,6 +77,8 @@ function! s:ale_lsp_buffer_settings() abort
     if get(g:, 'ale_disable_lsp', 0)
         return
     endif
+    setlocal omnifunc=ale#completion#OmniFunc
+
     nnoremap <buffer> <silent> K :ALEHover<CR>
     nnoremap <buffer> <silent> gd :ALEGoToDefinition<CR>
     nnoremap <buffer> <silent> 1gD :ALEGoToTypeDefinition<CR>
@@ -89,7 +91,7 @@ nmap <silent> <F9> :call <SID>ale_fix_manual()<CR>
 augroup dotfiles_ale
     autocmd!
     autocmd User ALEFixPost call <SID>ale_update_after_manual_fix()
-    autocmd FileType * call <SID>ale_lsp_buffer_settings()
+    autocmd FileType go,python call <SID>ale_lsp_buffer_settings()
 augroup END
 
 " ---------------------------------------------------------------------------
