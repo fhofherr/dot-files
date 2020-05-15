@@ -37,6 +37,11 @@ let g:ale_linters = {
             \   'python': [ 'flake8' ]
             \ }
 
+let g:ale_fixers = {
+            \   'go': [ 'goimports' ],
+            \   'python': [ 'yapf' ]
+            \ }
+
 if dotfiles#plugin#selected('lcn') || dotfiles#plugin#selected('nvim-lsp')
     let g:ale_disable_lsp = 1
 else
@@ -47,11 +52,6 @@ endif
 if executable('buf')
     let g:ale_linters['proto'] = ['buf-check-lint']
 endif
-
-let g:ale_fixers = {
-            \   'go': [ 'goimports' ],
-            \   'python': [ 'yapf' ]
-            \ }
 
 nmap [W <Plug>(ale_first)
 nmap [w <Plug>(ale_previous)
