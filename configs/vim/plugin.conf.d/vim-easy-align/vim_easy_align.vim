@@ -1,4 +1,4 @@
-if !dotfiles#plugin#load_config('vim-easy-align') || exists('g:did_cfg_vim_easy_align')
+if !dotfiles#plugin#selected('vim-easy-align') || exists('g:did_cfg_vim_easy_align')
     finish
 endif
 let g:did_cfg_vim_easy_align = 1

@@ -21,15 +21,9 @@ if has('nvim') && exists("$DOTFILES_NEOVIM_PYTHON3")
 endif
 
 " ---------------------------------------------------------------------------
-" neovim-remote settings
+" Load vimplug configuration
 " ---------------------------------------------------------------------------
-if has('nvim') && executable('nvr')
-    let $EDITOR = 'nvr -cc split --remote-wait'
-    let $GIT_EDITOR = 'nvr -cc split --remote-wait'
-    augroup dotfiles_nvr
-        autocmd FileType gitcommit,gitrebase,gitconfig setlocal bufhidden=delete
-    augroup END
-endif
+source $VIMHOME/vimplug.vim
 
 " ---------------------------------------------------------------------------
 " General settings
@@ -80,6 +74,9 @@ set diffopt=filler,vertical
 set ignorecase
 set smartcase
 
+let mapleader = ' '
+let maplocalleader = ' '
+
 augroup dotfiles_vim_init
     autocmd!
 
@@ -110,8 +107,12 @@ set foldnestmax=3    " three fold levels should be enough for most of our needs
                      " we can always add more on a filetype specific level.
 
 " ---------------------------------------------------------------------------
-" Source other files
+" neovim-remote settings
 " ---------------------------------------------------------------------------
-
-source $VIMHOME/shortcuts.vim
-source $VIMHOME/vimplug.vim
+if has('nvim') && executable('nvr')
+    let $EDITOR = 'nvr -cc split --remote-wait'
+    let $GIT_EDITOR = 'nvr -cc split --remote-wait'
+    augroup dotfiles_nvr
+        autocmd FileType gitcommit,gitrebase,gitconfig setlocal bufhidden=delete
+    augroup END
+endif
