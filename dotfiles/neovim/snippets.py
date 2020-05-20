@@ -13,132 +13,45 @@ context "{{ c.context }}"
 {#- add white space #}
 {% endif -%}
 snippet {{ c.trigger }} "{{ c.description }}" {{ c.opts }}
-{{ c.lhs }}${1}{{ c.rhs }}{% if c.sfx %}{{ c.sfx }}{% endif %}${0}
+{{ c.lhs }}${1}{{ c.rhs }}${0}
 endsnippet
 {% endfor %}
 """.strip())
 
 _closer_data = [{
-    "trigger": "'",
-    "lhs": "'",
-    "rhs": "'",
-    "opts": "ie",
-    "description": "",
-    "context": "not cursor_before(snip, '\\'')",
-}, {
-    "trigger": "`",
-    "lhs": "\\`",
-    "rhs": "\\`",
-    "opts": "ie",
-    "description": "",
-    "context": "not cursor_before(snip, '`')",
-}, {
-    "trigger": '"',
-    "lhs": '"',
-    "rhs": '"',
-    "opts": "ie",
-    "description": "",
-    "context": "not cursor_before(snip, '\"')",
-}, {
-    "trigger":
-    "(",
-    "lhs":
-    "(",
-    "rhs":
-    ")",
-    "opts":
-    "ie",
-    "description":
-    "",
-    "context":
-    "not (cursor_after(snip, '((') or cursor_before(snip, ')'))"
-}, {
-    "trigger":
-    "[",
-    "lhs":
-    "[",
-    "rhs":
-    "]",
-    "opts":
-    "ie",
-    "description":
-    "",
-    "context":
-    "not (cursor_after(snip, '[[') or cursor_before(snip, ']'))"
-}, {
-    "trigger":
-    "{",
-    "lhs":
-    "\\{",
-    "rhs":
-    "\\}",
-    "opts":
-    "i",
-    "description":
-    "",
-    "context":
-    "not (cursor_after(snip, '{{') or cursor_before(snip, '}'))"
-}, {
-    "trigger": "((",
+    "trigger": "),",
     "lhs": "(\n\t",
-    "rhs": "\n)",
-    "opts": "ie",
-    "description": "",
-    "context": "not cursor_before(snip, ')')"
+    "rhs": "\n),",
+    "opts": "i",
+    "description": ""
 }, {
-    "trigger": "[[",
+    "trigger": "],",
     "lhs": "[\n\t",
-    "rhs": "\n]",
-    "opts": "ie",
-    "description": "",
-    "context": "not cursor_before(snip, ']')"
+    "rhs": "\n],",
+    "opts": "i",
+    "description": ""
 }, {
-    "trigger": "{{",
+    "trigger": "},",
     "lhs": "\\{\n\t",
-    "rhs": "\n\\}",
-    "opts": "ie",
-    "description": "",
-    "context": "not cursor_before(snip, '}')"
+    "rhs": "\n\\},",
+    "opts": "i",
+    "description": ""
 }, {
-    "trigger": "(,",
+    "trigger": ");",
     "lhs": "(\n\t",
-    "rhs": "\n)",
-    "sfx": ",",
+    "rhs": "\n);",
     "opts": "i",
     "description": ""
 }, {
-    "trigger": "[,",
+    "trigger": "];",
     "lhs": "[\n\t",
-    "rhs": "\n]",
-    "sfx": ",",
+    "rhs": "\n];",
     "opts": "i",
     "description": ""
 }, {
-    "trigger": "{,",
+    "trigger": "};",
     "lhs": "\\{\n\t",
-    "rhs": "\n\\}",
-    "sfx": ",",
-    "opts": "i",
-    "description": ""
-}, {
-    "trigger": "(;",
-    "lhs": "(\n\t",
-    "rhs": "\n)",
-    "sfx": ";",
-    "opts": "i",
-    "description": ""
-}, {
-    "trigger": "[;",
-    "lhs": "[\n\t",
-    "rhs": "\n]",
-    "sfx": ";",
-    "opts": "i",
-    "description": ""
-}, {
-    "trigger": "{;",
-    "lhs": "\\{\n\t",
-    "rhs": "\n\\}",
-    "sfx": ";",
+    "rhs": "\n\\};",
     "opts": "i",
     "description": ""
 }]

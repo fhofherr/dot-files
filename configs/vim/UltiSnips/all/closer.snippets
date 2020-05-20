@@ -4,88 +4,37 @@ global !p
 from snippets import *
 endglobal
 
-context "not cursor_before(snip, '\'')"
-snippet ' "" ie
-'${1}'${0}
-endsnippet
-
-context "not cursor_before(snip, '`')"
-snippet ` "" ie
-\`${1}\`${0}
-endsnippet
-
-context "not cursor_before(snip, '"')"
-snippet " "" ie
-"${1}"${0}
-endsnippet
-
-context "not (cursor_after(snip, '((') or cursor_before(snip, ')'))"
-snippet ( "" ie
-(${1})${0}
-endsnippet
-
-context "not (cursor_after(snip, '[[') or cursor_before(snip, ']'))"
-snippet [ "" ie
-[${1}]${0}
-endsnippet
-
-context "not (cursor_after(snip, '{{') or cursor_before(snip, '}'))"
-snippet { "" i
-\{${1}\}${0}
-endsnippet
-
-context "not cursor_before(snip, ')')"
-snippet (( "" ie
-(
-	${1}
-)${0}
-endsnippet
-
-context "not cursor_before(snip, ']')"
-snippet [[ "" ie
-[
-	${1}
-]${0}
-endsnippet
-
-context "not cursor_before(snip, '}')"
-snippet {{ "" ie
-\{
-	${1}
-\}${0}
-endsnippet
-
-snippet (, "" i
+snippet ), "" i
 (
 	${1}
 ),${0}
 endsnippet
 
-snippet [, "" i
+snippet ], "" i
 [
 	${1}
 ],${0}
 endsnippet
 
-snippet {, "" i
+snippet }, "" i
 \{
 	${1}
 \},${0}
 endsnippet
 
-snippet (; "" i
+snippet ); "" i
 (
 	${1}
 );${0}
 endsnippet
 
-snippet [; "" i
+snippet ]; "" i
 [
 	${1}
 ];${0}
 endsnippet
 
-snippet {; "" i
+snippet }; "" i
 \{
 	${1}
 \};${0}
