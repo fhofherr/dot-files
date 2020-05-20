@@ -23,6 +23,9 @@ endif
 " ---------------------------------------------------------------------------
 " Load vimplug configuration
 " ---------------------------------------------------------------------------
+let mapleader = ' '
+let maplocalleader = ' '
+
 source $VIMHOME/vimplug.vim
 
 " ---------------------------------------------------------------------------
@@ -73,9 +76,6 @@ set diffopt=filler,vertical
 " letter included.
 set ignorecase
 set smartcase
-
-let mapleader = ' '
-let maplocalleader = ' '
 
 augroup dotfiles_vim_init
     autocmd!
