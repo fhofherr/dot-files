@@ -268,7 +268,7 @@ schemes:
       cyan:    '#95c4ce'
       white:   '#d2d4de'
 
-colors: *gruvbox-dark
+colors: *iceberg
 
 # Visual Bell
 #

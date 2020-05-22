@@ -18,7 +18,8 @@ Plug 'hashivim/vim-terraform'
 Plug 'janko/vim-test'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'simnalamburt/vim-mundo'
+" Plug 'simnalamburt/vim-mundo'
+Plug 'mbbill/undotree'
 Plug 'mattn/vim-goaddtags'
 Plug 'mhinz/vim-grepper'
 Plug 'mhinz/vim-signify'
@@ -66,10 +67,10 @@ endif
 " Plug 'ayu-theme/ayu-vim'
 " Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 " Plug 'chriskempson/base16-vim'
-" Plug 'cocopon/iceberg.vim'
-"  Plug 'drewtempelmeyer/palenight.vim'
-"  Plug 'dracula/vim', {'as': 'dracula'}
-Plug 'gruvbox-community/gruvbox'
+Plug 'cocopon/iceberg.vim'
+" Plug 'drewtempelmeyer/palenight.vim'
+" Plug 'dracula/vim', {'as': 'dracula'}
+" Plug 'gruvbox-community/gruvbox'
 "  Plug 'sonph/onehalf', {'rtp': 'vim'}
 
 " Some plugins require Python 3 to work properly.
