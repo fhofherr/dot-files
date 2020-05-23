@@ -22,7 +22,8 @@ THIRD_PARTY_DEV_TOOLS = [
     "github.com/go-delve/delve/cmd/dlv@latest",
     "github.com/aarzilli/gdlv@latest",
     "github.com/psampaz/go-mod-outdated@latest",
-    "github.com/fatih/gomodifytags@latest"
+    "github.com/fatih/gomodifytags@latest",
+    "github.com/goreleaser/goreleaser"
 ]
 
 
