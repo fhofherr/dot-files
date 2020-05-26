@@ -14,4 +14,4 @@ command TTerm :tab :Tnew
 
 nnoremap <leader>st :STerm<CR>
 nnoremap <leader>vt :VTerm<CR>
-nnoremap <leader>tt :Tnew<CR>
+nnoremap <leader>tt :TTerm<CR>

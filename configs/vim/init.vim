@@ -107,12 +107,19 @@ set foldnestmax=3    " three fold levels should be enough for most of our needs
                      " we can always add more on a filetype specific level.
 
 " ---------------------------------------------------------------------------
-" neovim-remote settings
+" terminal and neovim-remote settings
 " ---------------------------------------------------------------------------
 if has('nvim') && executable('nvr')
     let $EDITOR = 'nvr -cc split --remote-wait'
     let $GIT_EDITOR = 'nvr -cc split --remote-wait'
     augroup dotfiles_nvr
+        autocmd!
         autocmd FileType gitcommit,gitrebase,gitconfig setlocal bufhidden=delete
     augroup END
 endif
+
+augroup dotfiles_nvim_terminal
+    autocmd!
+    " enter insert mode whenever we're in a terminal
+	autocmd TermOpen,BufWinEnter,BufEnter term://* startinsert
+augroup END
