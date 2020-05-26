@@ -55,6 +55,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'justinmk/vim-dirvish'
 Plug 'kristijanhusak/vim-dirvish-git'
 " Plug 'unblevable/quick-scope'
+Plug 'szw/vim-maximizer'
 
 " Eye candy and color schemes
 Plug 'itchyny/lightline.vim'
