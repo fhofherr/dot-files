@@ -12,6 +12,7 @@ command STerm :botright :Tnew
 command VTerm :vertical :Tnew
 command TTerm :tab :Tnew
 
+nnoremap <leader>nt :Tnew<CR>
 nnoremap <leader>st :STerm<CR>
 nnoremap <leader>vt :VTerm<CR>
 nnoremap <leader>tt :TTerm<CR>
