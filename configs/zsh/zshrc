@@ -2,6 +2,8 @@ if [ -z "$DOTFILES_ZSH_DID_INIT" ]; then
     source "$HOME/.zsh_dotfiles_init"
 fi
 
+setopt HISTIGNORESPACE
+
 source "$DOTFILES_ZSH_LOCAL_ENV"
 source "$DOTFILES_ZSH_LOCAL_ALIASES"
 
