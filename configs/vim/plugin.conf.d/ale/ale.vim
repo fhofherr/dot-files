@@ -17,6 +17,7 @@ let g:ale_sign_column_always = 1
 let g:ale_lint_on_text_changed = 0
 " ... lint when leaving insert mode instead
 let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_enter = 1
 " ... and when saving the file
 let g:ale_lint_on_save = 1
 
@@ -33,7 +34,7 @@ let g:ale_pattern_options = {
             \ }
 
 let g:ale_linters = {
-            \   'go': [ 'golangci-lint' ],
+            \   'go': [ 'gobuild', 'golangci-lint' ],
             \   'python': [ 'flake8' ]
             \ }
 
