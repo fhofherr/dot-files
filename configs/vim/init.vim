@@ -77,17 +77,17 @@ set diffopt=filler,vertical
 set ignorecase
 set smartcase
 
-augroup dotfiles_vim_init
-    autocmd!
-
-    " When editing a file, always jump to the last known cursor position.
-    " Don't do it when the position is invalid or when inside an event handler
-    " (happens when dropping a file on gvim).
-    autocmd BufReadPost *
-                \ if line("'\"") > 0 && line("'\"") <= line("$") |
-                \   exe "normal g`\"" |
-                \ endif
-augroup end
+" augroup dotfiles_vim_init
+"     autocmd!
+"
+"     " When editing a file, always jump to the last known cursor position.
+"     " Don't do it when the position is invalid or when inside an event handler
+"     " (happens when dropping a file on gvim).
+"     autocmd BufReadPost *
+"                 \ if line("'\"") > 0 && line("'\"") <= line("$") |
+"                 \   exe "normal g`\"" |
+"                 \ endif
+" augroup end
 
 " ---------------------------------------------------------------------------
 " Color settings
