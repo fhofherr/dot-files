@@ -19,37 +19,37 @@ endsnippet
 """.strip())
 
 _closer_data = [{
-    "trigger": "),",
+    "trigger": ",)",
     "lhs": "(\n\t",
     "rhs": "\n),",
     "opts": "i",
     "description": ""
 }, {
-    "trigger": "],",
+    "trigger": ",]",
     "lhs": "[\n\t",
     "rhs": "\n],",
     "opts": "i",
     "description": ""
 }, {
-    "trigger": "},",
+    "trigger": ",}",
     "lhs": "\\{\n\t",
     "rhs": "\n\\},",
     "opts": "i",
     "description": ""
 }, {
-    "trigger": ");",
+    "trigger": ";)",
     "lhs": "(\n\t",
     "rhs": "\n);",
     "opts": "i",
     "description": ""
 }, {
-    "trigger": "];",
+    "trigger": ";]",
     "lhs": "[\n\t",
     "rhs": "\n];",
     "opts": "i",
     "description": ""
 }, {
-    "trigger": "};",
+    "trigger": ";}",
     "lhs": "\\{\n\t",
     "rhs": "\n\\};",
     "opts": "i",
