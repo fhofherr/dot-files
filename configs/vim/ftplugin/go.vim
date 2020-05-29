@@ -5,6 +5,6 @@ let b:dotfiles_did_go_ftplugin = 1
 
 let g:go_highlight_trailing_whitespace_error = 0
 
-setlocal formatoptions+=r spell spelllang=en_us foldmethod=indent foldnestmax=2
+setlocal formatoptions+=r spell spelllang=en_us foldmethod=indent foldnestmax=3
 
 " vim: sw=2 sts=2 et
