@@ -29,7 +29,6 @@ Plug 'nelstrom/vim-visual-star-search'
 " Plug 'reedes/vim-lexical'
 " Plug 'reedes/vim-pencil'
 " Plug 'reedes/vim-wordy'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
@@ -109,11 +108,25 @@ if executable('go')
     Plug 'sebdah/vim-delve'
 endif
 
-" Deoplete extensions
-if has_key(g:plugs, 'deoplete.nvim')
+
+Plug 'prabirshrestha/asyncomplete.vim'
+if dotfiles#plugin#selected('asyncomplete.vim')
+    Plug 'prabirshrestha/asyncomplete-buffer.vim'
+    Plug 'prabirshrestha/asyncomplete-file.vim'
+    Plug 'yami-beta/asyncomplete-omni.vim'
+    Plug 'prabirshrestha/asyncomplete-necovim.vim'
+    Plug 'prabirshrestha/asyncomplete-tags.vim'
+
+    if dotfiles#plugin#selected('ultisnips')
+        Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+    endif
+endif
+
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+if dotfiles#plugin#selected('deoplete.nvim')
     Plug 'Shougo/neco-vim'
 
-    if !has_key(g:plugs,  'lcn') && (executable('python') || executable('python3'))
+    if !dotfiles#plugin#selected('lcn') && (executable('python') || executable('python3'))
         Plug 'deoplete-plugins/deoplete-jedi'
     endif
 endif

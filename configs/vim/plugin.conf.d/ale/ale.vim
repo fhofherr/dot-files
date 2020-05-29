@@ -10,7 +10,10 @@ let g:did_cfg_ale = 1
 
 " Disable ALE completion, we use deoplete for that
 " See: https://github.com/dense-analysis/ale#2iii-completion
-let g:ale_completion_enabled = 0
+if dotfiles#plugin#selected('deoplete') || dotfiles#plugin#selected('asyncomplete.vim')
+    let g:ale_completion_enabled = 0
+endif
+
 let g:ale_sign_column_always = 1
 
 " Don't lint on text changes ...
@@ -78,7 +81,7 @@ function! s:ale_lsp_buffer_settings() abort
     if get(g:, 'ale_disable_lsp', 0)
         return
     endif
-    setlocal omnifunc=ale#completion#OmniFunc
+    " setlocal omnifunc=ale#completion#OmniFunc
 
     nnoremap <buffer> <silent> K :ALEHover<CR>
     nnoremap <buffer> <silent> gd :ALEGoToDefinition<CR>
