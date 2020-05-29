@@ -4,4 +4,4 @@ endif
 let g:did_cfg_vim_maximizer = 1
 
  let g:maximizer_set_mapping_with_bang = 1
- let g:maximizer_default_mapping_key = '<F2>'
+ let g:maximizer_default_mapping_key = '<F3>'

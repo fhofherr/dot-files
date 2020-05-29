@@ -10,7 +10,9 @@ let g:did_cfg_ale = 1
 
 " Disable ALE completion, we use deoplete for that
 " See: https://github.com/dense-analysis/ale#2iii-completion
-if dotfiles#plugin#selected('deoplete') || dotfiles#plugin#selected('asyncomplete.vim')
+if dotfiles#plugin#selected('deoplete')
+            \ || dotfiles#plugin#selected('asyncomplete.vim')
+            \ || dotfiles#plugin#selected('asyncomplete-lsp.vim')
     let g:ale_completion_enabled = 0
 endif
 
@@ -46,7 +48,7 @@ let g:ale_fixers = {
             \   'python': [ 'yapf' ]
             \ }
 
-if dotfiles#plugin#selected('lcn') || dotfiles#plugin#selected('nvim-lsp')
+if dotfiles#plugin#selected('lcn') || dotfiles#plugin#selected('nvim-lsp') || dotfiles#plugin#selected('vim-lsp')
     let g:ale_disable_lsp = 1
 else
     let g:ale_linters.go = g:ale_linters.go + [ 'gopls' ]

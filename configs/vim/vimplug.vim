@@ -108,14 +108,31 @@ if executable('go')
     Plug 'sebdah/vim-delve'
 endif
 
+let s:use_built_in_lsp = v:false
+if has('nvim-0.5') && s:use_built_in_lsp
+    Plug 'neovim/nvim-lsp'
+else
+    " Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', 'as': 'lcn' }
+
+    Plug 'prabirshrestha/async.vim'
+    Plug 'prabirshrestha/vim-lsp'
+    Plug 'mattn/vim-lsp-settings'
+endif
 
 Plug 'prabirshrestha/asyncomplete.vim'
 if dotfiles#plugin#selected('asyncomplete.vim')
     Plug 'prabirshrestha/asyncomplete-buffer.vim'
     Plug 'prabirshrestha/asyncomplete-file.vim'
     Plug 'yami-beta/asyncomplete-omni.vim'
+
+    Plug 'Shougo/neco-vim'
     Plug 'prabirshrestha/asyncomplete-necovim.vim'
+
     Plug 'prabirshrestha/asyncomplete-tags.vim'
+
+    if dotfiles#plugin#selected('vim-lsp')
+        Plug 'prabirshrestha/asyncomplete-lsp.vim'
+    endif
 
     if dotfiles#plugin#selected('ultisnips')
         Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
@@ -129,23 +146,13 @@ if dotfiles#plugin#selected('deoplete.nvim')
     if !dotfiles#plugin#selected('lcn') && (executable('python') || executable('python3'))
         Plug 'deoplete-plugins/deoplete-jedi'
     endif
+
+    Plug 'Shougo/echodoc.vim'
+    Plug 'Shougo/context_filetype.vim'
 endif
 
 if has_key(g:plugs, 'ale') && executable('buf')
     Plug 'bufbuild/vim-buf'
-endif
-
-let s:dotfiles_enable_lcn = 0
-if has('nvim-0.5')
-    Plug 'neovim/nvim-lsp'
-elseif s:dotfiles_enable_lcn
-    Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', 'as': 'lcn' }
-endif
-
-
-Plug 'Shougo/echodoc.vim'
-if dotfiles#plugin#selected('echodoc.vim')
-    Plug 'Shougo/context_filetype.vim'
 endif
 
 call plug#end()
