@@ -118,8 +118,8 @@ if has('nvim') && executable('nvr')
     augroup END
 endif
 
-augroup dotfiles_nvim_terminal
-    autocmd!
-    " enter insert mode whenever we're in a terminal
-	autocmd TermOpen,BufWinEnter,BufEnter term://* startinsert
-augroup END
+" augroup dotfiles_nvim_terminal
+"     autocmd!
+"     " enter insert mode whenever we're in a terminal
+" 	autocmd TermOpen,BufWinEnter,BufEnter term://* startinsert
+" augroup END

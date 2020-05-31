@@ -4,7 +4,7 @@ endif
 let g:did_cfg_neoterm = 1
 
 " let g:neoterm_default_mod = ':tab'
-let g:neoterm_autoinsert = 1
+let g:neoterm_autoinsert = 0
 
 " split-term.vim compatibility
 command Term :botright :Tnew
