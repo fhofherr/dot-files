@@ -24,6 +24,9 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " Trigger manual completion using c-space
 imap <c-space> <Plug>(asyncomplete_force_refresh)
 
+inoremap <expr> <C-y> pumvisible() ? asyncomplete#close_popup() : "\<C-y>"
+inoremap <expr> <C-e> pumvisible() ? asyncomplete#cancel_popup() : "\<C-e>"
+
 function s:configure_asyncomplete()
     if dotfiles#plugin#selected('ale')
         call asyncomplete#register_source(asyncomplete#sources#ale#get_source_options({
@@ -86,7 +89,7 @@ augroup dotfiles_asyncomplete
     autocmd!
 
     " Auto-close preview window after completion
-    autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
+    autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
     autocmd User asyncomplete_setup call <SID>configure_asyncomplete()
 augroup END
