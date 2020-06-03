@@ -10,21 +10,23 @@ let g:asyncomplete_popup_delay = 15
 let g:asyncomplete_auto_completeopt = 0
 set completeopt=menuone,noinsert,noselect,preview
 
+function! s:check_back_space() abort "{{{
+    let l:col = col('.') - 1
+    return !l:col || getline('.')[l:col - 1]  =~ '\s'
+endfunction"}}}
+
 inoremap <silent><expr> <TAB>
     \ pumvisible() ? "\<C-n>" :
     \ <SID>check_back_space() ? "\<TAB>" :
     \ asyncomplete#force_refresh()
 
-function! s:check_back_space() abort "{{{
-    let l:col = col('.') - 1
-    return !l:col || getline('.')[l:col - 1]  =~ '\s'
-endfunction"}}}
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " Trigger manual completion using c-space
 imap <c-space> <Plug>(asyncomplete_force_refresh)
 
 inoremap <expr> <C-y> pumvisible() ? asyncomplete#close_popup() : "\<C-y>"
+inoremap <expr> <CR> pumvisible() ? asyncomplete#close_popup() : "\<CR>"
 inoremap <expr> <C-e> pumvisible() ? asyncomplete#cancel_popup() : "\<C-e>"
 
 function s:configure_asyncomplete()

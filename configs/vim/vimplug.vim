@@ -69,7 +69,7 @@ Plug 'honza/vim-snippets'
 " Programming {{{
 Plug 'vim-test/vim-test'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-endwise'
+" Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-jdaddy'
 Plug 'tpope/vim-projectionist'
 
