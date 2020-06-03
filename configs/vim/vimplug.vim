@@ -67,7 +67,7 @@ Plug 'honza/vim-snippets'
 " }}}
 
 " Programming {{{
-Plug 'janko/vim-test'
+Plug 'vim-test/vim-test'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-jdaddy'
