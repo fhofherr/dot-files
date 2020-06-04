@@ -7,7 +7,7 @@ from invoke import task
 from dotfiles import common, logging, state, fs, git
 from dotfiles.tasks import pipx
 
-from dotfiles.neovim import snippets
+from dotfiles.neovim.snippets import closers
 
 _LOG = logging.get_logger(__name__)
 
@@ -68,7 +68,7 @@ def generate_snippets(c):
 
     closer_snippets_file = os.path.join(snippets_dir, "all", "closer.snippets")
     with open(closer_snippets_file, "w") as f:
-        f.write(snippets.render_closers())
+        f.write(closers.render())
 
 
 @task

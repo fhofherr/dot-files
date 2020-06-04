@@ -1,4 +1,4 @@
-def cursor_after(snip, s):
+def after(snip, s):
     line = snip.buffer[snip.line]
     col = snip.column
     try:
@@ -7,7 +7,7 @@ def cursor_after(snip, s):
         return False
 
 
-def cursor_before(snip, s):
+def before(snip, s):
     line = snip.buffer[snip.line]
     col = snip.column
     try:
