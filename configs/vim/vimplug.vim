@@ -63,7 +63,7 @@ Plug 'junegunn/gv.vim' " requires fugitive
 
 " Snippets {{{
 Plug 'sirver/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'honza/vim-snippets'
 " }}}
 
 " Programming {{{
