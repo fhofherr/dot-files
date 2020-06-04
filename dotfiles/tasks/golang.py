@@ -57,8 +57,9 @@ def update_dev_tools(c, home_dir=common.HOME_DIR, go_cmd="go"):
 
 @task
 def configure(c, home_dir=common.HOME_DIR):
+    go_utils_dir = os.path.join(common.ROOT_DIR, "configs", "golang", "bin")
     go_tools_state = state.State(name="go_tools")
-    go_tools_state.put_env("PATH", _go_bin_dir(home_dir))
+    go_tools_state.put_env("PATH", f"{_go_bin_dir(home_dir)}:{go_utils_dir}")
 
     golang_after_compinit = os.path.join(common.ROOT_DIR, "configs", "golang",
                                          "after_compinit.zsh")

@@ -96,9 +96,9 @@ class AggregatedState:
             if "PATH" in state.env:
                 value = state.env["PATH"]
                 if type(value) is dict:
-                    path.add(value["value"])
-                else:
-                    path.add(state.env["PATH"])
+                    value = value["value"]
+                for v in value.split(os.pathsep):
+                    path.add(v)
             for k, v in state.env.items():
                 if k == "PATH":
                     # Skip PATH as it received special treatment above
