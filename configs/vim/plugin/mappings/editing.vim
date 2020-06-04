@@ -10,4 +10,4 @@
 " inoremap [ []<C-G>U<left>
 " inoremap { {}<C-G>U<left>
 
-inoremap <M-CR> <CR><C-O>O
+inoremap <C-CR> <CR><C-O>O
