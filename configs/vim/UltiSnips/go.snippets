@@ -22,6 +22,12 @@ snippet pkg "add a package line" b
 ${0}
 endsnippet
 
+# Source: https://github.com/honza/vim-snippets/blob/master/UltiSnips/go.snippets
+# but without b option.
+snippet map "Map type"
+map[${1:keytype}]${2:valtype}
+endsnippet
+
 snippet tf "test function" t
 func Test${1:Name}(t *testing.T) {
 	${2:body}
