@@ -13,7 +13,7 @@ function! s:lsp_buffer_settings() abort
     endif
 
     nmap <buffer> <silent> K <Plug>(lsp-hover)
-    nmap <buffer> <silent> <c-k> <Plug>(lsp-signature-help)
+    nmap <buffer> <silent> <c-s> <Plug>(lsp-signature-help)
     nmap <buffer> <silent> gd <Plug>(lsp-definition)
     nmap <buffer> <silent> 1gD <Plug>(lsp-type-definition)
     nmap <buffer> <silent> gr <Plug>(lsp-references)
