@@ -10,10 +10,10 @@ nmap <silent> <F11> :UndotreeToggle<cr>
 " Enable persistent undo for most files. See :h persistent-undo for more info.
 " This is actually a vim feature. But we keep the config in the undotree file
 " as it is closely related.
-set undofile
-augroup dotfiles_undotree
-    autocmd!
+" set undofile
+" augroup dotfiles_undotree
+"     autocmd!
 
-    autocmd BufWritePre /tmp/* setlocal noundofile
-    autocmd FileType gitcommit setlocal noundofile
-augroup END
+"     autocmd BufWritePre /tmp/* setlocal noundofile
+"     autocmd FileType gitcommit setlocal noundofile
+" augroup END
