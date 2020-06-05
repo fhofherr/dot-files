@@ -23,7 +23,8 @@ THIRD_PARTY_DEV_TOOLS = [
     "github.com/aarzilli/gdlv@latest",
     "github.com/psampaz/go-mod-outdated@latest",
     "github.com/fatih/gomodifytags@latest",
-    "github.com/goreleaser/goreleaser"
+    "github.com/goreleaser/goreleaser@latest",
+    " github.com/mgechev/revive@latest"
 ]
 
 
