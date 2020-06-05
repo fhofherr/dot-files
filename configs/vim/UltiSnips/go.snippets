@@ -2,6 +2,10 @@ global !p
 import snippets.go as go
 endglobal
 
+snippet *t "Create *testing.T" i
+t *testing.T
+endsnippet
+
 snippet fortt "iterate over tests" t
 for _, tt := range ${1:tests} {
 	tt := tt
@@ -24,7 +28,7 @@ endsnippet
 
 # Source: https://github.com/honza/vim-snippets/blob/master/UltiSnips/go.snippets
 # but without b option.
-snippet map "Map type"
+snippet map "Map type" i
 map[${1:keytype}]${2:valtype}
 endsnippet
 
