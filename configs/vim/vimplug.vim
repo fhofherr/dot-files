@@ -49,6 +49,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-dirvish'
 Plug 'kristijanhusak/vim-dirvish-git'
 Plug 'szw/vim-maximizer'
+Plug 'wesQ3/vim-windowswap'
 
 Plug 'mhinz/vim-grepper'
 Plug 'nelstrom/vim-visual-star-search'
