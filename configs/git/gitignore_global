@@ -17,6 +17,8 @@ Thumbs.db
 
 # Tool generated files #
 ########################
+__pycache__/
+*.pyc
 .idea/
 *.iml
 .lsp/
