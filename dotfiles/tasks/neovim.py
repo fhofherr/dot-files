@@ -15,6 +15,8 @@ PYTHON_TOOLS_AND_LINTERS = [
     "ansible-lint", "gitlint", "neovim-remote", "yamllint"
 ]
 
+PYTHON_PACKAGES = ["pynvim"]
+
 
 @task
 def update(c, home_dir=common.HOME_DIR, reconfigure=False):
@@ -23,8 +25,9 @@ def update(c, home_dir=common.HOME_DIR, reconfigure=False):
         _LOG.warn("neovim is not installed")
         return
 
-    c.run(f"{pip_cmd} install --upgrade pip")
-    c.run(f"{pip_cmd} install --upgrade pynvim")
+    pip_install(c, pip_cmd, "pip")
+    for pkg in PYTHON_PACKAGES:
+        pip_install(c, pip_cmd, pkg)
 
     for tool in PYTHON_TOOLS_AND_LINTERS:
         pipx.upgrade_pkg(c, tool, home_dir=home_dir)
@@ -43,8 +46,9 @@ def install(c, home_dir=common.HOME_DIR, install_nvim_plugins=False):
     pip_cmd = venv_pip_path(home_dir, mkdir=True, recreate=True)
     python_cmd = venv_python_path(home_dir)
 
-    c.run(f"{pip_cmd} install --upgrade pip")
-    c.run(f"{pip_cmd} install --upgrade pynvim")
+    pip_install(c, pip_cmd, "pip")
+    for pkg in PYTHON_PACKAGES:
+        pip_install(c, pip_cmd, pkg)
 
     for tool in PYTHON_TOOLS_AND_LINTERS:
         pipx.install_pkg(c, tool, home_dir=home_dir)
@@ -136,3 +140,7 @@ def venv_python_path(home_dir, mkdir=False, recreate=False):
 def venv_pip_path(home_dir, mkdir=False, recreate=False):
     bin_dir = venv_bin_dir_path(home_dir, mkdir=mkdir, recreate=recreate)
     return os.path.join(bin_dir, "pip")
+
+
+def pip_install(c, pip_cmd, pkg):
+    c.run(f"{pip_cmd} install --upgrade {pkg}")
