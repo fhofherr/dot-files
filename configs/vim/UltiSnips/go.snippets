@@ -2,6 +2,32 @@ global !p
 import snippets.go as go
 endglobal
 
+snippet iferr "Test for err != nil"
+if ${1:err != nil} \{
+	${2}
+\}
+endsnippet
+
+# Source: https://github.com/honza/vim-snippets/blob/master/UltiSnips/go.snippets
+snippet json "JSON field"
+\`json:"${1:displayName}"\`
+endsnippet
+
+# Source: https://github.com/honza/vim-snippets/blob/master/UltiSnips/go.snippets
+# but without b option.
+snippet map "Map type" i
+map[${1:keytype}]${2:valtype}
+endsnippet
+
+snippet pkg "add a package line" b
+`!p go.pkg_decl(snip, path)`
+
+${0}
+endsnippet
+
+
+# Testing snippets
+
 snippet *t "Create *testing.T" i
 t *testing.T
 endsnippet
@@ -13,23 +39,6 @@ for _, tt := range ${1:tests} {
 		${3}
 	})
 }
-endsnippet
-
-# Source: https://github.com/honza/vim-snippets/blob/master/UltiSnips/go.snippets
-snippet json "JSON field"
-\`json:"${1:displayName}"\`
-endsnippet
-
-snippet pkg "add a package line" b
-`!p go.pkg_decl(snip, path)`
-
-${0}
-endsnippet
-
-# Source: https://github.com/honza/vim-snippets/blob/master/UltiSnips/go.snippets
-# but without b option.
-snippet map "Map type" i
-map[${1:keytype}]${2:valtype}
 endsnippet
 
 snippet tf "test function" t
