@@ -5,7 +5,7 @@ from dotfiles.tasks import (alacritty, antibody, asdf, bat, buf, dbcli, direnv,
                             editorconfig, fzf, git, golang, golangci_lint,
                             httpie, kitty, kubectl, neovim, nerd_fonts,
                             overmind, pipx, platformio, pre_commit, python,
-                            tests, zsh)
+                            tests, tmux, zsh)
 
 
 @task
@@ -25,6 +25,7 @@ def install(c, home_dir=common.HOME_DIR):
     fzf.install(c, home_dir=home_dir)
     python.install(c, home_dir=home_dir, install_missing_poetry=False)
     neovim.install(c, home_dir=home_dir)
+    tmux.install(c, home_dir=home_dir)
     zsh.install(c, home_dir=home_dir)
 
     alacritty.configure(c, home_dir)
@@ -51,6 +52,7 @@ def update(c, home_dir=common.HOME_DIR, upgrade=False, reconfigure=False):
     platformio.update(c, home_dir=home_dir)
     pre_commit.update(c, home_dir=home_dir)
     fzf.update(c, home_dir=home_dir, reconfigure=reconfigure)
+    tmux.install(c, home_dir=home_dir)
 
     if reconfigure:
         zsh.write_dotfiles_zsh_config(c, home_dir)
@@ -89,6 +91,7 @@ def get_ns():
     ns.add_collection(python)
     ns.add_collection(neovim)
     ns.add_collection(nerd_fonts)
+    ns.add_collection(tmux)
     ns.add_collection(zsh)
 
     ns.add_collection(tests)

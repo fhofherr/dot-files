@@ -22,10 +22,10 @@ Plug 'kassio/neoterm'
 Plug 'mbbill/undotree'
 
 " Plug 'jiangmiao/auto-pairs'
-" if executable('tmux')
-"     Plug 'tpope/vim-tbone'
-"     Plug 'christoomey/vim-tmux-navigator'
-" endif
+if executable('tmux')
+    Plug 'tpope/vim-tbone'
+    Plug 'christoomey/vim-tmux-navigator'
+endif
 " }}}
 
 " Eye candy and color schemes {{{
@@ -98,6 +98,7 @@ Plug 'prabirshrestha/asyncomplete.vim'
 if dotfiles#plugin#selected('asyncomplete.vim')
     Plug 'prabirshrestha/asyncomplete-buffer.vim'
     Plug 'prabirshrestha/asyncomplete-file.vim'
+    Plug 'prabirshrestha/asyncomplete-emoji.vim'
     Plug 'yami-beta/asyncomplete-omni.vim'
 
     Plug 'Shougo/neco-vim'

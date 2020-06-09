@@ -6,7 +6,9 @@ from fnmatch import fnmatch
 
 import requests
 
-from dotfiles import common
+from dotfiles import common, logging
+
+_LOG = logging.get_logger(__name__)
 
 
 def clone(c, src_url: str, dest_dir: str, branch="", depth=""):
@@ -19,7 +21,9 @@ def clone(c, src_url: str, dest_dir: str, branch="", depth=""):
     if depth:
         depth = f"--depth {depth}"
     if not os.path.exists(dest_dir):
-        c.run(f"git clone {depth} {branch} {src_url} {dest_dir}")
+        cmd = f"git clone {depth} {branch} {src_url} {dest_dir}"
+        _LOG.info(f"execute: {cmd}")
+        c.run(cmd)
         return True
     return False
 

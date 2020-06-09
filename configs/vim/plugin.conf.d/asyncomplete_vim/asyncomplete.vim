@@ -54,6 +54,15 @@ function s:configure_asyncomplete()
                     \ }))
     endif
 
+    if dotfiles#plugin#selected('asyncomplete-emoji.vim')
+        call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+                    \ 'name': 'emoji',
+                    \ 'whitelist': ['*'],
+                    \ 'completor': function('asyncomplete#sources#emoji#completor')
+                    \ }))
+        command Emoji %s/:\([^:]\+\):/\=asyncomplete#sources#emoji#data#emoji_for(submatch(1), submatch(0))/g
+    endif
+
     if dotfiles#plugin#selected('asyncomplete-necovim.vim')
         call asyncomplete#register_source(asyncomplete#sources#necovim#get_source_options({
                     \ 'name': 'necovim',
