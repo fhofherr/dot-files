@@ -36,9 +36,9 @@ Plug 'itchyny/lightline.vim'
 " Plug 'ayu-theme/ayu-vim'
 " Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 " Plug 'chriskempson/base16-vim'
-Plug 'cocopon/iceberg.vim'
+" Plug 'cocopon/iceberg.vim'
 " Plug 'drewtempelmeyer/palenight.vim'
-" Plug 'dracula/vim', {'as': 'dracula'}
+Plug 'dracula/vim', {'as': 'dracula'}
 " Plug 'gruvbox-community/gruvbox'
 " Plug 'sonph/onehalf', {'rtp': 'vim'}
 " }}}
