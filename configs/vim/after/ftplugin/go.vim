@@ -7,6 +7,11 @@ let g:go_highlight_trailing_whitespace_error = 0
 
 setlocal formatoptions+=r spell spelllang=en_us
 
+let s:spelldir = $VIMHOME . '/spell'
+call mkdir(s:spelldir, 'p')
+
+let &l:spellfile = s:spelldir . '/golang.en.utf-8.add'
+
 if dotfiles#plugin#selected('gopher.vim')
   " Unset the equalprg set by gopher.vim
   setlocal equalprg=
