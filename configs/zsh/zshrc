@@ -4,6 +4,16 @@ fi
 
 setopt HISTIGNORESPACE
 
+## Make sure we use emacs keybindings.
+##
+## If the EDITOR variable contains "vi" zsh switches to vi keybindings.
+## See: https://unix.stackexchange.com/a/197841
+##
+## Additionally make sure we do this *before* loading any other (e.g. fzf)
+## bindings.
+## See: https://github.com/tmux/tmux/issues/1694#issuecomment-487935184
+bindkey -e
+
 source "$DOTFILES_ZSH_LOCAL_ENV"
 source "$DOTFILES_ZSH_LOCAL_ALIASES"
 
@@ -24,15 +34,12 @@ compinit -C
 
 source "$DOTFILES_ZSH_AFTER_COMPINIT_SCRIPT"
 
+
 ## -----------------------------------------------------------------------------
 ## Base16 Colors
 ## -----------------------------------------------------------------------------
 # export DOTFILES_COLOR_THEME="base16-google-light"
 # dotfiles_set_shell_colors
-
-## Make sure we use emacs keybindings
-#bindkey -e
-
 
 # -----------------------------------------------------------------------------
 # Local configuration and secrets
