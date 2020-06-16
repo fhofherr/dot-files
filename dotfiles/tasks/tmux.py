@@ -27,21 +27,17 @@ def install(c, home_dir=common.HOME_DIR):
         c.run(f"tmux run-shell {plugin_installer}")
         c.run("tmux kill-session -t tmux-install")
 
+    bin_dir = os.path.join(common.ROOT_DIR, "configs", "tmux", "bin")
     tmux_state = state.State(name="tmux")
 
-    tmux_state.add_alias("tls", "tmux ls")
-    tmux_state.add_alias("tns", "_tmux_new_session")
+    tmux_state.put_env("PATH", bin_dir)
+
+    tmux_state.add_alias("tas", "tmux attach -t")
     tmux_state.add_alias("tks", "tmux kill-session -t")
-    tmux_state.add_alias("tnsp", "_tmux_new_project_session")
-    tmux_state.add_alias("tnsd", "tmux new-session -d -s")
+    tmux_state.add_alias("tls", "tmux ls")
+    tmux_state.add_alias("tns", f"{bin_dir}/tmux-new-session")
     tmux_state.add_alias("tnw", "tmux new-window")
     tmux_state.add_alias("tss", "tmux switch-client -t")
-    tmux_state.add_alias("tas", "tmux attach -t")
-
-    after_compinit = os.path.join(common.ROOT_DIR, "configs", "tmux",
-                                  "after_compinit.zsh")
-    with open(after_compinit) as f:
-        tmux_state.after_compinit_script = f.read()
 
     state.write_state(home_dir, tmux_state)
 

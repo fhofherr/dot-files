@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+SESSION_DIR_OR_NAME="${1:-$PWD}"
+SESSION_NAME="$(basename "$SESSION_DIR_OR_NAME")"
+
+CURDIR="$PWD"
+if [[ -d "$SESSION_DIR_OR_NAME" ]]; then
+    cd "$SESSION_DIR_OR_NAME" || exit $?
+fi
+
+tmux new-session -s "$SESSION_NAME" -d
+if [[ -n "$TMUX" ]]; then
+    tmux switch-client -t "$SESSION_NAME"
+elif [[ -z "$NVIM_LISTEN_ADDRESS" ]]; then
+    tmux attach -t "$SESSION_NAME"
+else
+    echo "created: $SESSION_NAME"
+fi
+
+cd "$CURDIR" || exit $?
