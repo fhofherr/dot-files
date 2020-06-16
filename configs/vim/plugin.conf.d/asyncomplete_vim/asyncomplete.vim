@@ -30,7 +30,7 @@ inoremap <expr> <CR> pumvisible() ? asyncomplete#close_popup() : "\<CR>"
 inoremap <expr> <C-e> pumvisible() ? asyncomplete#cancel_popup() : "\<C-e>"
 
 function s:configure_asyncomplete()
-    if dotfiles#plugin#selected('ale')
+    if dotfiles#plugin#selected('ale') && get(g:, 'ale_disable_lsp', 0) == 0
         call asyncomplete#register_source(asyncomplete#sources#ale#get_source_options({
                     \ 'name': 'ale',
                     \ 'whitelist': ['*'],
@@ -57,7 +57,7 @@ function s:configure_asyncomplete()
     if dotfiles#plugin#selected('asyncomplete-emoji.vim')
         call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
                     \ 'name': 'emoji',
-                    \ 'whitelist': ['*'],
+                    \ 'whitelist': ['markdown', 'email'],
                     \ 'completor': function('asyncomplete#sources#emoji#completor')
                     \ }))
         command Emoji %s/:\([^:]\+\):/\=asyncomplete#sources#emoji#data#emoji_for(submatch(1), submatch(0))/g
