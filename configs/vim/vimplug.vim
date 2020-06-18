@@ -154,5 +154,10 @@ Plug 'hashivim/vim-terraform'
 Plug 'kylef/apiblueprint.vim'
 " }}}
 
+" Wiki {{{
+Plug 'vimwiki/vimwiki'
+Plug 'mattn/calendar-vim'
+" }}}
+
 call plug#end()
 call dotfiles#plugin#load_config($VIMHOME . '/plugin.conf.d')

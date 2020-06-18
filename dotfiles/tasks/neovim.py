@@ -96,6 +96,7 @@ def configure(c, home_dir=common.HOME_DIR):
     nvim_state.add_alias("es", nvim_cmd)
     nvim_state.add_alias("ev", nvim_cmd)
     nvim_state.add_alias("view", f"{nvim_cmd} -R")
+    nvim_state.add_alias("wiki", f"{nvim_cmd} -c VimwikiIndex")
 
     after_compinit_script = os.path.join(common.ROOT_DIR, "configs", "vim",
                                          "after_compinit.zsh")
