@@ -9,7 +9,7 @@ license = "MIT"
 dotfiles = "dotfiles:run"
 
 [tool.poetry.dependencies]
-python = ">=3.6, <=3.8"
+python = ">=3.6, <=3.9"
 invoke = "^1.4.1"
 colorlog = "^4.1.0"
 requests = "^2.23.0"
