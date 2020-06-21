@@ -1,3 +1,6 @@
 # Set ZDOTDIR to $HOME, as something inside the Jetbrains IDE terminal emulator
 # seems to set it to ''.
 export ZDOTDIR=$HOME
+
+# fix "xdg-open fork-bomb" export your preferred browser from here
+export BROWSER=/usr/bin/firefox

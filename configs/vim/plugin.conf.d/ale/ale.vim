@@ -46,6 +46,7 @@ let g:ale_linters = {
 " Make sure that only black or yapf are installed in the virtual environment.
 " Otherwise they will get into a fight.
 let g:ale_fixers = {
+            \   'sh': [ 'shfmt' ],
             \   'go': [ 'goimports' ],
             \   'python': [ 'black', 'isort', 'yapf' ]
             \ }
