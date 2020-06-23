@@ -45,11 +45,13 @@ Plug 'dracula/vim', {'as': 'dracula'}
 " Buffers, Files, Searching and Finding {{{
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'justinmk/vim-dirvish'
-Plug 'kristijanhusak/vim-dirvish-git'
 
 Plug 'mhinz/vim-grepper'
 Plug 'nelstrom/vim-visual-star-search'
+
+if executable('nnn')
+    Plug 'mcchrish/nnn.vim'
+endif
 " }}}
 
 " Git {{{
@@ -86,7 +88,6 @@ if has('nvim-0.5') && s:use_built_in_lsp
     Plug 'neovim/nvim-lsp'
 else
     " Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', 'as': 'lcn' }
-    Plug 'prabirshrestha/async.vim'
     Plug 'prabirshrestha/vim-lsp'
     Plug 'mattn/vim-lsp-settings'
 endif
