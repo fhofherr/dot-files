@@ -6,6 +6,10 @@ let g:did_cfg_vim_lsp = 1
 let g:lsp_diagnostics_enabled = 0
 let g:lsp_virtual_text_enabled = 0
 
+" Disable as it leads to errors I have no time to look into right now :-(
+let g:lsp_documentation_float = 0
+let g:lsp_preview_float = 0
+
 function! s:lsp_buffer_settings() abort
     setlocal omnifunc+=lsp#complete
     if exists('+tagfunc')
