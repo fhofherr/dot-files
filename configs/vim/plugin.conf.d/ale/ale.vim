@@ -43,9 +43,11 @@ let g:ale_linters = {
             \   'python': [ 'flake8' ]
             \ }
 
+" Make sure that only black or yapf are installed in the virtual environment.
+" Otherwise they will get into a fight.
 let g:ale_fixers = {
             \   'go': [ 'goimports' ],
-            \   'python': [ 'yapf' ]
+            \   'python': [ 'black', 'isort', 'yapf' ]
             \ }
 
 if dotfiles#plugin#selected('lcn') || dotfiles#plugin#selected('nvim-lsp') || dotfiles#plugin#selected('vim-lsp')
@@ -123,15 +125,6 @@ let g:ale_gitcommit_gitlint_use_global = 1
 
 let g:ale_go_golangci_lint_package = 1
 let g:ale_go_golangci_lint_options = '--fast'
-
-" ---------------------------------------------------------------------------
-"
-" Python specific settings
-"
-" ---------------------------------------------------------------------------
-let g:ale_python_flake8_use_global = 1
-let g:ale_python_pyls_use_global = 1
-let g:ale_python_yapf_use_global = 1
 
 " ---------------------------------------------------------------------------
 "

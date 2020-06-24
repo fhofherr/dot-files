@@ -7,10 +7,7 @@ from dotfiles.tasks import pipx
 
 _LOG = logging.get_logger(__name__)
 
-DEV_TOOLS = [
-    "flake8", "python-language-server", "python-language-server[rope]",
-    "reorder-python-imports", "yapf"
-]
+DEV_TOOLS = ["python-language-server", "python-language-server[rope]"]
 
 
 @task
