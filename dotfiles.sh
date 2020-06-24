@@ -22,8 +22,12 @@ if [ -z "$POETRY" ]; then
 
         "$CURL" -sSL "$POETRY_URL" | "$PYTHON3"
         # Fix python interpreter of poetry
-        sed -i.bak "s;#!/usr/bin/env python;#!$PYTHON3;" "$POETRY"
+        sed -i.bak "s;#!/usr/bin/env python;#!/usr/bin/env python3;" "$POETRY"
         rm "${POETRY}.bak"
+    fi
+
+    if [ "$($POETRY config virtualenvs.in-project)" != "true" ]; then
+        "$POETRY" config virtualenvs.in-project true
     fi
 fi
 
