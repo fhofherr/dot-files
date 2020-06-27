@@ -33,15 +33,15 @@ function s:configure_asyncomplete()
     if dotfiles#plugin#selected('ale') && get(g:, 'ale_disable_lsp', 0) == 0
         call asyncomplete#register_source(asyncomplete#sources#ale#get_source_options({
                     \ 'name': 'ale',
-                    \ 'whitelist': ['*'],
+                    \ 'allowlist': ['*'],
                     \ }))
     endif
 
     if dotfiles#plugin#selected('asyncomplete-buffer.vim')
         call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
                     \ 'name': 'buffer',
-                    \ 'whitelist': ['*'],
-                    \ 'blacklist': ['go'],
+                    \ 'allowlist': ['*'],
+                    \ 'blocklist': ['go'],
                     \ 'completor': function('asyncomplete#sources#buffer#completor'),
                     \ }))
     endif
@@ -49,7 +49,7 @@ function s:configure_asyncomplete()
     if dotfiles#plugin#selected('asyncomplete-file.vim')
         call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
                     \ 'name': 'file',
-                    \ 'whitelist': ['*'],
+                    \ 'allowlist': ['*'],
                     \ 'completor': function('asyncomplete#sources#file#completor')
                     \ }))
     endif
@@ -57,7 +57,7 @@ function s:configure_asyncomplete()
     if dotfiles#plugin#selected('asyncomplete-emoji.vim')
         call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
                     \ 'name': 'emoji',
-                    \ 'whitelist': ['markdown', 'email'],
+                    \ 'allowlist': ['markdown', 'email'],
                     \ 'completor': function('asyncomplete#sources#emoji#completor')
                     \ }))
         command Emoji %s/:\([^:]\+\):/\=asyncomplete#sources#emoji#data#emoji_for(submatch(1), submatch(0))/g
@@ -66,7 +66,7 @@ function s:configure_asyncomplete()
     if dotfiles#plugin#selected('asyncomplete-necovim.vim')
         call asyncomplete#register_source(asyncomplete#sources#necovim#get_source_options({
                     \ 'name': 'necovim',
-                    \ 'whitelist': ['vim'],
+                    \ 'allowlist': ['vim'],
                     \ 'completor': function('asyncomplete#sources#necovim#completor'),
                     \ }))
     endif
@@ -74,8 +74,8 @@ function s:configure_asyncomplete()
     if dotfiles#plugin#selected('asyncomplete-omni.vim')
         call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
                     \ 'name': 'omni',
-                    \ 'whitelist': ['*'],
-                    \ 'blacklist': ['c', 'cpp', 'go', 'html'],
+                    \ 'allowlist': ['*'],
+                    \ 'blocklist': ['c', 'cpp', 'go', 'html'],
                     \ 'completor': function('asyncomplete#sources#omni#completor')
                     \  }))
     endif
@@ -83,7 +83,7 @@ function s:configure_asyncomplete()
     if dotfiles#plugin#selected('asyncomplete-tags.vim')
         call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
                     \ 'name': 'tags',
-                    \ 'whitelist': ['c'],
+                    \ 'allowlist': ['c'],
                     \ 'completor': function('asyncomplete#sources#tags#completor'),
                     \ }))
     endif
@@ -91,7 +91,7 @@ function s:configure_asyncomplete()
     if dotfiles#plugin#selected('asyncomplete-ultisnips.vim')
         call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
                     \ 'name': 'ultisnips',
-                    \ 'whitelist': ['*'],
+                    \ 'allowlist': ['*'],
                     \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
                     \ }))
     endif
