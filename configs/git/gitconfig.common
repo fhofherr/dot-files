@@ -1,5 +1,7 @@
 [core]
 	autocrlf = input
+[pull]
+	ff = only
 [url "ssh://git@github.com/fhofherr"]
     insteadOf = https://github.com/fhofherr
 [url "ssh://git@gitlab.com/fhofherr"]
