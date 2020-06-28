@@ -118,7 +118,7 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
+set $ws1 "1: main"
 set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
@@ -128,6 +128,9 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10: web"
+
+# Always put workspace 1 on the primary screen
+workspace $ws1 output primary
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -190,12 +193,17 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# Mouse and keyboard config (TODO this is computer specific => move to a script)
 exec --no-startup-id xinput --set-prop "MSFT0001:01 06CB:CD65 Touchpad" "libinput Natural Scrolling Enabled" 1
 exec --no-startup-id xinput --set-prop "MSFT0001:01 06CB:CD65 Touchpad" "libinput Tapping Enabled" 0
-
 exec --no-startup-id setxkbmap -layout de -variant nodeadkeys -option ctrl:nocaps
+
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id picom
+
+# Autostart applications on specific workspaces
+exec --no-startup-id i3-msg "workspace $ws1; exec /usr/bin/alacritty; workspace $ws1"
+exec --no-startup-id i3-msg "workspace $ws10; exec /usr/bin/firefox; workspace $ws1"
 
 # Color settings
 
