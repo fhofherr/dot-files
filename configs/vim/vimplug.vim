@@ -48,10 +48,6 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'mhinz/vim-grepper'
 Plug 'nelstrom/vim-visual-star-search'
-
-if executable('nnn')
-    Plug 'mcchrish/nnn.vim'
-endif
 " }}}
 
 " Git {{{
