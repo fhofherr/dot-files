@@ -205,9 +205,9 @@ mode "resize" {
 
 
 # Mouse and keyboard config (TODO this is computer specific => move to a script)
-exec --no-startup-id xinput --set-prop "MSFT0001:01 06CB:CD65 Touchpad" "libinput Natural Scrolling Enabled" 1
-exec --no-startup-id xinput --set-prop "MSFT0001:01 06CB:CD65 Touchpad" "libinput Tapping Enabled" 0
-exec --no-startup-id setxkbmap -layout de -variant nodeadkeys -option ctrl:nocaps
+exec_always --no-startup-id "xinput --set-prop 'MSFT0001:01 06CB:CD65 Touchpad' 'libinput Natural Scrolling Enabled' 1"
+exec_always --no-startup-id "xinput --set-prop 'MSFT0001:01 06CB:CD65 Touchpad' 'libinput Tapping Enabled' 0"
+exec_always --no-startup-id "setxkbmap -layout de -variant nodeadkeys -option ctrl:nocaps"
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
