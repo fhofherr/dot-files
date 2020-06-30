@@ -3,7 +3,8 @@ if !dotfiles#plugin#selected('completion-nvim') || !dotfiles#plugin#selected('nv
 endif
 let g:did_cfg_completion_nvim = 1
 
-let g:completion_timer_cycle = 200
+let g:completion_auto_change_source = 1
+let g:completion_timer_cycle = 100
 let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_matching_strategy_list = ['exact', 'fuzzy']
 
