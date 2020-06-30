@@ -6,7 +6,11 @@ let g:did_cfg_nvim_lsp = 1
 " Gopls
 try
 lua <<EOF
-require'nvim_lsp'.gopls.setup{}
+nvim_lsp = require("nvim_lsp")
+
+nvim_lsp.gopls.setup{}
+nvim_lsp.pyls.setup{}
+
 EOF
 catch
     finish
