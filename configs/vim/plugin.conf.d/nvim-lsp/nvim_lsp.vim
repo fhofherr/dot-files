@@ -27,6 +27,7 @@ function! s:lsp_buffer_settings() abort
     nnoremap <buffer> <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
     nnoremap <buffer> <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
     nnoremap <buffer> <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+    nnoremap <buffer> <silent> <F2>  <cmd>lua vim.lsp.buf.rename()<CR>
 endfunction
 
 augroup dotfiles_nvim_lsp
