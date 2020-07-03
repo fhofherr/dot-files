@@ -3,12 +3,12 @@ if !dotfiles#plugin#selected('completion-nvim') || !dotfiles#plugin#selected('nv
 endif
 let g:did_cfg_completion_nvim = 1
 
-let g:completion_auto_change_source = 1
+let g:completion_auto_change_source = 0
 let g:completion_timer_cycle = 100
 let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_matching_strategy_list = ['exact', 'fuzzy']
 
-set completeopt=menuone,noinsert,noselect
+set completeopt=menuone,noinsert
 
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -23,5 +23,5 @@ endfunction
 
 augroup dotfiles_completion_nvim
     autocmd!
-    autocmd BufEnter * call <SID>attach()
+    autocmd BufEnter,BufNewFile * call <SID>attach()
 augroup END
