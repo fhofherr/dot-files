@@ -210,9 +210,10 @@ exec_always --no-startup-id "xinput --set-prop 'MSFT0001:01 06CB:CD65 Touchpad' 
 exec_always --no-startup-id "setxkbmap -layout de -variant nodeadkeys -option ctrl:nocaps"
 
 # Autostart applications
+exec --no-startup-id /usr/bin/dunst
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1; picom --daemon
-exec --no-startup-id nm-applet
+exec --no-startup-id sleep1; nm-applet
 
 # Use the xfce4-power-manager to manage your laptops power. You might have to
 # run xfce4-power-manager-settings and enable the system tray icon.
