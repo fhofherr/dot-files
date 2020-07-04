@@ -212,6 +212,8 @@ exec_always --no-startup-id "setxkbmap -layout de -variant nodeadkeys -option ct
 # Autostart applications
 exec --no-startup-id /usr/bin/dunst
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# For Firefox it might be necessary to set "layers.acceleration.force-enabled"
+# to true in about:config
 exec --no-startup-id nitrogen --restore; sleep 1; picom --daemon
 exec --no-startup-id sleep1; nm-applet
 
