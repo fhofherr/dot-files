@@ -197,6 +197,26 @@ mode "resize" {
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
+        bindsym $mod+1 resize set width 10ppt
+        bindsym $mod+2 resize set width 20ppt
+        bindsym $mod+3 resize set width 30ppt
+        bindsym $mod+4 resize set width 40ppt
+        bindsym $mod+5 resize set width 50ppt
+        bindsym $mod+6 resize set width 60ppt
+        bindsym $mod+7 resize set width 70ppt
+        bindsym $mod+8 resize set width 80ppt
+        bindsym $mod+9 resize set width 90ppt
+
+        bindsym $mod+Shift+1 resize set height 10ppt
+        bindsym $mod+Shift+2 resize set height 20ppt
+        bindsym $mod+Shift+3 resize set height 30ppt
+        bindsym $mod+Shift+4 resize set height 40ppt
+        bindsym $mod+Shift+5 resize set height 50ppt
+        bindsym $mod+Shift+6 resize set height 60ppt
+        bindsym $mod+Shift+7 resize set height 70ppt
+        bindsym $mod+Shift+8 resize set height 80ppt
+        bindsym $mod+Shift+9 resize set height 90ppt
+
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
