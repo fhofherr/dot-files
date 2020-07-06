@@ -244,7 +244,7 @@ exec --no-startup-id clipit
 # Requires bluetooth service to be enabled and started
 exec --no-startup-id blueman-applet
 exec_always --no-startup-id fix_xcursor
-exec_always --no-startup-id nextcloud
+exec --no-startup-id nextcloud
 
 # Autostart applications on specific workspaces
 exec --no-startup-id i3-msg "workspace $ws1; exec /usr/bin/alacritty; workspace $ws1"
