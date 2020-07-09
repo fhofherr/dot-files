@@ -1,7 +1,16 @@
+[alias]
+    a = add
+    d = diff
+    s = status
+    cc = commit
+    ca = "commit --amend"
 [core]
-	autocrlf = input
+    autocrlf = input
+    pager = delta --theme='Dracula'
+[interactive]
+    diffFilter = delta --theme='Dracula' --color-only
 [pull]
-	ff = only
+    ff = only
 [url "ssh://git@github.com/fhofherr"]
     insteadOf = https://github.com/fhofherr
 [url "ssh://git@gitlab.com/fhofherr"]

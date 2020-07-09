@@ -17,7 +17,7 @@ catch
 endtry
 
 function! s:lsp_buffer_settings() abort
-    " setlocal omnifunc+=v:lua.vim.lsp.omnifunc
+    setlocal omnifunc+=v:lua.vim.lsp.omnifunc
 
     nnoremap <buffer> <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
     nnoremap <buffer> <silent> <c-s> <cmd>lua vim.lsp.buf.signature_help()<CR>

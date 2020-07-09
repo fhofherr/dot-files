@@ -21,4 +21,5 @@ def install(c, home_dir=common.HOME_DIR):
     git_utils_bin = os.path.join(common.ROOT_DIR, "configs", "git", "bin")
     git_state = state.State(name="git")
     git_state.put_env("PATH", git_utils_bin)
+    git_state.add_alias("g", "git")
     state.write_state(home_dir, git_state)
