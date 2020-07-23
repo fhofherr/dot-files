@@ -1,9 +1,20 @@
 [alias]
     a = add
-    d = diff
-    s = status
+    ai = add -i
+    ca = commit --amend
     cc = commit
-    ca = "commit --amend"
+    cob = checkout -b
+    co = checkout
+    ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+    lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+    merged = branch --merged
+    p = push
+    po = push origin
+    pfo = push -f origin
+    ri = rebase -i
+    st = status -s
 [core]
     autocrlf = input
     pager = delta --theme='Dracula'

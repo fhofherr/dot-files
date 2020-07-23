@@ -1,0 +1,7 @@
+#!/bin/sh
+
+GIT="$(command -v git)"
+AWK="$(command -v awk)"
+
+# shellcheck disable=SC2016
+"$GIT" config -l | "$AWK" -F '.' '/alias/ {  sub(/=/, "\t", $2); print $2 }'
