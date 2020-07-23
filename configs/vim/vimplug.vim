@@ -46,6 +46,9 @@ Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
+Plug 'justinmk/vim-dirvish'
+Plug 'kristijanhusak/vim-dirvish-git'
+
 Plug 'mhinz/vim-grepper'
 Plug 'nelstrom/vim-visual-star-search'
 " }}}

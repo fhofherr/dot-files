@@ -3,11 +3,24 @@ if !dotfiles#plugin#selected('vim-dirvish') || exists('g:did_cfg_vim_dirvish')
 endif
 let g:did_cfg_vim_dirvish = 1
 
-nnoremap <silent> <leader>d :Dirvish<CR>
-nnoremap <silent> <leader>D :Dirvish %<CR>
+" Disable netrw
+let g:loaded_netrwPlugin = 1
+command! -nargs=? -complete=dir Explore Dirvish <args>
+command! -nargs=? -complete=dir Sexplore belowright split | silent Dirvish <args>
+command! -nargs=? -complete=dir Vexplore belowright vsplit | silent Dirvish <args>
+
+" Use <leader>d instead of - do open dirvish. I always fat-finger - while in
+" normal mode.
+nmap <leader>d <Plug>(dirvish_up)
+
+nmap <silent> <leader>D :Dirvish %<CR>
 
 augroup dotfiles_dirvish_config
     autocmd!
+
+    " Restore the default behavior of - inside the dirvish buffer
+    autocmd FileType dirvish
+                \ nmap <buffer> - <Plug>(dirvish_up)
 
     " Map `t` to open in new tab.
     autocmd FileType dirvish
