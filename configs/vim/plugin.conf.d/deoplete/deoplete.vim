@@ -24,7 +24,7 @@ call deoplete#custom#source('_', 'max_abbr_width', 0)
 
 call deoplete#custom#option('auto_complete_delay', 200)
 
-call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
+" call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
 " Use tab to cycle through possible completion candidates.
 " See: https://github.com/Shougo/deoplete.nvim/blob/dafd92e17b55c001008a7cdb5a339a30fbacf9d5/doc/deoplete.txt#L432
 inoremap <silent><expr> <TAB>

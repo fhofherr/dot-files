@@ -85,11 +85,12 @@ endif
 let s:use_built_in_lsp = v:true
 if has('nvim-0.5') && s:use_built_in_lsp
     Plug 'neovim/nvim-lsp'
-    Plug 'nvim-lua/completion-nvim'
-    if dotfiles#plugin#selected('completion-nvim')
-        Plug 'hrsh7th/vim-vsnip'
-        Plug 'hrsh7th/vim-vsnip-integ'
-    endif
+    let g:dotfiles_completion_manager_disabled = v:true
+    " Plug 'nvim-lua/completion-nvim'
+    " if dotfiles#plugin#selected('completion-nvim')
+    "     Plug 'hrsh7th/vim-vsnip'
+    "     Plug 'hrsh7th/vim-vsnip-integ'
+    " endif
 else
     " Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', 'as': 'lcn' }
     Plug 'prabirshrestha/vim-lsp'
