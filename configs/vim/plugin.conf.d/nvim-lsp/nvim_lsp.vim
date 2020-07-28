@@ -6,13 +6,7 @@ let g:did_cfg_nvim_lsp = 1
 
 " Gopls
 lua <<EOF
-ok, nvim_lsp = pcall(require, "nvim_lsp")
-if not ok then
-    return
-end
-
-nvim_lsp.gopls.setup{}
-nvim_lsp.pyls.setup{}
+require("dotfiles/lightline/lsp").setup()
 EOF
 
 function! s:lsp_buffer_settings() abort

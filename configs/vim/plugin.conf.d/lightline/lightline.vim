@@ -36,7 +36,7 @@ let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
-      \   'right': [ [ 'gutentags' ],
+      \   'right': [ [ 'gutentags', 'lsp' ],
       \              [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
       \              [ 'percent', 'lineinfo' ],
       \              [ 'charvaluehex', 'fileformat', 'fileencoding', 'filetype' ] ]
@@ -46,7 +46,8 @@ let g:lightline = {
       \ },
       \ 'component_function': {
       \   'gutentags': 'dotfiles#lightline#gutentags_status',
-      \   'gitbranch': 'dotfiles#lightline#gitbranch'
+      \   'gitbranch': 'dotfiles#lightline#gitbranch',
+      \   'lsp': 'dotfiles#lightline#lsp_status'
       \ },
       \ 'component_expand': {
       \   'linter_checking': 'lightline#ale#checking',
@@ -87,6 +88,8 @@ if dotfiles#plugin#selected('lightline-bufferline')
         autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
     augroup END
 endif
+
+
 
 " Call lightline#enable() **after** we have configured it.
 call lightline#enable()
