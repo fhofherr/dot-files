@@ -55,9 +55,8 @@ Plug 'nelstrom/vim-visual-star-search'
 
 " Git {{{
 Plug 'mhinz/vim-signify'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-git'
-Plug 'junegunn/gv.vim' " requires fugitive
+Plug 'rhysd/git-messenger.vim'
+Plug 'jreybert/vimagit'
 " }}}
 
 " Snippets {{{
