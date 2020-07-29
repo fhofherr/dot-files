@@ -11,6 +11,60 @@ endsnippet
 """.strip())
 
 _closer_data = [{
+    "trigger": "()",
+    "lhs": "(",
+    "rhs": ")",
+    "opts": "i",
+    "description": "",
+}, {
+    "trigger": "[]",
+    "lhs": "[",
+    "rhs": "]",
+    "opts": "i",
+    "description": "",
+}, {
+    "trigger": "{}",
+    "lhs": "{",
+    "rhs": "}",
+    "opts": "i",
+    "description": "",
+}, {
+    "trigger": "(),",
+    "lhs": "(",
+    "rhs": "),",
+    "opts": "i",
+    "description": "",
+}, {
+    "trigger": "[],",
+    "lhs": "[",
+    "rhs": "],",
+    "opts": "i",
+    "description": "",
+}, {
+    "trigger": "{},",
+    "lhs": "{",
+    "rhs": "},",
+    "opts": "i",
+    "description": "",
+}, {
+    "trigger": "();",
+    "lhs": "(",
+    "rhs": ");",
+    "opts": "i",
+    "description": "",
+}, {
+    "trigger": "[];",
+    "lhs": "[",
+    "rhs": "];",
+    "opts": "i",
+    "description": "",
+}, {
+    "trigger": "{};",
+    "lhs": "{",
+    "rhs": "};",
+    "opts": "i",
+    "description": "",
+}, {
     "trigger": "((",
     "lhs": "(\n\t",
     "rhs": "\n)",
