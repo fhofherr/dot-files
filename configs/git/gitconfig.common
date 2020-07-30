@@ -26,6 +26,8 @@
     trustExitCode = true
 [interactive]
     diffFilter = delta --theme='Dracula' --color-only
+[init]
+    defaultBranch = main
 [merge]
     tool = nvimdiff4
 [mergetool]
