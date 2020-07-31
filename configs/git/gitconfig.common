@@ -2,6 +2,7 @@
     a = add
     ai = add -i
     ca = commit --amend
+    cam = commit --amend --no-edit
     cc = commit
     cob = checkout -b
     co = checkout
@@ -13,6 +14,7 @@
     p = push
     po = push origin
     pfo = push -f origin
+    pup = pull --prune
     ri = rebase -i
     st = status -s
 [core]
