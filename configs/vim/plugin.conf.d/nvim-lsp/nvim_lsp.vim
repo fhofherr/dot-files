@@ -13,7 +13,8 @@ function! s:lsp_buffer_settings() abort
     setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
     if  g:dotfiles_completion_manager_disabled
-        setlocal completeopt=menuone,noinsert
+        setlocal completeopt=longest,menuone
+        " setlocal completeopt=menuone,noinsert
         inoremap <buffer><expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
     endif
 
