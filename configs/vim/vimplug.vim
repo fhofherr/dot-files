@@ -13,14 +13,11 @@ Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-rsi'
-Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 
 Plug 'kassio/neoterm'
 
-" Plug 'jiangmiao/auto-pairs'
 if executable('tmux')
     Plug 'tpope/vim-tbone'
     Plug 'christoomey/vim-tmux-navigator'
@@ -68,7 +65,6 @@ Plug 'sirver/ultisnips'
 Plug 'vim-test/vim-test'
 Plug 'tpope/vim-commentary'
 " Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-jdaddy'
 Plug 'tpope/vim-projectionist'
 
 if exists("g:python3_host_prog")
