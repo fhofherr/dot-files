@@ -101,9 +101,10 @@ set colorcolumn=80,120
 " ---------------------------------------------------------------------------
 " Folding
 " ---------------------------------------------------------------------------
-set foldlevelstart=0 " initial foldlevel; all folds with higher level are closed
+set foldlevelstart=3 " Initial foldlevel; all folds with higher level are closed
+                     " Initially we keep all folds open.
 
-set foldnestmax=3    " three fold levels should be enough for most of our needs
+set foldnestmax=3    " Three fold levels should be enough for most of our needs
                      " we can always add more on a filetype specific level.
 
 " ---------------------------------------------------------------------------
