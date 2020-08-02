@@ -2,10 +2,10 @@ from invoke import Collection, task
 
 from dotfiles import common
 from dotfiles.tasks import (alacritty, antibody, asdf, bat, buf, dbcli, direnv,
-                            editorconfig, fzf, git, golang, golangci_lint,
-                            httpie, kitty, kubectl, neovim, nerd_fonts,
-                            overmind, pipx, platformio, pre_commit, python,
-                            tests, tmux, zsh)
+                            editorconfig, fzf, git, git_bug, golang,
+                            golangci_lint, httpie, kitty, kubectl, neovim,
+                            nerd_fonts, overmind, pipx, platformio, pre_commit,
+                            python, tests, tmux, zsh)
 
 
 @task
@@ -15,6 +15,7 @@ def install(c, home_dir=common.HOME_DIR):
     asdf.install(c, home_dir=home_dir)
     direnv.install(c, home_dir=home_dir)
     git.install(c, home_dir=home_dir)
+    git_bug.install(c, home_dir=home_dir)
     buf.install(c, home_dir=home_dir)
     golang.install(c, home_dir=home_dir, install_missing_go=True)
     golangci_lint.install(c, home_dir=home_dir)
@@ -47,6 +48,7 @@ def update(c, home_dir=common.HOME_DIR, upgrade=False, reconfigure=False):
     buf.update(c, home_dir=home_dir, reconfigure=reconfigure)
     golang.update_dev_tools(c, home_dir=home_dir)
     golangci_lint.update(c, home_dir=home_dir, reconfigure=reconfigure)
+    git_bug.update(c, home_dir=home_dir)
     httpie.update(c, home_dir=home_dir)
     overmind.update(c, home_dir=home_dir, reconfigure=reconfigure)
     platformio.update(c, home_dir=home_dir)
@@ -79,6 +81,7 @@ def get_ns():
     ns.add_collection(fzf)
     ns.add_collection(kitty)
     ns.add_collection(git)
+    ns.add_collection(git_bug)
     ns.add_collection(buf)
     ns.add_collection(golang)
     ns.add_collection(golangci_lint)
