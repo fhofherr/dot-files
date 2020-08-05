@@ -74,7 +74,7 @@ set diffopt=filler,vertical
 
 " Search using / or ? is only case sensitive if there is at least one capital
 " letter included.
-set ignorecase
+" set ignorecase
 set smartcase
 
 " augroup dotfiles_vim_init
