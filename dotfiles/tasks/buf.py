@@ -11,7 +11,7 @@ _LOG = logging.get_logger(__name__)
 
 # Buf does not have an official "latest" release yet. Therefore we use
 # an explicit version number.
-VERSION = "v0.7.1"
+VERSION = "v0.20.5"
 
 
 @task
@@ -78,7 +78,7 @@ def configure(c, home_dir=common.HOME_DIR):
         with tempfile.TemporaryDirectory(prefix=prefix) as tmpdir, \
                 c.cd(tmpdir), \
                 tarfile.open(asset) as tf:
-            with tf.extractfile("buf/etc/zsh/site-functions/_buf") as cmps:
+            with tf.extractfile("buf/share/zsh/site-functions/_buf") as cmps:
                 buf_state.after_compinit_script = cmps.read().decode("utf-8")
 
         buf_state.put_env("PATH", common.bin_dir(home_dir))
