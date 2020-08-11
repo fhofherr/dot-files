@@ -151,6 +151,7 @@ if executable('clj') || executable('clojure') || executable('lein')
 endif
 
 Plug 'aklt/plantuml-syntax'
+Plug 'aliou/bats.vim'
 Plug 'cespare/vim-toml'
 Plug 'hashivim/vim-terraform'
 Plug 'kylef/apiblueprint.vim'
