@@ -77,6 +77,8 @@ if exists("g:python3_host_prog")
     endif
 endif
 
+Plug 'nvim-treesitter/nvim-treesitter'
+
 let s:use_built_in_lsp = v:true
 if has('nvim-0.5') && s:use_built_in_lsp
     Plug 'neovim/nvim-lsp'

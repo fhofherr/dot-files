@@ -18,3 +18,7 @@ endfunction
 function! dotfiles#lightline#lsp_status()
     return luaeval('require("dotfiles/lsp").status()')
 endfunction
+
+function! dotfiles#lightline#treesitter_status()
+    return luaeval('require("dotfiles/treesitter").status()')
+endfunction

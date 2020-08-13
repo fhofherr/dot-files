@@ -36,8 +36,8 @@ let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
-      \   'right': [ [ 'gutentags', 'lsp' ],
-      \              [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
+      \   'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
+      \              [ 'gutentags', 'lsp', 'treesitter' ],
       \              [ 'percent', 'lineinfo' ],
       \              [ 'charvaluehex', 'fileformat', 'fileencoding', 'filetype' ] ]
       \ },
@@ -47,7 +47,8 @@ let g:lightline = {
       \ 'component_function': {
       \   'gutentags': 'dotfiles#lightline#gutentags_status',
       \   'gitbranch': 'dotfiles#lightline#gitbranch',
-      \   'lsp': 'dotfiles#lightline#lsp_status'
+      \   'lsp': 'dotfiles#lightline#lsp_status',
+      \   'treesitter': 'dotfiles#lightline#treesitter_status'
       \ },
       \ 'component_expand': {
       \   'linter_checking': 'lightline#ale#checking',
