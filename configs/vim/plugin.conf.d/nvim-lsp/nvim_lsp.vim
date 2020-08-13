@@ -6,7 +6,7 @@ let g:did_cfg_nvim_lsp = 1
 
 " Gopls
 lua <<EOF
-require("dotfiles/lightline/lsp").setup()
+require("dotfiles/lsp").setup()
 EOF
 
 function! s:lsp_buffer_settings() abort

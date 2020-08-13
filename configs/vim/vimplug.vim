@@ -81,6 +81,7 @@ let s:use_built_in_lsp = v:true
 if has('nvim-0.5') && s:use_built_in_lsp
     Plug 'neovim/nvim-lsp'
     Plug 'nvim-lua/lsp-status.nvim'
+    Plug 'nvim-lua/diagnostic-nvim'
     let g:dotfiles_completion_manager_disabled = v:true
     " Plug 'nvim-lua/completion-nvim'
     " if dotfiles#plugin#selected('completion-nvim')

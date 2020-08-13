@@ -16,5 +16,5 @@ function! dotfiles#lightline#gutentags_status()
 endfunction
 
 function! dotfiles#lightline#lsp_status()
-    return luaeval('require("dotfiles/lightline/lsp").status()')
+    return luaeval('require("dotfiles/lsp").status()')
 endfunction
