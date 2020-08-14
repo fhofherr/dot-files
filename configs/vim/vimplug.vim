@@ -40,7 +40,7 @@ Plug 'dracula/vim', {'as': 'dracula'}
 " }}}
 
 " Buffers, Files, Searching and Finding {{{
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 Plug 'justinmk/vim-dirvish'
