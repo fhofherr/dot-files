@@ -10,6 +10,10 @@ require("dotfiles/lsp").setup()
 EOF
 
 function! s:lsp_buffer_settings() abort
+    " Always attach to the first client for now. Later we might want to try
+    " to find the correct client based on the buffer's file type.
+    lua vim.lsp.buf_attach_client(0, 1)
+
     setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
     if  g:dotfiles_completion_manager_disabled
