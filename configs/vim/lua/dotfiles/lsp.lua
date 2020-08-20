@@ -2,12 +2,18 @@ local M = {}
 
 local has_nvim_lsp, nvim_lsp = pcall(require, "nvim_lsp")
 local has_lsp_status, lsp_status = pcall(require, "lsp-status")
+local has_completion, completion = pcall(require, "completion")
 local has_diagnostic, diagnostic = pcall(require, "diagnostic")
 
-local function chain_on_attach(f1, f2)
-    return function(client, bufnr)
-        f1(client, bufnr)
-        f2(client, bufnr)
+local function on_attach(client, bufnr)
+    if has_completion then
+        completion.on_attach(client, bufnr)
+    end
+    if has_diagnostic then
+        diagnostic.on_attach(client, bufnr)
+    end
+    if has_lsp_status then
+        lsp_status.on_attach(client, bufnr)
     end
 end
 
@@ -17,26 +23,16 @@ function M.setup()
     end
 
     local gopls_opts = {
-        on_attach = function(_) end
+        on_attach = on_attach
     }
     local pyls_opts = {
-        on_attach = function(_) end
+        on_attach = on_attach
     }
 
     if has_lsp_status then
         lsp_status.register_progress()
-
-        gopls_opts.on_attach = chain_on_attach(gopls_opts.on_attach, lsp_status.on_attach)
         gopls_opts.capabilities = lsp_status.capabilities
-
-        pyls_opts.on_attach = chain_on_attach(gopls_opts.on_attach, lsp_status.on_attach)
         pyls_opts.capabilities = lsp_status.capabilities
-
-    end
-
-    if has_diagnostic then
-        gopls_opts.on_attach = chain_on_attach(gopls_opts.on_attach, diagnostic.on_attach)
-        pyls_opts.on_attach = chain_on_attach(gopls_opts.on_attach, diagnostic.on_attach)
     end
 
     nvim_lsp.gopls.setup(gopls_opts)

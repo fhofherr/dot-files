@@ -77,56 +77,18 @@ if exists("g:python3_host_prog")
     endif
 endif
 
-Plug 'nvim-treesitter/nvim-treesitter'
 
-let s:use_built_in_lsp = v:true
-if has('nvim-0.5') && s:use_built_in_lsp
+if has('nvim-0.5')
+    Plug 'nvim-treesitter/nvim-treesitter'
+
     Plug 'neovim/nvim-lsp'
     Plug 'nvim-lua/lsp-status.nvim'
     Plug 'nvim-lua/diagnostic-nvim'
-    let g:dotfiles_completion_manager_disabled = v:true
-    " Plug 'nvim-lua/completion-nvim'
-    " if dotfiles#plugin#selected('completion-nvim')
-    "     Plug 'hrsh7th/vim-vsnip'
-    "     Plug 'hrsh7th/vim-vsnip-integ'
-    " endif
-else
-    " Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', 'as': 'lcn' }
-    Plug 'prabirshrestha/vim-lsp'
-    Plug 'mattn/vim-lsp-settings'
-endif
 
-"Plug 'prabirshrestha/asyncomplete.vim'
-if dotfiles#plugin#selected('asyncomplete.vim')
-    Plug 'prabirshrestha/asyncomplete-buffer.vim'
-    Plug 'prabirshrestha/asyncomplete-file.vim'
-    Plug 'prabirshrestha/asyncomplete-emoji.vim'
-    Plug 'yami-beta/asyncomplete-omni.vim'
-
-    Plug 'Shougo/neco-vim'
-    Plug 'prabirshrestha/asyncomplete-necovim.vim'
-
-    Plug 'prabirshrestha/asyncomplete-tags.vim'
-
-    if dotfiles#plugin#selected('vim-lsp')
-        Plug 'prabirshrestha/asyncomplete-lsp.vim'
-    endif
-
-    if dotfiles#plugin#selected('ultisnips')
-        Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
-    endif
-endif
-
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-if dotfiles#plugin#selected('deoplete.nvim')
-    Plug 'Shougo/neco-vim'
-
-    if !dotfiles#plugin#selected('lcn') && (executable('python') || executable('python3'))
-        Plug 'deoplete-plugins/deoplete-jedi'
-    endif
-
-    Plug 'Shougo/echodoc.vim'
-    Plug 'Shougo/context_filetype.vim'
+    Plug 'nvim-lua/completion-nvim'
+    Plug 'hrsh7th/vim-vsnip'
+    Plug 'hrsh7th/vim-vsnip-integ'
+    Plug 'nvim-treesitter/completion-treesitter'
 endif
 
 " Works best with universal-ctags (https://ctags.io)
