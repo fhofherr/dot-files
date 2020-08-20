@@ -40,8 +40,6 @@ let g:completion_chain_complete_list = {
             \   }
             \}
 
-set completeopt=menuone,noinsert
-
 function s:attach()
     inoremap <silent><buffer><expr> <C-n> pumvisible() ? "\<C-n>" : completion#trigger_completion()
     inoremap <silent><buffer><expr> <C-p> pumvisible() ? "\<C-p>" : completion#trigger_completion()
