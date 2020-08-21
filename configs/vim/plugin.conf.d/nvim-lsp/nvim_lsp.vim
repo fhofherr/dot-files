@@ -14,6 +14,7 @@ function! s:lsp_buffer_settings() abort
     " to find the correct client based on the buffer's file type.
     lua vim.lsp.buf_attach_client(0, 1)
 
+    let b:dotfiles_lsp_enabled = 1
     setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
     nnoremap <buffer> <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
@@ -27,7 +28,15 @@ function! s:lsp_buffer_settings() abort
     nnoremap <buffer> <silent> <F2>  <cmd>lua vim.lsp.buf.rename()<CR>
 endfunction
 
+function! s:lsp_formatting_sync() abort
+    if !get(b:, 'dotfiles_lsp_enabled', 0)
+        return
+    endif
+    lua vim.lsp.buf.formatting_sync(nil, 1000)
+endfunction
+
 augroup dotfiles_nvim_lsp
     autocmd!
     autocmd FileType go,python call <SID>lsp_buffer_settings()
+    autocmd BufWritePre *.go,*.py silent! call <SID>lsp_formatting_sync()
 augroup END
