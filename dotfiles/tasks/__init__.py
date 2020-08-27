@@ -5,7 +5,7 @@ from dotfiles.tasks import (alacritty, antibody, asdf, bat, buf, dbcli, direnv,
                             editorconfig, fzf, git, git_bug, golang,
                             golangci_lint, httpie, kitty, kubectl, neovim,
                             nerd_fonts, overmind, pipx, platformio, pre_commit,
-                            python, tests, tmux, zsh)
+                            python, ssh, tests, tmux, zsh)
 
 
 @task
@@ -34,6 +34,7 @@ def install(c, home_dir=common.HOME_DIR):
     kubectl.configure(c, home_dir=home_dir)
     editorconfig.configure(c, home_dir)
     kitty.configure(c, home_dir)
+    ssh.configure(c, home_dir)
 
     zsh.write_dotfiles_zsh_config(c, home_dir)
 
@@ -94,6 +95,7 @@ def get_ns():
     ns.add_collection(python)
     ns.add_collection(neovim)
     ns.add_collection(nerd_fonts)
+    ns.add_collection(ssh)
     ns.add_collection(tmux)
     ns.add_collection(zsh)
 

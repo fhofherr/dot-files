@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+#shellcheck disable=SC1090
+
+# Adapted from https://stackoverflow.com/a/18915067
+set -e
+
+: "${SSH_AGENT_ENV_FILE:=$HOME/.ssh/agent-environment}"
+: "${SSH_AGENT_CMD:=/usr/bin/ssh-agent}"
+
+: "${PRINT_AGENT_ENV:=false}"
+
+function parse_args() {
+    while (($# > 0)); do
+    case "$1" in
+        "-p" | "--print-env")
+            PRINT_AGENT_ENV="true"
+            shift
+            ;;
+        "-t")
+            IDENTITITY_LIFETIME="$2"
+            shift
+            shift
+            ;;
+    esac
+    done
+}
+
+function print_agent_env() {
+    # shellcheck disable=SC2153
+    echo "export SSH_AGENT_PID=\"$SSH_AGENT_PID\""
+    echo "export SSH_AUTH_SOCK=\"$SSH_AUTH_SOCK\""
+}
+
+function write_agent_env() {
+    local old_umask
+    old_umask="$(umask)"
+
+    umask 077
+    print_agent_env > "${SSH_AGENT_ENV_FILE}"
+    umask "$old_umask"
+}
+
+function start_agent() {
+    local -a args
+    if [[ -n "$IDENTITITY_LIFETIME" ]]; then
+        args+=("-t" "$IDENTITITY_LIFETIME")
+    fi
+
+    source <("$SSH_AGENT_CMD" "${args[@]}")
+}
+
+function agent_started() {
+    local agent_pid
+    # shellcheck disable=SC2153
+    if [[ -z "$SSH_AGENT_PID" ]]; then
+        return 1
+    fi
+    agent_pid="$(pgrep -u "$USER" "$(basename $SSH_AGENT_CMD)")"
+    if [[ -z "$agent_pid" ]] || [[ "$agent_pid" != "$SSH_AGENT_PID" ]]; then
+        return 1
+    fi
+    return 0
+}
+
+parse_args "$@"
+
+# Source the env file if the agent is not started.
+if ! agent_started; then
+    [[ -f "$SSH_AGENT_ENV_FILE" ]] && source "$SSH_AGENT_ENV_FILE"
+fi
+
+# Re-check if the agent is started. If this is still not the case, start it and
+# write a new env file with the correct information.
+if ! agent_started; then
+    start_agent
+    write_agent_env
+fi
+
+if [[ "$PRINT_AGENT_ENV" == "true" ]]; then
+    print_agent_env
+fi
