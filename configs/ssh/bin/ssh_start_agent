@@ -11,7 +11,7 @@ set -e
 
 function parse_args() {
     while (($# > 0)); do
-    case "$1" in
+        case "$1" in
         "-p" | "--print-env")
             PRINT_AGENT_ENV="true"
             shift
@@ -21,8 +21,25 @@ function parse_args() {
             shift
             shift
             ;;
-    esac
+        esac
     done
+}
+
+function update_agent_env() {
+    local cur_agent_pid cur_auth_sock
+
+    # shellcheck disable=SC2153
+    cur_agent_pid="$SSH_AGENT_PID"
+    cur_auth_sock="$SSH_AUTH_SOCK"
+    source "$SSH_AGENT_ENV_FILE"
+
+    if [[ "$cur_agent_pid" == "$SSH_AGENT_PID" ]] && [[ "$cur_auth_sock" == "$SSH_AUTH_SOCK" ]]; then
+        return 0
+    fi
+
+    SSH_AGENT_PID="$cur_agent_pid"
+    SSH_AUTH_SOCK="$cur_auth_sock"
+    write_agent_env
 }
 
 function print_agent_env() {
@@ -36,7 +53,7 @@ function write_agent_env() {
     old_umask="$(umask)"
 
     umask 077
-    print_agent_env > "${SSH_AGENT_ENV_FILE}"
+    print_agent_env >"$SSH_AGENT_ENV_FILE"
     umask "$old_umask"
 }
 
@@ -46,7 +63,7 @@ function start_agent() {
         args+=("-t" "$IDENTITITY_LIFETIME")
     fi
 
-    source <("$SSH_AGENT_CMD" "${args[@]}")
+    source <("$SSH_AGENT_CMD" "${args[@]}" | sed 's/echo/#echo/')
 }
 
 function agent_started() {
@@ -64,16 +81,18 @@ function agent_started() {
 
 parse_args "$@"
 
-# Source the env file if the agent is not started.
-if ! agent_started; then
+if agent_started; then
+    update_agent_env
+else
+    # Source the env file if the agent does not seem to be started.
     [[ -f "$SSH_AGENT_ENV_FILE" ]] && source "$SSH_AGENT_ENV_FILE"
-fi
 
-# Re-check if the agent is started. If this is still not the case, start it and
-# write a new env file with the correct information.
-if ! agent_started; then
-    start_agent
-    write_agent_env
+    # Re-check if the agent is started. If this is still not the case, start it and
+    # write a new env file with the correct information.
+    if ! agent_started; then
+        start_agent
+        write_agent_env
+    fi
 fi
 
 if [[ "$PRINT_AGENT_ENV" == "true" ]]; then
