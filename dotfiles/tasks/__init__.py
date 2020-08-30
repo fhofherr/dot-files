@@ -5,7 +5,7 @@ from dotfiles.tasks import (alacritty, antibody, asdf, bat, buf, dbcli, direnv,
                             editorconfig, fzf, git, git_bug, golang,
                             golangci_lint, httpie, kitty, kubectl, neovim,
                             nerd_fonts, overmind, pipx, platformio, pre_commit,
-                            python, quicktile, ssh, tests, tmux, zsh)
+                            python, quicktile, ssh, tests, tilix, tmux, zsh)
 
 
 @task
@@ -31,6 +31,7 @@ def install(c, home_dir=common.HOME_DIR):
     zsh.install(c, home_dir=home_dir)
 
     alacritty.configure(c, home_dir)
+    tilix.configure(c, home_dir)
     bat.configure(c, home_dir=home_dir)
     kubectl.configure(c, home_dir=home_dir)
     editorconfig.configure(c, home_dir)
@@ -75,6 +76,7 @@ def get_ns():
     ns.add_task(test)
 
     ns.add_collection(alacritty)
+    ns.add_collection(tilix)
     ns.add_collection(antibody)
     ns.add_collection(bat)
     ns.add_collection(dbcli)
