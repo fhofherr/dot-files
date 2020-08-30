@@ -1,7 +1,7 @@
-from invoke import task
-
 import os
 import venv
+
+from invoke import task
 
 from dotfiles import common, logging, state
 
@@ -40,11 +40,21 @@ def configure(c, home_dir=common.HOME_DIR):
 
 
 @task
-def install_pkg(c, pkg, home_dir=common.HOME_DIR, warn=False):
+def install_pkg(c,
+                pkg,
+                home_dir=common.HOME_DIR,
+                warn=False,
+                system_site_packages=False):
     pipx_cmd = cmd_path(home_dir)
     if not os.path.exists(pipx_cmd):
         install(c, home_dir=home_dir)
-    c.run(f"{pipx_cmd} install {pkg}", env=env(home_dir), warn=warn)
+
+    args = []
+    if system_site_packages:
+        args.append("--system-site-packages")
+    c.run(f"{pipx_cmd} install {' '.join(args)} {pkg}",
+          env=env(home_dir),
+          warn=warn)
 
 
 @task

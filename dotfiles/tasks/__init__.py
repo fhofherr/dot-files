@@ -5,7 +5,7 @@ from dotfiles.tasks import (alacritty, antibody, asdf, bat, buf, dbcli, direnv,
                             editorconfig, fzf, git, git_bug, golang,
                             golangci_lint, httpie, kitty, kubectl, neovim,
                             nerd_fonts, overmind, pipx, platformio, pre_commit,
-                            python, ssh, tests, tmux, zsh)
+                            python, quicktile, ssh, tests, tmux, zsh)
 
 
 @task
@@ -27,6 +27,7 @@ def install(c, home_dir=common.HOME_DIR):
     python.install(c, home_dir=home_dir, install_missing_poetry=False)
     neovim.install(c, home_dir=home_dir)
     tmux.install(c, home_dir=home_dir)
+    quicktile.install(c, home_dir=home_dir)
     zsh.install(c, home_dir=home_dir)
 
     alacritty.configure(c, home_dir)
@@ -53,6 +54,7 @@ def update(c, home_dir=common.HOME_DIR, upgrade=False, reconfigure=False):
     httpie.update(c, home_dir=home_dir)
     overmind.update(c, home_dir=home_dir, reconfigure=reconfigure)
     platformio.update(c, home_dir=home_dir)
+    quicktile.update(c, home_dir=home_dir)
     pre_commit.update(c, home_dir=home_dir)
     fzf.update(c, home_dir=home_dir, reconfigure=reconfigure)
     tmux.install(c, home_dir=home_dir)
@@ -91,6 +93,7 @@ def get_ns():
     ns.add_collection(overmind)
     ns.add_collection(pipx)
     ns.add_collection(platformio)
+    ns.add_collection(quicktile)
     ns.add_collection(pre_commit)
     ns.add_collection(python)
     ns.add_collection(neovim)

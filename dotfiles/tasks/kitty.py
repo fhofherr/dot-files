@@ -10,7 +10,7 @@ _LOG = logging.get_logger(__name__)
 
 @task
 def configure(c, home_dir=common.HOME_DIR):
-    _LOG.info("Configure kuebctl")
+    _LOG.info("Configure kitty")
 
     kitty_cmd = shutil.which("kitty")
     if not kitty_cmd:

@@ -12,13 +12,15 @@ NERD_FONTS_REPO_URL = "https://github.com/ryanoasis/nerd-fonts.git"
 FONTS = ["Iosevka", "FiraCode"]
 
 
+# Note: you will still need to install an emoji font, e.g. noto-emoji
+
 @task
 def clone_repo(c, home_dir=common.HOME_DIR, update=False):
     nerd_fonts_dir = nerd_fonts_dir_path(home_dir)
 
     if update and os.path.exists(nerd_fonts_dir):
         shutil.rmtree(nerd_fonts_dir)
-    git.clone(c, NERD_FONTS_REPO_URL, nerd_fonts_dir, depth=1)
+    git.clone(c, NERD_FONTS_REPO_URL, nerd_fonts_dir, depth=1, branch="v2.0.0")
 
 
 @task
