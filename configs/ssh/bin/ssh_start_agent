@@ -67,16 +67,16 @@ function start_agent() {
 }
 
 function agent_started() {
-    local agent_pid
     # shellcheck disable=SC2153
     if [[ -z "$SSH_AGENT_PID" ]]; then
         return 1
     fi
-    agent_pid="$(pgrep -u "$USER" "$(basename $SSH_AGENT_CMD)")"
-    if [[ -z "$agent_pid" ]] || [[ "$agent_pid" != "$SSH_AGENT_PID" ]]; then
-        return 1
-    fi
-    return 0
+    for x in $(pgrep -u "$USER" "$(basename $SSH_AGENT_CMD)"); do
+        if [[ "$x" == "$SSH_AGENT_PID" ]]; then
+            return 0
+        fi
+    done
+    return 1
 }
 
 parse_args "$@"
