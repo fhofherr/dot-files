@@ -1,5 +1,6 @@
 [/]
 quake-specific-monitor=0
+session-name='${activeTerminalTitle}'
 tab-position='bottom'
 terminal-title-style='small'
 theme-variant='dark'
