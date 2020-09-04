@@ -17,6 +17,7 @@ bindkey -e
 # Permanently disable flow control. This ensures the terminal does not block
 # when hitting CTRL-S (and needs to be unblocked by hitting CTRL-Q).
 stty -ixon
+setopt NOFLOWCONTROL
 
 source "$DOTFILES_ZSH_LOCAL_ENV"
 source "$DOTFILES_ZSH_LOCAL_ALIASES"
