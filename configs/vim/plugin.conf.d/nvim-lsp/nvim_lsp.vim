@@ -1,4 +1,4 @@
-if !dotfiles#plugin#selected('nvim-lsp') || exists('g:did_cfg_nvim_lsp')
+if !dotfiles#plugin#selected('nvim-lspconfig') || exists('g:did_cfg_nvim_lsp')
     finish
 endif
 

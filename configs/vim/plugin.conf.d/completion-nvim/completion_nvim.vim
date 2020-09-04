@@ -1,4 +1,4 @@
-if !dotfiles#plugin#selected('completion-nvim') || !dotfiles#plugin#selected('nvim-lsp') || exists('g:did_cfg_completion_nvim')
+if !dotfiles#plugin#selected('completion-nvim') || !dotfiles#plugin#selected('nvim-lspconfig') || exists('g:did_cfg_completion_nvim')
     finish
 endif
 let g:did_cfg_completion_nvim = 1

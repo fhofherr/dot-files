@@ -51,7 +51,7 @@ let g:ale_fixers = {
             \   'python': [ 'black', 'isort', 'yapf' ]
             \ }
 
-if dotfiles#plugin#selected('lcn') || dotfiles#plugin#selected('nvim-lsp') || dotfiles#plugin#selected('vim-lsp')
+if dotfiles#plugin#selected('lcn') || dotfiles#plugin#selected('nvim-lspconfig') || dotfiles#plugin#selected('vim-lsp')
     let g:ale_disable_lsp = 1
 else
     let g:ale_linters.go = g:ale_linters.go + [ 'gopls' ]
