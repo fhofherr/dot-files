@@ -25,7 +25,8 @@ THIRD_PARTY_DEV_TOOLS = [
     "github.com/fatih/gomodifytags@latest",
     "github.com/goreleaser/goreleaser@latest",
     "github.com/mgechev/revive@latest",
-    "github.com/gokcehan/lf@latest"
+    "github.com/gokcehan/lf@latest",
+    "github.com/mvdan/sh@latest"
 ]
 
 
