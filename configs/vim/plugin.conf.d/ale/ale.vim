@@ -8,13 +8,10 @@ if !dotfiles#plugin#selected('ale') || exists('g:did_cfg_ale')
 endif
 let g:did_cfg_ale = 1
 
-" Disable ALE completion, we use deoplete for that
-" See: https://github.com/dense-analysis/ale#2iii-completion
-if dotfiles#plugin#selected('deoplete')
-            \ || dotfiles#plugin#selected('asyncomplete.vim')
-            \ || dotfiles#plugin#selected('asyncomplete-lsp.vim')
-    let g:ale_completion_enabled = 0
-endif
+let g:ale_disable_lsp = 1
+
+" Disable ALE completion
+let g:ale_completion_enabled = 0
 
 let g:ale_sign_column_always = 1
 
@@ -51,13 +48,6 @@ let g:ale_fixers = {
             \   'python': [ 'black', 'isort', 'yapf' ]
             \ }
 
-if dotfiles#plugin#selected('lcn') || dotfiles#plugin#selected('nvim-lspconfig') || dotfiles#plugin#selected('vim-lsp')
-    let g:ale_disable_lsp = 1
-else
-    let g:ale_linters.go = g:ale_linters.go + [ 'gopls' ]
-    let g:ale_linters.python = g:ale_linters.python + [ 'pyls' ]
-endif
-
 if executable('buf')
     let g:ale_linters['proto'] = ['buf-check-lint']
 endif
@@ -82,25 +72,11 @@ function! s:ale_update_after_manual_fix() abort
     ALELint
 endfunction
 
-function! s:ale_lsp_buffer_settings() abort
-    if get(g:, 'ale_disable_lsp', 0)
-        return
-    endif
-    " setlocal omnifunc=ale#completion#OmniFunc
-
-    nnoremap <buffer> <silent> K :ALEHover<CR>
-    nnoremap <buffer> <silent> gd :ALEGoToDefinition<CR>
-    nnoremap <buffer> <silent> 1gD :ALEGoToTypeDefinition<CR>
-    nnoremap <buffer> <silent> gr :ALEFindReferences<CR>
-    nnoremap <buffer> <silent> <F2> :ALERename<CR>
-endfunction
-
 nmap <silent> <F9> :call <SID>ale_fix_manual()<CR>
 
 augroup dotfiles_ale
     autocmd!
     autocmd User ALEFixPost call <SID>ale_update_after_manual_fix()
-    autocmd FileType go,python call <SID>ale_lsp_buffer_settings()
 augroup END
 
 " ---------------------------------------------------------------------------
