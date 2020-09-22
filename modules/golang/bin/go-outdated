@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -e
+
+GO="$(command -v GO 2> /dev/null)"
+if [ -z "$GO" ]; then
+    echo "go not installed or found"
+    exit 1
+fi
+
+GO_MOD_OUTDATED="$(command -v go-mod-outdated 2> /dev/null)"
+if [ -z "$GO_MOD_OUTDATED" ]; then
+    echo "go-mod-outdated not installed or found"
+    exit 1
+fi
+
+if [ "$1" = "help" ]; then
+    exec "$GO_MOD_OUTDATED" -help
+fi
+
+exec "$GO" list -u -m -json all | "$GO_MOD_OUTDATED" "$@"

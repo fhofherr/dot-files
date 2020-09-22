@@ -1,5 +1,0 @@
-# This .tool-versions file is not only used by the dotfiles repository, but
-# also serves as my global tool versions file. It is thus symlinked to
-# ~/.tool-versions by the install task
-golang system
-python system

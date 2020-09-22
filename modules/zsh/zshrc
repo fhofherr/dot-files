@@ -1,0 +1,42 @@
+setopt HISTIGNORESPACE
+
+## Make sure we use emacs keybindings.
+##
+## If the EDITOR variable contains "vi" zsh switches to vi keybindings.
+## See: https://unix.stackexchange.com/a/197841
+##
+## Additionally make sure we do this *before* loading any other (e.g. fzf)
+## bindings.
+## See: https://github.com/tmux/tmux/issues/1694#issuecomment-487935184
+bindkey -e
+
+# Permanently disable flow control. This ensures the terminal does not block
+# when hitting CTRL-S (and needs to be unblocked by hitting CTRL-Q).
+stty -ixon
+setopt NOFLOWCONTROL
+
+source "$HOME/.local/dotfiles/zsh/env.zsh"
+source "$HOME/.local/dotfiles/zsh/aliases.zsh"
+source "$HOME/.local/dotfiles/zsh/before_compinit.zsh"
+
+autoload -Uz compinit
+
+(){
+    setopt extendedglob local_options
+    for dump in $HOME/.zcompdump(#qN.m1); do
+        compinit
+        if [[ -s "$dump" && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc") ]]; then
+            zcompile "$dump"
+        fi
+    done
+}
+compinit -C
+
+source "$HOME/.local/dotfiles/zsh/after_compinit.zsh"
+
+# -----------------------------------------------------------------------------
+# Local configuration and secrets
+# -----------------------------------------------------------------------------
+if [ -f "$HOME/.zsh_local" ];then
+    source "$HOME/.zsh_local"
+fi

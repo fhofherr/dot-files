@@ -1,0 +1,18 @@
+{
+  "dotfiles/*.py": {
+    "alternate": "tests/dotfiles/{dirname}/test_{basename}.py",
+    "type": "source"
+  },
+  "tests/dotfiles/**/test_*.py": {
+    "alternate": "dotfiles/{}.py",
+    "type": "test"
+  },
+  "modules/*/mod.py": {
+    "alternate": "tests/modules/test_{}_mod.py",
+    "type": "source"
+  },
+  "tests/modules/test_*_mod.py": {
+    "alternate": "modules/{}/mod.py",
+    "type": "test"
+  }
+}

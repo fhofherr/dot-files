@@ -1,40 +1,35 @@
 import hashlib
-
-from dotfiles import logging
-
-_LOG = logging.get_logger(__name__)
+import os
 
 
-def verify_sha256(path, expected_sha256_sum):
+def verify_sha256(path, expected, log=None):
     h = hashlib.new("sha256")
     with open(path, "rb") as f:
         h.update(f.read())
     actual = h.hexdigest()
-    if expected_sha256_sum != actual:
-        raise Error(f"{expected_sha256_sum} != {actual}")
+    if log:
+        log.info(f"expected checksum: {expected}")
+        log.info(f"actual checksum: {actual}")
+    if expected != actual:
+        if log:
+            log.warn(f"verify_sha256: {expected} != {actual}")
+        return False
+    return True
 
 
-def verify_sha256_file(path, name, expected_sha256_sum_file):
-    _LOG.info(
-        f"Verify sha256 sum of {name} located at {path} against sums in {expected_sha256_sum_file}"
-    )
-    with open(expected_sha256_sum_file) as f:
+def verify_sha256_file(path, sha256_file, log=None):
+    with open(sha256_file) as f:
         lines = f.readlines()
-        if len(lines) == 0:
-            _LOG.warn("Sha256 sum file {expected_sha256_sum_file} is empty")
-        for line in lines:
-            line = line.strip()
-            if line.endswith(name):
-                expected_sha256_sum = line.split(" ")[0]
-                try:
-                    verify_sha256(path, expected_sha256_sum)
-                    return
-                except Error as e:
-                    raise Error(f"{name}: {e}")
-            else:
-                _LOG.debug(f"Line '{line}' does not end with '{name}'")
-    raise Error(f"None of the entries in {expected_sha256_sum_file} matched")
 
+    if len(lines) == 0:
+        raise ValueError(f"File {sha256_file} empty")
+    if len(lines) == 1:
+        return verify_sha256(path, lines[0].strip(), log=log)
 
-class Error(Exception):
-    pass
+    name = os.path.basename(path)
+    for line in lines:
+        line = line.strip()
+        if not line.endswith(name):
+            continue
+        expected = line.split(" ")[0].strip()
+        return verify_sha256(path, expected, log=log)

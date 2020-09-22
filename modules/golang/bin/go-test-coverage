@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+set -e
+
+: "${TESTCOVERAGE_FILE:=$PWD/.coverage.out}"
+: "${TESTCOVERAGE_TESTFLAGS:=-race}"
+: "${TESTCOVERAGE_CLEAN_GENERATED:=true}"
+
+if [[ $EUID = 0 ]]; then
+    echo "You can't be root"
+    exit 1
+fi
+
+if [[ ! -f "$PWD/go.mod" ]]; then
+    echo "$0 needs to be called from the Go project's root directory."
+    exit 1
+fi
+
+if ! command -v go > /dev/null 2>&1; then
+    echo "No go executable found"
+    exit 1
+fi
+
+GO_PACKAGES=$(command go list ./... | grep -v scripts | tr "\n" ",")
+command go test \
+    "$TESTCOVERAGE_TESTFLAGS" \
+    -p 1 \
+    -count=1 \
+    -covermode=atomic \
+    -coverprofile="$TESTCOVERAGE_FILE" \
+    -coverpkg="$GO_PACKAGES" \
+    ./... 2> /dev/null
+
+# Good enough heuristic to clean generated files.
+#
+# Basically whenever the file ends with *.something.go it is assumed to be
+# generated. Examples for such files are *.pb.go files or *.string.go files.
+if [[ "$TESTCOVERAGE_CLEAN_GENERATED" == "true" ]]; then
+    echo
+    echo "Cleaning generated files"
+
+    sed -i.bak '/^.\+\.[[:alpha:]]\+\.go:.\+$/d' "$TESTCOVERAGE_FILE"
+fi
+
+case $1 in
+    html)
+        command go tool cover -html="$TESTCOVERAGE_FILE"
+        ;;
+    *)
+        command go tool cover -func="$TESTCOVERAGE_FILE" | tail -n1
+        ;;
+esac

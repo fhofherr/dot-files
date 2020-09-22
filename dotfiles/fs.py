@@ -1,18 +1,24 @@
-import re
-import os
-import hashlib
-import shutil
 import datetime
+import hashlib
+import os
+import re
+import shutil
+import tarfile
+from typing import Callable, List, Tuple, Union
 
 
-def find_dotfiles_dir(home_dir):
+def find_dotfiles_dir(stop_path: str = "/") -> str:
+    """
+    Searches backwards from the implementing file's path until it finds a .git
+    directory.
+    """
     file_path = os.path.abspath(os.path.realpath(__file__))
     cur_dir = os.path.dirname(file_path)
     git_dir = os.path.join(cur_dir, ".git")
-    while cur_dir != home_dir and not os.path.exists(git_dir):
+    while cur_dir != stop_path and not os.path.exists(git_dir):
         cur_dir = os.path.dirname(cur_dir)
         git_dir = os.path.join(cur_dir, ".git")
-    if cur_dir == home_dir:
+    if cur_dir == stop_path:
         raise DotfilesDirNotFoundError
     return cur_dir
 
@@ -72,7 +78,7 @@ def _files_identical(file1, file2):
 
 
 def _sha256(file_path):
-    with open(file_path, 'rb') as f:
+    with open(file_path, "rb") as f:
         bs = f.read()
         return hashlib.sha256(bs).digest()
 
@@ -86,8 +92,8 @@ def _backup(file_path):
 
 
 def _backup_file_name(file_path):
-    fmt = '{file_path}.{bkpdate}.{version}'
-    bkpdate = datetime.datetime.now().strftime('%Y%m%d')
+    fmt = "{file_path}.{bkpdate}.{version}"
+    bkpdate = datetime.datetime.now().strftime("%Y%m%d")
     version = 1
     bkpfile = fmt.format(file_path=file_path, bkpdate=bkpdate, version=version)
     while os.path.exists(bkpfile):
@@ -111,14 +117,14 @@ def _find_latest_backup(file_path):
 
 def _find_all_backups(dir_path, file_name):
     bkpfile_re = re.escape(
-        file_name) + r'\.(?P<bkpdate>\d{8})\.(?P<version>\d+)'
+        file_name) + r"\.(?P<bkpdate>\d{8})\.(?P<version>\d+)"
     bkpfile_re = re.compile(bkpfile_re)
     bkpfiles = []
     for p in os.listdir(dir_path):
         m = bkpfile_re.match(p)
         if m is None:
             continue
-        file_info = (m.group('bkpdate'), int(m.group('version')), p)
+        file_info = (m.group("bkpdate"), int(m.group("version")), p)
         bkpfiles.append(file_info)
     return bkpfiles
 
@@ -128,3 +134,26 @@ def _dir_empty(dir_path):
         return False
     xs = os.listdir(dir_path)
     return len(xs) == 0
+
+
+def extract_tar_file(
+    path: str,
+    selected_entries: List[Tuple[Union[str, Callable[[tarfile.TarInfo], bool]],
+                                 str]],
+):
+    with tarfile.open(path) as tf:
+        for memsel, dest in selected_entries:
+            if isinstance(memsel, str):
+                member = memsel
+            else:
+                member = next(ti.name for ti in tf.getmembers() if memsel(ti))
+            srcf = tf.extractfile(member)
+            if not srcf:
+                raise ValueError(
+                    f"Tar file {path} does not contain member {member}")
+            try:
+                os.makedirs(os.path.dirname(dest), exist_ok=True)
+                with open(dest, "wb") as destf:
+                    destf.write(srcf.read())
+            finally:
+                srcf.close()

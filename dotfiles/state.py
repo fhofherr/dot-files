@@ -1,181 +1,169 @@
-import os
 import json
+import os
+from collections import OrderedDict
+from copy import deepcopy
+from dataclasses import dataclass
 
 
-def state_dir(home_dir):
-    return os.path.join(home_dir, ".local", "dotfiles", "state")
-
-
-def write_state(home_dir, state):
-    s_dir = state_dir(home_dir)
-    s_file = os.path.join(s_dir, f"{state.name}.json")
-    os.makedirs(s_dir, exist_ok=True)
-    with open(s_file, "w") as f:
-        f.write(state.to_json())
-
-
-def read_state(home_dir, name):
-    s_dir = state_dir(home_dir)
-    s_file = os.path.join(s_dir, f"{name}.json")
-    return _load_state(s_file)
-
-
-def _load_state(s_file):
-    with open(s_file) as f:
-        json_str = f.read()
-        return State.from_json(json_str)
+@dataclass
+class _ZSH:
+    before_compinit_script: str
+    after_compinit_script: str
 
 
 class State:
-    def __init__(self, name, depends_on=[]):
-        self.name = name
-        self.depends_on = depends_on
-        self.env = {}
-        self.aliases = {}
-        self.before_compinit_script = None
-        self.after_compinit_script = None
+    def __init__(self, mod_name):
+        self.mod_name = mod_name
+        self._values = {}
+        self._env = {}
+        self._aliases = {}
+        self.zsh = _ZSH("", "")
 
-    def put_env(self, key, value, guard=None):
-        # TODO validate key and value
-        # TODO remember to de-duplicate the values of PATH for multiple state
-        #     files when creating the shell init file
-        self.env[key] = {"value": value}
-        if guard:
-            self.env[key]["guard"] = guard
+    def put(self, key, value):
+        self._values[key] = value
 
-    def add_alias(self, key, value):
-        self.aliases[key] = value
+    def get(self, key, default=None):
+        return self._values.get(key, default)
 
-    @classmethod
-    def from_json(cls, json_str):
-        data = json.loads(json_str)
-        state = cls(name=data["name"], depends_on=data.get("depends_on", []))
-        if "env" in data:
-            state.env = data["env"]
-        if "aliases" in data:
-            state.aliases = data["aliases"]
-        if "before_compinit_script" in data:
-            state.before_compinit_script = data["before_compinit_script"]
-        if "after_compinit_script" in data:
-            state.after_compinit_script = data["after_compinit_script"]
-        return state
+    def delete(self, key):
+        if key in self._values:
+            del self._values[key]
 
-    def to_json(self):
-        state_dict = {"name": self.name}
-        if self.depends_on:
-            state_dict["depends_on"] = self.depends_on
-        if self.env:
-            state_dict["env"] = self.env
-        if self.aliases:
-            state_dict["aliases"] = self.aliases
-        if self.before_compinit_script:
-            state_dict["before_compinit_script"] = self.before_compinit_script
-        if self.after_compinit_script:
-            state_dict["after_compinit_script"] = self.after_compinit_script
-        return json.dumps(state_dict)
+    def setenv(self, varname, value):
+        if varname == "PATH":
+            self.set_path(value)
+            return
+        self._env[varname] = value
+
+    def getenv(self, varname, default=None):
+        if varname == "PATH":
+            return self.get_path()
+        return self._env.get(varname, default)
+
+    def delenv(self, varname):
+        if varname in self._env:
+            del self._env[varname]
+
+    def set_path(self, value):
+        path = self._env.get("PATH", [])
+        if value in path:
+            return
+        path.append(value)
+        self._env["PATH"] = path
+
+    def get_path(self):
+        path = self._env.get("PATH", [])
+        return deepcopy(path)
+
+    def add_alias(self, name, value):
+        self._aliases[name] = value
+
+    def get_alias(self, name):
+        return self._aliases[name]
+
+    def marshal_json(self):
+        d = {"mod_name": self.mod_name}
+        if self._values:
+            d["values"] = deepcopy(self._values)
+        if self._env:
+            d["env"] = deepcopy(self._env)
+        if self._aliases:
+            d["aliases"] = deepcopy(self._aliases)
+
+        zsh = {}
+        if self.zsh.before_compinit_script:
+            zsh["before_compinit_script"] = self.zsh.before_compinit_script
+        if self.zsh.after_compinit_script:
+            zsh["after_compinit_script"] = self.zsh.after_compinit_script
+
+        if zsh:
+            d["zsh"] = zsh
+
+        return d
 
 
-class AggregatedState:
-    def __init__(self, state_files):
-        self.state_files = state_files
-        self.states = {}
+class Aggregate:
+    def __init__(self):
+        self._env = OrderedDict()
+        self._aliases = OrderedDict()
+        self._zsh_before_compinit_scripts = []
+        self._zsh_after_compinit_scripts = []
 
-    def _load(self):
-        for s_file in self.state_files:
-            state = _load_state(s_file)
-            self.states[state.name] = state
-        # TODO provide order according to depends_on key once this becomes necessary
-        # TODO a 'global' state should always be the first in this order, i.e. all others depend implicitly on it
+    @property
+    def env_vars(self):
+        return list(self._env.items())
 
-    def write_env(self, dest_file):
-        env_vars = {}
-        path = set()
-        for name, state in self.states.items():
-            if not state.env:
+    @property
+    def aliases(self):
+        return list(self._aliases.items())
+
+    @property
+    def zsh_before_compinit_script(self):
+        return "\n\n\n".join(self._zsh_before_compinit_scripts)
+
+    @property
+    def zsh_after_compinit_script(self):
+        return "\n\n\n".join(self._zsh_after_compinit_scripts)
+
+    def add_state(self, st: State):
+        self._add_env(st)
+        self._add_aliases(st)
+        self._add_zsh_compinit_scripts(st)
+
+    def _add_env(self, st: State):
+        for k, v in st._env.items():
+            if k == "PATH":
+                self._append_path(v)
                 continue
-            if "PATH" in state.env:
-                value = state.env["PATH"]
-                if type(value) is dict:
-                    value = value["value"]
-                for v in value.split(os.pathsep):
-                    path.add(v)
-            for k, v in state.env.items():
-                if k == "PATH":
-                    # Skip PATH as it received special treatment above
-                    continue
-                if k in env_vars:
-                    provider = env_vars[k]["provider"]
-                    raise StateError(
-                        f"{name} can't set env {k}: {provider} already did")
-                # Backwards compatibility with old states
-                if type(v) == dict:
-                    env_vars[k] = {"provider": name, "value": v["value"]}
-                    if "guard" in v:
-                        env_vars[k]["guard"] = v["guard"]
-                else:
-                    env_vars[k] = {"provider": name, "value": v}
-        with open(dest_file, "w") as f:
-            f.write("# File auto-generated; DO NOT EDIT\n\n\n")
-            for k in sorted(env_vars.keys()):
-                value = env_vars[k]["value"]
-                guard = env_vars[k].get("guard")
-                if guard:
-                    f.write(
-                        f'if {guard}; then\n    export {k}="{value}"\nfi\n')
-                else:
-                    f.write(f'export {k}="{value}"\n')
+            if k in self._env:
+                raise ValueError(
+                    f"state '{st.mod_name}' redefines environment variable '{k}'"
+                )
+            self._env[k] = v
 
-            path_str = ":".join(path)
-            f.write(f'export PATH="{path_str}:$PATH"\n')
-
-    def write_aliases(self, dest_file):
-        aliases = {}
-        for name, state in self.states.items():
-            if not state.aliases:
+    def _append_path(self, vs):
+        path = self._env.get("PATH", [])
+        for v in vs:
+            if v in path:
                 continue
-            for k, v in state.aliases.items():
-                if k in aliases:
-                    provider = aliases[k]["provider"]
-                    raise StateError(
-                        f"{name} can't set alias {k}: {provider} already does")
-                aliases[k] = {"provider": name, "value": v}
-        with open(dest_file, "w") as f:
-            f.write("# File auto-generated; DO NOT EDIT\n\n\n")
-            for k in sorted(aliases.keys()):
-                value = aliases[k]["value"]
-                f.write(f'alias {k}="{value}"\n')
+            path.append(v)
+        self._env["PATH"] = path
 
-    def write_before_compinit_script(self, dest_file):
-        with open(dest_file, "w") as f:
-            f.write("# File auto-generated; DO NOT EDIT\n\n\n")
-            for name, state in self.states.items():
-                if not state.before_compinit_script:
-                    continue
-                f.write(f"###\n### {name}\n###\n\n")
-                f.write(state.before_compinit_script)
+    def _add_aliases(self, st: State):
+        for k, v in st._aliases.items():
+            if k in self._aliases:
+                raise ValueError(
+                    f"state '{st.mod_name}' redefines alias '{k}'")
+            self._aliases[k] = v
 
-    def write_after_compinit_script(self, dest_file):
-        with open(dest_file, "w") as f:
-            f.write("# File auto-generated; DO NOT EDIT\n\n\n")
-            for name, state in self.states.items():
-                if not state.after_compinit_script:
-                    continue
-                f.write(f"###\n### {name}\n###\n\n")
-                f.write(state.after_compinit_script)
+    def _add_zsh_compinit_scripts(self, st: State):
+        if st.zsh.before_compinit_script != "":
+            self._zsh_before_compinit_scripts.append(
+                st.zsh.before_compinit_script)
+        if st.zsh.after_compinit_script != "":
+            self._zsh_after_compinit_scripts.append(
+                st.zsh.after_compinit_script)
 
 
-def load_all(home_dir):
-    state_files = []
-    sdir = state_dir(home_dir)
-    for e in os.listdir(sdir):
-        path = os.path.join(sdir, e)
-        if not os.path.isfile(path):
-            continue
-        state_files.append(path)
-    ag_state = AggregatedState(state_files)
-    ag_state._load()
-    return ag_state
+def save_state(state_dir, st):
+    st_path = os.path.join(state_dir, f"{st.mod_name}.json")
+    os.makedirs(os.path.dirname(st_path), exist_ok=True)
+    with open(st_path, "w") as f:
+        json.dump(st.marshal_json(), f)
 
 
-class StateError(Exception):
-    pass
+def load_state(state_dir, mod_name):
+    st_path = os.path.join(state_dir, f"{mod_name}.json")
+    if not os.path.exists(st_path):
+        return State(mod_name)
+
+    with open(st_path, "r") as f:
+        data = json.load(f)
+    st = State(data["mod_name"])
+    st._values = data.get("values", {})
+    st._env = data.get("env", {})
+    st._aliases = data.get("aliases", {})
+    zsh = data.get("zsh", {})
+    st.zsh.before_compinit_script = zsh.get("before_compinit_script", "")
+    st.zsh.after_compinit_script = zsh.get("after_compinit_script", "")
+    return st

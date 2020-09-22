@@ -1,17 +1,13 @@
-import sys
 import os
-import pytest
+import sys
 import tempfile
-import shutil
+from dataclasses import dataclass
+
+import pytest
+
+from dotfiles import fs, module, state
 
 TESTS_DIR = os.path.dirname(os.path.abspath(os.path.realpath(__file__)))
-DOTFILES_DIR = os.path.dirname(TESTS_DIR)
-LIB_DIR = os.path.join(DOTFILES_DIR, '_lib')
-
-sys.path.append(LIB_DIR)
-
-import dotfiles.fs as fs
-import dotfiles.git as git
 
 
 @pytest.fixture()
@@ -24,18 +20,53 @@ def tmpfile(tmpdir):
         os.remove(p)
 
 
+@pytest.fixture(scope="session")
+def dotfiles_dir():
+    return fs.find_dotfiles_dir()
+
+
+@pytest.fixture(scope="session")
+def modules_dir(dotfiles_dir):
+    return os.path.join(dotfiles_dir, "modules")
+
+
 @pytest.fixture()
-def gitrepo(tmpdir):
-    repodir = tempfile.mkdtemp(dir=tmpdir)
-    with fs.chdir(repodir):
-        git._run('git', 'init')
-        git._run('git', 'config', 'user.email', 'test@example.com')
-        git._run('git', 'config', 'user.name', 'test')
-        with open('some_file.txt', 'w') as f:
-            f.write('This is just some file\n')
-        git._run('git', 'add', 'some_file.txt')
-        git._run('git', 'commit', '-m', 'Add some_file.txt')
-    try:
-        yield repodir
-    finally:
-        shutil.rmtree(repodir)
+def mock_argv(mocker):
+    def do_mock(*args):
+        mocker.patch.object(sys, "argv", list(args))
+
+    return do_mock
+
+
+@dataclass
+class _ModuleTestEnv:
+    modules_dir: str
+    home_dir: str
+    state_dir: str
+
+    def argv(self, cmd):
+        return [
+            f"--modules-dir={self.modules_dir}", f"--home-dir={self.home_dir}",
+            f"--state-dir={self.state_dir}", cmd
+        ]
+
+    def load_state(self, mod_name):
+        return state.load_state(self.state_dir, mod_name)
+
+    def run_module(self, mod_name, cmd, mock_argv) -> module.Definition:
+        mock_argv(*self.argv(cmd))
+        mods = module.run(only=mod_name)
+        assert mods
+        for mod in mods:
+            if mod.name == mod_name:
+                return mod
+
+
+@pytest.fixture(scope="session")
+def module_test_env(request, modules_dir):
+    with tempfile.TemporaryDirectory() as tmpdir:
+        home_dir = os.path.join(tmpdir, "home")
+        os.makedirs(home_dir, exist_ok=True)
+        state_dir = os.path.join(tmpdir, "state")
+        os.makedirs(state_dir, exist_ok=True)
+        yield _ModuleTestEnv(modules_dir, home_dir, state_dir)

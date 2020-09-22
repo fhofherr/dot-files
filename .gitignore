@@ -5,6 +5,8 @@
 *.bak
 *.log
 
+.coverage
+htmlcov/
 .netrwhist
 spell
 tags
