@@ -1,16 +1,12 @@
 local M = {}
 
-local has_nvim_lsp, nvim_lsp = pcall(require, "nvim_lsp")
+local has_nvim_lsp, nvim_lsp = pcall(require, "lspconfig")
 local has_lsp_status, lsp_status = pcall(require, "lsp-status")
 local has_completion, completion = pcall(require, "completion")
-local has_diagnostic, diagnostic = pcall(require, "diagnostic")
 
 local function on_attach(client, bufnr)
     if has_completion then
         completion.on_attach(client, bufnr)
-    end
-    if has_diagnostic then
-        diagnostic.on_attach(client, bufnr)
     end
     if has_lsp_status then
         lsp_status.on_attach(client, bufnr)
@@ -21,6 +17,16 @@ function M.setup()
     if not has_nvim_lsp then
         return
     end
+
+    -- See :help lsp-handler for more info
+    -- See https://github.com/nvim-lua/diagnostic-nvim/issues/73 for transition info from diagnostic-nvim
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+        vim.lsp.diagnostic.on_publish_diagnostics, {
+            virtual_text = true,
+            signs = false,
+            update_in_insert = true,
+        }
+    )
 
     local gopls_opts = {
         on_attach = on_attach

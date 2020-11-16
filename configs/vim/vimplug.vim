@@ -81,10 +81,8 @@ endif
 
 if has('nvim-0.5')
     Plug 'nvim-treesitter/nvim-treesitter'
-
     Plug 'neovim/nvim-lspconfig'
     Plug 'nvim-lua/lsp-status.nvim'
-    Plug 'nvim-lua/diagnostic-nvim'
 
     Plug 'nvim-lua/completion-nvim'
     Plug 'hrsh7th/vim-vsnip'
