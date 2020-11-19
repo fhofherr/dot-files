@@ -15,14 +15,14 @@ let g:completion_chain_complete_list = {
             \   'default': {
             \       'comment': [],
             \       'default': [
-            \           {'complete_items': ['snippet']},
+            \           {'complete_items': ['snippet', 'path']},
             \           {'mode': '<c-p>'},
             \           {'mode': '<c-n>'}
             \       ]
             \   },
             \   'go': {
             \       'default': [
-            \           {'complete_items': ['lsp']},
+            \           {'complete_items': ['lsp', 'ts']},
             \           {'mode': '<c-p>'},
             \           {'mode': '<c-n>'}
             \       ]

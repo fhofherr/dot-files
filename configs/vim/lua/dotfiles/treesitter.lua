@@ -9,7 +9,7 @@ function M.setup()
     end
 
     treesitter_configs.setup {
-        highlight = { enable = true },
+        highlight = { enable = false },
         incremental_selection = { enable = true },
         refactor = {
             highlight_definitions = { enable = true },
