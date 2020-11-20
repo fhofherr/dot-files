@@ -129,5 +129,9 @@ Plug 'vimwiki/vimwiki'
 Plug 'mattn/calendar-vim'
 " }}}
 
+" Text editing {{{
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+" }}}
+
 call plug#end()
 call dotfiles#plugin#load_config($VIMHOME . '/plugin.conf.d')
