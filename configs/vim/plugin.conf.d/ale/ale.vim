@@ -36,6 +36,8 @@ let g:ale_pattern_options = {
             \ }
 
 let g:ale_linters = {
+            \   'c': [ 'ccls' ],
+            \   'cpp': [ 'ccls' ],
             \   'go': [ 'gobuild', 'golangci-lint', 'revive' ],
             \   'python': [ 'flake8' ]
             \ }
@@ -43,6 +45,8 @@ let g:ale_linters = {
 " Make sure that only black or yapf are installed in the virtual environment.
 " Otherwise they will get into a fight.
 let g:ale_fixers = {
+            \   'c': [ 'ccls' ],
+            \   'cpp': [ 'ccls' ],
             \   'sh': [ 'shfmt' ],
             \   'go': [ 'goimports' ],
             \   'python': [ 'black', 'isort', 'yapf' ]

@@ -28,21 +28,18 @@ function M.setup()
         }
     )
 
-    local gopls_opts = {
-        on_attach = on_attach
-    }
-    local pyls_opts = {
+    local ls_opts = {
         on_attach = on_attach
     }
 
     if has_lsp_status then
         lsp_status.register_progress()
-        gopls_opts.capabilities = lsp_status.capabilities
-        pyls_opts.capabilities = lsp_status.capabilities
+        ls_opts.capabilities = lsp_status.capabilities
     end
 
-    nvim_lsp.gopls.setup(gopls_opts)
-    nvim_lsp.pyls.setup(pyls_opts)
+    nvim_lsp.ccls.setup(ls_opts)
+    nvim_lsp.gopls.setup(ls_opts)
+    nvim_lsp.pyls.setup(ls_opts)
 end
 
 function M.status()
