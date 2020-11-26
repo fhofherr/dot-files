@@ -53,8 +53,8 @@ function M.status()
     if not has_treesitter then
         return ""
     end
-    local statusline = treesitter.statusline(15)
-    if not statusline then
+    local ok, statusline = pcall(treesitter.statusline,15)
+    if not ok or not statusline then
         return ""
     end
     return statusline
