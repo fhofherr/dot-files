@@ -39,7 +39,7 @@ let g:ale_linters = {
             \   'c': [ 'ccls' ],
             \   'cpp': [ 'ccls' ],
             \   'go': [ 'gobuild', 'golangci-lint', 'revive' ],
-            \   'python': [ 'flake8' ]
+            \   'python': [ 'flake8', 'mypy' ]
             \ }
 
 " Make sure that only black or yapf are installed in the virtual environment.
