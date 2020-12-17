@@ -13,6 +13,24 @@ local function on_attach(client, bufnr)
     end
 end
 
+-- Create a deep copy from orig.
+--
+-- Copied verbatim from http://lua-users.org/wiki/CopyTable
+local function deepcopy(orig)
+    local orig_type = type(orig)
+    local copy
+    if orig_type == 'table' then
+        copy = {}
+        for orig_key, orig_value in next, orig, nil do
+            copy[deepcopy(orig_key)] = deepcopy(orig_value)
+        end
+        setmetatable(copy, deepcopy(getmetatable(orig)))
+    else -- number, string, boolean, etc
+        copy = orig
+    end
+    return copy
+end
+
 function M.setup()
     if not has_nvim_lsp then
         return
@@ -37,7 +55,10 @@ function M.setup()
         ls_opts.capabilities = lsp_status.capabilities
     end
 
-    nvim_lsp.ccls.setup(ls_opts)
+    ccls_opts = deepcopy(ls_opts)
+    ccls_opts.root_dir = nvim_lsp.util.root_pattern("compile_commands.json", ".ccls", "compile_flags.txt")
+    nvim_lsp.ccls.setup(ccls_opts)
+
     nvim_lsp.gopls.setup(ls_opts)
     nvim_lsp.pyls.setup(ls_opts)
 end
