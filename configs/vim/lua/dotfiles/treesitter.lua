@@ -36,11 +36,11 @@ function M.setup()
         ensure_installed = {
             "bash",
             "c",
+            "cpp",
             "go",
             "html",
             "json",
             "lua",
-            "markdown",
             "python",
             "regex",
             "toml",
