@@ -10,7 +10,19 @@ function M.setup()
 
     treesitter_configs.setup {
         highlight = { enable = false },
-        incremental_selection = { enable = true },
+        incremental_selection = {
+            enable = true,
+            keymaps = {
+                init_selection = "gnn",
+                node_incremental = "grn",
+                node_decremental = "grm",
+                scope_incremental = "grc",
+            },
+        },
+        indent = {
+            enable = true,
+            disable = { "go" }, -- Gopls/goimports does that for us.
+        },
         refactor = {
             highlight_definitions = { enable = true },
             smart_rename = {
