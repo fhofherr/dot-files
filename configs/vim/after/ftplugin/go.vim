@@ -17,15 +17,7 @@ if dotfiles#plugin#selected('gopher.vim')
   setlocal equalprg=
 endif
 
-" if dotfiles#plugin#selected('vim-lsp')
-"   " setlocal foldmethod=expr
-"   "       \ foldexpr=lsp#ui#vim#folding#foldexpr()
-"   "       \ foldtext=lsp#ui#vim#folding#foldtext()
-"   "       \ foldnestmax=3
-"   setlocal foldmethod=indent foldnestmax=3
-"   let b:asyncomplete_min_chars = 3
-" else
-"   setlocal foldmethod=indent foldnestmax=3
-" endif
+setlocal foldnestmax=3
+setlocal foldmethod=indent
 
 " vim: sw=2 sts=2 et
