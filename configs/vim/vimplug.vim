@@ -68,6 +68,8 @@ Plug 'tpope/vim-commentary'
 " Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-projectionist'
 
+Plug 'embear/vim-localvimrc'
+
 if exists("g:python3_host_prog")
     Plug 'dense-analysis/ale'
     if dotfiles#plugin#selected('lightline.vim')
