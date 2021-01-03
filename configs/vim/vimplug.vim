@@ -119,6 +119,14 @@ if executable('clj') || executable('clojure') || executable('lein')
     Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 endif
 
+if executable('pio')
+    if filereadable(expand('~/Projects/github.com/fhofherr/nvim-pio/bin/nvim-pio'))
+        Plug '~/Projects/github.com/fhofherr/nvim-pio'
+    else
+        " Plug 'fhofherr/nvim-pio', {'do': 'make'}
+    endif
+endif
+
 Plug 'aklt/plantuml-syntax'
 Plug 'aliou/bats.vim'
 Plug 'cespare/vim-toml'

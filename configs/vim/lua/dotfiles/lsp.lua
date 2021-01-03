@@ -11,24 +11,34 @@ local function on_attach(client, bufnr)
     if has_lsp_status then
         lsp_status.on_attach(client, bufnr)
     end
+
+    vim.api.nvim_buf_set_keymap(0, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", {noremap = true, silent = true})
+    vim.api.nvim_buf_set_keymap(0, "n", "<c-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", {noremap = true, silent = true})
+    vim.api.nvim_buf_set_keymap(0, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", {noremap = true, silent = false})
+    vim.api.nvim_buf_set_keymap(0, "n", "gD", "<cmd>lua vim.lsp.buf.implementation()<CR>", {noremap = true, silent = true})
+    vim.api.nvim_buf_set_keymap(0, "n", "1gD", "<cmd>lua vim.lsp.buf.type_definition()<CR>", {noremap = true, silent = true})
+    vim.api.nvim_buf_set_keymap(0, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", {noremap = true, silent = true})
+    vim.api.nvim_buf_set_keymap(0, "n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", {noremap = true, silent = true})
+    vim.api.nvim_buf_set_keymap(0, "n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", {noremap = true, silent = true})
+    vim.api.nvim_buf_set_keymap(0, "n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>", {noremap = true, silent = true})
+
+    vim.api.nvim_buf_set_option(0, "omnifunc", "v:lua.vim.lsp.omnifunc")
+    vim.b.dotfiles_lsp_enabled = 1
 end
 
--- Create a deep copy from orig.
---
--- Copied verbatim from http://lua-users.org/wiki/CopyTable
-local function deepcopy(orig)
-    local orig_type = type(orig)
-    local copy
-    if orig_type == 'table' then
-        copy = {}
-        for orig_key, orig_value in next, orig, nil do
-            copy[deepcopy(orig_key)] = deepcopy(orig_value)
-        end
-        setmetatable(copy, deepcopy(getmetatable(orig)))
-    else -- number, string, boolean, etc
-        copy = orig
+local function setup_ccls(ls_opts)
+    -- Create a deep copy of the passed in ls_opts. We modify this copy
+    -- instead of the common options.
+    local ccls_opts = vim.deepcopy(ls_opts)
+
+    ccls_opts.root_dir = nvim_lsp.util.root_pattern("compile_commands.json", ".ccls", "compile_flags.txt")
+    if vim.g.dotfiles_lsp_ccls_root_patterns then
+        ccls_opts.root_dir = nvim_lsp.util.root_pattern(vim.g.dotfiles_lsp_ccls_root_patterns)
     end
-    return copy
+    if vim.g.dotfiles_lsp_ccls_compilation_db_dir then
+        ccls_opts.init_options.compilationDatabaseDirectory = vim.g.dotfiles_lsp_ccls_compilation_db_dir
+    end
+    nvim_lsp.ccls.setup(ccls_opts)
 end
 
 function M.setup()
@@ -55,12 +65,14 @@ function M.setup()
         ls_opts.capabilities = lsp_status.capabilities
     end
 
-    ccls_opts = deepcopy(ls_opts)
-    ccls_opts.root_dir = nvim_lsp.util.root_pattern("compile_commands.json", ".ccls", "compile_flags.txt")
-    nvim_lsp.ccls.setup(ccls_opts)
+    setup_ccls(ls_opts)
 
     nvim_lsp.gopls.setup(ls_opts)
     nvim_lsp.pyls.setup(ls_opts)
+
+    vim.api.nvim_command([[
+    autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+    ]])
 end
 
 function M.status()
