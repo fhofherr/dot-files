@@ -35,8 +35,8 @@ Plug 'TaDaa/vimade'
 " Plug 'chriskempson/base16-vim'
 " Plug 'cocopon/iceberg.vim'
 " Plug 'drewtempelmeyer/palenight.vim'
-Plug 'dracula/vim', {'as': 'dracula'}
-" Plug 'gruvbox-community/gruvbox'
+" Plug 'dracula/vim', {'as': 'dracula'}
+Plug 'gruvbox-community/gruvbox'
 " Plug 'sonph/onehalf', {'rtp': 'vim'}
 " }}}
 
