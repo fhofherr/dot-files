@@ -1,5 +1,6 @@
 [/]
 prompt-on-close=true
+prompt-on-delete-profile=true
 quake-specific-monitor=0
 session-name='${activeTerminalTitle}'
 tab-position='bottom'
@@ -18,77 +19,26 @@ session-switch-to-terminal-up='<Alt>k'
 terminal-select-all='disabled'
 
 [profiles]
-default='640e2599-8483-4371-ab2a-b1fce2e131bc'
-list=['2b7c4080-0ddd-46c5-8f23-563fd3ba789d', 'dd32232b-e884-4df1-8ce6-553d0dd87d24', '640e2599-8483-4371-ab2a-b1fce2e131bc', '6c7dffa5-0510-46a1-a18c-36cf28a08228']
+default='d19b4144-8f02-49ba-bb51-3d50c8cf1a78'
+list=['2b7c4080-0ddd-46c5-8f23-563fd3ba789d', 'dd32232b-e884-4df1-8ce6-553d0dd87d24', 'd19b4144-8f02-49ba-bb51-3d50c8cf1a78']
 
 [profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d]
 visible-name='Default'
 
 [profiles/640e2599-8483-4371-ab2a-b1fce2e131bc]
-allow-bold=true
-automatic-switch=@as []
-background-color='#282828282828'
-background-transparency-percent=8
-backspace-binding='ascii-delete'
-badge-color='#ffffff'
-badge-color-set=false
-badge-font='Monospace 12'
-badge-position='northeast'
-badge-text=''
-badge-use-system-font=true
-bold-color='#ebebdbdbb2b2'
 bold-color-same-as-fg=true
-bold-color-set=false
-bold-is-bright=true
-cell-height-scale=1.0
-cell-width-scale=1.0
-cjk-utf8-ambiguous-width='narrow'
-cursor-background-color='#000000'
-cursor-blink-mode='system'
-cursor-colors-set=false
-cursor-foreground-color='#ffffff'
-cursor-shape='block'
-custom-command=''
-custom-hyperlinks=@as []
-default-size-columns=80
-default-size-rows=24
-delete-binding='delete-sequence'
-dim-transparency-percent=41
-draw-margin=80
-encoding='UTF-8'
-exit-action='close'
-font='Iosevka 12'
-foreground-color='#ebebdbdbb2b2'
-highlight-background-color='#'
-highlight-colors-set=true
-highlight-foreground-color='#'
-login-shell=false
-notify-silence-enabled=false
-notify-silence-threshold=0
-palette=['#282828282828', '#cccc24241d1d', '#989897971a1a', '#d7d799992121', '#454585858888', '#b1b162628686', '#68689d9d6a6a', '#a8a899998484', '#929283837474', '#fbfb49493434', '#b8b8bbbb2626', '#fafabdbd2f2f', '#8383a5a59898', '#d3d386869b9b', '#8e8ec0c07c7c', '#ebebdbdbb2b2']
-rewrap-on-resize=true
-scroll-on-keystroke=true
-scroll-on-output=false
-scrollback-lines=8192
-scrollback-unlimited=false
-select-by-word-chars='-,./?%&#:_'
-shortcut='disabled'
-show-scrollbar=true
-terminal-bell='sound'
-terminal-title='${id}: ${title}'
-text-blink-mode='always'
-triggers=@as []
-use-custom-command=false
-use-system-font=false
 use-theme-background=false
-use-theme-colors=false
 use-theme-transparency=false
-visible-name='Gruvbox Dark'
 
 [profiles/6c7dffa5-0510-46a1-a18c-36cf28a08228]
+bold-color-same-as-fg=true
+use-theme-background=false
+use-theme-transparency=false
+
+[profiles/d19b4144-8f02-49ba-bb51-3d50c8cf1a78]
 allow-bold=true
 automatic-switch=@as []
-background-color='#fbfbf1f1c7c7'
+background-color='#282828'
 background-transparency-percent=8
 backspace-binding='ascii-delete'
 badge-color='#ffffff'
@@ -97,8 +47,7 @@ badge-font='Monospace 12'
 badge-position='northeast'
 badge-text=''
 badge-use-system-font=true
-bold-color='#3c3c38383636'
-bold-color-same-as-fg=true
+bold-color='#ffffff'
 bold-color-set=false
 bold-is-bright=true
 cell-height-scale=1.0
@@ -119,14 +68,14 @@ draw-margin=80
 encoding='UTF-8'
 exit-action='close'
 font='Iosevka 12'
-foreground-color='#3c3c38383636'
-highlight-background-color='#'
-highlight-colors-set=true
-highlight-foreground-color='#'
+foreground-color='#EBDBB2'
+highlight-background-color='#000000'
+highlight-colors-set=false
+highlight-foreground-color='#ffffff'
 login-shell=false
 notify-silence-enabled=false
 notify-silence-threshold=0
-palette=['#fbfbf1f1c7c7', '#cccc24241d1d', '#989897971a1a', '#d7d799992121', '#454585858888', '#b1b162628686', '#68689d9d6a6a', '#7c7c6f6f6464', '#929283837474', '#9d9d00000606', '#797974740e0e', '#b5b576761414', '#070766667878', '#8f8f3f3f7171', '#42427b7b5858', '#3c3c38383636']
+palette=['#282828', '#CC241D', '#98971A', '#D79921', '#458588', '#B16286', '#689D6A', '#BDAE93', '#7C6F64', '#FB4934', '#B8BB26', '#FABD2F', '#83A598', '#D3869B', '#8EC07C', '#EBDBB2']
 rewrap-on-resize=true
 scroll-on-keystroke=true
 scroll-on-output=false
@@ -141,10 +90,8 @@ text-blink-mode='always'
 triggers=@as []
 use-custom-command=false
 use-system-font=false
-use-theme-background=false
 use-theme-colors=false
-use-theme-transparency=false
-visible-name='Gruvbox'
+visible-name='Gruvbox dark'
 
 [profiles/dd32232b-e884-4df1-8ce6-553d0dd87d24]
 allow-bold=true
