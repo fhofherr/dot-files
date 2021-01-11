@@ -36,6 +36,8 @@ tags.lock
 tags.temp
 *.bak
 .ccls-cache/
+.nvim-pio
+*.log
 
 # M$ Office #
 #############
