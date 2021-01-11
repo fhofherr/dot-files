@@ -21,7 +21,10 @@ function M.setup()
         },
         indent = {
             enable = true,
-            disable = { "go" }, -- Gopls/goimports does that for us.
+            disable = {
+                "go",  -- Gopls/goimports does that for us.
+                "python", -- Doesn't work currently: https://github.com/nvim-treesitter/nvim-treesitter/issues/802
+            },
         },
         refactor = {
             highlight_definitions = { enable = true },
