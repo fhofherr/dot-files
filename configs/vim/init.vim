@@ -57,8 +57,6 @@ set completeopt=menuone,noinsert
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
 
-set numberwidth=5
-set number
 " default updatetime 4000ms is not good for async update
 set updatetime=100
 
