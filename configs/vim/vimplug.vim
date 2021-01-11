@@ -27,6 +27,7 @@ endif
 " Eye candy and color schemes {{{
 Plug 'itchyny/lightline.vim'
 Plug 'TaDaa/vimade'
+Plug 'mhinz/vim-startify'
 
 " I don't need all of those. But if I want to switch I want
 " the others handy. So they are just commented out.
@@ -53,8 +54,7 @@ Plug 'nelstrom/vim-visual-star-search'
 
 " Git {{{
 Plug 'mhinz/vim-signify'
-Plug 'rhysd/git-messenger.vim'
-Plug 'jreybert/vimagit'
+Plug 'tpope/vim-fugitive'
 " }}}
 
 " Snippets {{{
@@ -132,11 +132,6 @@ Plug 'aliou/bats.vim'
 Plug 'cespare/vim-toml'
 Plug 'hashivim/vim-terraform'
 Plug 'kylef/apiblueprint.vim'
-" }}}
-
-" Wiki {{{
-Plug 'vimwiki/vimwiki'
-Plug 'mattn/calendar-vim'
 " }}}
 
 " Text editing {{{
