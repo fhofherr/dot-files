@@ -16,7 +16,7 @@ set number
 " a buffer is selected. Disable them when a buffer is de-selected, or when
 " in insert mode.
 function! s:set_line_numbering(state)
-    let ignore_list = ['neoterm']
+    let ignore_list = ['neoterm', 'qf']
     if &ft == '' || index(ignore_list, &ft) >= 0
         setlocal nonumber norelativenumber
         return
