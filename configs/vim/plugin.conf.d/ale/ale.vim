@@ -65,7 +65,7 @@ function! s:ale_fix_manual() abort
     if get(g:, 'ale_fix_on_save', 0) || get(b:, 'ale_fix_on_save', 0)
         return
     endif
-    ALEFix
+    lockmarks ALEFix
 endfunction
 
 function! s:ale_update_after_manual_fix() abort
