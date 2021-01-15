@@ -1,8 +1,29 @@
 local M = {}
 
+M.supported_file_types = {}
+
 local has_nvim_lsp, nvim_lsp = pcall(require, "lspconfig")
 local has_lsp_status, lsp_status = pcall(require, "lsp-status")
 local has_completion, completion = pcall(require, "completion")
+
+function M.buf_attach_client()
+    if not has_nvim_lsp then
+        return
+    end
+    local ft = vim.bo.filetype
+    if M.supported_file_types[ft] ~= nil then
+        return
+    end
+    if vim.b.dotfiles_lsp_enabled == 1 then
+        -- dotfiles_lsp_enabled was set by on_attach. We are already attached.
+        -- Nothing more to do.
+        return
+    end
+
+    -- Always attach to the first client for now. Later we might want to try
+    -- to find the correct client based on the buffer's file type.
+    vim.lsp.buf_attach_client(0, 1)
+end
 
 local function on_attach(client, bufnr)
     if has_completion then
@@ -23,6 +44,9 @@ local function on_attach(client, bufnr)
     vim.api.nvim_buf_set_keymap(0, "n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>", {noremap = true, silent = true})
 
     vim.api.nvim_buf_set_option(0, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+    vim.api.nvim_command('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()')
+
     vim.b.dotfiles_lsp_enabled = 1
 end
 
@@ -39,6 +63,9 @@ local function setup_ccls(ls_opts)
         ccls_opts.init_options.compilationDatabaseDirectory = vim.g.dotfiles_lsp_ccls_compilation_db_dir
     end
     nvim_lsp.ccls.setup(ccls_opts)
+
+    table.insert(M.supported_file_types, "c")
+    table.insert(M.supported_file_types, "cpp")
 end
 
 function M.setup()
@@ -68,10 +95,14 @@ function M.setup()
     setup_ccls(ls_opts)
 
     nvim_lsp.gopls.setup(ls_opts)
+    table.insert(M.supported_file_types, "go")
+
     nvim_lsp.pyls.setup(ls_opts)
+    table.insert(M.supported_file_types, "python")
+
 
     vim.api.nvim_command([[
-    autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+    autocmd BufEnter * lua require("dotfiles/lsp").buf_attach_client()
     ]])
 end
 
