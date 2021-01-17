@@ -17,6 +17,8 @@ DEFAULT_DIR = os.path.join(fs.find_dotfiles_dir(), "modules")
 # Will later be joined with the passed home directory.
 _DEFAULT_STATE_DIR = os.path.join(".local", "dotfiles", "state")
 
+_DEFAULT_SHELL = os.path.basename(os.getenv("SHELL", "zsh"))
+
 T = TypeVar("T", bound="Definition")
 
 # TODO some modules may have @module.install and @module.update applied to
@@ -238,6 +240,10 @@ def _parse_args(
                              nargs="*",
                              dest="tags",
                              help="Tags to limit the modules by")
+    args_parser.add_argument(
+        "--shell",
+        default=_DEFAULT_SHELL,
+        help="Shell for which initialization code should be generated")
     args_parser.add_argument("cmd", choices=["install", "update", "uninstall"])
     return args_parser.parse_args()
 
@@ -270,10 +276,10 @@ def run(only: Optional[Union[Type[Definition], str]] = None,
     for mod in mods:
         mod._run(args.cmd, args.state_dir)
 
-    zsh_mod = mods_by_name.get("zsh")
-    if zsh_mod:
+    if args.shell == "zsh":
+        dest_dir = os.path.join(args.home_dir, ".local", "dotfiles", "zsh")
         sts = [m.state for m in mods]
-        zsh.write_init_files(zsh_mod.local_dir, sts)
+        zsh.write_init_files(dest_dir, sts)
 
     return mods
 
