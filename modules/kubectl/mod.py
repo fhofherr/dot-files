@@ -25,7 +25,7 @@ class Kubectl(module.Definition):
             self.log.info("kubectl not installed")
             return
         self.state.add_alias("k", self.kubectl_cmd)
-        self.state.zsh.before_compinit_script = self._zsh_hook
+        self.state.zsh.after_compinit_script = self._zsh_hook
 
 
 if __name__ == "__main__":
