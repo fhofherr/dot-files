@@ -85,7 +85,10 @@ class Git(module.Definition):
         return self(*argv)
 
     @module.export
-    def update(self, repo_dir):
+    def update(self, repo_dir, branch: str = ""):
+        argv = ["pull", "--prune"]
+        if branch:
+            argv += [f"origin/{branch}"]
         self("pull", "--prune", cwd=repo_dir)
 
     @module.export
@@ -101,7 +104,7 @@ class Git(module.Definition):
         """
         if not os.path.exists(repo_dir):
             return self.clone(repo_url, repo_dir, branch=branch, depth=depth)
-        return self.update(repo_dir)
+        return self.update(repo_dir, branch=branch)
 
 
 if __name__ == "__main__":
