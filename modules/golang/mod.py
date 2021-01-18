@@ -69,3 +69,7 @@ class Golang(module.Definition):
 
         with tempfile.TemporaryDirectory(prefix="dotfiles-go-get-") as tmpdir:
             return self("get", url, env=env, cwd=tmpdir)
+
+
+if __name__ == "__main__":
+    module.run(Golang)
