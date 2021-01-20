@@ -276,7 +276,9 @@ def run(only: Optional[Union[Type[Definition], str]] = None,
     for mod in mods:
         mod._run(args.cmd, args.state_dir)
 
-    if args.shell == "zsh":
+    # TODO if only one module is selected only the state of that module is
+    #      used to generate a new shell config. This is not what we want.
+    if not only and args.shell == "zsh":
         dest_dir = os.path.join(args.home_dir, ".local", "dotfiles", "zsh")
         sts = [m.state for m in mods]
         zsh.write_init_files(dest_dir, sts)
