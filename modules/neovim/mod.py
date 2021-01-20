@@ -48,7 +48,8 @@ class NeoVim(module.Definition):
             "DOTFILES_NEOVIM_PYTHON3": self._nvim_python_host,
             "VIMPLUG_HOME": self._vimplug_home,
             "VIMHOME": self._nvim_cfg_dest,
-            "EDITOR": self.nvim_cmd
+            "EDITOR": self.nvim_cmd,
+            "HOME": self.home_dir,
         }
 
     @property
