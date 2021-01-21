@@ -39,12 +39,11 @@ function M.setup()
         textobjects = {
             select = {
                 enable = true,
-                disable = { "go" }, -- Gopher.vim defines textobjects for us
                 keymaps = {
                     ["af"] = "@function.outer",
                     ["if"] = "@function.inner",
-                    ["ac"] = "@comment.outer", -- Same as defined by gopher.vim for go
-                    ["ic"] = "@comment.inner", -- Same as defined by gopher.vim for go
+                    ["ac"] = "@comment.outer",
+                    ["ic"] = "@comment.inner",
                 },
             },
         },

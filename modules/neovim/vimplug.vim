@@ -111,8 +111,7 @@ endif
 " Golang plugins
 if executable('go')
     Plug 'sebdah/vim-delve'
-    " Plug 'mattn/vim-goaddtags'
-    Plug 'arp242/gopher.vim'
+    Plug 'mattn/vim-goaddtags'
 endif
 
 " Clojure plugins
