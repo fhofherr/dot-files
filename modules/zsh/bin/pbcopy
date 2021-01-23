@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+XSEL=$(command -v xsel 2>/dev/null)
+XCLIP=$(command -v xclip 2>/dev/null)
+
+if [[ -n "$XSEL" ]]; then
+    exec "$XSEL" --clipboard --input
+elif [[ -n "$XCLIP" ]]; then
+    exec "$XCLIP" -selection clipboard
+else
+    echo "Neither xsel nor xclip installed"
+    exit 1
+fi

@@ -21,6 +21,10 @@ class Zsh(module.Definition):
     def plugin_dir(self):
         return os.path.join(self.local_dir, "plugins")
 
+    @property
+    def _zsh_bin_dir(self):
+        return os.path.join(self.mod_dir, "bin")
+
     @module.update
     @module.install
     def install(self):
@@ -28,6 +32,7 @@ class Zsh(module.Definition):
             fs.safe_link_file(os.path.join(self.mod_dir, f),
                               os.path.join(self.home_dir, f".{f}"))
 
+        self.state.setenv("PATH", self._zsh_bin_dir)
         self.state.zsh.before_compinit_script = self._install_plugins(
             BEFORE_COMPINIT_PLUGINS)
 
