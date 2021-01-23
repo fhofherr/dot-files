@@ -8,6 +8,7 @@ TPM_REMOTE_REPO = "https://github.com/tmux-plugins/tpm"
 
 class Tmux(module.Definition):
     required = ["git"]
+    optional = ["fzf"]
 
     @property
     def tmux_cmd(self):
@@ -70,6 +71,11 @@ class Tmux(module.Definition):
         self.state.add_alias("tns", f"{self._tmux_bin_dir}/tmux-new-session")
         self.state.add_alias("tnw", "tmux new-window")
         self.state.add_alias("tss", "tmux switch-client -t")
+
+        if self.fzf:
+            self.state.add_alias(
+                    "tnsp",
+                    f"{self._tmux_bin_dir}/tmux-new-session \"$(find ~/Projects -maxdepth 3 -type d | {self.fzf.fzf_cmd})\"")
 
     def _create_terminfo(self):
         self.log.info("create tmux terminfo")

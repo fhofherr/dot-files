@@ -21,6 +21,10 @@ class FZF(module.Definition):
         return os.path.join(self._repo_dir, "bin")
 
     @property
+    def fzf_cmd(self):
+        return os.path.join(self._fzf_bin_dir, "fzf")
+
+    @property
     def _after_compinit_txt(self):
         return textwrap.dedent(f"""
         # FZF Auto-completion
