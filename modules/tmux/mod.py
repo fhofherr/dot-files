@@ -45,6 +45,12 @@ class Tmux(module.Definition):
     def _tmux_bin_dir(self):
         return os.path.join(self.mod_dir, "bin")
 
+    @property
+    def _zsh_hook(self):
+        path = os.path.join(self.mod_dir, "after_compinit.sh")
+        with open(path) as f:
+            return f.read()
+
     @module.update
     @module.install
     def install(self):
@@ -57,6 +63,7 @@ class Tmux(module.Definition):
         self._install_plugins()
 
         self.state.setenv("PATH", self._tmux_bin_dir)
+        self.state.zsh.after_compinit_script = self._zsh_hook
         self.state.add_alias("tas", "tmux attach -t")
         self.state.add_alias("tks", "tmux kill-session -t")
         self.state.add_alias("tls", "tmux ls")

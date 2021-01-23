@@ -40,3 +40,13 @@ source "$HOME/.local/dotfiles/zsh/after_compinit.zsh"
 if [ -f "$HOME/.zsh_local" ];then
     source "$HOME/.zsh_local"
 fi
+
+# -----------------------------------------------------------------------------
+#  Tmux
+# -----------------------------------------------------------------------------
+# At the very last auto-start tmux if enabled. See the tmux module for details.
+# The reason why this is here is, that this needs to be done after everything
+# else has been done.
+if [[ -n "$__DOTFILES_AUTOSTART_TMUX" ]]; then
+    __dotfiles_start_tmux "default"
+fi
