@@ -43,16 +43,17 @@ class TestRun:
         mock_loader.load.return_value = ([mod_inst], {mod_inst.name: mod_inst})
         mock_save_state = mocker.patch("dotfiles.state.save_state")
 
-        # mock_zsh_write_init_files = mocker.patch("dotfiles.zsh.write_init_files")
+        mock_zsh_write_init_files = mocker.patch("dotfiles.zsh.write_init_files")
 
         module.run(TestRun.MockModuleA,
                    mods_dir=mods_dir,
                    home_dir=home_dir,
                    loader=mock_loader)
 
-        mock_loader.load.assert_called_once()
+        mock_loader.load.assert_called()
+        assert mock_loader.load.call_count == 2
         mock_save_state.assert_called_once_with(state_dir, mod_inst.state)
-        # mock_zsh_write_init_files.assert_called_once()
+        mock_zsh_write_init_files.assert_called_once()
 
         assert getattr(mod_inst, f"{cmd}_called")
 

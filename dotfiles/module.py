@@ -281,11 +281,12 @@ def run(only: Optional[Union[Type[Definition], str]] = None,
     for mod in mods:
         mod._run(args.cmd, args.state_dir)
 
-    # TODO if only one module is selected only the state of that module is
-    #      used to generate a new shell config. This is not what we want.
-    if not only and args.shell == "zsh":
+    # Load all modules in their dependency order without filtering. This
+    # is necessary to ensure all available initialization files are written.
+    all_mods, _ = loader.load()
+    if args.shell == "zsh":
         dest_dir = os.path.join(args.home_dir, ".local", "dotfiles", "zsh")
-        sts = [m.state for m in mods]
+        sts = [m.state for m in all_mods]
         zsh.write_init_files(dest_dir, sts)
 
     return mods
@@ -301,6 +302,7 @@ class Loader:
         self._mod_dir = mod_dir
         self._home_dir = home_dir
         self._state_dir = state_dir
+        self._all_mod_infos = []
 
     def load(
         self,
@@ -308,15 +310,7 @@ class Loader:
                                  List["Loader.ModInfo"]]] = [],
         filter_by: List[Callable[["Loader.ModInfo"], "Loader.ModInfo"]] = [],
     ) -> Tuple[List[Definition], Dict[str, Definition]]:
-        mod_infos = []
-
-        for mod_dir, py_mod_name, mod_file in self._find_modules():
-            for mod_def in self._load_mod_def(f"modules.{py_mod_name}",
-                                              mod_file):
-                _ensure_definition_name(mod_def)
-                m = Loader.ModInfo(mod_dir=mod_dir, mod_def=mod_def)
-                mod_infos.append(m)
-
+        mod_infos = self._load_all_mod_infos()
         for r in reduce_by:
             mod_infos = r(mod_infos)
 
@@ -337,6 +331,19 @@ class Loader:
             mods.append(mod)
 
         return mods, mods_by_name
+
+    def _load_all_mod_infos(self):
+        if self._all_mod_infos:
+            return self._all_mod_infos
+
+        for mod_dir, py_mod_name, mod_file in self._find_modules():
+            for mod_def in self._load_mod_def(f"modules.{py_mod_name}",
+                                              mod_file):
+                _ensure_definition_name(mod_def)
+                m = Loader.ModInfo(mod_dir=mod_dir, mod_def=mod_def)
+                self._all_mod_infos.append(m)
+
+        return self._all_mod_infos
 
     def _find_modules(self) -> Generator[Tuple[str, str, str], None, None]:
         with os.scandir(self._mod_dir) as it:
