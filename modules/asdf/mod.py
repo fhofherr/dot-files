@@ -23,7 +23,7 @@ class ASDF(module.Definition):
 
     @module.install
     def install_asdf(self):
-        self.git.clone_or_update(REPO_URL, self.asdf_dir)
+        self.git.clone_or_update(REPO_URL, self.asdf_dir, branch="latest_tag")
         self.state.setenv("PATH", self.asdf_bin_dir)
         self._add_zsh_completions()
 

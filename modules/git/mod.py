@@ -87,9 +87,11 @@ class Git(module.Definition):
     @module.export
     def update(self, repo_dir, branch: str = ""):
         argv = ["pull", "--prune"]
+        if branch == "latest_tag":
+            branch = self.latest_tag(repo_dir)
         if branch:
-            argv += [f"origin/{branch}"]
-        self("pull", "--prune", cwd=repo_dir)
+            argv += ["origin", branch]
+        self(*argv, cwd=repo_dir)
 
     @module.export
     def clone_or_update(self,
@@ -102,9 +104,26 @@ class Git(module.Definition):
 
         Returns True if the repository was cloned.
         """
-        if not os.path.exists(repo_dir):
-            return self.clone(repo_url, repo_dir, branch=branch, depth=depth)
-        return self.update(repo_dir, branch=branch)
+        if os.path.exists(repo_dir):
+            return self.update(repo_dir, branch=branch)
+
+        update_to_latest_tag = False
+        if branch == "latest_tag":
+            branch = ""
+            update_to_latest_tag = True
+        p = self.clone(repo_url, repo_dir, branch=branch, depth=depth)
+        if not update_to_latest_tag:
+            return p
+        return self.update(repo_dir, branch="latest_tag")
+
+    @module.export
+    def latest_tag(self, repo_dir: str):
+        p = self("describe",
+                 "--tags",
+                 "--abbrev=0",
+                 cwd=repo_dir,
+                 capture_output=True)
+        return p.stdout.decode("utf-8").strip()
 
 
 if __name__ == "__main__":
