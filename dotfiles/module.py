@@ -287,6 +287,10 @@ def run(only: Optional[Union[Type[Definition], str]] = None,
         load_args["reduce_by"] = [reduce_by_mod(only)]
 
     mods, mods_by_name = loader.load(**load_args)
+    mod_names = [m.name for m in mods]
+    _LOG.info(
+        f"Executing the following modules in dependency order: {' <- '.join(mod_names)}"
+    )
     for mod in mods:
         mod._run(args.cmd, args.state_dir)
 
@@ -327,9 +331,6 @@ class Loader:
             mod_infos = [m for m in mod_infos if f(m)]
 
         mod_infos = sort_by_dependencies(mod_infos)
-        mod_names = [m.mod_def.name for m in mod_infos if m.mod_def.name]
-        _LOG.info(f"Modules in dependency order: {' <- '.join(mod_names)}")
-
         mods_by_name: Dict[str, Definition] = {}
         mods = []
         for m in mod_infos:

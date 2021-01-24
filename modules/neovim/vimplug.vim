@@ -19,7 +19,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 
-Plug 'kassio/neoterm'
+" Don't use that a lot, but can't get myself to fully remove it
+" Plug 'kassio/neoterm'
 
 if executable('tmux')
     Plug 'tpope/vim-tbone'
@@ -48,8 +49,8 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-Plug 'justinmk/vim-dirvish'
-Plug 'kristijanhusak/vim-dirvish-git'
+" Plug 'justinmk/vim-dirvish'
+" Plug 'kristijanhusak/vim-dirvish-git'
 
 Plug 'mhinz/vim-grepper'
 Plug 'nelstrom/vim-visual-star-search'

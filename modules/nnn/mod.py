@@ -22,6 +22,7 @@ class NNN(module.Definition):
             self.log.info("nnn not installed. Skipping")
             return
         self.state.setenv("NNN_COMMAND", self._nnn_cmd)
+        self.state.setenv("NNN_OPTS", "eoErRx")
         self.state.zsh.after_compinit_script = self._zsh_hook
         self.state.add_alias("n", "_nnn")
 
