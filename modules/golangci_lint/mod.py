@@ -12,7 +12,7 @@ class GolangCILint(module.Definition):
 
     @property
     def golangci_lint_cmd(self):
-        return os.path.join(self.bin_dir, "golangci_lint")
+        return os.path.join(self.bin_dir, "golangci-lint")
 
     def is_asset_selected(self, name):
         return self.is_checksum_asset(name) or self.is_archive_asset(name)
@@ -51,3 +51,7 @@ class GolangCILint(module.Definition):
                             [(self.is_binary_member, self.golangci_lint_cmd)])
         os.chmod(self.golangci_lint_cmd, 0o755)
         return True
+
+
+if __name__ == "__main__":
+    module.run(GolangCILint)
