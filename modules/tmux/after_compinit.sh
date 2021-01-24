@@ -1,5 +1,5 @@
 function __dotfiles_start_tmux() {
-    local session_name
+    local session_name ec
 
     session_name="$1"
     if [[ -z "$session_name" ]]; then
@@ -15,8 +15,15 @@ function __dotfiles_start_tmux() {
 
     # Otherwise create a new session
     tmux new-session -A -s "$session_name"
+    ec=$?
+    if (( ec == 0 )); then
+        exit $ec
+    fi
+    echo "Tmux quit with exit code: $ec"
+    return $ec
 }
 
+# shellcheck disable=SC2034
 __DOTFILES_AUTOSTART_TMUX=1
 if [ -n "$TMUX" ]; then
     eval "$(tmux show-environment -s NVIM_LISTEN_ADDRESS)"
