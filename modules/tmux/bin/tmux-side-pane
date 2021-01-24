@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [[ -z "$TMUX" ]]; then
+    echo "Not in a tmux session"
+    exit 1
+fi
+
+WIDTH="${1:-30}"
+command tmux split-window -l"${WIDTH}%" -h -b
