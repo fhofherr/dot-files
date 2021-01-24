@@ -140,6 +140,10 @@ class Definition:
         return os.path.join(self.local_dir, "bin")
 
     @property
+    def projects_dir(self):
+        return os.path.join(self.home_dir, "Projects")
+
+    @property
     def state(self) -> state.State:
         return self._state
 

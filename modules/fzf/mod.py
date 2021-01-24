@@ -13,8 +13,7 @@ class FZF(module.Definition):
 
     @property
     def _repo_dir(self):
-        return os.path.join(self.home_dir, "Projects", "github.com",
-                            "junegunn", "fzf")
+        return os.path.join(self.projects_dir, "github.com", "junegunn", "fzf")
 
     @property
     def _fzf_bin_dir(self):

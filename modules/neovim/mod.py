@@ -50,7 +50,7 @@ class NeoVim(module.Definition):
 
     @property
     def _neovim_master_dir(self):
-        return os.path.join(self.home_dir, "Projects", "github.com", "neovim",
+        return os.path.join(self.projects_dir, "github.com", "neovim",
                             "neovim")
 
     @property
