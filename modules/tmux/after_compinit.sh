@@ -18,3 +18,6 @@ function __dotfiles_start_tmux() {
 }
 
 __DOTFILES_AUTOSTART_TMUX=1
+if [ -n "$TMUX" ]; then
+    eval "$(tmux show-environment -s NVIM_LISTEN_ADDRESS)"
+fi

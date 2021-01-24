@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+
+: "${DOTFILES_NEOVIM_COMMAND:=/usr/bin/nvim}"
+
+if [[ -z "$DOTFILES_NVR_COMMAND" ]]; then
+    DOTFILES_NVR_COMMAND="$(command -v nvr 2>/dev/null)"
+fi
+
+# Automatically select tmux pane that neovim is executing in.
+# Adapted from the nvr-tmux script provided with carlocab/tmux-nvr.
+# See: https://github.com/carlocab/tmux-nvr/blob/main/bin/nvr-tmux
+function switch_tmux_pane() {
+    local pane_id sock window_id
+
+    if [[ -z "$TMUX" ]] || [[ -z "$NVIM_LISTEN_ADDRESS" ]]; then
+        return 0
+    fi
+
+    # Find the neovim server running our configured socket
+    for sock in $("$DOTFILES_NVR_COMMAND" --serverlist); do
+        if [[ "$sock" != "$NVIM_LISTEN_ADDRESS" ]]; then
+            continue
+        fi
+        pane_id="$("$DOTFILES_NVR_COMMAND" --remote-expr 'get(environ(), "TMUX_PANE")')"
+        if [[ -z "$pane_id" ]]; then
+            return 0
+        fi
+        # shellcheck disable=SC2016
+        window_id="$(command tmux list-panes -s -F '#{pane_id} #{window_id}' | command awk -v pane_id="$pane_id" '$1 ~ pane_id { print $2 }')"
+        if [[ -z "$window_id" ]]; then
+            return 0
+        fi
+
+        command tmux select-window -t"$window_id"
+        command tmux select-pane -t"$pane_id"
+        break
+    done
+}
+
+function _nvim() {
+    exec "$DOTFILES_NEOVIM_COMMAND" "$@"
+}
+
+function _nvr() {
+    switch_tmux_pane
+    NVR_CMD="$DOTFILES_NEOVIM_COMMAND" exec "$DOTFILES_NVR_COMMAND" -s "$@"
+}
+
+function _fallback_nvim() {
+    if [[ -n "$DOTFILES_DISABLE_NVR" ]]; then
+        echo "DOTFILES_DISABLE_NVR variable set. Falling back to $DOTFILES_NEOVIM_COMMAND"
+        _nvim "$@"
+    fi
+
+    if [[ -z "$DOTFILES_NVR_COMMAND" ]] || [[ -z "$NVIM_LISTEN_ADDRESS" ]] || [[ ! -e "$NVIM_LISTEN_ADDRESS" ]]; then
+        _nvim "$@"
+    fi
+}
+
+case "$(basename "$0")" in
+giteditor)
+    _fallback_nvim "$@"
+    _nvr -cc split --remote-wait "$@"
+    ;;
+vimdiff)
+    _fallback_nvim "-d" "$@"
+    _nvr -d "$@"
+    ;;
+nvim | vim)
+    _fallback_nvim "$@"
+    _nvr "$@"
+    ;;
+*)
+    _fallback_nvim "$@"
+    _nvr "$@"
+    ;;
+esac

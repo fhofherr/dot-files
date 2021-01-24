@@ -21,6 +21,8 @@ _DEFAULT_SHELL = os.path.basename(os.getenv("SHELL", "zsh"))
 
 T = TypeVar("T", bound="Definition")
 
+_LOG = logging.get_logger(__name__)
+
 # TODO some modules may have @module.install and @module.update applied to
 # the same method. Take this into account when wrapping the methods into
 # functions (provided this is ever necessary).
@@ -91,6 +93,9 @@ class Definition:
         for dep_name in cls.optional:
             opt_dep = mod_reg.get(dep_name)
             if not opt_dep:
+                _LOG.info(
+                    f"optional dependency {dep_name} of {cls.name} not available"
+                )
                 setattr(mod, dep_name, None)
                 continue
             setattr(mod, dep_name, _Protector(opt_dep))
@@ -319,6 +324,8 @@ class Loader:
             mod_infos = [m for m in mod_infos if f(m)]
 
         mod_infos = sort_by_dependencies(mod_infos)
+        mod_names = [m.mod_def.name for m in mod_infos if m.mod_def.name]
+        _LOG.info(f"Modules in dependency order: {' <- '.join(mod_names)}")
 
         mods_by_name: Dict[str, Definition] = {}
         mods = []
@@ -368,6 +375,10 @@ def has_any_tag(tags: List[str]) -> Callable[[Loader.ModInfo], bool]:
         for tag in mod_info.mod_def.tags:
             if tag in tags:
                 return True
+
+        _LOG.info(
+            f"{mod_info.mod_def.name} has none of the following tags: {', '.join(tags)}"
+        )
         return False
 
     return filter_fn
@@ -400,6 +411,11 @@ def reduce_by_mod(
             result.append(dep)
             deps.extend(dep.mod_def.required)
             append_optional_deps(deps, dep.mod_def.optional, mods_by_name)
+
+        dep_names = [d.mod_def.name for d in result]
+        _LOG.info(
+            f"Found the following direct or transitive dependencies of {mod_info.mod_def.name}: {', '.join(dep_names)}"
+        )
         return result
 
     return reducer
@@ -423,9 +439,11 @@ def sort_by_dependencies(
 
     for mod_info in mod_infos:
         assert mod_info.mod_def.name  # Set, or inferred during loading
-        name = mod_info.mod_def.name
+        by_name[mod_info.mod_def.name] = mod_info
 
-        by_name[name] = mod_info
+    for mod_info in mod_infos:
+        assert mod_info.mod_def.name  # Set, or inferred during loading
+        name = mod_info.mod_def.name
         opt_deps = {opt for opt in mod_info.mod_def.optional if opt in by_name}
         if not mod_info.mod_def.required and not opt_deps:
             no_deps.append(mod_info)
