@@ -14,6 +14,9 @@ class _ZSH:
 class State:
     def __init__(self, mod_name):
         self.mod_name = mod_name
+        self.clear()
+
+    def clear(self):
         self._values = {}
         self._env = {}
         self._aliases = {}

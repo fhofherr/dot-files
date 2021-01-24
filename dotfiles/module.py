@@ -25,12 +25,17 @@ _LOG = logging.get_logger(__name__)
 
 # TODO some modules may have @module.install and @module.update applied to
 # the same method. Take this into account when wrapping the methods into
-# functions (provided this is ever necessary).
+# functions.
 
 
 def install(f):
-    f._installer = True
-    return f
+    def wrapper(self, *args, **kwargs):
+        self.log.info(f"Clearing old state of module {self.name}")
+        self.state.clear()
+        return f(self, *args, **kwargs)
+
+    wrapper._installer = True
+    return wrapper
 
 
 def update(f):
