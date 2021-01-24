@@ -19,12 +19,6 @@
     st = status -s
 [core]
     autocrlf = input
-[diff]
-    tool = nvimdiff2
-[difftool "nvimdiff2"]
-    cmd = nvim -d $LOCAL $REMOTE
-[difftool]
-    trustExitCode = true
 [filter "kicad_project"]
 	clean = sed -E 's/^update=.*$/update=Date/'
 	smudge = cat
@@ -34,13 +28,13 @@
 [init]
     defaultBranch = main
 [merge]
-    tool = nvimdiff4
+    tool = nvim
 [mergetool]
-    trustExitCode = true
-[mergetool "nfugitive"]
-    cmd = nvim -f -c "Gdiff" "$MERGED"
-[mergetool "nvimdiff4"]
-    cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+    prompt = false
+[mergetool "nvim"]
+    # Note: requires the vim fugitive plugin to be installed
+    # See also: https://www.grzegorowski.com/using-vim-or-neovim-nvim-as-a-git-mergetool
+    cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 [pull]
     ff = only
 [rerere]
