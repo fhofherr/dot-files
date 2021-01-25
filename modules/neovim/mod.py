@@ -121,6 +121,10 @@ class NeoVim(module.Definition):
         for pkg in PYTHON_TOOLS_AND_LINTERS:
             self.pipx.update(pkg)
 
+        # Make sure to remove DOTFILES_NEOVIM_COMMAND from state when
+        # removing or commenting out this line.
+        self._install_neovim_master()
+
         for k, v in self._env.items():
             self.state.setenv(k, v)
         for k, v in self._aliases.items():
@@ -128,9 +132,6 @@ class NeoVim(module.Definition):
 
         fs.safe_link_file(self._nvim_cfg_src, self._nvim_cfg_dest)
 
-        # Make sure to remove DOTFILES_NEOVIM_COMMAND from state when
-        # removing or commenting out this line.
-        self._install_neovim_master()
         # The last step that remains is to update/install all plugins.
         self.update_plugins()
 
