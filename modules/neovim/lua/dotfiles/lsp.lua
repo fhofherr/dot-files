@@ -5,6 +5,7 @@ M.supported_file_types = {}
 local has_nvim_lsp, nvim_lsp = pcall(require, "lspconfig")
 local has_lsp_status, lsp_status = pcall(require, "lsp-status")
 local has_completion, completion = pcall(require, "completion")
+local has_lspsaga, lspsaga = pcall(require, "lspsaga")
 
 function M.buf_attach_client()
     if not has_nvim_lsp then
@@ -26,6 +27,11 @@ function M.buf_attach_client()
 end
 
 local function on_attach(client, bufnr)
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
     if has_completion then
         completion.on_attach(client, bufnr)
     end
@@ -33,19 +39,27 @@ local function on_attach(client, bufnr)
         lsp_status.on_attach(client, bufnr)
     end
 
-    vim.api.nvim_buf_set_keymap(0, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", {noremap = true, silent = true})
-    vim.api.nvim_buf_set_keymap(0, "n", "<c-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", {noremap = true, silent = true})
-    vim.api.nvim_buf_set_keymap(0, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", {noremap = true, silent = false})
-    vim.api.nvim_buf_set_keymap(0, "n", "gD", "<cmd>lua vim.lsp.buf.implementation()<CR>", {noremap = true, silent = true})
-    vim.api.nvim_buf_set_keymap(0, "n", "1gD", "<cmd>lua vim.lsp.buf.type_definition()<CR>", {noremap = true, silent = true})
-    vim.api.nvim_buf_set_keymap(0, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", {noremap = true, silent = true})
-    vim.api.nvim_buf_set_keymap(0, "n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", {noremap = true, silent = true})
-    vim.api.nvim_buf_set_keymap(0, "n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", {noremap = true, silent = true})
-    vim.api.nvim_buf_set_keymap(0, "n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>", {noremap = true, silent = true})
+    local opts = { noremap=true, silent=true }
+    buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+    buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
+    buf_set_keymap("n", "gi", "<Cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+    buf_set_keymap("n", "<c-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+    buf_set_keymap("n", "1gD", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+    buf_set_keymap("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+    buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 
-    vim.api.nvim_buf_set_option(0, "omnifunc", "v:lua.vim.lsp.omnifunc")
+    buf_set_keymap("n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", opts)
+    buf_set_keymap("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", opts)
 
-    vim.api.nvim_command('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()')
+
+    if client.resolved_capabilities.document_formatting or client.resolved_capabilities.document_range_formatting then
+        vim.api.nvim_command('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()')
+    end
+
+    if has_lspsaga then
+        buf_set_keymap("n", "<leader>ca", "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", opts)
+    end
 
     vim.b.dotfiles_lsp_enabled = 1
 end
@@ -68,6 +82,28 @@ local function setup_ccls(ls_opts)
     table.insert(M.supported_file_types, "cpp")
 end
 
+local function setup_gopls(ls_opts)
+    local gopls_opts = vim.deepcopy(ls_opts)
+
+    gopls_opts.cmd = {"gopls", "--remote=auto"}
+    gopls_opts.capabilities ={
+        textDocument = {
+            completion = {
+                completionItem = {
+                    snippetSupport = true
+                }
+            }
+        }
+    }
+    gopls_opts.init_options = {
+        usePlaceholders = true,
+        completeUnimported = true,
+    }
+
+    nvim_lsp.gopls.setup(gopls_opts)
+    table.insert(M.supported_file_types, "go")
+end
+
 function M.setup()
     if not has_nvim_lsp then
         return
@@ -83,9 +119,7 @@ function M.setup()
         }
     )
 
-    local ls_opts = {
-        on_attach = on_attach
-    }
+    local ls_opts = { on_attach = on_attach }
 
     if has_lsp_status then
         lsp_status.register_progress()
@@ -93,17 +127,17 @@ function M.setup()
     end
 
     setup_ccls(ls_opts)
-
-    nvim_lsp.gopls.setup(ls_opts)
-    table.insert(M.supported_file_types, "go")
+    setup_gopls(ls_opts)
 
     nvim_lsp.pyls.setup(ls_opts)
     table.insert(M.supported_file_types, "python")
 
-
-    vim.api.nvim_command([[
-    autocmd BufEnter * lua require("dotfiles/lsp").buf_attach_client()
-    ]])
+    -- No-one besides me seems to use such a hack. I wonder if I can get by
+    -- without it.
+    --
+    -- vim.api.nvim_command([[
+    -- autocmd BufEnter * lua require("dotfiles/lsp").buf_attach_client()
+    -- ]])
 end
 
 function M.status()

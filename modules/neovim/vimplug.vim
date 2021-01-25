@@ -88,6 +88,7 @@ endif
 
 if has('nvim-0.5')
     Plug 'neovim/nvim-lspconfig'
+    Plug 'glepnir/lspsaga.nvim'
     Plug 'nvim-lua/lsp-status.nvim'
 
     Plug 'nvim-lua/completion-nvim'
