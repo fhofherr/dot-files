@@ -8,6 +8,10 @@ function M.setup()
         return
     end
 
+    -- TODO
+    -- set foldmethod=expr
+    -- set foldexpr=nvim_treesitter#foldexpr()
+
     treesitter_configs.setup {
         highlight = { enable = false },
         incremental_selection = {
