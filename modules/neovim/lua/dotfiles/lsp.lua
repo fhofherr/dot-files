@@ -7,23 +7,24 @@ local has_lsp_status, lsp_status = pcall(require, "lsp-status")
 local has_completion, completion = pcall(require, "completion")
 local has_lspsaga, lspsaga = pcall(require, "lspsaga")
 
-function M.buf_attach_client()
-    if not has_nvim_lsp then
-        return
-    end
-    local ft = vim.bo.filetype
-    if M.supported_file_types[ft] ~= nil then
-        return
-    end
-    if vim.b.dotfiles_lsp_enabled == 1 then
-        -- dotfiles_lsp_enabled was set by on_attach. We are already attached.
-        -- Nothing more to do.
-        return
-    end
 
-    -- Always attach to the first client for now. Later we might want to try
-    -- to find the correct client based on the buffer's file type.
-    vim.lsp.buf_attach_client(0, 1)
+local function attach_completion(client, bufnr)
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+
+    if not has_completion then
+        return
+    end
+    completion.on_attach(client, bufnr)
+
+    vim.g.completion_enable_auto_popup = 1
+    vim.g.completion_enable_snippet = "UltiSnips"
+    vim.g.completion_auto_change_source = 1
+    vim.g.completion_enable_auto_signature = 1
+    vim.g.completion_timer_cycle = 100
+
+    local opts = { noremap=true, silent=true }
+    buf_set_keymap("i", "<tab>", "<cmd>lua require('completion').smart_tab()<CR>", opts)
+    buf_set_keymap("i", "<s-tab>", "<cmd>lua require('completion').smart_s_tab()<CR>", opts)
 end
 
 local function on_attach(client, bufnr)
@@ -31,13 +32,10 @@ local function on_attach(client, bufnr)
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-    if has_completion then
-        completion.on_attach(client, bufnr)
-    end
     if has_lsp_status then
         lsp_status.on_attach(client, bufnr)
     end
+    attach_completion(client, bufnr)
 
     local opts = { noremap=true, silent=true }
     buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
@@ -58,7 +56,7 @@ local function on_attach(client, bufnr)
     end
 
     if has_lspsaga then
-        buf_set_keymap("n", "<leader>ca", "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", opts)
+        buf_set_keymap("n", "<leader>lca", "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", opts)
     end
 
     vim.b.dotfiles_lsp_enabled = 1
@@ -90,7 +88,7 @@ local function setup_gopls(ls_opts)
         textDocument = {
             completion = {
                 completionItem = {
-                    snippetSupport = true
+                    snippetSupport = false
                 }
             }
         }
@@ -102,6 +100,25 @@ local function setup_gopls(ls_opts)
 
     nvim_lsp.gopls.setup(gopls_opts)
     table.insert(M.supported_file_types, "go")
+end
+
+function M.buf_attach_client()
+    if not has_nvim_lsp then
+        return
+    end
+    local ft = vim.bo.filetype
+    if M.supported_file_types[ft] ~= nil then
+        return
+    end
+    if vim.b.dotfiles_lsp_enabled == 1 then
+        -- dotfiles_lsp_enabled was set by on_attach. We are already attached.
+        -- Nothing more to do.
+        return
+    end
+
+    -- Always attach to the first client for now. Later we might want to try
+    -- to find the correct client based on the buffer's file type.
+    vim.lsp.buf_attach_client(0, 1)
 end
 
 function M.setup()
