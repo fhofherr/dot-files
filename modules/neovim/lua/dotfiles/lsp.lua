@@ -30,6 +30,9 @@ end
 local function on_attach(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+    local function buf_def_cmd(name, rhs)
+        vim.api.nvim_command("command! -buffer " .. name .. " " .. rhs)
+    end
 
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
     if has_lsp_status then
@@ -44,19 +47,19 @@ local function on_attach(client, bufnr)
     buf_set_keymap("n", "gi", "<Cmd>lua vim.lsp.buf.implementation()<CR>", opts)
     buf_set_keymap("n", "<c-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
     buf_set_keymap("n", "1gD", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-    buf_set_keymap("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
     buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 
     buf_set_keymap("n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", opts)
     buf_set_keymap("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", opts)
 
+    buf_def_cmd("LspRename", "<cmd>lua vim.lsp.buf.rename()<CR>")
 
     if client.resolved_capabilities.document_formatting or client.resolved_capabilities.document_range_formatting then
         vim.api.nvim_command('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()')
     end
 
     if has_lspsaga then
-        buf_set_keymap("n", "<leader>lca", "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", opts)
+        buf_def_cmd("LspCodeActions", "<cmd>lua require('lspsaga.codeaction').code_action()<CR>")
     end
 
     vim.b.dotfiles_lsp_enabled = 1
