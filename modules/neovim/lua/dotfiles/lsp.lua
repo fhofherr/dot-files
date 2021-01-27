@@ -52,14 +52,15 @@ local function on_attach(client, bufnr)
     buf_set_keymap("n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", opts)
     buf_set_keymap("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", opts)
 
-    buf_def_cmd("LspRename", "<cmd>lua vim.lsp.buf.rename()<CR>")
+    buf_def_cmd("LspRename", "lua vim.lsp.buf.rename()")
 
     if client.resolved_capabilities.document_formatting or client.resolved_capabilities.document_range_formatting then
-        vim.api.nvim_command('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()')
+        buf_def_cmd("LspFmt", "lua vim.lsp.buf.formatting()")
+        vim.api.nvim_command("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
     end
 
     if has_lspsaga then
-        buf_def_cmd("LspCodeActions", "<cmd>lua require('lspsaga.codeaction').code_action()<CR>")
+        buf_def_cmd("LspCodeActions", "lua require('lspsaga.codeaction').code_action()")
     end
 
     vim.b.dotfiles_lsp_enabled = 1
