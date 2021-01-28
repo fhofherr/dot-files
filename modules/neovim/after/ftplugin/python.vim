@@ -1,4 +1,4 @@
-setlocal spell spelllang=en_us
+setlocal formatoptions+=r spell spelllang=en_us
 
 let s:spelldir = $VIMHOME . '/spell'
 call mkdir(s:spelldir, 'p')
