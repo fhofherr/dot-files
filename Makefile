@@ -1,3 +1,11 @@
+.PHONY: install
+install:
+	./scripts/dotfiles.sh install
+
+.PHONY: update
+update:
+	./scripts/dotfiles.sh update
+
 .PHONY: test
 test: ## Test the installer code but not the modules.
 	poetry run pytest \
