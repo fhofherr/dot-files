@@ -21,11 +21,6 @@ Plug 'tpope/vim-unimpaired'
 
 " Don't use that a lot, but can't get myself to fully remove it
 " Plug 'kassio/neoterm'
-
-if executable('tmux')
-    Plug 'tpope/vim-tbone'
-    Plug 'christoomey/vim-tmux-navigator'
-endif
 " }}}
 
 " Eye candy and color schemes {{{
