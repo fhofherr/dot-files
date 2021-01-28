@@ -23,34 +23,60 @@ T = TypeVar("T", bound="Definition")
 
 _LOG = logging.get_logger(__name__)
 
-# TODO some modules may have @module.install and @module.update applied to
-# the same method. Take this into account when wrapping the methods into
-# functions.
-
 
 def install(f):
-    def wrapper(self, *args, **kwargs):
+    def clear_state(self, *args, **kwargs):
         self.log.info(f"Clearing old state of module {self.name}")
         self.state.clear()
-        return f(self, *args, **kwargs)
 
-    wrapper._installer = True
-    return wrapper
+    m = _Marker.mark_as("install", f)
+    m.add_before_func(clear_state)
+    return m
 
 
 def update(f):
-    f._updater = True
-    return f
+    return _Marker.mark_as("update", f)
 
 
 def uninstall(f):
-    f._uninstaller = True
-    return f
+    return _Marker.mark_as("uninstall", f)
 
 
 def export(f):
     f._exported = True
     return f
+
+
+class _Marker:
+    @staticmethod
+    def mark_as(name, f):
+        if isinstance(f, _Marker):
+            f._names.add(name)
+            return f
+        return _Marker(name, f)
+
+    def __init__(self, name, f):
+        self._names = {name}
+        self._f = f
+        self._before_funcs = []
+        self._after_funcs = []
+
+    def __call__(self, *args, **kwargs):
+        for f in self._before_funcs:
+            f(*args, **kwargs)
+        res = self._f(*args, **kwargs)
+        for f in self._after_funcs:
+            f(*args, **kwargs)
+        return res
+
+    def is_marked_as(self, name):
+        return name in self._names
+
+    def add_before_func(self, f):
+        self._before_funcs.append(f)
+
+    def add_after_func(self, f):
+        self._after_funcs.append(f)
 
 
 class Definition:
@@ -152,13 +178,6 @@ class Definition:
         return self._log
 
     def _run(self, cmd, state_dir):
-        marker = {
-            "install": "_installer",
-            "update": "_updater",
-            "uninstall": "_uninstaller",
-        }[cmd]
-        op = None
-
         # Search in self and the objects mro's dict for any callables
         # that have the marker.
         #
@@ -169,17 +188,16 @@ class Definition:
         callables = []
         for obj in [self] + self.__class__.mro():
             for name, val in obj.__dict__.items():
-                if callable(val) and hasattr(val, marker):
+                if isinstance(val, _Marker) and val.is_marked_as(cmd):
                     callables.append((name, val))
 
         if len(callables) == 0:
-            raise InvalidCommandError(
-                f"{self.name}: cannot execute {cmd}: " +
-                f"no callable with marker '{marker}' found")
+            raise InvalidCommandError(f"{self.name}: cannot execute {cmd}: " +
+                                      f"no callable with marker '{cmd}' found")
         if len(callables) > 1:
             raise InvalidCommandError(
                 f"Cannot execute {cmd}: " +
-                f"more than one callable with marker '{marker}' found: " +
+                f"more than one callable with marker '{cmd}' found: " +
                 ", ".join(n for (n, _) in callables))
         _, op = callables[0]
         op(self)
