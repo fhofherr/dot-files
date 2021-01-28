@@ -35,6 +35,7 @@ def write_init_files(dest_dir: str, sts: List[state.State]):
             if name == "PATH":
                 f.write(f"export PATH=\"{':'.join(val)}:$PATH\"\n")
                 continue
+            val = str(val)
             # Escape any single quotes: https://stackoverflow.com/a/1315213
             val = val.replace("'", r"'\''")
             f.write(f"export {name}='{val}'\n")

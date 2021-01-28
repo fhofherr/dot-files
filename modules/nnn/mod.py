@@ -21,6 +21,12 @@ class NNN(module.Definition):
         if not self._nnn_cmd:
             self.log.info("nnn not installed. Skipping")
             return
+        if shutil.which("gio"):
+            self.state.setenv("NNN_TRASH", 2)
+        elif shutil.which("trash"):
+            self.state.setenv("NNN_TRASH", 1)
+        else:
+            self.log.info("No trash utility found. Delete will really delete")
         self.state.setenv("NNN_COMMAND", self._nnn_cmd)
         self.state.setenv("NNN_OPTS", "eoERx")
         self.state.zsh.after_compinit_script = self._zsh_hook
