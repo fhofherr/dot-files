@@ -1,3 +1,4 @@
+from functools import partial
 import argparse
 import copy
 import importlib.abc
@@ -24,59 +25,52 @@ T = TypeVar("T", bound="Definition")
 _LOG = logging.get_logger(__name__)
 
 
-def install(f):
-    def clear_state(self, *args, **kwargs):
-        self.log.info(f"Clearing old state of module {self.name}")
-        self.state.clear()
+def _clear_state(mod, *args, **kwargs):
+    mod.log.info(f"Clearing old state of module {mod.name}")
+    mod.state.clear()
 
-    m = _Marker.mark_as("install", f)
-    m.add_before_func(clear_state)
-    return m
+
+def install(f):
+    return _mark_as(f, "install", before_funcs=[_clear_state])
 
 
 def update(f):
-    return _Marker.mark_as("update", f)
+    return _mark_as(f, "update")
 
 
 def uninstall(f):
-    return _Marker.mark_as("uninstall", f)
+    return _mark_as(f, "uninstall")
 
 
 def export(f):
-    f._exported = True
-    return f
+    return _mark_as(f, "exported")
 
 
-class _Marker:
-    @staticmethod
-    def mark_as(name, f):
-        if isinstance(f, _Marker):
-            f._names.add(name)
-            return f
-        return _Marker(name, f)
-
-    def __init__(self, name, f):
-        self._names = {name}
-        self._f = f
-        self._before_funcs = []
-        self._after_funcs = []
-
-    def __call__(self, *args, **kwargs):
-        for f in self._before_funcs:
+def _mark_as(func, name, before_funcs=[], after_funcs=[], final_funcs=[]):
+    def run_all(funcs, *args, **kwargs):
+        for f in funcs:
             f(*args, **kwargs)
-        res = self._f(*args, **kwargs)
-        for f in self._after_funcs:
-            f(*args, **kwargs)
-        return res
 
-    def is_marked_as(self, name):
-        return name in self._names
+    def wrapper(*args, **kwargs):
+        try:
+            run_all(before_funcs, *args, **kwargs)
+            res = func(*args, **kwargs)
+            run_all(after_funcs, *args, **kwargs)
+            return res
+        finally:
+            run_all(final_funcs, *args, **kwargs)
 
-    def add_before_func(self, f):
-        self._before_funcs.append(f)
+    wrapper._markers = {name}
+    try:
+        wrapper._markers = wrapper._markers.union(func._markers)
+    except AttributeError:
+        pass
 
-    def add_after_func(self, f):
-        self._after_funcs.append(f)
+    return wrapper
+
+
+def _is_marked_as(func, name):
+    return hasattr(func, "_markers") and (name in func._markers)
 
 
 class Definition:
@@ -188,7 +182,7 @@ class Definition:
         callables = []
         for obj in [self] + self.__class__.mro():
             for name, val in obj.__dict__.items():
-                if isinstance(val, _Marker) and val.is_marked_as(cmd):
+                if _is_marked_as(val, cmd):
                     callables.append((name, val))
 
         if len(callables) == 0:
@@ -219,20 +213,21 @@ class _Protector:
     def __init__(self, mod: Definition):
         self._mod = mod
 
-    def __getattr__(self, name):
+    def __getattr__(self, name: str):
         # Raises attribute error if self._mod has no such attribute
         attr = getattr(self._mod, name)
-        # TODO protect attributes whose name starts with a single underscore
-        if not callable(attr) or (hasattr(attr, "_exported")
-                                  and attr._exported):
+        if not callable(attr) and not name.startswith("_"):
+            return attr
+        if _is_marked_as(attr, "exported"):
             return attr
         raise AttributeError(
-            f"attribute '{name}' of '{self._mod.name}' is not exported")
+            f"attribute '{name}' of '{self._mod.name}' is not exported: {attr}"
+        )
 
     def __call__(self, *args, **kwargs):
         if not callable(self._mod):
             raise TypeError(f"'{self._mod.name}' is not callable")
-        if not self._mod.__call__._exported:
+        if not _is_marked_as(self._mod.__call__, "exported"):
             raise AttributeError(
                 f"'__call__' method of '{self._mod.name}' is not exported")
         return self._mod(*args, **kwargs)
