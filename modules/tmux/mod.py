@@ -76,7 +76,7 @@ class Tmux(module.Definition):
         if self.fzf:
             self.state.add_alias(
                 "tnsp",
-                f"{self._tmux_bin_dir}/tmux-new-session \"$(find {self.projects_dir} -maxdepth 3 -type d | {self.fzf.fzf_cmd})\""
+                f"{self._tmux_bin_dir}/tmux-new-session \"$(find {self.projects_dir} -type d -name '.git' |  xargs -L1 -I{{}} dirname \"{{}}\" | {self.fzf.fzf_cmd})\""
             )
 
     def _create_terminfo(self):
