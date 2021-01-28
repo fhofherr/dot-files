@@ -32,6 +32,7 @@ endif
 Plug 'itchyny/lightline.vim'
 Plug 'TaDaa/vimade'
 Plug 'mhinz/vim-startify'
+Plug 'voldikss/vim-floaterm'
 
 " I don't need all of those. But if I want to switch I want
 " the others handy. So they are just commented out.
