@@ -30,10 +30,23 @@ def write_init_files(dest_dir: str, sts: List[state.State]):
         agg.add_state(st)
 
     with open(os.path.join(dest_dir, "env.zsh"), "w") as f:
+        def merge_path(path_entries):
+            this_venv = os.getenv("VIRTUAL_ENV")
+            old_path = os.getenv("PATH").split(os.pathsep)
+            entries_set = set(path_entries)
+            for v in old_path:
+                if v in entries_set:
+                    continue
+                if this_venv and v.startswith(this_venv):
+                    continue
+                path_entries.append(v)
+            return os.pathsep.join(path_entries)
+
         f.write(f"{header}\n\n")
         for name, val in agg.env_vars:
             if name == "PATH":
-                f.write(f"export PATH=\"{':'.join(val)}:$PATH\"\n")
+                f.write(f"export DOTFILES_OLD_PATH=\"$PATH\"\n")
+                f.write(f"export PATH=\"{merge_path(val)}\"\n")
                 continue
             val = str(val)
             # Escape any single quotes: https://stackoverflow.com/a/1315213
