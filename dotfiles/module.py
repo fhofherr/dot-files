@@ -1,10 +1,11 @@
-from functools import partial
 import argparse
 import copy
 import importlib.abc
 import importlib.util
 import os
 import subprocess
+import threading
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from logging import Logger
 from typing import (Any, Callable, Dict, Generator, List, Optional, Set, Tuple,
@@ -133,6 +134,7 @@ class Definition:
         self._home_dir = home_dir
         self._log = log
         self._state = state
+        self._lock = threading.RLock()
 
     @property
     def mod_dir(self):
@@ -214,23 +216,32 @@ class _Protector:
         self._mod = mod
 
     def __getattr__(self, name: str):
-        # Raises attribute error if self._mod has no such attribute
-        attr = getattr(self._mod, name)
-        if not callable(attr) and not name.startswith("_"):
-            return attr
-        if _is_marked_as(attr, "exported"):
-            return attr
-        raise AttributeError(
-            f"attribute '{name}' of '{self._mod.name}' is not exported: {attr}"
-        )
+        with self._mod._lock:
+            # Raises attribute error if self._mod has no such attribute
+            attr = getattr(self._mod, name)
+            if not callable(attr) and not name.startswith("_"):
+                return attr
+            if _is_marked_as(attr, "exported"):
+                return self._wrap_lock(attr)
+            raise AttributeError(
+                f"attribute '{name}' of '{self._mod.name}' is not exported: {attr}"
+            )
 
     def __call__(self, *args, **kwargs):
-        if not callable(self._mod):
-            raise TypeError(f"'{self._mod.name}' is not callable")
-        if not _is_marked_as(self._mod.__call__, "exported"):
-            raise AttributeError(
-                f"'__call__' method of '{self._mod.name}' is not exported")
-        return self._mod(*args, **kwargs)
+        with self._mod._lock:
+            if not callable(self._mod):
+                raise TypeError(f"'{self._mod.name}' is not callable")
+            if not _is_marked_as(self._mod.__call__, "exported"):
+                raise AttributeError(
+                    f"'__call__' method of '{self._mod.name}' is not exported")
+            return self._mod(*args, **kwargs)
+
+    def _wrap_lock(self, f):
+        def wrapper(*args, **kwargs):
+            with self._mod._lock:
+                return f(*args, **kwargs)
+
+        return wrapper
 
 
 class InvalidCommandError(Exception):
@@ -241,6 +252,7 @@ def _parse_args(
     mods_dir: str,
     home_dir: str,
     state_dir: str,
+    parallel: int,
 ):
     args_parser = argparse.ArgumentParser(
         description="Execute dotfiles modules")
@@ -271,6 +283,11 @@ def _parse_args(
         "--shell",
         default=_DEFAULT_SHELL,
         help="Shell for which initialization code should be generated")
+    args_parser.add_argument("-p",
+                             "--parallel",
+                             type=int,
+                             default=parallel,
+                             help="Maximum number of parallel tasks")
     args_parser.add_argument("cmd", choices=["install", "update", "uninstall"])
     return args_parser.parse_args()
 
@@ -279,9 +296,10 @@ def run(only: Optional[Union[Type[Definition], str]] = None,
         mods_dir: str = DEFAULT_DIR,
         home_dir: str = DEFAULT_HOME_DIR,
         state_dir: str = _DEFAULT_STATE_DIR,
-        loader: Optional["Loader"] = None):
+        loader: Optional["Loader"] = None,
+        parallel: int = 1):
 
-    args = _parse_args(mods_dir, home_dir, state_dir)
+    args = _parse_args(mods_dir, home_dir, state_dir, parallel)
 
     # TODO the uninstall command needs special treatment: only modules that
     # have no other modules depending on them may be uninstalled.
@@ -304,8 +322,11 @@ def run(only: Optional[Union[Type[Definition], str]] = None,
     _LOG.info(
         f"Executing the following modules in dependency order: {' <- '.join(mod_names)}"
     )
-    for mod in mods:
-        mod._run(args.cmd, args.state_dir)
+
+    if args.parallel < 2:
+        _execute_sequential(args, mods)
+    else:
+        _execute_parallel(args, mods, mods_by_name)
 
     # Load all modules in their dependency order without filtering. This
     # is necessary to ensure all available initialization files are written.
@@ -316,6 +337,50 @@ def run(only: Optional[Union[Type[Definition], str]] = None,
         zsh.write_init_files(dest_dir, sts)
 
     return mods
+
+
+def _execute_sequential(args, mods):
+    for mod in mods:
+        mod._run(args.cmd, args.state_dir)
+
+
+def _execute_parallel(args, mods, mods_by_name):
+    pending_deps = {}
+    ev = threading.Event()
+    lock = threading.Lock()
+
+    def task(m):
+        _LOG.info(f"Executing module {m.name}")
+        m._run(args.cmd, args.state_dir)
+        with lock:
+            for other_name in pending_deps:
+                if m.name in pending_deps[other_name]:
+                    pending_deps[other_name].remove(m.name)
+        ev.set()
+        _LOG.info(f"Module {m.name} done")
+
+    for m in mods:
+        deps = set(n for n in m.required)
+        deps = deps.union(n for n in m.optional if n in mods_by_name)
+        pending_deps[m.name] = deps
+
+    with ThreadPoolExecutor(max_workers=args.parallel) as pool:
+        while True:
+            with lock:
+                mod_names = list(pending_deps.keys())
+                for mod_name in mod_names:
+                    if pending_deps[mod_name]:
+                        continue
+                    mod = mods_by_name[mod_name]
+                    pool.submit(task, mod)
+                    del pending_deps[mod_name]
+
+            if not pending_deps:
+                break
+
+            _LOG.info("No more modules without pending dependencies left")
+            ev.wait()
+            ev.clear()
 
 
 class Loader:

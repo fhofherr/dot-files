@@ -1,10 +1,10 @@
 .PHONY: install
 install:
-	./scripts/dotfiles.sh install
+	./scripts/dotfiles.sh install --parallel 4
 
 .PHONY: update
 update:
-	./scripts/dotfiles.sh update
+	./scripts/dotfiles.sh update --parallel 4
 
 .PHONY: test
 test: ## Test the installer code but not the modules.
