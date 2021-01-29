@@ -48,5 +48,5 @@ fi
 # The reason why this is here is, that this needs to be done after everything
 # else has been done.
 if [[ -n "$__DOTFILES_AUTOSTART_TMUX" ]]; then
-    __dotfiles_start_tmux "default"
+    __dotfiles_start_tmux "${DOTFILES_DEFAULT_TMUX_SESSION_NAME:-default}"
 fi

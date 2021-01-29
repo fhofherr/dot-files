@@ -1,10 +1,8 @@
-function __dotfiles_start_tmux() {
-    local session_name ec
+: "${DOTFILES_TMUX_DEFAULT_SESSION_NAME:=default}"
+: "${DOTFILES_TMUX_DEFAULT_SESSION_DIR:=$HOME}"
 
-    session_name="$1"
-    if [[ -z "$session_name" ]]; then
-        session_name="default"
-    fi
+function __dotfiles_start_tmux() {
+    local ec
 
     # Do not autostart tmux if this is not one of our allow listed terminal
     # emulators, we are already in a tmux instance, or this is a neovim
@@ -14,7 +12,7 @@ function __dotfiles_start_tmux() {
     fi
 
     # Otherwise create a new session
-    tmux new-session -A -s "$session_name"
+    tmux new-session -A -s "$DOTFILES_TMUX_DEFAULT_SESSION_NAME" -c "$DOTFILES_TMUX_DEFAULT_SESSION_DIR"
     ec=$?
     if (( ec == 0 )); then
         exit $ec
@@ -25,6 +23,8 @@ function __dotfiles_start_tmux() {
 
 # shellcheck disable=SC2034
 __DOTFILES_AUTOSTART_TMUX=1
+
+# Required for carlocab/tmux-nvr
 if [ -n "$TMUX" ]; then
     eval "$(tmux show-environment -s NVIM_LISTEN_ADDRESS)"
 fi

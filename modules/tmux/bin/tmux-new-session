@@ -3,12 +3,12 @@
 SESSION_DIR_OR_NAME="${1:-$PWD}"
 SESSION_NAME="$(basename "$SESSION_DIR_OR_NAME")"
 
-CURDIR="$PWD"
 if [[ -d "$SESSION_DIR_OR_NAME" ]]; then
-    cd "$SESSION_DIR_OR_NAME" || exit $?
+    tmux new-session -c "$SESSION_DIR_OR_NAME" -s "$SESSION_NAME" -d
+else
+    tmux new-session -s "$SESSION_NAME" -d
 fi
 
-tmux new-session -s "$SESSION_NAME" -d
 if [[ -n "$TMUX" ]]; then
     tmux switch-client -t "$SESSION_NAME"
 elif [[ -z "$NVIM_LISTEN_ADDRESS" ]]; then
@@ -16,5 +16,3 @@ elif [[ -z "$NVIM_LISTEN_ADDRESS" ]]; then
 else
     echo "created: $SESSION_NAME"
 fi
-
-cd "$CURDIR" || exit $?
