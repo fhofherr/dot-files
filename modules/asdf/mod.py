@@ -1,3 +1,4 @@
+import textwrap
 import os
 import re
 
@@ -45,7 +46,8 @@ class ASDF(module.Definition):
                 script,
                 flags=re.MULTILINE,
             )
-            self.state.zsh.after_compinit_script = script
+            script = f'{script}\nfpath+=("${{ASDF_DIR}}"/completions)\n'
+            self.state.zsh.before_compinit_script = script
 
     @module.export
     def __call__(self, *args, **kwargs):
