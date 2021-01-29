@@ -11,9 +11,11 @@ def github_find_latest_release(repo_id,
     if not gh:
         gh = _new_gh()
     repo = gh.repository(*repo_id.split("/"))
-    latest_release = repo.latest_release()
-    if latest_release:
-        return latest_release
+    try:
+        return repo.latest_release()
+    except github3.exceptions.NotFoundError:
+        pass
+    latest_release = None
     if pre_release_ok:
         for release in repo.releases():
             if not latest_release:
