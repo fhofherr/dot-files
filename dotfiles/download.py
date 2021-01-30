@@ -1,6 +1,7 @@
 import os
 from typing import Callable, Tuple, Union
 
+import requests
 import github3
 from github3.repos.release import Asset, Release
 
@@ -73,12 +74,20 @@ def _split_repo_id(repo_id: str) -> Tuple[str, str]:
     return repo_owner, repo_name
 
 
-class DownloadError(Exception):
-    pass
-
-
 def _new_gh():
     token = os.getenv("DOTFILES_GITHUB_API_TOKEN")
     if token:
         return github3.GitHub(token=token)
     return github3.GitHub()
+
+
+def file(url, dest):
+    dest_dir = os.path.dirname(dest)
+    os.makedirs(dest_dir, exist_ok=True)
+    r = requests.get(url, allow_redirects=True)
+    r.raise_for_status()
+    with open(dest, "wb") as f:
+        f.write(r.content)
+
+class DownloadError(Exception):
+    pass
