@@ -99,14 +99,32 @@ function switch_in_alacritty() {
     fi
 }
 
-parse_args "$@"
+function find_projects() {
+    local fd_cmd
 
-if [[ -z "$PROJECT_DIR" ]]; then
+    fd_cmd="$(command -v fd 2>/dev/null)"
+    if [[ -n "$fd_cmd" ]]; then
+        "$fd_cmd" -t d  -H -0 '\.git' "$DOTFILES_PROJECT_ROOT_DIR"
+    else
+        command find "$DOTFILES_PROJECT_ROOT_DIR" -type d -name '*.git' -print0
+    fi
+}
+
+function select_project() {
     if ! command -v fzf >/dev/null 2>&1; then
         echo "Project selection not available: FZF not installed"
         exit 1
     fi
-    PROJECT_DIR="$(command find "$DOTFILES_PROJECT_ROOT_DIR" -type d -name '*.git' -print0 | command xargs -0 dirname | fzf)"
+    find_projects | command xargs -0 "$(command -v dirname)" | command fzf
+}
+
+parse_args "$@"
+
+if [[ -z "$PROJECT_DIR" ]]; then
+    PROJECT_DIR="$(select_project)"
+fi
+if [[ -z "$PROJECT_DIR" ]]; then
+    exit 0
 fi
 PROJECT_NAME="$(basename "$PROJECT_DIR")"
 

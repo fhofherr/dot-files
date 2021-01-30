@@ -54,6 +54,13 @@ class FZF(module.Definition):
                 "2> /dev/null")
             self.state.setenv("FZF_CTRL_T_OPTS", f"--preview '{preview}'")
 
+        fd = shutil.which("fd")
+        if fd:
+            default_cmd = f"{fd} --type file"
+            self.state.setenv("FZF_DEFAULT_COMMAND", default_cmd)
+            self.state.setenv("FZF_CTRL_T_COMMAND", default_cmd)
+            self.state.setenv("FZF_DEFAULT_OPTS", "--layout=reverse --inline-info")
+
 
 if __name__ == "__main__":
     module.run(FZF)
