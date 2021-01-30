@@ -2,8 +2,16 @@
 
 : "${DOTFILES_PROJECT_ROOT_DIR:=$HOME/Projects}"
 
+NEW_SESSION_CMD="$(command -v tmux-new-session 2>/dev/null)"
+if [[ -z "$NEW_SESSION_CMD" ]]; then
+    echo "Could not find tmux-new-session in path"
+    exit 1
+fi
+
+XDOTOOL_CMD="$(command -v xdotool 2>/dev/null)"
+
 function usage() {
-    echo "Usage: $0 [--keep-window] [dir]"
+    echo "Usage: $0 [--keep-window] [--workspace <n>] [dir]"
     exit 1
 }
 
@@ -13,10 +21,17 @@ function parse_args() {
     fi
 
     KEEP_WINDOW="false"
+    WORKSPACE=-1
     while (($# > 0)); do
         case "$1" in
         -k | --keep-window)
             KEEP_WINDOW="true"
+            shift
+            ;;
+        -w | --workspace)
+            shift
+            WORKSPACE="$1"
+            WORKSPACE=$((WORKSPACE - 1))
             shift
             ;;
         *)
@@ -27,22 +42,62 @@ function parse_args() {
     done
 }
 
+function move_to_workspace() {
+    local pid window_id pattern workspace
+
+    workspace="$1"
+    pid="$2"
+
+    if [[ -z "$XDOTOOL_CMD" ]]; then
+        echo "xdotool not found"
+        return 0
+    fi
+    if [[ -z "$pid" ]]; then
+        return 0
+    fi
+
+    # Wait for the window to become active. This may take some time. Therefore
+    # we try it a couple of times.
+    for _ in {1..10}; do
+        window_id="$("$XDOTOOL_CMD" search --pid "$pid")"
+        if [[ -n "$window_id" ]]; then
+            break
+        fi
+        # Only works on linux an mac ... but thats fine for me :-)
+        sleep 0.1
+    done
+
+    if [[ -z "$window_id" ]]; then
+        echo "Failed to determine window id for pid: $pid"
+        return 1
+    fi
+
+    pattern="[[:space:]]+"
+    if [[ "$window_id" =~ $pattern ]]; then
+        echo "Found more than one window id for: $pid"
+        return 1
+    fi
+    "$XDOTOOL_CMD" set_desktop_for_window "$window_id" "$workspace"
+}
+
 function switch_in_window() {
     command "$NEW_SESSION_CMD" "$PROJECT_DIR"
 }
 
 function switch_in_alacritty() {
+    local pid
     unset TMUX TMUX_PANE NVIM_LISTEN_ADDRESS
+
     command alacritty \
         -o env.DOTFILES_TMUX_DEFAULT_SESSION_NAME="$PROJECT_NAME" \
-        -o env.DOTFILES_TMUX_DEFAULT_SESSION_DIR="$PROJECT_DIR" &
-}
+        -o env.DOTFILES_TMUX_DEFAULT_SESSION_DIR="$PROJECT_DIR" \
+        -o window.startup_mode=Maximized &
+    pid=$!
 
-NEW_SESSION_CMD="$(command -v tmux-new-session)"
-if [[ -z "$NEW_SESSION_CMD" ]]; then
-    echo "Could not find tmux-new-session in path"
-    exit 1
-fi
+    if ((WORKSPACE > -1)); then
+        move_to_workspace "$WORKSPACE" $pid
+    fi
+}
 
 parse_args "$@"
 
