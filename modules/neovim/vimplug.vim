@@ -11,7 +11,6 @@ Plug 'junegunn/vim-plug'
 Plug 'tpope/vim-sensible'
 
 Plug 'editorconfig/editorconfig-vim'
-Plug 'junegunn/vim-easy-align'
 
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-eunuch'
@@ -22,13 +21,14 @@ Plug 'simnalamburt/vim-mundo'
 
 " Don't use that a lot, but can't get myself to fully remove it
 " Plug 'kassio/neoterm'
+
+Plug 'voldikss/vim-floaterm'
 " }}}
 
 " Eye candy and color schemes {{{
 Plug 'itchyny/lightline.vim'
 Plug 'TaDaa/vimade'
 Plug 'mhinz/vim-startify'
-Plug 'voldikss/vim-floaterm'
 
 " I don't need all of those. But if I want to switch I want
 " the others handy. So they are just commented out.
@@ -46,9 +46,6 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" Plug 'justinmk/vim-dirvish'
-" Plug 'kristijanhusak/vim-dirvish-git'
-
 Plug 'mhinz/vim-grepper'
 Plug 'nelstrom/vim-visual-star-search'
 " }}}
@@ -61,13 +58,11 @@ Plug 'junegunn/gv.vim'
 
 " Snippets {{{
 Plug 'sirver/ultisnips'
-" Plug 'honza/vim-snippets'
 " }}}
 
 " Programming {{{
 Plug 'vim-test/vim-test'
 Plug 'tpope/vim-commentary'
-" Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-projectionist'
 
 Plug 'embear/vim-localvimrc'
@@ -102,7 +97,6 @@ endif
 " Install with: brew install --HEAD universal-ctags/universal-ctags/universal-ctags on Mac
 " Compile it yourself from https://github.com/universal-ctags on Linux
 if executable('ctags')
-    " Plug 'majutsushi/tagbar'
     Plug 'liuchengxu/vista.vim'
     Plug 'ludovicchabant/vim-gutentags'
 endif
