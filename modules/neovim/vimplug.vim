@@ -22,7 +22,9 @@ Plug 'simnalamburt/vim-mundo'
 " Don't use that a lot, but can't get myself to fully remove it
 " Plug 'kassio/neoterm'
 
-Plug 'voldikss/vim-floaterm'
+if executable('nnn')
+    Plug 'mcchrish/nnn.vim'
+endif
 " }}}
 
 " Eye candy and color schemes {{{
