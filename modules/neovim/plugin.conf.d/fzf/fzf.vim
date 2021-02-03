@@ -15,6 +15,8 @@ else
     let g:fzf_layout = { 'down': '~40%' }
 endif
 
+let g:fzf_buffers_jump = 1
+
 nmap <silent> <F1> :Helptags<CR>
 nnoremap <silent> <c-p> :Files<cr>
 nnoremap <silent> <c-g><c-f> :Files<cr>
@@ -33,6 +35,10 @@ function! s:fzf_disable_settings()
     set noshowmode
     set noruler
     set timeoutlen=0 " ensures that CTRL-V works without delay
+
+    " nmap <buffer><tab> <plug>(fzf-maps-n)
+    " xmap <buffer><tab> <plug>(fzf-maps-x)
+    " omap <buffer><tab> <plug>(fzf-maps-o)
 endfunction
 
 function! s:fzf_enable_settings()
