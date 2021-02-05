@@ -44,26 +44,18 @@ function M.setup()
             select = {
                 enable = true,
                 keymaps = {
-                    ["af"] = "@function.outer",
-                    ["if"] = "@function.inner",
+                    ["ab"] = "@block.outer",
+                    ["ib"] = "@block.inner",
                     ["ac"] = "@comment.outer",
                     ["ic"] = "@comment.inner",
+                    ["af"] = "@function.outer",
+                    ["if"] = "@function.inner",
+                    ["ap"] = "@parameter.outer",
+                    ["ip"] = "@parameter.inner",
                 },
             },
         },
-        ensure_installed = {
-            "bash",
-            "c",
-            "cpp",
-            "go",
-            "html",
-            "json",
-            "lua",
-            "python",
-            "regex",
-            "toml",
-            "yaml"
-        }
+        ensure_installed = "maintained",
     }
 end
 
