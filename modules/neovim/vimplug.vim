@@ -18,6 +18,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'simnalamburt/vim-mundo'
+Plug 'justinmk/vim-sneak'
 
 " Don't use that a lot, but can't get myself to fully remove it
 " Plug 'kassio/neoterm'
