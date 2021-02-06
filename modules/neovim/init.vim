@@ -53,7 +53,7 @@ set softtabstop=4
 set hidden
 
 set cmdheight=2
-set signcolumn=yes
+set signcolumn="yes:2"
 
 set completeopt=menuone,noinsert
 " don't give |ins-completion-menu| messages.
@@ -72,23 +72,6 @@ set splitbelow
 set splitright
 language messages en_US.UTF-8
 set diffopt=filler,vertical
-
-" Search using / or ? is only case sensitive if there is at least one capital
-" letter included.
-" set ignorecase
-set smartcase
-
-" augroup dotfiles_vim_init
-"     autocmd!
-"
-"     " When editing a file, always jump to the last known cursor position.
-"     " Don't do it when the position is invalid or when inside an event handler
-"     " (happens when dropping a file on gvim).
-"     autocmd BufReadPost *
-"                 \ if line("'\"") > 0 && line("'\"") <= line("$") |
-"                 \   exe "normal g`\"" |
-"                 \ endif
-" augroup end
 
 " ---------------------------------------------------------------------------
 " Color settings
