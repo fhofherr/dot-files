@@ -85,6 +85,10 @@ set colorcolumn=80,120
 " ---------------------------------------------------------------------------
 " Folding
 " ---------------------------------------------------------------------------
+
+" Disable folding by default. Toggle it with the zi command.
+set nofoldenable
+
 " set foldlevelstart=3 " Initial foldlevel; all folds with higher level are closed
 "                      " Initially we keep all folds open.
 
