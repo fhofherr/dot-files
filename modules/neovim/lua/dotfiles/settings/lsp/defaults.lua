@@ -1,7 +1,6 @@
 local M = {}
 
 local plugin = require("dotfiles.plugin")
-local lsp_status = plugin.safe_require("lsp-status")
 local lspsaga = plugin.safe_require("lspsaga")
 
 local function on_attach(client, bufnr)
@@ -12,9 +11,6 @@ local function on_attach(client, bufnr)
     end
 
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-    if lsp_status then
-        lsp_status.on_attach(client, bufnr)
-    end
 
     local opts = { noremap=true, silent=true }
     buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
@@ -44,9 +40,6 @@ end
 
 function M.new_defaults()
     local opts = { on_attach = on_attach }
-    if lsp_status then
-        opts.capabilities = lsp_status.capabilities
-    end
     return opts
 end
 
