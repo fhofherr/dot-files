@@ -16,9 +16,9 @@ function! dotfiles#lightline#gutentags_status()
 endfunction
 
 function! dotfiles#lightline#lsp_status()
-    return luaeval('require("dotfiles/lsp").status()')
+    return luaeval('require("dotfiles.settings.lsp").status()')
 endfunction
 
 function! dotfiles#lightline#treesitter_status()
-    return luaeval('require("dotfiles/treesitter").status()')
+   return luaeval('require("dotfiles.settings.treesitter").status()')
 endfunction

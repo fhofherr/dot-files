@@ -1,16 +1,13 @@
 local M = {}
 
-local has_treesitter, treesitter = pcall(require, "nvim-treesitter")
-local has_treesitter_configs, treesitter_configs = pcall(require, "nvim-treesitter.configs")
+local plugin = require("dotfiles.plugin")
+local treesitter = plugin.safe_require("nvim-treesitter")
+local treesitter_configs = plugin.safe_require("nvim-treesitter.configs")
 
 function M.setup()
-    if not has_treesitter_configs then
+    if not treesitter then
         return
     end
-
-    -- TODO
-    -- set foldmethod=expr
-    -- set foldexpr=nvim_treesitter#foldexpr()
 
     treesitter_configs.setup {
         highlight = { enable = false },
@@ -57,10 +54,15 @@ function M.setup()
         },
         ensure_installed = "maintained",
     }
+
+    vim.api.nvim_command([[
+    set foldmethod=expr
+    set foldexpr=nvim_treesitter#foldexpr()
+    ]])
 end
 
 function M.status()
-    if not has_treesitter then
+    if not treesitter then
         return ""
     end
     local ok, statusline = pcall(treesitter.statusline,15)

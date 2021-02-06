@@ -102,14 +102,23 @@ set colorcolumn=80,120
 " ---------------------------------------------------------------------------
 " Folding
 " ---------------------------------------------------------------------------
-set foldlevelstart=3 " Initial foldlevel; all folds with higher level are closed
-                     " Initially we keep all folds open.
+" set foldlevelstart=3 " Initial foldlevel; all folds with higher level are closed
+"                      " Initially we keep all folds open.
 
-set foldnestmax=3    " Three fold levels should be enough for most of our needs
-                     " we can always add more on a filetype specific level.
+" set foldnestmax=3    " Three fold levels should be enough for most of our needs
+"                      " we can always add more on a filetype specific level.
 
 " augroup dotfiles_nvim_terminal
 "     autocmd!
 "     " enter insert mode whenever we're in a terminal
 " 	autocmd TermOpen,BufWinEnter,BufEnter term://* startinsert
 " augroup END
+
+" ---------------------------------------------------------------------------
+" Lua configuration
+" ---------------------------------------------------------------------------
+" Call the parts of my neovim configuration that have been already ported to
+" lua.
+lua <<EOF
+require("dotfiles.settings").setup()
+EOF
