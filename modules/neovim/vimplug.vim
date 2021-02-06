@@ -29,7 +29,6 @@ endif
 " }}}
 
 " Eye candy and color schemes {{{
-Plug 'itchyny/lightline.vim'
 Plug 'TaDaa/vimade'
 Plug 'mhinz/vim-startify'
 
@@ -37,6 +36,9 @@ Plug 'mhinz/vim-startify'
 " the others handy. So they are just commented out.
 " Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'gruvbox-community/gruvbox'
+
+Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+Plug 'kyazdani42/nvim-web-devicons'
 " }}}
 
 " Buffers, Files, Searching and Finding {{{
@@ -66,9 +68,6 @@ Plug 'embear/vim-localvimrc'
 
 if exists("g:python3_host_prog")
     Plug 'dense-analysis/ale'
-    if dotfiles#plugin#selected('lightline.vim')
-        Plug 'maximbaz/lightline-ale'
-    endif
     if executable('buf')
         Plug 'bufbuild/vim-buf'
     endif
