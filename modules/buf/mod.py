@@ -1,7 +1,7 @@
 import os
 from fnmatch import fnmatch
 
-from dotfiles import chksum, download, fs, module
+from dotfiles import download, fs, module
 
 REPO_ID = "bufbuild/buf"
 
@@ -35,26 +35,23 @@ class Buf(module.Definition):
         self.state.setenv("PATH", self.bin_dir)
 
     def download(self):
-        paths, _ = download.github_asset(REPO_ID,
-                                         self.is_asset_selected,
-                                         self.download_dir,
-                                         pre_release_ok=True,
-                                         log=self.log)
-        shafile = next(p for p in paths
-                       if self.is_shasum_asset(os.path.basename(p)))
-        archive = next(p for p in paths
-                       if self.is_archive_asset(os.path.basename(p)))
-
-        if not chksum.verify_sha256_file(archive, shafile, log=self.log):
-            raise ValueError("Checksum mismatch")
-        fs.extract_tar_file(archive, [
+        paths, did_download = download.github_asset(
+            REPO_ID,
+            self.is_asset_selected,
+            self.download_dir,
+            checksum_filter=sels.is_shasum_asset,
+            pre_release_ok=True,
+            log=self.log)
+        fs.extract_tar_file(paths[0], [
             ("buf/bin/buf", self.buf_cmd),
-            ("buf/bin/protoc-gen-buf-breaking", self.protoc_gen_buf_breaking_cmd),
+            ("buf/bin/protoc-gen-buf-breaking",
+             self.protoc_gen_buf_breaking_cmd),
             ("buf/bin/protoc-gen-buf-lint", self.protoc_gen_buf_lint_cmd),
         ])
         os.chmod(self.buf_cmd, 0o755)
         os.chmod(self.protoc_gen_buf_breaking_cmd, 0o755)
         os.chmod(self.protoc_gen_buf_lint_cmd, 0o755)
+
 
 if __name__ == "__main__":
     module.run(Buf)

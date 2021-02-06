@@ -43,8 +43,7 @@ class Direnv(module.Definition):
                                                     self._asset_name,
                                                     self.download_dir,
                                                     log=self.log)
-        if not did_download:
-            self.log.info(f"direnv not downloaded")
+        if not did_download and os.path.exists(self.direnv_cmd):
             return False
         self.log.info(f"Copying {paths[0]} to {self.direnv_cmd}")
         os.makedirs(os.path.dirname(self.direnv_cmd), exist_ok=True)

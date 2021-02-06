@@ -27,8 +27,7 @@ class GitDelta(module.Definition):
     @module.update
     @module.install
     def install(self):
-        if not self.download():
-            self.log.info("delta was not downloaded")
+        self.download()
         self.state.setenv("PATH", self.bin_dir)
 
     def download(self):
@@ -37,7 +36,7 @@ class GitDelta(module.Definition):
                                                     self.is_archive_asset,
                                                     self.download_dir,
                                                     log=self.log)
-        if not did_download and not os.path.exists(paths[0]):
+        if not did_download and os.path.exists(paths[0]):
             return False
         self.log.info(f"Extracting {paths[0]}")
         fs.extract_tar_file(paths[0],

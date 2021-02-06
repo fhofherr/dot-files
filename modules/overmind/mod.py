@@ -28,11 +28,9 @@ class Overmind(module.Definition):
                                                     self.is_asset_selected,
                                                     self.download_dir,
                                                     log=self.log)
-        if not did_download:
-            self.log.info("overmind not downloaded")
+        if not did_download and os.path.exists(self.overmind_cmd):
             return False
         self.log.info(f"Copying {paths[0]} to {self.overmind_cmd}")
-        os.makedirs(os.path.dirname(self.overmind_cmd), exist_ok=True)
         with (gzip.open(paths[0]) as gz_f,
                 open(self.overmind_cmd, "wb") as bin_f):
             bin_f.write(gz_f.read())

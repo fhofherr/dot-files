@@ -1,9 +1,11 @@
 import os
 from typing import Callable, Tuple, Union
 
-import requests
 import github3
+import requests
 from github3.repos.release import Asset, Release
+
+from dotfiles import chksum
 
 
 def github_find_latest_release(repo_id,
@@ -32,6 +34,7 @@ def github_asset(repo_id: str,
                  version=None,
                  pre_release_ok=False,
                  force_download=False,
+                 checksum_filter: Union[str, Callable[[str], bool]] = None,
                  gh=None,
                  log=None):
     if not gh:
@@ -64,6 +67,19 @@ def github_asset(repo_id: str,
 
     if not asset_paths:
         raise DownloadError(f"No matching asset found for {repo_id}")
+
+    if did_download and checksum_filter:
+        if callable(checksum_filter):
+            checksums = next(a for a in asset_paths
+                             if checksum_filter(os.path.basename(a)))
+        else:
+            checksums = next(a for a in asset_paths
+                             if checksum_filter == os.path.basename(a))
+        asset_paths = [a for a in asset_paths if a != checksums]
+        for a in asset_paths:
+            if not chksum.verify_sha256_file(a, checksums, log=log):
+                raise ValueError("Checksum mismatch")
+
     return asset_paths, did_download
 
 
@@ -88,6 +104,7 @@ def file(url, dest):
     r.raise_for_status()
     with open(dest, "wb") as f:
         f.write(r.content)
+
 
 class DownloadError(Exception):
     pass

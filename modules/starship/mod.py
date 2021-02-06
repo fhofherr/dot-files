@@ -1,6 +1,6 @@
 import os
 
-from dotfiles import chksum, download, fs, module
+from dotfiles import download, fs, module
 
 
 class Starship(module.Definition):
@@ -20,11 +20,6 @@ class Starship(module.Definition):
     @property
     def asset_paths(self):
         return [os.path.join(self.download_dir, n) for n in self.asset_names]
-
-    def _verify_checksums(self):
-        if not chksum.verify_sha256_file(
-                self.asset_paths[0], self.asset_paths[1], log=self.log):
-            raise ValueError("Checksum mismatch")
 
     @property
     def _cfg_file_src(self):
@@ -56,18 +51,16 @@ class Starship(module.Definition):
         self.state.zsh.after_compinit_script = self._zsh_hook
 
     def download(self):
-        _, did_download = download.github_asset(
+        paths, did_download = download.github_asset(
             self.repo_id,
             lambda n: n in self.asset_names,
             self.download_dir,
             log=self.log,
+            checksum_filter=self.asset_names[1],
         )
-        if not did_download:
+        if not did_download and os.path.exists(self.starship_cmd):
             return False
-        self._verify_checksums()
-        os.makedirs(os.path.dirname(self.starship_cmd), exist_ok=True)
-        fs.extract_tar_file(self.asset_paths[0],
-                            [("starship", self.starship_cmd)])
+        fs.extract_tar_file(paths[0], [("starship", self.starship_cmd)])
         os.chmod(self.starship_cmd, 0o755)
         return True
 

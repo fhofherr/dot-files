@@ -2,7 +2,7 @@ import os
 import tarfile
 from fnmatch import fnmatch
 
-from dotfiles import chksum, download, fs, module
+from dotfiles import download, fs, module
 
 REPO_ID = "golangci/golangci-lint"
 
@@ -37,17 +37,11 @@ class GolangCILint(module.Definition):
         paths, did_download = download.github_asset(REPO_ID,
                                                     self.is_asset_selected,
                                                     self.download_dir,
+                                                    checksum_filter=self.is_checksum_asset,
                                                     log=self.log)
-        if not did_download:
-            self.log.info("golangci-lint was not downloaded")
+        if not did_download and os.path.exists(self.golangci_lint_cmd):
             return False
-        chksum_file = next(p for p in paths
-                           if self.is_checksum_asset(os.path.basename(p)))
-        archive_file = next(p for p in paths
-                            if self.is_archive_asset(os.path.basename(p)))
-        if not chksum.verify_sha256_file(archive_file, chksum_file, self.log):
-            raise ValueError("Checksum mismatch")
-        fs.extract_tar_file(archive_file,
+        fs.extract_tar_file(paths[0],
                             [(self.is_binary_member, self.golangci_lint_cmd)])
         os.chmod(self.golangci_lint_cmd, 0o755)
         return True
