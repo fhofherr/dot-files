@@ -35,14 +35,8 @@ Plug 'mhinz/vim-startify'
 
 " I don't need all of those. But if I want to switch I want
 " the others handy. So they are just commented out.
-" Plug 'ayu-theme/ayu-vim'
-" Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
-" Plug 'chriskempson/base16-vim'
-" Plug 'cocopon/iceberg.vim'
-" Plug 'drewtempelmeyer/palenight.vim'
 " Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'gruvbox-community/gruvbox'
-" Plug 'sonph/onehalf', {'rtp': 'vim'}
 " }}}
 
 " Buffers, Files, Searching and Finding {{{
@@ -100,7 +94,6 @@ endif
 " Install with: brew install --HEAD universal-ctags/universal-ctags/universal-ctags on Mac
 " Compile it yourself from https://github.com/universal-ctags on Linux
 if executable('ctags')
-    Plug 'liuchengxu/vista.vim'
     Plug 'ludovicchabant/vim-gutentags'
 endif
 
@@ -108,14 +101,6 @@ endif
 if executable('go')
     Plug 'sebdah/vim-delve'
     Plug 'mattn/vim-goaddtags'
-endif
-
-" Clojure plugins
-if executable('clj') || executable('clojure') || executable('lein')
-    Plug 'kien/rainbow_parentheses.vim', {'for': 'clojure'}
-    Plug 'tpope/vim-classpath', {'for': 'clojure'}
-    Plug 'tpope/vim-salve', {'for': 'clojure'}
-    Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 endif
 
 if executable('pio')
@@ -126,11 +111,9 @@ if executable('pio')
     endif
 endif
 
-Plug 'aklt/plantuml-syntax'
 Plug 'aliou/bats.vim'
 Plug 'cespare/vim-toml'
 Plug 'hashivim/vim-terraform'
-Plug 'kylef/apiblueprint.vim'
 " }}}
 
 " Text editing {{{
