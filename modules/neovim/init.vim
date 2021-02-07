@@ -53,7 +53,7 @@ set softtabstop=4
 set hidden
 
 set cmdheight=2
-set signcolumn="yes:2"
+set signcolumn=auto:1-2
 
 set completeopt=menuone,noinsert
 " don't give |ins-completion-menu| messages.
