@@ -26,6 +26,10 @@ Plug 'justinmk/vim-sneak'
 if executable('nnn')
     Plug 'mcchrish/nnn.vim'
 endif
+
+if executable('tmux')
+    Plug 'christoomey/vim-tmux-navigator'
+endif
 " }}}
 
 " Eye candy and color schemes {{{
