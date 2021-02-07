@@ -39,7 +39,6 @@ function M.setup()
     if not completion then
         return
     end
-    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
     vim.g.completion_auto_change_source = 1
     vim.g.completion_chain_complete_list = chain_complete_list
@@ -49,8 +48,8 @@ function M.setup()
     vim.g.completion_timer_cycle = 100
 
     local opts = { noremap=true, silent=true }
-    buf_set_keymap("i", "<tab>", "<cmd>lua require('completion').smart_tab()<CR>", opts)
-    buf_set_keymap("i", "<s-tab>", "<cmd>lua require('completion').smart_s_tab()<CR>", opts)
+    vim.api.nvim_set_keymap("i", "<tab>", "<cmd>lua require('completion').smart_tab()<CR>", opts)
+    vim.api.nvim_set_keymap("i", "<s-tab>", "<cmd>lua require('completion').smart_s_tab()<CR>", opts)
 
     vim.api.nvim_command([[
     autocmd BufEnter * lua require("completion").on_attach()
