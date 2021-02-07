@@ -9,7 +9,9 @@ endif
 let g:did_cfg_fzf = 1
 
 " Default fzf layout
-if has('nvim')
+if has('nvim-0.5')
+    let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 }}
+elseif has('nvim')
     let g:fzf_layout = { 'window': '10split enew' }
 else
     let g:fzf_layout = { 'down': '~40%' }
