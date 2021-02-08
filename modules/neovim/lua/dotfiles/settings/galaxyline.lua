@@ -9,9 +9,6 @@ local vcs = plugin.safe_require("galaxyline.provider_vcs")
 
 -- Gruvbox dark colors according to palette at https://github.com/gruvbox-community/gruvbox
 local colors = {
-    bg = "#282828",
-    fg = "#ebdbb2",
-
     darkred = "#cc241d",
     darkgreen = "#98971a",
     darkyellow = "#d79921",
@@ -29,6 +26,11 @@ local colors = {
     purple = "#d3869b",
     aqua = "#8ec07c",
     orange = "#fe8019",
+
+
+    -- bg = "#282828",
+    bg = "#504945", -- actually bg2
+    fg = "#ebdbb2",
 }
 
 local function buffer_not_empty()
@@ -81,24 +83,16 @@ local left_components = {
     },
     {
         GitIcon = {
-            provider = function() return "  " end,
+            provider = function() return "  " end,
             condition = vcs.check_git_workspace,
-            separator = " ",
             separator_highlight = {"NONE",colors.bg},
-            highlight = {colors.yellow,colors.bg,"bold"},
-        }
-    },
-    {
-        GitBranch = {
-            provider = "GitBranch",
-            condition = vcs.check_git_workspace,
             highlight = {colors.yellow,colors.bg,"bold"},
         }
     },
     {
         DiffAdd = {
             provider = "DiffAdd",
-            condition = checkwidth,
+            condition = vcs.check_git_workspace,
             icon = "  ",
             highlight = {colors.green,colors.bg},
         }
@@ -106,7 +100,7 @@ local left_components = {
     {
         DiffModified = {
             provider = "DiffModified",
-            condition = checkwidth,
+            condition = vcs.check_git_workspace,
             icon = " 柳",
             highlight = {colors.orange,colors.bg},
         }
@@ -114,35 +108,53 @@ local left_components = {
     {
         DiffRemove = {
             provider = "DiffRemove",
-            condition = checkwidth,
+            condition = vcs.check_git_workspace,
             icon = "  ",
             highlight = {colors.red,colors.bg},
+        }
+    },
+    {
+        GitBranch = {
+            provider = "GitBranch",
+            condition = function()
+                return vcs.check_git_workspace() and checkwidth()
+            end,
+            highlight = {colors.yellow,colors.bg,"bold"},
         }
     },
 }
 
 local short_line_left_components = {
     {
-        BufferType = {
-            provider = "FileTypeName",
-            separator = " ",
+        SGitIcon = {
+            provider = function() return "  " end,
+            condition = vcs.check_git_workspace,
             separator_highlight = {"NONE",colors.bg},
-            highlight = {colors.blue,colors.bg,"bold"}
+            highlight = {colors.yellow,colors.bg,"bold"},
         }
     },
     {
-        SFileName = {
-            provider = function()
-                local fname = fileinfo.get_current_file_name()
-                for _,v in ipairs(galaxyline.short_line_list) do
-                    if v == vim.bo.filetype then
-                        return ""
-                    end
-                end
-                return fname
-            end,
-            condition = buffer_not_empty,
-            highlight = {colors.white,colors.bg,"bold"}
+        SDiffAdd = {
+            provider = "DiffAdd",
+            icon = "  ",
+            condition = vcs.check_git_workspace,
+            highlight = {colors.green,colors.bg},
+        }
+    },
+    {
+        SDiffModified = {
+            provider = "DiffModified",
+            icon = " 柳",
+            condition = vcs.check_git_workspace,
+            highlight = {colors.orange,colors.bg},
+        }
+    },
+    {
+        SDiffRemove = {
+            provider = "DiffRemove",
+            icon = "  ",
+            condition = vcs.check_git_workspace,
+            highlight = {colors.red,colors.bg},
         }
     },
 }
@@ -236,6 +248,28 @@ local short_line_right_components = {
         BufferIcon = {
             provider= "BufferIcon",
             highlight = {colors.fg,colors.bg}
+        }
+    },
+    {
+        SFileIcon = {
+            provider = "FileIcon",
+            condition = buffer_not_empty,
+            highlight = {fileinfo.get_file_icon_color,colors.bg},
+        },
+    },
+    {
+        SFileName = {
+            provider = function()
+                local fname = fileinfo.get_current_file_name()
+                for _,v in ipairs(galaxyline.short_line_list) do
+                    if v == vim.bo.filetype then
+                        return ""
+                    end
+                end
+                return fname
+            end,
+            condition = buffer_not_empty,
+            highlight = {colors.white,colors.bg,"bold"}
         }
     },
 }
