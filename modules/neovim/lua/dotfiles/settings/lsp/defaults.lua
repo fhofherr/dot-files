@@ -32,6 +32,7 @@ local function on_attach(client, bufnr)
     end
 
     if lspsaga then
+        buf_set_keymap("n", "<leader>la", "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", opts)
         buf_def_cmd("LspCodeActions", "lua require('lspsaga.codeaction').code_action()")
     end
 
