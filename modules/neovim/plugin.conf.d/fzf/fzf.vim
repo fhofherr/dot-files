@@ -9,9 +9,7 @@ endif
 let g:did_cfg_fzf = 1
 
 " Default fzf layout
-if has('nvim-0.5')
-    let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 }}
-elseif has('nvim')
+if has('nvim')
     let g:fzf_layout = { 'window': '10split enew' }
 else
     let g:fzf_layout = { 'down': '~40%' }
@@ -21,11 +19,11 @@ let g:fzf_buffers_jump = 1
 
 nmap <silent> <F1> :Helptags<CR>
 nnoremap <silent> <c-p> :Files<cr>
-nnoremap <silent> <c-g><c-f> :Files<cr>
+nnoremap <silent> <leader>ff :Files<cr>
 nnoremap <silent> <c-b> :Buffers<cr>
-nnoremap <silent> <c-g><c-b> :Buffers<cr>
-nnoremap <silent> <c-g><c-t> :Tags<cr>
-nnoremap <silent> <c-g><c-m> :Marks<cr>
+nnoremap <silent> <leader>fb :Buffers<cr>
+nnoremap <silent> <leader>ft :Tags<cr>
+nnoremap <silent> <leader>fm :Marks<cr>
 
 let s:laststatus = &laststatus
 let s:showmode = &showmode
