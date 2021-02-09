@@ -20,15 +20,13 @@ Plug 'tpope/vim-unimpaired'
 Plug 'simnalamburt/vim-mundo'
 Plug 'justinmk/vim-sneak'
 
-" Don't use that a lot, but can't get myself to fully remove it
-" Plug 'kassio/neoterm'
-
 if executable('nnn')
     Plug 'mcchrish/nnn.vim'
 endif
 
 if executable('tmux')
     Plug 'christoomey/vim-tmux-navigator'
+    Plug 'tpope/vim-tbone'
 endif
 " }}}
 
