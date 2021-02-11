@@ -65,10 +65,8 @@
       "label": "F12"
     },
     {
-      "keyCode": 65535,
-      "label": "",
-      "extraLabel": "TRANS",
-      "verbose": "Transparent"
+      "keyCode": 76,
+      "label": "DEL"
     },
     {
       "keyCode": 43,
@@ -148,9 +146,9 @@
       "verbose": "Transparent"
     },
     {
-      "keyCode": 49226,
-      "label": "CAPSLOCK",
-      "extraLabel": "CTRL/"
+      "keyCode": 224,
+      "label": "LEFT CTRL",
+      "verbose": "Left Control"
     },
     {
       "keyCode": 70,
@@ -162,8 +160,8 @@
       "label": "←"
     },
     {
-      "keyCode": 79,
-      "label": "→"
+      "keyCode": 81,
+      "label": "↓"
     },
     {
       "keyCode": 79,
@@ -315,8 +313,8 @@
     },
     {
       "keyCode": 227,
-      "label": "LEFT WIN",
-      "verbose": "Left Win"
+      "label": "LEFT LINUX",
+      "verbose": "Left Linux"
     },
     {
       "keyCode": 226,
@@ -330,8 +328,10 @@
       "verbose": "Transparent"
     },
     {
-      "keyCode": 44,
-      "label": "SPACE"
+      "keyCode": 65535,
+      "label": "",
+      "extraLabel": "TRANS",
+      "verbose": "Transparent"
     },
     {
       "keyCode": 0,
@@ -339,8 +339,10 @@
       "verbose": "Disabled"
     },
     {
-      "keyCode": 76,
-      "label": "DEL"
+      "keyCode": 65535,
+      "label": "",
+      "extraLabel": "TRANS",
+      "verbose": "Transparent"
     },
     {
       "keyCode": 51514,
@@ -356,7 +358,7 @@
     {
       "keyCode": 17152,
       "label": "NEXT",
-      "extraLabel": "LEDEFF."
+      "extraLabel": "LED"
     },
     {
       "keyCode": 44,
@@ -369,10 +371,9 @@
       "verbose": "Transparent"
     },
     {
-      "keyCode": 230,
-      "label": "RIGHT ALT",
-      "extraLabel": "",
-      "verbose": "AltGr"
+      "keyCode": 226,
+      "label": "LEFT ALT",
+      "verbose": "Left Alt"
     },
     {
       "keyCode": 80,
@@ -388,7 +389,7 @@
     }
   ],
   "colormap": [
-    4,
+    6,
     8,
     8,
     8,
@@ -397,9 +398,9 @@
     8,
     4,
     15,
-    9,
+    10,
     0,
-    9,
+    10,
     10,
     7,
     8,
@@ -407,7 +408,7 @@
     0,
     0,
     10,
-    4,
+    7,
     15,
     7,
     7,
@@ -419,7 +420,7 @@
     4,
     5,
     1,
-    8,
+    7,
     6,
     5,
     8,
