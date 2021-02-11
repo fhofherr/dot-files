@@ -26,6 +26,16 @@ class FZF(module.Definition):
     @property
     def _after_compinit_txt(self):
         return textwrap.dedent(f"""
+        if command -v fd >/dev/null 2>&1; then
+            _fzf_compgen_path() {{
+                 command fd  --type file --hidden --follow --exclude ".git" . "$1"
+            }}
+
+            _fzf_compgen_dir() {{
+                command fd --type d --hidden --follow --exclude ".git" . "$1"
+            }}
+        fi
+
         # FZF Auto-completion
         [[ $- == *i* ]] && source "{self._repo_dir}/shell/completion.zsh" 2> /dev/null
 
@@ -56,7 +66,7 @@ class FZF(module.Definition):
 
         fd = shutil.which("fd")
         if fd:
-            default_cmd = f"{fd} --type file"
+            default_cmd = f"{fd} --type file --hidden --follow --exclude '.git'"
             self.state.setenv("FZF_DEFAULT_COMMAND", default_cmd)
             self.state.setenv("FZF_CTRL_T_COMMAND", default_cmd)
             self.state.setenv("FZF_DEFAULT_OPTS", "--layout=reverse --inline-info")
