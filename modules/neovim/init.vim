@@ -55,7 +55,7 @@ set hidden
 set cmdheight=2
 set signcolumn=yes:2
 
-set completeopt=menuone,noinsert
+set completeopt=menuone,noinsert,noselect
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
 
