@@ -25,6 +25,7 @@ local function on_attach(client, bufnr)
     buf_set_keymap("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", opts)
 
     buf_def_cmd("LspRename", "lua vim.lsp.buf.rename()")
+    buf_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 
     if client.resolved_capabilities.document_formatting or client.resolved_capabilities.document_range_formatting then
         buf_def_cmd("LspFmt", "lua vim.lsp.buf.formatting()")
@@ -32,7 +33,7 @@ local function on_attach(client, bufnr)
     end
 
     if lspsaga then
-        buf_set_keymap("n", "<leader>la", "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", opts)
+        buf_set_keymap("n", "<leader>ca", "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", opts)
         buf_def_cmd("LspCodeActions", "lua require('lspsaga.codeaction').code_action()")
     end
 
