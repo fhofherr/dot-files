@@ -32,6 +32,7 @@ endif
 " Eye candy and color schemes {{{
 Plug 'TaDaa/vimade'
 Plug 'mhinz/vim-startify'
+Plug 'psliwka/vim-smoothie'
 
 " I don't need all of those. But if I want to switch I want
 " the others handy. So they are just commented out.
