@@ -18,7 +18,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'simnalamburt/vim-mundo'
-Plug 'justinmk/vim-sneak'
 
 if executable('nnn')
     Plug 'mcchrish/nnn.vim'
