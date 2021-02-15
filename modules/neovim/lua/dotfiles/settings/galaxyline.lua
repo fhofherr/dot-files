@@ -5,7 +5,7 @@ local M = {}
 local plugin = require("dotfiles.plugin")
 local galaxyline = plugin.safe_require("galaxyline")
 local fileinfo = plugin.safe_require("galaxyline.provider_fileinfo")
-local vcs = plugin.safe_require("galaxyline.provider_vcs")
+local cond = plugin.safe_require("galaxyline.condition")
 
 -- Gruvbox dark colors according to palette at https://github.com/gruvbox-community/gruvbox
 local colors = {
@@ -84,7 +84,7 @@ local left_components = {
     {
         GitIcon = {
             provider = function() return "  " end,
-            condition = vcs.check_git_workspace,
+            condition = cond.check_git_workspace,
             separator_highlight = {"NONE",colors.bg},
             highlight = {colors.yellow,colors.bg,"bold"},
         }
@@ -92,7 +92,7 @@ local left_components = {
     {
         DiffAdd = {
             provider = "DiffAdd",
-            condition = vcs.check_git_workspace,
+            condition = cond.check_git_workspace,
             icon = "  ",
             highlight = {colors.green,colors.bg},
         }
@@ -100,7 +100,7 @@ local left_components = {
     {
         DiffModified = {
             provider = "DiffModified",
-            condition = vcs.check_git_workspace,
+            condition = cond.check_git_workspace,
             icon = " 柳",
             highlight = {colors.orange,colors.bg},
         }
@@ -108,7 +108,7 @@ local left_components = {
     {
         DiffRemove = {
             provider = "DiffRemove",
-            condition = vcs.check_git_workspace,
+            condition = cond.check_git_workspace,
             icon = "  ",
             highlight = {colors.red,colors.bg},
         }
@@ -117,7 +117,7 @@ local left_components = {
         GitBranch = {
             provider = "GitBranch",
             condition = function()
-                return vcs.check_git_workspace() and checkwidth()
+                return cond.check_git_workspace() and checkwidth()
             end,
             highlight = {colors.yellow,colors.bg,"bold"},
         }
@@ -128,7 +128,7 @@ local short_line_left_components = {
     {
         SGitIcon = {
             provider = function() return "  " end,
-            condition = vcs.check_git_workspace,
+            condition = cond.check_git_workspace,
             separator_highlight = {"NONE",colors.bg},
             highlight = {colors.yellow,colors.bg,"bold"},
         }
@@ -137,7 +137,7 @@ local short_line_left_components = {
         SDiffAdd = {
             provider = "DiffAdd",
             icon = "  ",
-            condition = vcs.check_git_workspace,
+            condition = cond.check_git_workspace,
             highlight = {colors.green,colors.bg},
         }
     },
@@ -145,7 +145,7 @@ local short_line_left_components = {
         SDiffModified = {
             provider = "DiffModified",
             icon = " 柳",
-            condition = vcs.check_git_workspace,
+            condition = cond.check_git_workspace,
             highlight = {colors.orange,colors.bg},
         }
     },
@@ -153,7 +153,7 @@ local short_line_left_components = {
         SDiffRemove = {
             provider = "DiffRemove",
             icon = "  ",
-            condition = vcs.check_git_workspace,
+            condition = cond.check_git_workspace,
             highlight = {colors.red,colors.bg},
         }
     },
