@@ -1,7 +1,6 @@
 local M = {}
 
 local plugin = require("dotfiles.plugin")
-local lspsaga = plugin.safe_require("lspsaga")
 
 local function on_attach(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -32,10 +31,8 @@ local function on_attach(client, bufnr)
         vim.api.nvim_command("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
     end
 
-    if lspsaga then
-        buf_set_keymap("n", "<leader>ca", "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", opts)
-        buf_def_cmd("LspCodeActions", "lua require('lspsaga.codeaction').code_action()")
-    end
+    buf_set_keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+    buf_def_cmd("LspCodeActions", "lua vim.lsp.buf.code_action()")
 
     vim.b.dotfiles_lsp_enabled = 1
 end
