@@ -8,12 +8,18 @@ class Alacritty(module.Definition):
     required = ["nerd_fonts"]
 
     @property
+    def _scheme_file(self):
+        scheme_file = os.path.join(self.mod_dir, "colors",
+                                   colors.color_scheme() + ".yml")
+        if os.path.exists(scheme_file):
+            return scheme_file
+        return None
+
+    @property
     def _cfg_srcs(self):
         srcs = [os.path.join(self.mod_dir, "alacritty.common.yml")]
-        theme_file = os.path.join(self.mod_dir, "colors",
-                                  colors.color_scheme() + ".yml")
-        if os.path.exists(theme_file):
-            srcs.append(theme_file)
+        if self._scheme_file:
+            srcs.append(self._scheme_file)
         else:
             self.log.warn(
                 f"Could not find alacritty theme: {colors.color_scheme()}")
@@ -37,6 +43,8 @@ class Alacritty(module.Definition):
             return
         with open(self._cfg_file_dest, "w") as f:
             f.write(self._alacritty_cfg)
+        if self._scheme_file:
+            self.state.setenv(colors.ENV_VAR, colors.color_scheme())
 
 
 if __name__ == "__main__":
