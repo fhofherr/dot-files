@@ -1,7 +1,7 @@
 import os
 import shutil
 
-from dotfiles import fs, module
+from dotfiles import colors, fs, module
 
 
 class Bat(module.Definition):
@@ -35,6 +35,19 @@ class Bat(module.Definition):
         if not self.bat_cmd:
             self.log.warn("bat is not installed")
             return
+        self._set_color_scheme()
         fs.safe_link_file(self.cfg_file_src, self.cfg_file_dest)
         self.state.setenv("MANPAGER", "sh -c 'col -bx | bat -l man -p'")
         self.state.add_alias("cat", "bat")
+
+    def _set_color_scheme(self):
+        theme_name = colors.color_scheme()
+        if theme_name == "gruvbox-dark":
+            theme_name = "gruvbox"
+        if theme_name == "dracula":
+            theme_name = "Dracula"
+        self.state.setenv("BAT_THEME", theme_name)
+
+
+if __name__ == "__main__":
+    module.run(Bat)
