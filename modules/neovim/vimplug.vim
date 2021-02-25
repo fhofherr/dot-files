@@ -34,10 +34,11 @@ Plug 'TaDaa/vimade'
 Plug 'mhinz/vim-startify'
 Plug 'psliwka/vim-smoothie'
 
-" I don't need all of those. But if I want to switch I want
-" the others handy. So they are just commented out.
-" Plug 'dracula/vim', {'as': 'dracula'}
-Plug 'gruvbox-community/gruvbox'
+if $DOTFILES_COLOR_SCHEME == 'dracula'
+    Plug 'dracula/vim', {'as': 'dracula'}
+else
+    Plug 'gruvbox-community/gruvbox'
+endif
 
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 Plug 'kyazdani42/nvim-web-devicons'
