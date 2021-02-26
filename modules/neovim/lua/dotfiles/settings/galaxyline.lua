@@ -11,6 +11,7 @@ local cond = plugin.safe_require("galaxyline.condition")
 -- See: https://github.com/chriskempson/base16
 local color_schemes = {
     dracula = {
+        -- Obtained form: https://github.com/dracula/base16-dracula-scheme/blob/master/dracula.yaml
         base00 = "#282936", -- background
         base01 = "#3a3c4e",
         base02 = "#4d4f68",
