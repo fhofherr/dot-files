@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+set -o nounset
+set -o errexit
+set -o pipefail
+
 : "${DOTFILES_PROJECT_ROOT_DIR:=$HOME/Projects}"
 
 NEW_SESSION_CMD="$(command -v tmux-new-session 2>/dev/null)"
@@ -29,16 +33,16 @@ function parse_args() {
                 NEW_WINDOW="true"
                 ;;
             w)
-                WORKSPACE=$((OPTARG - 1))
+                WORKSPACE="$OPTARG"
                 ;;
             *)
                 usage
                 ;;
             esac
         done
-        shift $((OPTIND - 1))
-        PROJECT_DIR="$1"
-        shift
+        shift $((OPTIND - 1)) || return 0
+        PROJECT_DIR="${1-}"
+        shift || return 0
     done
 }
 
@@ -59,7 +63,7 @@ function move_to_workspace() {
     # Wait for the window to become active. This may take some time. Therefore
     # we try it a couple of times.
     for _ in {1..10}; do
-        window_id="$("$XDOTOOL_CMD" search --pid "$pid")"
+        window_id="$("$XDOTOOL_CMD" search --pid "$pid")" || true
         if [[ -n "$window_id" ]]; then
             break
         fi
@@ -77,7 +81,10 @@ function move_to_workspace() {
         echo "Found more than one window id for: $pid"
         return 1
     fi
-    "$XDOTOOL_CMD" set_desktop_for_window "$window_id" "$workspace"
+
+    if ! "$XDOTOOL_CMD" set_desktop_for_window "$window_id" "$((workspace - 1))"; then
+        echo "Moving window $window_id to workspace $workspace failed"
+    fi
 }
 
 function switch_in_window() {
@@ -92,10 +99,10 @@ function switch_in_alacritty() {
         -o env.DOTFILES_TMUX_DEFAULT_SESSION_NAME="$PROJECT_NAME" \
         -o env.DOTFILES_TMUX_DEFAULT_SESSION_DIR="$PROJECT_DIR" \
         -o window.startup_mode=Maximized &
-    pid=$!
+    pid="$!"
 
     if ((WORKSPACE > -1)); then
-        move_to_workspace "$WORKSPACE" $pid
+        move_to_workspace "$WORKSPACE" "$pid"
     fi
 }
 
