@@ -282,6 +282,12 @@ local right_components = {
             highlight = {colors.base06,colors.base01,"bold"},
         }
     },
+    {
+        GetLspClient = {
+            provider = "GetLspClient",
+            highlight = {colors.base0D,colors.base01},
+        }
+    },
 }
 
 local short_line_right_components = {
