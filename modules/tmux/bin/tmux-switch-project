@@ -124,10 +124,10 @@ function select_project() {
 
 parse_args "$@"
 
-if [[ -z "$PROJECT_DIR" ]]; then
+if [[ -z "${PROJECT_DIR-}" ]]; then
     PROJECT_DIR="$(select_project)"
 fi
-if [[ -z "$PROJECT_DIR" ]]; then
+if [[ -z "${PROJECT_DIR-}" ]]; then
     exit 0
 fi
 PROJECT_NAME="$(basename "$PROJECT_DIR")"
