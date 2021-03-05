@@ -50,6 +50,8 @@ function M.setup()
     local opts = { noremap=true, silent=true }
     vim.api.nvim_set_keymap("i", "<tab>", "<cmd>lua require('completion').smart_tab()<CR>", opts)
     vim.api.nvim_set_keymap("i", "<s-tab>", "<cmd>lua require('completion').smart_s_tab()<CR>", opts)
+    vim.api.nvim_set_keymap("i", "<c-p>", "<cmd>lua require('completion').triggerCompletion()<CR>", opts)
+    vim.api.nvim_set_keymap("i", "<c-n>", "<cmd>lua require('completion').triggerCompletion()<CR>", opts)
 
     vim.api.nvim_command([[
     autocmd BufEnter * lua require("completion").on_attach()

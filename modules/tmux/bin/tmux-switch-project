@@ -108,7 +108,7 @@ function switch_in_alacritty() {
 
 function find_projects() {
     if [[ -n "$FD_CMD" ]]; then
-        "$FD_CMD" -t d -H -0 '\.git' "$DOTFILES_PROJECT_ROOT_DIR"
+        "$FD_CMD" -t d -H -0 '\.git$' "$DOTFILES_PROJECT_ROOT_DIR"
     else
         command find "$DOTFILES_PROJECT_ROOT_DIR" -type d -name '*.git' -print0
     fi
