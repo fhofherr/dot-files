@@ -92,6 +92,8 @@ class Git(module.Definition):
         if branch:
             argv += ["origin", branch]
         self(*argv, cwd=repo_dir)
+        if branch:
+            self("checkout", branch, cwd=repo_dir)
 
     @module.export
     def clone_or_update(self,
