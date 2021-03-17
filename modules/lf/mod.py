@@ -22,11 +22,20 @@ class LF(module.Definition):
     def _lfrc_dest(self):
         return os.path.join(self.home_dir, ".config", "lf", "lfrc")
 
+    @property
+    def _lfbin_src(self):
+        return os.path.join(self.mod_dir, "bin")
+
+    @property
+    def _lfbin_dest(self):
+        return os.path.join(self.home_dir, ".config", "lf", "bin")
+
     @module.update
     @module.install
     def install(self):
         self.download()
         fs.safe_link_file(self._lfrc_src, self._lfrc_dest)
+        fs.safe_link_file(self._lfbin_src, self._lfbin_dest)
         self.state.setenv("PATH", self.bin_dir)
 
     def download(self):

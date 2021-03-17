@@ -23,6 +23,8 @@ set drawbox
 # leave some space at the top and the bottom of the screen
 set scrolloff 10
 
+set previewer ~/.config/lf/bin/preview.sh
+
 # use enter for shell commands
 map <enter> shell
 
