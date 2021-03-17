@@ -19,13 +19,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'simnalamburt/vim-mundo'
 
-if executable('nnn')
-    Plug 'mcchrish/nnn.vim'
-endif
-
 if executable('tmux')
     Plug 'christoomey/vim-tmux-navigator'
-    Plug 'tpope/vim-tbone'
 endif
 " }}}
 
