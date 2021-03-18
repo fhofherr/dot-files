@@ -56,6 +56,7 @@ class Git(module.Definition):
     def configure_git(self):
         self.state.setenv("PATH", self.git_bin_dir)
         self.state.add_alias("g", "git")
+        # TODO find a way that allows re-creating this file upon install/update without loosing anything machine specific
         if not os.path.exists(self.gitconfig_dest):
             with open(self.gitconfig_dest, "w") as f:
                 f.write(self.gitconfig_text)

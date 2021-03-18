@@ -16,7 +16,14 @@ class GitDelta(module.Definition):
 
     @property
     def syntax_theme(self):
-        return "gruvbox"
+        name = os.getenv("DOTFILES_COLOR_SCHEME")
+        if not name:
+            return "gruvbox"
+        return {
+            "dracula": "Dracula",
+            "gruvbox-dark": "gruvbox",
+            "gruvbox-light": "gruvbox-light",
+        }.get(name, "gruvbox")
 
     def is_archive_asset(self, name):
         return fnmatch(name, "delta-*-x86_64-unknown-linux-gnu.tar.gz")
