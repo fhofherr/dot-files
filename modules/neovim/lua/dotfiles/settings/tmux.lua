@@ -21,7 +21,11 @@ function M.spawn_lf(dir)
 
     local handle
     handle = vim.loop.spawn("tmux", {
-        args={"new-window", "-e", "NVIM_LISTEN_ADDRESS=" .. vim.env.NVIM_LISTEN_ADDRESS, "lf", dir},
+        args={
+            "new-window",
+            "-e", "NVIM_LISTEN_ADDRESS=" .. vim.env.NVIM_LISTEN_ADDRESS,
+            "-e", "DOTFILES_LF_CLOSE_AFTER_OPEN=1",
+            "lf", dir},
     }, function()
         vim.loop.close(handle)
     end)

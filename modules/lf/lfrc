@@ -26,7 +26,7 @@ set scrolloff 10
 set previewer ~/.config/lf/bin/preview.sh
 
 # use enter for shell commands
-map <enter> shell
+map <enter> open
 
 # execute current file (must be executable)
 map x $$f
@@ -45,6 +45,7 @@ cmd open ${{
         text/*) $EDITOR $fx;;
         *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
     esac
+    [[ -z "${DOTFILES_LF_CLOSE_AFTER_OPEN-}" ]] || lf -remote "send quit"
 }}
 
 # define a custom 'rename' command without prompt for overwrite
