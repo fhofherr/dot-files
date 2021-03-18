@@ -36,12 +36,19 @@ class Pipx(module.Definition):
     def _pipx_python(self):
         return os.path.join(self._venv_bin_dir, "python")
 
+    @property
+    def pipx_cmd(self):
+        return os.path.join(self._venv_bin_dir, "pipx")
+
     @module.export
     def __call__(self, *args, **kwargs):
-        cmd = os.path.join(self._venv_bin_dir, "pipx")
-        p = self.run_cmd(cmd, *args, **kwargs, env=self._env, check=False)
+        p = self.run_cmd(self.pipx_cmd,
+                         *args,
+                         **kwargs,
+                         env=self._env,
+                         check=False)
         if p.returncode not in (0, 1):
-            raise PipxError(f"'{cmd} {' '.join(args)}' failed")
+            raise PipxError(f"'{self.pipx_cmd} {' '.join(args)}' failed")
         return p
 
     @module.export
@@ -91,6 +98,7 @@ class Pipx(module.Definition):
         venv.create(self._venv_dir, clear=True, with_pip=True)
         self.update_pipx()
         self.state.setenv("PATH", self.pipx_bin_dir)
+        self.state.add_alias("pipx", self.pipx_cmd)
         for k, v in self._env.items():
             self.state.setenv(k, v)
 
@@ -100,3 +108,7 @@ class Pipx(module.Definition):
                      "pip")
         self.run_cmd(self._pipx_python, "-m", "pip", "install", "--upgrade",
                      "pipx")
+
+
+if __name__ == "__main__":
+    module.run(Pipx)
