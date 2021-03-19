@@ -39,7 +39,7 @@ class Buf(module.Definition):
             REPO_ID,
             self.is_asset_selected,
             self.download_dir,
-            checksum_filter=sels.is_shasum_asset,
+            checksum_filter=self.is_shasum_asset,
             pre_release_ok=True,
             log=self.log)
         fs.extract_tar_file(paths[0], [
