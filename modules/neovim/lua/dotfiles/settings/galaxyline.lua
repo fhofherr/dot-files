@@ -66,6 +66,44 @@ local color_schemes = {
         base0D = "#076678", -- blue
         base0E = "#8f3f71", -- purple
         base0F = "#d65d0e", -- brown
+    },
+    ["papercolor-dark"] = {
+        -- Obtained from: https://github.com/jonleopard/base16-papercolor-scheme/blob/master/papercolor-dark.yaml
+        base00 = "1c1c1c", -- Default Background
+        base01 = "af005f", -- Lighter Background (Used for status bars, line number and folding marks)
+        base02 = "5faf00", -- Selection Background
+        base03 = "d7af5f", -- Comments, Invisibles, Line Highlighting
+        base04 = "5fafd7", -- Dark Foreground (Used for status bars)
+        base05 = "808080", -- Default Foreground, Caret, Delimiters, Operators
+        base06 = "d7875f", -- Light Foreground (Not often used)
+        base07 = "d0d0d0", -- Light Background (Not often used)
+        base08 = "585858", -- Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted
+        base09 = "5faf5f", -- Integers, Boolean, Constants, XML Attributes, Markup Link Url
+        base0A = "afd700", -- Classes, Markup Bold, Search Text Background
+        base0B = "af87d7", -- Strings, Inherited Class, Markup Code, Diff Inserted
+        base0C = "ffaf00", -- Support, Regular Expressions, Escape Characters, Markup Quotes
+        base0D = "ff5faf", -- Functions, Methods, Attribute IDs, Headings
+        base0E = "00afaf", -- Keywords, Storage, Selector, Markup Italic, Diff Changed
+        base0F = "5f8787", -- Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>
+    },
+    ["papercolor-light"] = {
+        -- Obtained from https://raw.githubusercontent.com/jonleopard/base16-papercolor-scheme/master/papercolor-light.yaml
+        base00 = "eeeeee", -- Default Background
+        base01 = "af0000", -- Lighter Background (Used for status bars, line number and folding marks)
+        base02 = "008700", -- Selection Background
+        base03 = "5f8700", -- Comments, Invisibles, Line Highlighting
+        base04 = "0087af", -- Dark Foreground (Used for status bars)
+        base05 = "444444", -- Default Foreground, Caret, Delimiters, Operators
+        base06 = "005f87", -- Light Foreground (Not often used)
+        base07 = "878787", -- Light Background (Not often used)
+        base08 = "bcbcbc", -- Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted
+        base09 = "d70000", -- Integers, Boolean, Constants, XML Attributes, Markup Link Url
+        base0A = "d70087", -- Classes, Markup Bold, Search Text Background
+        base0B = "8700af", -- Strings, Inherited Class, Markup Code, Diff Inserted
+        base0C = "d75f00", -- Support, Regular Expressions, Escape Characters, Markup Quotes
+        base0D = "d75f00", -- Functions, Methods, Attribute IDs, Headings
+        base0E = "005faf", -- Keywords, Storage, Selector, Markup Italic, Diff Changed
+        base0F = "005f87", -- Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>
     }
 }
 

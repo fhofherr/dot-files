@@ -31,6 +31,8 @@ Plug 'psliwka/vim-smoothie'
 
 if $DOTFILES_COLOR_SCHEME == 'dracula'
     Plug 'dracula/vim', {'as': 'dracula'}
+elseif $DOTFILES_COLOR_SCHEME == 'papercolor-light' || $DOTFILES_COLOR_SCHEME == 'papercolor-dark'
+    Plug 'NLKNguyen/papercolor-theme'
 else
     Plug 'gruvbox-community/gruvbox'
 endif
