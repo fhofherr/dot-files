@@ -33,9 +33,10 @@ class Buku(module.Definition):
 
         self.state.add_alias("b", "buku --suggest")
 
+    @module.update
     def update(self):
         self.pipx.update(BUKU_PKG_NAME)
-        self.pipx.inject(BUKUSERVER_PKG_NAME, update=True)
+        self.pipx.inject(BUKU_PKG_NAME, BUKUSERVER_PKG_NAME, update=True)
 
 
 if __name__ == "__main__":
