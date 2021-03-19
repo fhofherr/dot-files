@@ -33,6 +33,14 @@ class Git(module.Definition):
         return f"diffFilter = delta --syntax-theme='{self.git_delta.syntax_theme}' --color-only"
 
     @property
+    def gitconfig_local_text(self):
+        return textwrap.dedent("""
+        [user]
+            name = Ferdinand Hofherr
+            email = mail@ferdinandhofherr.de
+        """)
+
+    @property
     def gitconfig_text(self):
         return textwrap.dedent(f"""
         [core]
@@ -42,24 +50,28 @@ class Git(module.Definition):
             {self._git_diff_filter}
         [include]
             path = {self.gitconfig_common_path}
-        [user]
-            name = Ferdinand Hofherr
-            email = mail@ferdinandhofherr.de
+        [include]
+            path = {self.gitconfig_local_dest}
         """)
 
     @property
     def gitconfig_dest(self):
         return os.path.join(self.home_dir, ".gitconfig")
 
+    @property
+    def gitconfig_local_dest(self):
+        return os.path.join(self.home_dir, ".gitconfig.local")
+
     @module.update
     @module.install
     def configure_git(self):
         self.state.setenv("PATH", self.git_bin_dir)
         self.state.add_alias("g", "git")
-        # TODO find a way that allows re-creating this file upon install/update without loosing anything machine specific
-        if not os.path.exists(self.gitconfig_dest):
-            with open(self.gitconfig_dest, "w") as f:
-                f.write(self.gitconfig_text)
+        if not os.path.exists(self.gitconfig_local_dest):
+            with open(self.gitconfig_local_dest, "w") as f:
+                f.write(self.gitconfig_local_text)
+        with open(self.gitconfig_dest, "w") as f:
+            f.write(self.gitconfig_text)
 
     @module.export
     def __call__(self, *args, **kwargs):
