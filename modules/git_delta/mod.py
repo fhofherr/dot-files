@@ -23,8 +23,6 @@ class GitDelta(module.Definition):
             "dracula": "Dracula",
             "gruvbox-dark": "gruvbox",
             "gruvbox-light": "gruvbox-light",
-            "papercolor-dark": "gruvbox",
-            "papercolor-light": "gruvbox-light",
         }.get(name, "gruvbox")
 
     def is_archive_asset(self, name):

@@ -10,10 +10,6 @@ class Alacritty(module.Definition):
     @property
     def _scheme_file(self):
         scheme_name = colors.color_scheme()
-        if scheme_name == "papercolor-dark":
-            scheme_name = "base16-papercolor-dark-256"
-        if scheme_name == "papercolor-light":
-            scheme_name = "base16-papercolor-light-256"
         scheme_file = os.path.join(self.mod_dir, "colors",
                                    scheme_name + ".yml")
         if os.path.exists(scheme_file):

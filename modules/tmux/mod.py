@@ -47,6 +47,18 @@ class Tmux(module.Definition):
         return os.path.join(self.mod_dir, "bin")
 
     @property
+    def _tmux_plugin_dir(self):
+        return os.path.join(self.home_dir, ".tmux", "plugins")
+
+    @property
+    def _status_bar_plugin_dest(self):
+        return os.path.join(self._tmux_plugin_dir, "status-bar")
+
+    @property
+    def _status_bar_plugin_src(self):
+        return os.path.join(self.mod_dir, "status-bar")
+
+    @property
     def _zsh_hook(self):
         path = os.path.join(self.mod_dir, "after_compinit.sh")
         with open(path) as f:
@@ -59,6 +71,7 @@ class Tmux(module.Definition):
             self.log("Tmux not installed. Skipping")
             return
         fs.safe_link_file(self._tmux_conf_src, self._tmux_conf_dest)
+        fs.safe_link_file(self._status_bar_plugin_src, self._status_bar_plugin_dest)
         self.git.clone_or_update(TPM_REMOTE_REPO, self._tpm_dir)
         self._create_terminfo()
         self._install_plugins()

@@ -44,8 +44,6 @@ class Bat(module.Definition):
         theme_name = colors.color_scheme()
         if theme_name == "dracula":
             theme_name = "Dracula"
-        if theme_name in ("papercolor-dark", "papercolor-light"):
-            theme_name = "ansi"
         self.state.setenv("BAT_THEME", theme_name)
 
 
