@@ -89,7 +89,7 @@ function main() {
     set_option status-left "#H"
     set_option status-left-length 100
 
-    set_option status-right "up:#(uptime | cut -f 4-5 -d ' ' | cut -f 1 -d ',')h %a %Y-%m-%d %H:%M "
+    set_option status-right "up:#(uptime | cut -f 4-5 -d ' ' | cut -f 1 -d ',') %a %Y-%m-%d %H:%M "
     set_option status-right-length 100
 
     set_option status-bg "$COLOR_BASE01"
