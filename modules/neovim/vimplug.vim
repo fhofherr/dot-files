@@ -18,6 +18,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'simnalamburt/vim-mundo'
+Plug 'unblevable/quick-scope'
 
 if executable('tmux')
     Plug 'christoomey/vim-tmux-navigator'
