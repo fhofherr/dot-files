@@ -9,13 +9,16 @@ local galaxyline = require("dotfiles.settings.galaxyline")
 local lsp = require("dotfiles.settings.lsp")
 local tmux = require("dotfiles.settings.tmux")
 local treesitter = require("dotfiles.settings.treesitter")
+local autopairs = require("dotfiles.settings.autopairs")
 
 function M.setup()
-    completion.setup()
-    galaxyline.setup()
+    autopairs.setup()
     lsp.setup()
-    tmux.setup()
     treesitter.setup()
+    completion.setup()
+
+    galaxyline.setup()
+    tmux.setup()
 end
 
 return M

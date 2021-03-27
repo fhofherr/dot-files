@@ -3,6 +3,7 @@ local M = {}
 local plugin = require("dotfiles.plugin")
 local vimcompat = require("dotfiles.vimcompat")
 local compe = plugin.safe_require("compe")
+local npairs = plugin.safe_require("nvim-autopairs")
 
 function M.setup()
     if not compe then
@@ -39,7 +40,7 @@ function M.setup()
     })
 
     local opts = { noremap = false, silent = true, expr = true}
-    vim.api.nvim_set_keymap("i", "<CR>", "v:lua.dotfiles.settings.completion.confirm('<CR>')", opts)
+    vim.api.nvim_set_keymap("i", "<CR>", "v:lua.dotfiles.settings.completion.confirm()", opts)
     vim.api.nvim_set_keymap("i", " ", "v:lua.dotfiles.settings.completion.confirm(' ')", opts)
     vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.dotfiles.settings.completion.tab_complete()", opts)
     vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.dotfiles.settings.completion.tab_complete()", opts)
@@ -90,7 +91,13 @@ function M.s_tab_complete()
 end
 
 function M.confirm(key)
+    if not key then
+        key = "<CR>"
+    end
     if vim.fn.pumvisible() == 0 then
+        if  key == "<CR>" then
+            return npairs.check_break_line_char()
+        end
         return vimcompat.termesc(key)
     end
     if vim.fn.complete_info()["selected"] ~= -1 then

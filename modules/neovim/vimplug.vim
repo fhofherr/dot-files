@@ -84,6 +84,7 @@ endif
 if has('nvim-0.5')
     Plug 'neovim/nvim-lspconfig'
 
+    Plug 'windwp/nvim-autopairs'
     Plug 'hrsh7th/nvim-compe'
     Plug 'hrsh7th/vim-vsnip'
 
