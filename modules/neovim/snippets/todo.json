@@ -1,0 +1,6 @@
+{
+  "todo": {
+    "prefix": "t",
+    "body": "(${1:D}) $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $0"
+  }
+}

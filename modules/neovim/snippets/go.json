@@ -1,0 +1,45 @@
+{
+  "pkg": {
+    "prefix": "pkg",
+    "body": "package ${VIM:v:lua.dotfiles.settings.vsnip.go.pkg_name()}",
+    "description": "Create a golang package definition"
+  },
+  "*t": {
+    "prefix": "*t",
+    "body": "t *testing.T",
+    "description": "Create *testing.T"
+  },
+  "tf": {
+    "prefix": "tf",
+    "body": [
+      "func Test${1:Name}(t *testing.T) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Create a test function"
+  },
+  "tt": {
+    "prefix": "tt",
+    "body": [
+      "tests := []struct{",
+      "\t${1:name} string",
+      "\t${2:fields}",
+      "}{",
+      "\t$0",
+      "}"
+    ],
+    "description": "Create a test table"
+  },
+  "fortt": {
+    "prefix": "fortt",
+    "body": [
+      "for _, tt := range ${1:tests}",
+      "\ttt := tt",
+      "\tt.Run(${2:tt.name}, func(t *testing.T) {)",
+      "\t\t$0",
+      "\t})",
+      "}"
+    ],
+    "description": "iterate over tests"
+  }
+}

@@ -10,6 +10,7 @@ local lsp = require("dotfiles.settings.lsp")
 local tmux = require("dotfiles.settings.tmux")
 local treesitter = require("dotfiles.settings.treesitter")
 local autopairs = require("dotfiles.settings.autopairs")
+local vsnip = require("dotfiles.settings.vsnip")
 
 function M.setup()
     autopairs.setup()
@@ -19,6 +20,7 @@ function M.setup()
 
     galaxyline.setup()
     tmux.setup()
+    vsnip.setup()
 end
 
 return M

@@ -62,10 +62,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 " }}}
 
-" Snippets {{{
-Plug 'sirver/ultisnips'
-" }}}
-
 " Programming {{{
 Plug 'vim-test/vim-test'
 Plug 'tpope/vim-commentary'

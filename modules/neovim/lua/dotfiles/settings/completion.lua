@@ -9,7 +9,7 @@ function M.setup()
     if not compe then
         return
     end
-    vim.cmd("set completeopt=menuone,noselect")
+    vim.cmd("set completeopt=menu,menuone,noselect")
     vim.cmd("set shortmess+=c")
 
     compe.setup({
