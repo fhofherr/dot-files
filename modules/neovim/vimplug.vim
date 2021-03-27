@@ -23,6 +23,8 @@ Plug 'unblevable/quick-scope'
 if executable('tmux')
     Plug 'christoomey/vim-tmux-navigator'
 endif
+
+Plug 'antoinemadec/FixCursorHold.nvim' " See https://github.com/lambdalisue/fern.vim/issues/120 and https://github.com/neovim/neovim/issues/12587
 " }}}
 
 " Eye candy and color schemes {{{
@@ -46,6 +48,12 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'mhinz/vim-grepper'
 Plug 'nelstrom/vim-visual-star-search'
+
+Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/fern-git-status.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+Plug 'lambdalisue/fern-hijack.vim'
+Plug 'lambdalisue/nerdfont.vim'  " Required by fern-renderer-nerdfont.vim
 " }}}
 
 " Git {{{

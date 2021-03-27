@@ -13,4 +13,4 @@
 vmap < <gv
 vmap > >gv
 
-inoremap <C-CR> <CR><C-O>O
+" inoremap <C-CR> <CR><C-O>O
