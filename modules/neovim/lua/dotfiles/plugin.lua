@@ -7,4 +7,8 @@ function M.safe_require(name)
     end
 end
 
+function M.exists(name)
+    return vim.g.plugs[name] ~= nil
+end
+
 return M

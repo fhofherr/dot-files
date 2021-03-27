@@ -55,10 +55,6 @@ set hidden
 set cmdheight=2
 set signcolumn=yes:2
 
-set completeopt=menuone,noinsert,noselect
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-
 " default updatetime 4000ms is not good for async update
 set updatetime=100
 

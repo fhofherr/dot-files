@@ -12,15 +12,7 @@ function M.setup()
         usePlaceholders = true,
         completeUnimported = true,
     }
-    gopls_opts.capablities = defaults.extend_capabilities(gopls_opts.capabilities, {
-        textDocument = {
-            completion = {
-                completionItem = {
-                    snippetSupport = false
-                }
-            }
-        }
-    })
+    gopls_opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
 
     lspconfig.gopls.setup(gopls_opts)
 end

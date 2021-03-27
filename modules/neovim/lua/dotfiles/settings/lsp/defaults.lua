@@ -38,16 +38,11 @@ local function on_attach(client, bufnr)
 end
 
 function M.new_defaults()
-    local opts = { on_attach = on_attach }
+    local opts = {
+        on_attach = on_attach,
+        capabilities = vim.lsp.protocol.make_client_capabilities(),
+    }
     return opts
-end
-
-function M.extend_capabilities(current, additional)
-    -- Use force instead of keep since our rightmost map contains the settings
-    -- we prefer. The example in the lsp status readme does it the other way
-    -- around since there the lsp status capabilities are in the rightmost
-    -- table.
-    return vim.tbl_extend("force", current or {}, additional)
 end
 
 return M
