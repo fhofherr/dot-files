@@ -61,6 +61,10 @@ function! s:fzf_disable_settings()
     set noruler
     set timeoutlen=0 " ensures that CTRL-V works without delay
 
+    " Escape inside a FZF terminal window should exit the terminal window
+    " rather than going into the terminal's normal mode.
+    tnoremap <buffer> <Esc> <Esc>
+
     " nmap <buffer><tab> <plug>(fzf-maps-n)
     " xmap <buffer><tab> <plug>(fzf-maps-x)
     " omap <buffer><tab> <plug>(fzf-maps-o)
