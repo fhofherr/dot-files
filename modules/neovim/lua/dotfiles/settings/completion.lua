@@ -17,7 +17,7 @@ function M.setup()
         autocomplete = true,
         debug = false,
         min_length = 1,
-        preselect = 'enable',
+        preselect = 'disable',
         throttle_time = 80,
         source_timeout = 200,
         incomplete_delay = 400,
@@ -39,17 +39,18 @@ function M.setup()
         },
     })
 
-    local opts = { noremap = false, silent = true, expr = true}
+    local opts = { noremap = true, silent = true, expr = true}
     vim.api.nvim_set_keymap("i", "<CR>", "v:lua.dotfiles.settings.completion.confirm()", opts)
     vim.api.nvim_set_keymap("i", " ", "v:lua.dotfiles.settings.completion.confirm(' ')", opts)
+    vim.api.nvim_set_keymap("i", "<C-e>", "compe#close('<C-e>')", opts)
+    vim.api.nvim_set_keymap("i", "<C-d>", "compe#scroll({ 'delta': -4 })", opts)
+    vim.api.nvim_set_keymap("i", "<C-f>", "compe#scroll({ 'delta': +4 })", opts)
+
+    local opts = { noremap = false, silent = true, expr = true}
     vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.dotfiles.settings.completion.tab_complete()", opts)
     vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.dotfiles.settings.completion.tab_complete()", opts)
     vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.dotfiles.settings.completion.s_tab_complete()", opts)
     vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.dotfiles.settings.completion.s_tab_complete()", opts)
-
-    vim.api.nvim_set_keymap("i", "<C-e>", "compe#close('<C-e>')", opts)
-    vim.api.nvim_set_keymap("i", "<C-d>", "compe#scroll({ 'delta': -4 })", opts)
-    vim.api.nvim_set_keymap("i", "<C-f>", "compe#scroll({ 'delta': +4 })", opts)
 end
 
 -- Checks if the position before the cursor contains a space character.
