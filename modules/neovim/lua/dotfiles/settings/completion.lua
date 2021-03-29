@@ -9,7 +9,7 @@ function M.setup()
     if not compe then
         return
     end
-    vim.cmd("set completeopt=menu,menuone,noselect")
+    vim.cmd("set completeopt=menu,menuone,noselect,noinsert")
     vim.cmd("set shortmess+=c")
 
     compe.setup({
@@ -36,6 +36,7 @@ function M.setup()
             treesitter = true,
             ultisnips = true,
             vsnip = true,
+            omni = false,
         },
     })
 
@@ -51,6 +52,9 @@ function M.setup()
     vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.dotfiles.settings.completion.tab_complete()", opts)
     vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.dotfiles.settings.completion.s_tab_complete()", opts)
     vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.dotfiles.settings.completion.s_tab_complete()", opts)
+
+    -- Allow to call functions in this module using v:lua
+    _G.dotfiles.settings.completion = M
 end
 
 -- Checks if the position before the cursor contains a space character.
@@ -68,9 +72,6 @@ function M.tab_complete()
         return vimcompat.termesc("<C-n>")
     end
     if plugin.exists("vim-vsnip") then
-        if vim.fn["vsnip#expandable"]() == 1 then
-            return vimcompat.termesc("<Plug>(vsnip-expand)")
-        end
         if vim.fn["vsnip#jumpable"](1) == 1 then
             return vimcompat.termesc("<Plug>(vsnip-jump-next)")
         end
@@ -114,8 +115,5 @@ end
 function M.scroll(amount)
     return vim.fn["compe#scroll"]({delta = amount})
 end
-
--- Allow to call functions in this module using v:lua
-_G.dotfiles.settings.completion = M
 
 return M
