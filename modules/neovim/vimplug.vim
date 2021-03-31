@@ -43,8 +43,8 @@ Plug 'kyazdani42/nvim-web-devicons'
 " }}}
 
 " Buffers, Files, Searching and Finding {{{
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'
 
 Plug 'mhinz/vim-grepper'
 Plug 'nelstrom/vim-visual-star-search'
@@ -83,6 +83,10 @@ if has('nvim-0.5')
     Plug 'windwp/nvim-autopairs'
     Plug 'hrsh7th/nvim-compe'
     Plug 'hrsh7th/vim-vsnip'
+
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
 
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-treesitter/nvim-treesitter-refactor'

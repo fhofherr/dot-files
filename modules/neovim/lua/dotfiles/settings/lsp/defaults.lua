@@ -31,8 +31,8 @@ local function on_attach(client, bufnr)
         vim.api.nvim_command("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
     end
 
-    buf_set_keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-    buf_def_cmd("LspCodeActions", "lua vim.lsp.buf.code_action()")
+    buf_set_keymap("n", "<leader>ca", "<cmd>lua require('dotfiles.settings.telescope').buf_code_action()<CR>", opts)
+    buf_def_cmd("LspCodeActions", "lua require('dotfiles.settings.telescope').buf_code_action()")
 
     vim.b.dotfiles_lsp_enabled = 1
 end
