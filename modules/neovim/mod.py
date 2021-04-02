@@ -139,6 +139,14 @@ class NeoVim(module.Definition):
         if not self.git:
             self.log.info("Git not available. Cannot install neovim master")
             return
+
+        # Ensure we don't use any lua interpreter that might be installed
+        # on the target system.
+        if "LUA_PATH" in os.environ:
+            del os.environ["LUA_PATH"]
+        if "LUA_CPATH" in os.environ:
+            del os.environ["LUA_CPATH"]
+
         self.log.info("Installing neovim from master")
         self.git.clone_or_update(NEOVIM_REPO, self._neovim_master_dir)
         self.run_cmd("make",
