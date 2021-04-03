@@ -33,9 +33,9 @@
   "fortt": {
     "prefix": "fortt",
     "body": [
-      "for _, tt := range ${1:tests}",
+      "for _, tt := range ${1:tests} {",
       "\ttt := tt",
-      "\tt.Run(${2:tt.name}, func(t *testing.T) {)",
+      "\tt.Run(${2:tt.name}, func(t *testing.T) {",
       "\t\t$0",
       "\t})",
       "}"
