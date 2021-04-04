@@ -107,6 +107,21 @@ let g:ale_gitcommit_gitlint_use_global = 1
 let g:ale_go_golangci_lint_package = 1
 let g:ale_go_golangci_lint_options = '--fast'
 
+function s:ale_go_cfg_buf()
+    let prj_root = finddir('.git/..', expand('%:p:h') . ';')
+    if empty(prj_root)
+        return
+    end
+    if filereadable(prj_root . '/.revive.toml')
+        let b:ale_go_revive_options = '-config ' . prj_root . '/.revive.toml'
+    end
+endfunction
+
+augroup dotfiles_ale_go
+    autocmd!
+    autocmd BufEnter *.go call <SID>ale_go_cfg_buf()
+augroup END
+
 " ---------------------------------------------------------------------------
 "
 " YAML specific settings
