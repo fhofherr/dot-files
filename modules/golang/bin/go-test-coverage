@@ -15,7 +15,7 @@ if [[ ! -f "$PWD/go.mod" ]]; then
     exit 1
 fi
 
-if ! command -v go > /dev/null 2>&1; then
+if ! command -v go >/dev/null 2>&1; then
     echo "No go executable found"
     exit 1
 fi
@@ -28,24 +28,25 @@ command go test \
     -covermode=atomic \
     -coverprofile="$TESTCOVERAGE_FILE" \
     -coverpkg="$GO_PACKAGES" \
-    ./... 2> /dev/null
+    ./... 2>/dev/null
 
 # Good enough heuristic to clean generated files.
 #
 # Basically whenever the file ends with *.something.go it is assumed to be
 # generated. Examples for such files are *.pb.go files or *.string.go files.
+#
+# Additionally any file named testing.go is removed.
 if [[ "$TESTCOVERAGE_CLEAN_GENERATED" == "true" ]]; then
     echo
     echo "Cleaning generated files"
 
-    sed -i.bak '/^.\+\.[[:alpha:]]\+\.go:.\+$/d' "$TESTCOVERAGE_FILE"
+    sed -i.bak -e'
+    /^.\+\.[[:alpha:]]\+\.go:.\+$/d
+    /^.\+testing.go:.\+$/d
+    ' "$TESTCOVERAGE_FILE"
 fi
 
-case $1 in
-    html)
-        command go tool cover -html="$TESTCOVERAGE_FILE"
-        ;;
-    *)
-        command go tool cover -func="$TESTCOVERAGE_FILE" | tail -n1
-        ;;
-esac
+if [[ "$1" = "html" ]]; then
+    command go tool cover -html="$TESTCOVERAGE_FILE"
+fi
+command go tool cover -func="$TESTCOVERAGE_FILE" | tail -n1
