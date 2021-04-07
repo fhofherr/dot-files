@@ -3,7 +3,6 @@ local M = {}
 local plugin = require("dotfiles.plugin")
 local telescope = plugin.safe_require("telescope")
 local builtin = plugin.safe_require("telescope.builtin")
-local sorters = plugin.safe_require("telescope.sorters")
 local themes = plugin.safe_require("telescope.themes")
 
 
@@ -15,9 +14,15 @@ function M.setup()
         defaults = {
             prompt_position = "top",
             sorting_strategy = "ascending",
-            file_sorter = sorters.get_fzy_sorter,
+            extensions = {
+                fzy_native = {
+                    override_generic_sorter = true,
+                    override_file_sorter = true
+                }
+            }
         }
     })
+    telescope.load_extension('fzy_native')
 
     local opts = { noremap = true, silent = true}
     vim.api.nvim_set_keymap("n", "<C-p>", "<cmd>lua require('dotfiles.settings.telescope').find_files()<CR>", opts)

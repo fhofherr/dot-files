@@ -14,6 +14,7 @@ fi
 
 FD_CMD="$(command -v fd 2>/dev/null)"
 FZF_CMD="$(command -v fzf 2>/dev/null)"
+FZY_CMD="$(command -v fzy 2>/dev/null)"
 XDOTOOL_CMD="$(command -v xdotool 2>/dev/null)"
 
 function usage() {
@@ -115,11 +116,18 @@ function find_projects() {
 }
 
 function select_project() {
-    if [[ -z "$FZF_CMD" ]]; then
-        echo "Project selection not available: FZF not installed"
-        exit 1
+    local cmd
+
+    if [[ -n "$FZY_CMD" ]]; then
+        cmd="$FZY_CMD"
+    elif [[ -n "$FZF_CMD" ]]; then
+        cmd="$FZF_CMD"
+    else
+        echo "Project selection not available: neither FZF nor FZY not installed"
+        return 1
     fi
-    find_projects | command xargs -0 "$(command -v dirname)" | "$FZF_CMD"
+
+    find_projects | command xargs -0 "$(command -v dirname)" | "$cmd"
 }
 
 parse_args "$@"
