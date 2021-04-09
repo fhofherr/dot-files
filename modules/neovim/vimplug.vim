@@ -123,7 +123,6 @@ Plug 'hashivim/vim-terraform'
 " Text editing {{{
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'freitass/todo.txt-vim'
-Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 " }}}
 
