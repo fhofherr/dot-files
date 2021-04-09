@@ -28,6 +28,7 @@ function M.setup()
     vim.api.nvim_set_keymap("n", "<C-p>", "<cmd>lua require('dotfiles.settings.telescope').find_files()<CR>", opts)
     vim.api.nvim_set_keymap("n", "<Leader>ff", "<cmd>lua require('dotfiles.settings.telescope').find_files()<CR>", opts)
     vim.api.nvim_set_keymap("n", "<Leader>ft", "<cmd>lua require('dotfiles.settings.telescope').tags()<CR>", opts)
+    vim.api.nvim_set_keymap("n", "<Leader>fg", "<cmd>lua require('dotfiles.settings.telescope').live_grep()<CR>", opts)
 end
 
 function M.find_files()
@@ -42,6 +43,10 @@ end
 
 function M.tags()
     builtin.tags()
+end
+
+function M.live_grep()
+    builtin.live_grep()
 end
 
 function M.lsp_code_actions()
