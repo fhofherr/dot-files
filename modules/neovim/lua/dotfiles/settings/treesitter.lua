@@ -24,7 +24,6 @@ function M.setup()
             enable = true,
             disable = {
                 "go",  -- Gopls/goimports does that for us.
-                "python", -- Doesn't work currently: https://github.com/nvim-treesitter/nvim-treesitter/issues/802
             },
         },
         refactor = {
@@ -33,7 +32,7 @@ function M.setup()
                 enable = true,
                 disable = { "go", "python" }, -- We use the language server for that
                 keymaps = {
-                    smart_rename = "<F2>"
+                    smart_rename = "<leader>rn"
                 },
             },
         },
