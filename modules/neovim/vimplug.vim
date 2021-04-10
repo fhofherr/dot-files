@@ -8,10 +8,7 @@ call plug#begin($VIMPLUG_HOME)
 
 " General {{{
 Plug 'junegunn/vim-plug'
-Plug 'tpope/vim-sensible'
-
 Plug 'editorconfig/editorconfig-vim'
-
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
@@ -30,7 +27,7 @@ Plug 'antoinemadec/FixCursorHold.nvim' " See https://github.com/lambdalisue/fern
 " Eye candy and color schemes {{{
 Plug 'TaDaa/vimade'
 Plug 'mhinz/vim-startify'
-Plug 'psliwka/vim-smoothie'
+" Plug 'psliwka/vim-smoothie'
 
 if $DOTFILES_COLOR_SCHEME == 'dracula'
     Plug 'dracula/vim', {'as': 'dracula'}
@@ -41,10 +38,6 @@ endif
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 Plug 'kyazdani42/nvim-web-devicons'
 " }}}
-
-" Buffers, Files, Searching and Finding {{{
-" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-" Plug 'junegunn/fzf.vim'
 
 Plug 'mhinz/vim-grepper'
 Plug 'nelstrom/vim-visual-star-search'
@@ -59,7 +52,6 @@ Plug 'lambdalisue/nerdfont.vim'  " Required by fern-renderer-nerdfont.vim
 " Git {{{
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
-Plug 'junegunn/gv.vim'
 " }}}
 
 " Programming {{{
@@ -116,14 +108,12 @@ if executable('pio')
 endif
 
 Plug 'aliou/bats.vim'
-Plug 'cespare/vim-toml'
 Plug 'hashivim/vim-terraform'
 " }}}
 
 " Text editing {{{
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'freitass/todo.txt-vim'
-Plug 'vim-pandoc/vim-pandoc-syntax'
 " }}}
 
 call plug#end()
