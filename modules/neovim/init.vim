@@ -54,6 +54,7 @@ set hidden
 
 set cmdheight=2
 set signcolumn=yes:2
+set scrolloff=4
 
 " default updatetime 4000ms is not good for async update
 set updatetime=100
