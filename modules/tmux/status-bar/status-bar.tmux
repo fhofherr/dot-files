@@ -65,6 +65,46 @@ function gruvbox_light() {
     COLOR_BASE0F="#d65d0e"
 }
 
+function onehalf_dark() {
+    # Obtained from: https://github.com/LalitMaganti/base16-onedark-scheme/blob/master/onedark.yaml
+    COLOR_BASE00="#282c34"
+    COLOR_BASE01="#353b45"
+    COLOR_BASE02="#3e4451"
+    COLOR_BASE03="#545862"
+    COLOR_BASE04="#565c64"
+    COLOR_BASE05="#abb2bf"
+    COLOR_BASE06="#b6bdca"
+    COLOR_BASE07="#c8ccd4"
+    COLOR_BASE08="#e06c75"
+    COLOR_BASE09="#d19a66"
+    COLOR_BASE0A="#e5c07b"
+    COLOR_BASE0B="#98c379"
+    COLOR_BASE0C="#56b6c2"
+    COLOR_BASE0D="#61afef"
+    COLOR_BASE0E="#c678dd"
+    COLOR_BASE0F="#be5046"
+}
+
+function onehalf_light() {
+    # Obtained from: https://github.com/purpleKarrot/base16-one-light-scheme/blob/master/one-light.yaml
+    COLOR_BASE00="#fafafa"
+    COLOR_BASE01="#f0f0f1"
+    COLOR_BASE02="#e5e5e6"
+    COLOR_BASE03="#a0a1a7"
+    COLOR_BASE04="#696c77"
+    COLOR_BASE05="#383a42"
+    COLOR_BASE06="#202227"
+    COLOR_BASE07="#090a0b"
+    COLOR_BASE08="#ca1243"
+    COLOR_BASE09="#d75f00"
+    COLOR_BASE0A="#c18401"
+    COLOR_BASE0B="#50a14f"
+    COLOR_BASE0C="#0184bc"
+    COLOR_BASE0D="#4078f2"
+    COLOR_BASE0E="#a626a4"
+    COLOR_BASE0F="#986801"
+}
+
 function set_option() {
     command tmux set-option -g "$@"
 }
@@ -78,6 +118,8 @@ function main() {
     "dracula") dracula ;;
     "gruvbox-dark") gruvbox_dark ;;
     "gruvbox-light") gruvbox_light ;;
+    "onehalf-dark") onehalf_dark ;;
+    "onehalf-light") onehalf_light ;;
     *) gruvbox_dark ;;
     esac
 
@@ -97,7 +139,7 @@ function main() {
 
     local window_flags=" #I #W "
     set_window_option window-status-format "#[fg=${COLOR_BASE04}]#[bg=${COLOR_BASE01}]${window_flags}"
-    set_window_option window-status-current-format "#[fg=${COLOR_BASE04}]#[bg=${COLOR_BASE03}]${window_flags}"
+    set_window_option window-status-current-format "#[fg=${COLOR_BASE04}]#[bg=${COLOR_BASE06}]${window_flags}"
     set_window_option window-status-activity-style "bold"
     set_window_option window-status-bell-style "bold"
 }

@@ -42,8 +42,13 @@ class Bat(module.Definition):
 
     def _set_color_scheme(self):
         theme_name = colors.color_scheme()
-        if theme_name == "dracula":
-            theme_name = "Dracula"
+        if not theme_name:
+            theme_name = "gruvbox-dark"
+        theme_name = {
+            "dracula": "Dracula",
+            "onehalf-dark": "OneHalfDark",
+            "onehalf-light": "OneHalfLight",
+        }.get(theme_name, theme_name) # Translate theme_name or re-use.
         self.state.setenv("BAT_THEME", theme_name)
 
 

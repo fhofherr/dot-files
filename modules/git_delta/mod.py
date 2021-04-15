@@ -2,7 +2,7 @@ import os
 import tarfile
 from fnmatch import fnmatch
 
-from dotfiles import download, fs, module
+from dotfiles import download, fs, module, colors
 
 REPO_ID = "dandavison/delta"
 
@@ -16,13 +16,15 @@ class GitDelta(module.Definition):
 
     @property
     def syntax_theme(self):
-        name = os.getenv("DOTFILES_COLOR_SCHEME")
+        name = colors.color_scheme()
         if not name:
             return "gruvbox"
         return {
             "dracula": "Dracula",
             "gruvbox-dark": "gruvbox",
             "gruvbox-light": "gruvbox-light",
+            "onehalf-dark": "OneHalfDark",
+            "onehalf-light": "OneHalfLight",
         }.get(name, "gruvbox")
 
     def is_archive_asset(self, name):

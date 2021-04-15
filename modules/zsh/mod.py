@@ -1,7 +1,7 @@
 import os
 import textwrap
 
-from dotfiles import fs, module, zsh
+from dotfiles import fs, module, zsh, colors
 
 BEFORE_COMPINIT_PLUGINS = [
     zsh.Plugin("https://github.com/yous/vanilli.sh", "vanilli.zsh"),
@@ -33,6 +33,11 @@ class Zsh(module.Definition):
                               os.path.join(self.home_dir, f".{f}"))
 
         self.state.setenv("PATH", self._zsh_bin_dir)
+        if "light" in colors.color_scheme():
+            self.state.setenv("ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE", "fg=#c7c7c7")
+        else:
+            self.state.setenv("ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE", "fg=#525252")
+
         self.state.zsh.before_compinit_script = self._install_plugins(
             BEFORE_COMPINIT_PLUGINS)
 
