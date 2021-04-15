@@ -42,7 +42,9 @@ function M.setup()
 
     local opts = { noremap = true, silent = true, expr = true}
     vim.api.nvim_set_keymap("i", "<CR>", "v:lua.dotfiles.settings.completion.confirm()", opts)
-    vim.api.nvim_set_keymap("i", " ", "v:lua.dotfiles.settings.completion.confirm(' ')", opts)
+    -- TODO this currently is inconvenient to use. The space gets swallowed. It should confirm the selection
+    -- **and** add a space to the buffer.
+    -- vim.api.nvim_set_keymap("i", " ", "v:lua.dotfiles.settings.completion.confirm(' ')", opts)
     vim.api.nvim_set_keymap("i", "<C-e>", "compe#close('<C-e>')", opts)
     vim.api.nvim_set_keymap("i", "<C-d>", "compe#scroll({ 'delta': -4 })", opts)
     vim.api.nvim_set_keymap("i", "<C-f>", "compe#scroll({ 'delta': +4 })", opts)
