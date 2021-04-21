@@ -24,6 +24,7 @@ function M.setup()
             enable = true,
             disable = {
                 "go",  -- Gopls/goimports does that for us.
+                "python", -- Does not really work as desired.
             },
         },
         refactor = {
