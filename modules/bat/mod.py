@@ -46,6 +46,8 @@ class Bat(module.Definition):
             theme_name = "gruvbox-dark"
         theme_name = {
             "dracula": "Dracula",
+            "iceberg-dark": "OneHalfDark",
+            "iceberg-light": "OneHalfLight",
             "onehalf-dark": "OneHalfDark",
             "onehalf-light": "OneHalfLight",
         }.get(theme_name, theme_name) # Translate theme_name or re-use.

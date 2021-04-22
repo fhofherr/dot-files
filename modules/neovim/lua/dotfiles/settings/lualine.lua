@@ -6,6 +6,8 @@ local lualine = plugin.safe_require("lualine")
 local function select_theme()
     local color_schemes = {
         dracula = "dracula",
+        ["iceberg-dark"] = "iceberg_dark",
+        ["iceberg-light"] = "iceberg_light",
         ["gruvbox-dark"] = "gruvbox",
         ["gruvbox-light"] = "ayu_light", -- TODO currently no gruvbox-light theme available. https://github.com/hoob3rt/lualine.nvim/issues/188
         ["onehalf-dark"] = "onedark",

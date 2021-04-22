@@ -105,6 +105,18 @@ function onehalf_light() {
     COLOR_BASE0F="#986801"
 }
 
+function iceberg_light() {
+    COLOR_BASE01="#e8e9ec"
+    COLOR_BASE04="#33374c"
+    COLOR_BASE06="#89b8c2"
+}
+
+function iceberg_dark() {
+    COLOR_BASE01="#161821"
+    COLOR_BASE04="#c6c8d1"
+    COLOR_BASE06="#3f83a6"
+}
+
 function set_option() {
     command tmux set-option -g "$@"
 }
@@ -118,6 +130,8 @@ function main() {
     "dracula") dracula ;;
     "gruvbox-dark") gruvbox_dark ;;
     "gruvbox-light") gruvbox_light ;;
+    "iceberg-light") iceberg_light ;;
+    "iceberg-dark") iceberg_dark ;;
     "onehalf-dark") onehalf_dark ;;
     "onehalf-light") onehalf_light ;;
     *) gruvbox_dark ;;

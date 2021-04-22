@@ -33,6 +33,8 @@ if $DOTFILES_COLOR_SCHEME == 'dracula'
     Plug 'dracula/vim', {'as': 'dracula'}
 elseif $DOTFILES_COLOR_SCHEME == 'onehalf-dark' || $DOTFILES_COLOR_SCHEME == 'onehalf-light'
     Plug 'sonph/onehalf', {'rtp': 'vim'}
+elseif $DOTFILES_COLOR_SCHEME == 'iceberg-dark' || $DOTFILES_COLOR_SCHEME == 'iceberg-light'
+    Plug 'cocopon/iceberg.vim'
 else
     Plug 'gruvbox-community/gruvbox'
 endif
