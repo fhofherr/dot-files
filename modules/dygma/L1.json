@@ -105,29 +105,27 @@
       "verbose": "Disabled"
     },
     {
-      "keyCode": 86,
-      "label": "-",
-      "extraLabel": "Numpad"
+      "keyCode": 74,
+      "label": "HOME"
     },
     {
-      "keyCode": 95,
-      "label": "7",
-      "extraLabel": "Numpad"
+      "keyCode": 78,
+      "label": "PAGE DOWN",
+      "verbose": "Page Down"
     },
     {
-      "keyCode": 96,
-      "label": "8",
-      "extraLabel": "Numpad"
+      "keyCode": 75,
+      "label": "PAGE UP",
+      "verbose": "Page Up"
     },
     {
-      "keyCode": 97,
-      "label": "9",
-      "extraLabel": "Numpad"
+      "keyCode": 77,
+      "label": "END"
     },
     {
-      "keyCode": 84,
-      "label": "/",
-      "extraLabel": "Numpad"
+      "keyCode": 0,
+      "label": "NO KEY",
+      "verbose": "Disabled"
     },
     {
       "keyCode": 0,
@@ -146,9 +144,9 @@
       "verbose": "Transparent"
     },
     {
-      "keyCode": 224,
+      "keyCode": 736,
       "label": "LEFT CTRL",
-      "verbose": "Left Control"
+      "extraLabel": "A+"
     },
     {
       "keyCode": 70,
@@ -188,29 +186,25 @@
       "verbose": "Disabled"
     },
     {
-      "keyCode": 87,
-      "label": "+",
-      "extraLabel": "Numpad"
+      "keyCode": 80,
+      "label": "←"
     },
     {
-      "keyCode": 92,
-      "label": "4",
-      "extraLabel": "Numpad"
+      "keyCode": 81,
+      "label": "↓"
     },
     {
-      "keyCode": 93,
-      "label": "5",
-      "extraLabel": "Numpad"
+      "keyCode": 82,
+      "label": "↑"
     },
     {
-      "keyCode": 94,
-      "label": "6",
-      "extraLabel": "Numpad"
+      "keyCode": 79,
+      "label": "→"
     },
     {
-      "keyCode": 85,
-      "label": "*",
-      "extraLabel": "Numpad"
+      "keyCode": 0,
+      "label": "NO KEY",
+      "verbose": "Disabled"
     },
     {
       "keyCode": 0,
@@ -278,33 +272,34 @@
       "verbose": "Disabled"
     },
     {
-      "keyCode": 98,
-      "label": "0",
-      "extraLabel": "Numpad"
+      "keyCode": 0,
+      "label": "NO KEY",
+      "verbose": "Disabled"
     },
     {
-      "keyCode": 89,
-      "label": "1",
-      "extraLabel": "Numpad"
+      "keyCode": 0,
+      "label": "NO KEY",
+      "verbose": "Disabled"
     },
     {
-      "keyCode": 90,
-      "label": "2",
-      "extraLabel": "Numpad"
+      "keyCode": 0,
+      "label": "NO KEY",
+      "verbose": "Disabled"
     },
     {
-      "keyCode": 91,
-      "label": "3",
-      "extraLabel": "Numpad"
+      "keyCode": 0,
+      "label": "NO KEY",
+      "verbose": "Disabled"
     },
     {
-      "keyCode": 99,
-      "label": ".",
-      "extraLabel": "Numpad"
+      "keyCode": 0,
+      "label": "NO KEY",
+      "verbose": "Disabled"
     },
     {
-      "keyCode": 82,
-      "label": "↑"
+      "keyCode": 0,
+      "label": "NO KEY",
+      "verbose": "Disabled"
     },
     {
       "keyCode": 224,
@@ -345,9 +340,10 @@
       "verbose": "Transparent"
     },
     {
-      "keyCode": 51514,
-      "label": "ENTER",
-      "extraLabel": "L#1/"
+      "keyCode": 65535,
+      "label": "",
+      "extraLabel": "TRANS",
+      "verbose": "Transparent"
     },
     {
       "keyCode": 65535,
@@ -376,16 +372,19 @@
       "verbose": "Left Alt"
     },
     {
-      "keyCode": 80,
-      "label": "←"
+      "keyCode": 0,
+      "label": "NO KEY",
+      "verbose": "Disabled"
     },
     {
-      "keyCode": 81,
-      "label": "↓"
+      "keyCode": 0,
+      "label": "NO KEY",
+      "verbose": "Disabled"
     },
     {
-      "keyCode": 79,
-      "label": "→"
+      "keyCode": 228,
+      "label": "RIGHT CTRL",
+      "verbose": "Right Control"
     }
   ],
   "colormap": [
@@ -421,7 +420,7 @@
     5,
     1,
     7,
-    6,
+    3,
     5,
     8,
     8,
@@ -432,27 +431,27 @@
     6,
     15,
     15,
+    12,
     10,
-    9,
-    9,
-    9,
+    10,
+    10,
     10,
     15,
     15,
-    10,
-    9,
-    9,
-    9,
-    10,
-    0,
-    10,
-    9,
-    9,
-    9,
-    9,
+    14,
     0,
     0,
     0,
+    0,
+    14,
+    12,
+    12,
+    12,
+    12,
+    12,
+    4,
+    14,
+    14,
     4,
     10,
     1,

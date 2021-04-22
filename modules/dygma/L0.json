@@ -278,9 +278,9 @@
       "verbose": "Left Control"
     },
     {
-      "keyCode": 17451,
-      "label": "1",
-      "extraLabel": "SHIFTTO"
+      "keyCode": 0,
+      "label": "NO KEY",
+      "verbose": "Disabled"
     },
     {
       "keyCode": 226,
@@ -292,9 +292,8 @@
       "label": "DEL"
     },
     {
-      "keyCode": 51774,
-      "label": "SPACE",
-      "extraLabel": "L#2/"
+      "keyCode": 44,
+      "label": "SPACE"
     },
     {
       "keyCode": 0,
@@ -308,9 +307,9 @@
       "verbose": "AltGr"
     },
     {
-      "keyCode": 51515,
-      "label": "ESC",
-      "extraLabel": "L#1/"
+      "keyCode": 17451,
+      "label": "1",
+      "extraLabel": "SHIFTTO"
     },
     {
       "keyCode": 49162,
@@ -318,16 +317,18 @@
       "extraLabel": "OSL"
     },
     {
-      "keyCode": 77,
-      "label": "END"
+      "keyCode": 0,
+      "label": "NO KEY",
+      "verbose": "Disabled"
     },
     {
       "keyCode": 44,
       "label": "SPACE"
     },
     {
-      "keyCode": 74,
-      "label": "HOME"
+      "keyCode": 0,
+      "label": "NO KEY",
+      "verbose": "Disabled"
     },
     {
       "keyCode": 230,
@@ -378,12 +379,12 @@
     4,
     4,
     4,
-    3,
+    12,
     4,
     5,
     1,
     7,
-    6,
+    3,
     5,
     4,
     4,
@@ -416,9 +417,9 @@
     4,
     4,
     4,
-    10,
+    12,
     1,
-    10,
+    14,
     3,
     4,
     4,
