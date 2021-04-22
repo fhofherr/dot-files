@@ -5,7 +5,7 @@ local M = {}
 _G.dotfiles = { settings = {} }
 
 local completion = require("dotfiles.settings.completion")
-local galaxyline = require("dotfiles.settings.galaxyline")
+local lualine = require("dotfiles.settings.lualine")
 local lsp = require("dotfiles.settings.lsp")
 local telescope = require("dotfiles.settings.telescope")
 local tmux = require("dotfiles.settings.tmux")
@@ -19,8 +19,8 @@ function M.setup()
     treesitter.setup()
     completion.setup()
 
-    galaxyline.setup()
     tmux.setup()
+    lualine.setup()
     vsnip.setup()
     telescope.setup()
 end

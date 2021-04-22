@@ -37,7 +37,8 @@ else
     Plug 'gruvbox-community/gruvbox'
 endif
 
-Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+" Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 " }}}
 
