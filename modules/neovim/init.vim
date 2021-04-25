@@ -77,6 +77,16 @@ if has('nvim') || has('termguicolors')
     set termguicolors
 endif
 
+" Enable transparent terminal background.
+highlight Normal ctermbg=None guibg=None
+
+" Create autocmd to ensure ctermbg and guibg stay disabled after calling
+" :colorscheme
+augroup dotfiles_colors
+    autocmd!
+    autocmd ColorScheme * highlight Normal ctermbg=None guibg=None
+augroup END
+
 set colorcolumn=80,120
 
 " ---------------------------------------------------------------------------
