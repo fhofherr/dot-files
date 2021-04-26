@@ -13,7 +13,7 @@ local function pgrep_spawn(cmd)
 end
 
 function M.autostart()
-    awful.spawn({"setxkbmap", "de", "-variant", "nodeadkeys"}, false)
+    awful.spawn({ "setxkbmap", "de", "-variant", "nodeadkeys" }, false)
 
     awful.spawn.once("picom")
     awful.spawn.once("nm-applet")

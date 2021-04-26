@@ -19,10 +19,14 @@ layouts[small_screen] = awful.layout.suit.max
 layouts[#layouts + 1] = awful.layout.suit.floating
 
 function M.for_screen(screen)
-    if screen.geometry.width > 1920 then return layouts[big_screen] end
+    if screen.geometry.width > 1920 then
+        return layouts[big_screen]
+    end
     return layouts[small_screen]
 end
 
-function M.setup() awful.layout.layouts = layouts end
+function M.setup()
+    awful.layout.layouts = layouts
+end
 
 return M
