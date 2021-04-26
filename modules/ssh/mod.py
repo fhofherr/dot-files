@@ -25,6 +25,12 @@ class SSH(module.Definition):
     def ssh_config(self):
         return os.path.join(self.ssh_config_dir, "config")
 
+    @property
+    def after_compinit_script(self):
+        return textwrap.dedent(f"""
+        source <({self.ssh_bin_dir}/ssh_start_agent -t {3600 * 12} -p 2> "$HOME"/.ssh/start_agent.log)
+        """)
+
     @module.update
     @module.install
     def install(self):
@@ -33,3 +39,8 @@ class SSH(module.Definition):
             f.write(self.ssh_config_txt)
 
         self.state.setenv("PATH", self.ssh_bin_dir)
+        self.state.zsh.after_compinit_script = self.after_compinit_script
+
+
+if __name__ == "__main__":
+    module.run(SSH)
