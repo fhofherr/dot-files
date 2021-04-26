@@ -53,37 +53,37 @@ end, {description = "Focus window left of current window"}),
 end, {description = "Focus window right of current window"}),
 
 -- Layout manipulation
-                                     awful.key({M.mod, "Shift"}, "j",
+                                     awful.key({M.mod, ctrl}, "j",
                                                function()
     awful.client.swap.bydirection("down")
 end, {description = "swap with client below", group = "client"}),
-                                     awful.key({M.mod, "Shift"}, "k",
+                                     awful.key({M.mod, ctrl}, "k",
                                                function()
     awful.client.swap.bydirection("up")
 end, {description = "swap with client above", group = "client"}),
-                                     awful.key({M.mod, "Shift"}, "h",
+                                     awful.key({M.mod, ctrl}, "h",
                                                function()
     awful.client.swap.bydirection("left")
 end, {description = "swap with client left", group = "client"}),
-                                     awful.key({M.mod, "Shift"}, "l",
+                                     awful.key({M.mod, ctrl}, "l",
                                                function()
     awful.client.swap.bydirection("right")
 end, {description = "swap with client right", group = "client"}),
 
-                                     awful.key({M.mod, ctrl}, "j", function()
+                                     awful.key({M.mod, "Shift"}, "j", function()
     awful.screen.focus_bydirection("down")
 end, {
     description = "focus the screen below the current screen",
     group = "screen"
-}), awful.key({M.mod, ctrl}, "k",
+}), awful.key({M.mod, "Shift"}, "k",
               function() awful.screen.focus_bydirection("up") end, {
     description = "focus the screen above the current screen",
     group = "screen"
-}), awful.key({M.mod, ctrl}, "h",
+}), awful.key({M.mod, "Shift"}, "h",
               function() awful.screen.focus_bydirection("left") end, {
     description = "focus the screen left of the current screen",
     group = "screen"
-}), awful.key({M.mod, ctrl}, "l",
+}), awful.key({M.mod, "Shift"}, "l",
               function() awful.screen.focus_bydirection("right") end, {
     description = "focus the screen right of the current screen",
     group = "screen"
@@ -225,7 +225,7 @@ end, {description = "toggle fullscreen", group = "client"}),
     c:swap(awful.client.getmaster())
 end, {description = "move to master", group = "client"}),
 
-                                 awful.key({M.mod}, "o",
+                                 awful.key({M.mod, "Shift"}, "o",
                                            function(c) c:move_to_screen() end, {
     description = "move to screen",
     group = "client"
