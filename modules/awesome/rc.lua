@@ -80,6 +80,7 @@ local mykeyboardlayout = awful.widget.keyboardlayout()
 -- Create a textclock widget
 local mytextclock = wibox.widget.textclock()
 
+awful.screen.set_auto_dpi_enabled(true)
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     theme.set_wallpaper(s)
