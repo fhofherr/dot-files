@@ -8,6 +8,7 @@ import shutil
 import signal
 import subprocess
 import sys
+import time
 
 TUXEDO_NOTEBOOK = "dde2d427f1bb6bb7226043b024ef5c5262c1782f55eabcf97c1217fe8b80d0a6"
 DELL_XPS = "tbd"
@@ -49,9 +50,10 @@ def pgrep(cmd):
 
 def stop_picom():
     pid = pgrep("picom")
-    if not pid:
-        return None
-    os.kill(pid, signal.SIGTERM)
+    while pid:
+        os.kill(pid, signal.SIGTERM)
+        time.sleep(0.01)
+        pid = pgrep("picom")
 
 
 def start_picom():
