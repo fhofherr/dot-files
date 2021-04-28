@@ -255,7 +255,7 @@ M.client_keys = gears.table.join(
         awful.client.floating.toggle,
         { description = "toggle floating", group = "client" }
     ),
-    awful.key({ M.mod, "Control" }, "Return", function(c)
+    awful.key({ M.mod, "Shift" }, "Return", function(c)
         c:swap(awful.client.getmaster())
     end, { description = "move to master", group = "client" }),
 
