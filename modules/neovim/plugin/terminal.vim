@@ -14,3 +14,6 @@ if has('nvim')
     tnoremap <Esc> <C-\><C-n>
     tnoremap <C-v><Esc> <Esc>
 endif
+
+command! VTerm :vsplit term://$SHELL
+command! STerm :split term://$SHELL
