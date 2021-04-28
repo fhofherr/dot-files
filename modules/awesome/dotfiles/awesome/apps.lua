@@ -7,6 +7,7 @@ local gears = require("gears")
 local gfs = gears.filesystem
 
 local togglemon = gfs.get_configuration_dir() .. "bin/togglemon"
+local natscroll = gfs.get_configuration_dir() .. "bin/natscroll"
 M.terminal = os.getenv("DOTFILES_TERMINAL_EMULATOR") or "alacritty"
 M.editor = os.getenv("EDITOR") or "nvim"
 
@@ -19,6 +20,7 @@ end
 function M.autostart()
     awful.spawn({ "setxkbmap", "de", "-variant", "nodeadkeys" }, false)
     awful.spawn(togglemon)
+    awful.spawn(natscroll)
 
     awful.spawn.once("nm-applet")
     awful.spawn.once("xfce4-power-manager")
