@@ -1,0 +1,136 @@
+#!/usr/bin/env python
+
+import getpass
+import hashlib
+import os
+import re
+import shutil
+import signal
+import subprocess
+import sys
+
+TUXEDO_NOTEBOOK = "dde2d427f1bb6bb7226043b024ef5c5262c1782f55eabcf97c1217fe8b80d0a6"
+DELL_XPS = "tbd"
+HOME_OFFICE = "tbd2"
+
+OUTPUT_CONFIG = {
+    TUXEDO_NOTEBOOK: {
+        # Laptop screen. Don't change anything.
+        "keep": True
+    },
+    DELL_XPS: {
+        "keep": True
+    },
+    HOME_OFFICE: {
+        "auto": True,
+        "primary": True,
+        "right-of": [
+            DELL_XPS,
+            TUXEDO_NOTEBOOK,
+        ],
+    }
+}
+
+XRANDR_CMD = shutil.which("xrandr")
+PICOM_CMD = shutil.which("picom")
+PGREP_CMD = shutil.which("pgrep")
+
+
+def pgrep(cmd):
+    if not PGREP_CMD:
+        return None
+    p = subprocess.run(
+        [PGREP_CMD, "-u", getpass.getuser(), cmd], capture_output=True)
+    if p.returncode != 0:
+        return None
+    pid = p.stdout.decode("utf-8")
+    return int(pid)
+
+
+def stop_picom():
+    pid = pgrep("picom")
+    if not pid:
+        return None
+    os.kill(pid, signal.SIGTERM)
+
+
+def start_picom():
+    os.execl(PICOM_CMD, PICOM_CMD)
+
+
+OUTPUT_CONNECTED_RE = re.compile(r"^(?P<output>\S+)\s+connected.*$")
+EDID_PART_RE = re.compile(r"^\s*(?P<edid_part>[a-fA-F0-9]+)\s*$")
+
+
+def query_outputs():
+    def parse_edid(lines):
+        edid = []
+        edid_found = False
+        for line in lines:
+            if "EDID" in line:
+                edid_found = True
+                continue
+            if not edid_found:
+                continue
+            m = EDID_PART_RE.match(line)
+            if not m:
+                return "".join(edid)
+            edid.append(m.group("edid_part"))
+
+    if not XRANDR_CMD:
+        return None
+    p = subprocess.run([XRANDR_CMD, "--properties"], capture_output=True)
+    if p.returncode != 0:
+        return None
+    lines = p.stdout.decode("utf-8").splitlines()
+    edids = {}
+    for i, line in enumerate(lines):
+        output = None
+        m = OUTPUT_CONNECTED_RE.match(line)
+        if m:
+            output = m.group("output")
+        if not output:
+            continue
+        edid = parse_edid(lines[i + 1:])
+        edid = hashlib.sha256(edid.encode()).hexdigest()
+        edids[output] = edid
+    return edids
+
+
+def configure_outputs(outputs):
+    def xrandr_args(output, edid, inverse):
+        cfg = OUTPUT_CONFIG.get(edid)
+        if not cfg:
+            return None
+        if cfg.get("keep", False):
+            return None
+        args = ["--output", output]
+        if cfg.get("auto", False):
+            args += ["--auto"]
+        if cfg.get("primary", False):
+            args += ["--primary"]
+        for o in cfg.get("right-of", []):
+            if o not in inverse:
+                continue
+            args += ["--right-of", inverse[o]]
+        return args
+
+    inverse = dict((v, k) for k, v in outputs.items())
+    for output, edid in outputs.items():
+        args = xrandr_args(output, edid, inverse)
+        if not args:
+            continue
+        subprocess.run([XRANDR_CMD] + args)
+
+
+if __name__ == "__main__":
+    outputs = query_outputs()
+    if len(sys.argv) == 2 and sys.argv[1] == "identify":
+        for k in sorted(outputs):
+            print(f"{k}\t{outputs[k]}")
+        sys.exit(0)
+
+    stop_picom()
+    if len(outputs) >= 1:
+        configure_outputs(outputs)
+    start_picom()

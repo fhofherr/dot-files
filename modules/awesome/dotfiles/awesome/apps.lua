@@ -3,6 +3,10 @@ local M = {}
 local awful = require("awful")
 local menubar = require("menubar")
 
+local gears = require("gears")
+local gfs = gears.filesystem
+
+local togglemon = gfs.get_configuration_dir() .. "bin/togglemon"
 M.terminal = os.getenv("DOTFILES_TERMINAL_EMULATOR") or "alacritty"
 M.editor = os.getenv("EDITOR") or "nvim"
 
@@ -14,8 +18,8 @@ end
 
 function M.autostart()
     awful.spawn({ "setxkbmap", "de", "-variant", "nodeadkeys" }, false)
+    awful.spawn(togglemon)
 
-    awful.spawn.once("picom")
     awful.spawn.once("nm-applet")
     awful.spawn.once("xfce4-power-manager")
     awful.spawn.once("nextcloud")
