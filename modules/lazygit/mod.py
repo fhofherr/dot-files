@@ -14,8 +14,7 @@ class LazyGit(module.Definition):
 
     @property
     def _cfg_dest(self):
-        return os.path.join(self.home_dir, ".config", "jesseduffield",
-                            "lazygit", "config.yml")
+        return os.path.join(self.home_dir, ".config", "lazygit", "config.yml")
 
     @property
     def lazygit_cmd(self):
