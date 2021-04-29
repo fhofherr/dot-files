@@ -31,10 +31,12 @@ Plug 'mhinz/vim-startify'
 
 if $DOTFILES_COLOR_SCHEME == 'dracula'
     Plug 'dracula/vim', {'as': 'dracula'}
-elseif $DOTFILES_COLOR_SCHEME == 'onehalf-dark' || $DOTFILES_COLOR_SCHEME == 'onehalf-light'
+elseif $DOTFILES_COLOR_SCHEME =~ 'onehalf'
     Plug 'sonph/onehalf', {'rtp': 'vim'}
-elseif $DOTFILES_COLOR_SCHEME == 'iceberg-dark' || $DOTFILES_COLOR_SCHEME == 'iceberg-light'
+elseif $DOTFILES_COLOR_SCHEME =~ 'iceberg'
     Plug 'cocopon/iceberg.vim'
+elseif $DOTFILES_COLOR_SCHEME =~ 'everforest'
+    Plug 'sainnhe/everforest'
 else
     Plug 'gruvbox-community/gruvbox'
 endif

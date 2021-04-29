@@ -6,6 +6,12 @@ local lualine = plugin.safe_require("lualine")
 local function select_theme()
     local color_schemes = {
         dracula = "dracula",
+        ["everforest-dark-hard"] = "everforest",
+        ["everforest-dark-medium"] = "everforest",
+        ["everforest-dark-soft"] = "everforest",
+        ["everforest-light-hard"] = "everforest",
+        ["everforest-light-medium"] = "everforest",
+        ["everforest-light-soft"] = "everforest",
         ["iceberg-dark"] = "iceberg_dark",
         ["iceberg-light"] = "iceberg_light",
         ["gruvbox-dark"] = "gruvbox",

@@ -21,6 +21,12 @@ class GitDelta(module.Definition):
             return "gruvbox"
         return {
             "dracula": "Dracula",
+            "everforest-dark-hard": "gruvbox",
+            "everforest-dark-medium": "gruvbox",
+            "everforest-dark-soft": "gruvbox",
+            "everforest-light-hard": "gruvbox-light",
+            "everforest-light-medium": "gruvbox-light",
+            "everforest-light-soft": "gruvbox-light",
             "gruvbox-dark": "gruvbox",
             "gruvbox-light": "gruvbox-light",
             "onehalf-dark": "OneHalfDark",

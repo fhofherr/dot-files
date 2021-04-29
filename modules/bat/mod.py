@@ -46,6 +46,12 @@ class Bat(module.Definition):
             theme_name = "gruvbox-dark"
         theme_name = {
             "dracula": "Dracula",
+            "everforest-dark-hard": "gruvbox-dark",
+            "everforest-dark-medium": "gruvbox-dark",
+            "everforest-dark-soft": "gruvbox-dark",
+            "everforest-light-hard": "gruvbox-light",
+            "everforest-light-medium": "gruvbox-light",
+            "everforest-light-soft": "gruvbox-light",
             "iceberg-dark": "OneHalfDark",
             "iceberg-light": "OneHalfLight",
             "onehalf-dark": "OneHalfDark",
