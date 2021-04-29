@@ -2,6 +2,8 @@ local M = {}
 
 local plugin = require("dotfiles.plugin")
 local lspconfig = plugin.safe_require("lspconfig")
+local lspcolors = plugin.safe_require("lsp-colors")
+local lsptrouble = plugin.safe_require("trouble")
 
 local language_servers = {
     ccls = require("dotfiles.settings.lsp.ccls"),
@@ -24,6 +26,12 @@ function M.setup()
         for _, v in pairs(language_servers) do
             v.setup()
         end
+    end
+    if lspcolors then
+        lspcolors.setup()
+    end
+    if lsptrouble then
+        lsptrouble.setup()
     end
 end
 

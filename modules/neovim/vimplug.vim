@@ -78,6 +78,8 @@ endif
 
 if has('nvim-0.5')
     Plug 'neovim/nvim-lspconfig'
+    Plug 'folke/lsp-trouble.nvim'
+    Plug 'folke/lsp-colors.nvim'
 
     Plug 'windwp/nvim-autopairs'
     Plug 'hrsh7th/nvim-compe'
