@@ -65,6 +65,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-test/vim-test'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-projectionist'
+Plug 'hkupty/iron.nvim'
 
 Plug 'embear/vim-localvimrc'
 

@@ -4,13 +4,14 @@ local M = {}
 -- in here may add to it.
 _G.dotfiles = { settings = {} }
 
+local autopairs = require("dotfiles.settings.autopairs")
 local completion = require("dotfiles.settings.completion")
-local lualine = require("dotfiles.settings.lualine")
+local iron = require("dotfiles.settings.iron")
 local lsp = require("dotfiles.settings.lsp")
+local lualine = require("dotfiles.settings.lualine")
 local telescope = require("dotfiles.settings.telescope")
 local tmux = require("dotfiles.settings.tmux")
 local treesitter = require("dotfiles.settings.treesitter")
-local autopairs = require("dotfiles.settings.autopairs")
 local vsnip = require("dotfiles.settings.vsnip")
 
 function M.setup()
@@ -18,6 +19,7 @@ function M.setup()
     lsp.setup()
     treesitter.setup()
     completion.setup()
+    iron.setup()
 
     tmux.setup()
     lualine.setup()
