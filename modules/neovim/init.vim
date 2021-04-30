@@ -58,6 +58,7 @@ set scrolloff=4
 
 " default updatetime 4000ms is not good for async update
 set updatetime=100
+set timeoutlen=500
 
 " Set the characters that listmode should highlight
 set lcs=eol:$,tab:>-,trail:·

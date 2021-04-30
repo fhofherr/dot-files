@@ -13,8 +13,11 @@ local telescope = require("dotfiles.settings.telescope")
 local tmux = require("dotfiles.settings.tmux")
 local treesitter = require("dotfiles.settings.treesitter")
 local vsnip = require("dotfiles.settings.vsnip")
+local whichkey = require("dotfiles.settings.which-key")
 
 function M.setup()
+    whichkey.setup()
+
     autopairs.setup()
     lsp.setup()
     treesitter.setup()

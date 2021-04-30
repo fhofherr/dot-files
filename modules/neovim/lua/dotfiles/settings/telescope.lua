@@ -4,7 +4,7 @@ local plugin = require("dotfiles.plugin")
 local telescope = plugin.safe_require("telescope")
 local builtin = plugin.safe_require("telescope.builtin")
 local themes = plugin.safe_require("telescope.themes")
-
+local wk = require("dotfiles.settings.which-key")
 
 function M.setup()
     if not telescope then
@@ -24,12 +24,16 @@ function M.setup()
     })
     telescope.load_extension('fzy_native')
 
-    local opts = { noremap = true, silent = true}
-    vim.api.nvim_set_keymap("n", "<C-p>", "<cmd>lua require('dotfiles.settings.telescope').find_files()<CR>", opts)
-    vim.api.nvim_set_keymap("n", "<Leader>ff", "<cmd>lua require('dotfiles.settings.telescope').find_files()<CR>", opts)
-    vim.api.nvim_set_keymap("n", "<Leader>fb", "<cmd>lua require('dotfiles.settings.telescope').find_buffers()<CR>", opts)
-    vim.api.nvim_set_keymap("n", "<Leader>ft", "<cmd>lua require('dotfiles.settings.telescope').tags()<CR>", opts)
-    vim.api.nvim_set_keymap("n", "<Leader>fg", "<cmd>lua require('dotfiles.settings.telescope').live_grep()<CR>", opts)
+    wk.register({
+        name = "telescope",
+        ["<C-p>"] = { "<cmd>lua require('dotfiles.settings.telescope').find_files()<CR>", "Find files" },
+        ["<localleader>f"] = {
+            f = { "<cmd>lua require('dotfiles.settings.telescope').find_files()<CR>", "Find files." },
+            b = { "<cmd>lua require('dotfiles.settings.telescope').find_buffers()<CR>", "Find buffers." },
+            t = { "<cmd>lua require('dotfiles.settings.telescope').tags()<CR>", "Find tags." },
+            g = { "<cmd>lua require('dotfiles.settings.telescope').live_grep()<CR>", "Live grep." },
+        },
+    }, { noremap = true, silent = true})
 end
 
 function M.find_files()
