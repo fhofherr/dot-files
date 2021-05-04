@@ -37,7 +37,7 @@ local theme = {
     font = "Iosevka Nerd Font 11",
 
     border_width = dpi(1),
-    useless_gap = dpi(5),
+    useless_gap = dpi(3),
     gap_single_client = true,
 
     menu_submenu_icon = themes_path .. "default/submenu.png",
