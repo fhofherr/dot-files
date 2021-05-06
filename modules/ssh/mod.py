@@ -40,6 +40,10 @@ class SSH(module.Definition):
 
         self.state.setenv("PATH", self.ssh_bin_dir)
         self.state.zsh.after_compinit_script = self.after_compinit_script
+        # ussh stands for *unsafe* ssh. I frequently need to log into test
+        # cloud nodes which were just spawned and received the same IP as
+        # the previous test node.
+        self.state.add_alias("ussh", "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null")
 
 
 if __name__ == "__main__":
