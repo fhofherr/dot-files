@@ -24,6 +24,7 @@ GO_PACKAGES=$(command go list ./... | grep -v scripts | tr "\n" ",")
 command go test \
     "$TESTCOVERAGE_TESTFLAGS" \
     -p 1 \
+    -race \
     -count=1 \
     -covermode=atomic \
     -coverprofile="$TESTCOVERAGE_FILE" \
