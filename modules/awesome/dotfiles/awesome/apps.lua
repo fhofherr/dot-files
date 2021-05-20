@@ -24,7 +24,7 @@ function M.autostart()
 
     awful.spawn.once("nm-applet")
     awful.spawn.once("xfce4-power-manager")
-    awful.spawn.once("nextcloud")
+    awful.spawn.once("syncthing")
     pgrep_spawn("xfce4-clipman")
     pgrep_spawn("volumeicon")
 end
