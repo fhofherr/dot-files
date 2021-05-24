@@ -133,7 +133,7 @@ class NeoVim(module.Definition):
         fs.safe_link_file(self._nvim_cfg_src, self._nvim_cfg_dest)
 
         # The last step that remains is to update/install all plugins.
-        self.update_plugins()
+        # self.update_plugins()
 
     def _install_neovim_master(self):
         if not self.git:
