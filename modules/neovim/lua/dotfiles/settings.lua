@@ -6,7 +6,6 @@ _G.dotfiles = { settings = {} }
 
 local autopairs = require("dotfiles.settings.autopairs")
 local completion = require("dotfiles.settings.completion")
-local iron = require("dotfiles.settings.iron")
 local lsp = require("dotfiles.settings.lsp")
 local lualine = require("dotfiles.settings.lualine")
 local telescope = require("dotfiles.settings.telescope")
@@ -22,7 +21,6 @@ function M.setup()
     lsp.setup()
     treesitter.setup()
     completion.setup()
-    iron.setup()
 
     tmux.setup()
     lualine.setup()

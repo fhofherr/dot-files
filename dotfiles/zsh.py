@@ -30,6 +30,7 @@ def write_init_files(dest_dir: str, sts: List[state.State]):
         agg.add_state(st)
 
     with open(os.path.join(dest_dir, "env.zsh"), "w") as f:
+
         def merge_path(path_entries):
             this_venv = os.getenv("VIRTUAL_ENV")
             old_path = os.getenv("PATH").split(os.pathsep)
@@ -42,16 +43,30 @@ def write_init_files(dest_dir: str, sts: List[state.State]):
                 path_entries.append(v)
             return os.pathsep.join(path_entries)
 
+        def protect_var(var_name, text):
+            if type(text) != str:
+                text = "\n                ".join(text)
+            return textwrap.dedent(f"""\
+            if [[ -z "$DOTFILES_PROTECT_VAR_{var_name}" ]] || [[ -z "${var_name}" ]]; then
+                {text}
+            fi
+            """)
+
         f.write(f"{header}\n\n")
         for name, val in agg.env_vars:
             if name == "PATH":
-                f.write(f"export DOTFILES_OLD_PATH=\"$PATH\"\n")
-                f.write(f"export PATH=\"{merge_path(val)}\"\n")
+                text = protect_var(name, [
+                    'export DOTFILES_OLD_PATH="$PATH"',
+                    f'export PATH="{merge_path(val)}"'
+                ])
+                f.write(text)
                 continue
+
             val = str(val)
             # Escape any single quotes: https://stackoverflow.com/a/1315213
             val = val.replace("'", r"'\''")
-            f.write(f"export {name}='{val}'\n")
+            text = protect_var(name, f'export {name}="{val}"')
+            f.write(text)
 
     with open(os.path.join(dest_dir, "aliases.zsh"), "w") as f:
         f.write(f"{header}\n\n")
