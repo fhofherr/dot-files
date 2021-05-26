@@ -51,11 +51,14 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'mhinz/vim-grepper'
 Plug 'nelstrom/vim-visual-star-search'
 
-Plug 'lambdalisue/fern.vim'
-Plug 'lambdalisue/fern-git-status.vim'
-Plug 'lambdalisue/fern-renderer-nerdfont.vim'
-Plug 'lambdalisue/fern-hijack.vim'
-Plug 'lambdalisue/nerdfont.vim'  " Required by fern-renderer-nerdfont.vim
+Plug 'justinmk/vim-dirvish'
+Plug 'kristijanhusak/vim-dirvish-git'
+
+" Plug 'lambdalisue/fern.vim'
+" Plug 'lambdalisue/fern-git-status.vim'
+" Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+" Plug 'lambdalisue/fern-hijack.vim'
+" Plug 'lambdalisue/nerdfont.vim'  " Required by fern-renderer-nerdfont.vim
 " }}}
 
 " Git {{{
