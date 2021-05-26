@@ -9,13 +9,14 @@ local layouts = {}
 local small_screen = 1
 local big_screen = 2
 
-layouts[small_screen] = awful.layout.suit.max
+layouts[small_screen] = awful.layout.suit.tile.right
 if lain then
     layouts[big_screen] = lain.layout.centerwork
-    layouts[#layouts + 1] = awful.layout.suit.tile.right
+    layouts[#layouts + 1] = awful.layout.suit.tile.left
 else
-    layouts[big_screen] = awful.layout.suit.tile.right
+    layouts[big_screen] = awful.layout.suit.tile.left
 end
+layouts[#layouts + 1] = awful.layout.suit.max
 layouts[#layouts + 1] = awful.layout.suit.floating
 
 function M.for_screen(screen)
