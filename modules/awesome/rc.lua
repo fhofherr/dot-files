@@ -5,6 +5,7 @@ pcall(require, "luarocks.loader")
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
+require("awful.autofocus")
 
 -- Widget and layout library
 local wibox = require("wibox")
@@ -12,8 +13,8 @@ local wibox = require("wibox")
 -- Notification library
 local naughty = require("naughty")
 
-local layout = require("dotfiles.awesome.layout")
-layout.setup()
+local screen = require("dotfiles.awesome.screen")
+screen.setup()
 
 local keyboard = require("dotfiles.awesome.keyboard")
 keyboard.setup()
@@ -80,13 +81,9 @@ local mykeyboardlayout = awful.widget.keyboardlayout()
 -- Create a textclock widget
 local mytextclock = wibox.widget.textclock()
 
-awful.screen.set_auto_dpi_enabled(true)
-awful.screen.connect_for_each_screen(function(s)
+screen.connect_for_each_screen(function(s)
     -- Wallpaper
     theme.set_wallpaper(s)
-
-    -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, layout.for_screen(s))
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
