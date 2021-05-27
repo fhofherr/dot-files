@@ -27,15 +27,19 @@ function M.connect_for_each_screen(f)
         -- Each screen has its own tag table.
         for i, tag_name in ipairs(tag_names) do
             local layouts = layouts_default
-            local master_width_factor = 0.5
-
             if is_big(screen) then
                 layouts = layouts_big_screen
+            end
+
+            local master_width_factor = 0.5
+            local layout = layouts[1]
+            if is_big(screen) and i ~= 1 then
+                layout = layouts[2]
                 master_width_factor = 0.75
             end
 
             awful.tag.add(tag_name, {
-                layout = layouts[1],
+                layout = layout,
                 layouts = layouts,
                 master_width_factor = master_width_factor,
                 screen = screen,
