@@ -41,6 +41,7 @@ set nowritebackup              " don't create backup files before writing
 set showcmd                    " display incomplete commands
 set expandtab                  " Use spaces for indenting only
 set shiftwidth=4               " Set default indentation width
+set mouse=n
 
 " Set the number of spaces a tab counts while editing. When expandtab is
 " enabled, vim will only insert spaces. Else it will insert a combination
