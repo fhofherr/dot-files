@@ -15,10 +15,10 @@ function! g:neoterm_callbacks.before_new()
 endfunction
 
 " split-term.vim compatibility
-command Term :botright :Tnew
-command STerm :belowright :Tnew
-command VTerm :vertical :Tnew
-command TTerm :tab :Tnew
+command Term :botright :Topen
+command STerm :belowright :Topen
+command VTerm :vertical :Topen
+command TTerm :tab :Topen
 
 " Disable those mappings. I don't use them that much and they have an
 " inconsistent prefix. This way I can create consistent \t* mappings for

@@ -9,11 +9,10 @@ command! -nargs=? -complete=dir Explore Dirvish <args>
 command! -nargs=? -complete=dir Sexplore belowright split | silent Dirvish <args>
 command! -nargs=? -complete=dir Vexplore belowright vsplit | silent Dirvish <args>
 
-" Use <leader>e instead of - do open dirvish. I always fat-finger - while in
+" Use <leader>e instead of - to open dirvish. I always fat-finger - while in
 " normal mode.
-nmap <leader>e <Plug>(dirvish_up)
-
-nmap <silent> <leader>E :Dirvish %<CR>
+nmap <leader>E <Plug>(dirvish_up)
+nmap <silent> <leader>e :Dirvish<CR>
 
 augroup dotfiles_dirvish_config
     autocmd!
