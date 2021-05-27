@@ -38,10 +38,6 @@ function M.setup()
 
     vim.api.nvim_command("command! Lg lua require('dotfiles.settings.tmux').spawn_lazygit()")
     vim.api.nvim_command("command! -nargs=? Lf lua require('dotfiles.settings.tmux').spawn_lf(<f-args>)")
-
-    local opts = { noremap=true, silent=true }
-    -- vim.api.nvim_set_keymap("n", "<leader>e", "<cmd>lua require('dotfiles.settings.tmux').spawn_lf()<cr>", opts)
-    -- vim.api.nvim_set_keymap("n", "<leader>E", "<cmd>lua require('dotfiles.settings.tmux').spawn_lf(vim.fn.expand('%p:h'))<cr>", opts)
 end
 
 return M

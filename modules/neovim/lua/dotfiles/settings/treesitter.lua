@@ -3,6 +3,7 @@ local M = {}
 local plugin = require("dotfiles.plugin")
 local treesitter = plugin.safe_require("nvim-treesitter")
 local treesitter_configs = plugin.safe_require("nvim-treesitter.configs")
+local wk = require("dotfiles.settings.which-key")
 
 function M.setup()
     if not treesitter then

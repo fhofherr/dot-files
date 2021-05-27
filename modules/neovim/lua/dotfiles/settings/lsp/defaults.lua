@@ -25,6 +25,7 @@ local function on_attach(client, bufnr)
     }, { noremap = true, silent = true, buffer = bufnr })
 
     wk.register({
+        name = "lsp",
         rn = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename symbol." },
         ca = { "<cmd>lua require('dotfiles.settings.telescope').lsp_code_actions()<CR>", "Show code actions" }
     }, { noremap = true, silent = true, buffer = bufnr, prefix = "<localleader>" })

@@ -25,9 +25,10 @@ function M.setup()
     telescope.load_extension('fzy_native')
 
     wk.register({
-        name = "telescope",
+        name = "Telescope",
         ["<C-p>"] = { "<cmd>lua require('dotfiles.settings.telescope').find_files()<CR>", "Find files" },
         ["<localleader>f"] = {
+            name = "Find",
             f = { "<cmd>lua require('dotfiles.settings.telescope').find_files()<CR>", "Find files." },
             b = { "<cmd>lua require('dotfiles.settings.telescope').find_buffers()<CR>", "Find buffers." },
             t = { "<cmd>lua require('dotfiles.settings.telescope').tags()<CR>", "Find tags." },

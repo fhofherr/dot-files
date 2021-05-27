@@ -1,7 +1,7 @@
 local M = {}
 
 function M.safe_require(name)
-    ok, v = pcall(require, name)
+    local ok, v = pcall(require, name)
     if ok then
         return v
     end

@@ -19,12 +19,3 @@ command Term :botright :Topen
 command STerm :belowright :Topen
 command VTerm :vertical :Topen
 command TTerm :tab :Topen
-
-" Disable those mappings. I don't use them that much and they have an
-" inconsistent prefix. This way I can create consistent \t* mappings for
-" vim-test (which I use a lot).
-"
-" nnoremap <leader>nt :Tnew<CR>
-" nnoremap <leader>st :STerm<CR>
-" nnoremap <leader>vt :VTerm<CR>
-" nnoremap <leader>tt :TTerm<CR>
