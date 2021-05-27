@@ -19,7 +19,7 @@ end
 function M.setup()
     local gopls_opts = defaults.new_defaults()
 
-    gopls_opts.cmd = {"gopls", "--remote=auto"}
+    gopls_opts.cmd = {"gopls", --[["--remote=auto"]]}
     gopls_opts.init_options = {
         usePlaceholders = true,
         completeUnimported = true,
