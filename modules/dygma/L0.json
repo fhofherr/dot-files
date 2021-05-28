@@ -278,9 +278,9 @@
       "verbose": "Left Control"
     },
     {
-      "keyCode": 0,
-      "label": "NO KEY",
-      "verbose": "Disabled"
+      "keyCode": 227,
+      "label": "LEFT LINUX",
+      "verbose": "Left Linux"
     },
     {
       "keyCode": 226,
@@ -337,13 +337,13 @@
       "verbose": "AltGr"
     },
     {
+      "keyCode": 101,
+      "label": "MENU"
+    },
+    {
       "keyCode": 231,
       "label": "RIGHT LINUX",
       "verbose": "Right Linux"
-    },
-    {
-      "keyCode": 101,
-      "label": "MENU"
     },
     {
       "keyCode": 228,
@@ -379,7 +379,7 @@
     4,
     4,
     4,
-    12,
+    4,
     4,
     5,
     1,

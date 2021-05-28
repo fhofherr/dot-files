@@ -31,8 +31,7 @@ class Direnv(module.Definition):
     @module.update
     @module.install
     def install(self):
-        if not self.download():
-            return
+        self.download()
         fs.safe_link_file(self._direnvrc_src, self._direnvrc_dest)
         self.state.setenv("PATH", self.bin_dir)
         self.state.zsh.after_compinit_script = self._zsh_hook
@@ -43,10 +42,14 @@ class Direnv(module.Definition):
                                                     self._asset_name,
                                                     self.download_dir,
                                                     log=self.log)
-        if not did_download and os.path.exists(self.direnv_cmd):
-            return False
-        self.log.info(f"Copying {paths[0]} to {self.direnv_cmd}")
-        os.makedirs(os.path.dirname(self.direnv_cmd), exist_ok=True)
-        shutil.copyfile(paths[0], self.direnv_cmd)
-        os.chmod(self.direnv_cmd, 0o755)
-        return True
+        if did_download:
+            self.log.info(f"Copying {paths[0]} to {self.direnv_cmd}")
+            os.makedirs(os.path.dirname(self.direnv_cmd), exist_ok=True)
+            shutil.copyfile(paths[0], self.direnv_cmd)
+            os.chmod(self.direnv_cmd, 0o755)
+            return True
+        return os.path.exists(self.direnv_cmd)
+
+
+if __name__ == "__main__":
+    module.run(Direnv)
