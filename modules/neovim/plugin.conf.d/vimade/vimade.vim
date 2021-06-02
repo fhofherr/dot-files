@@ -5,8 +5,9 @@ let g:did_cfg_vimade = 1
 
 let g:vimade_running = 0
 let g:vimade = {
-            \ "fadelevel": 0.4,
-            \ "enablefocusfading": 1
+            \ "fadelevel": 0.6,
+            \ "enablefocusfading": 1,
+            \ "enabletreesitter": 1,
             \}
 
 " See: https://github.com/TaDaa/vimade/issues/38

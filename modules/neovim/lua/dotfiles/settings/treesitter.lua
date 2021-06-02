@@ -71,7 +71,6 @@ function M.setup()
                     ["ab"] = "@block.outer",
                     ["ib"] = "@block.inner",
                     ["ac"] = "@comment.outer",
-                    ["ic"] = "@comment.inner",
                     ["af"] = "@function.outer",
                     ["if"] = "@function.inner",
                     ["ap"] = "@parameter.outer",

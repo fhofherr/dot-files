@@ -29,13 +29,31 @@ function M.setup()
         ["<C-p>"] = { "<cmd>lua require('dotfiles.settings.telescope').find_files()<CR>", "Find files" },
         ["<localleader>f"] = {
             name = "Find",
+            b = { "<cmd>lua require('dotfiles.settings.telescope').buffers()<CR>", "Find buffers." },
             f = { "<cmd>lua require('dotfiles.settings.telescope').find_files()<CR>", "Find files." },
-            b = { "<cmd>lua require('dotfiles.settings.telescope').find_buffers()<CR>", "Find buffers." },
-            t = { "<cmd>lua require('dotfiles.settings.telescope').tags()<CR>", "Find tags." },
             g = { "<cmd>lua require('dotfiles.settings.telescope').live_grep()<CR>", "Live grep." },
+            l = { "<cmd>lua require('dotfiles.settings.telescope').loclist()<CR>", "Find tags." },
+            m = { "<cmd>lua require('dotfiles.settings.telescope').marks()<CR>", "Find marks." },
+            q = { "<cmd>lua require('dotfiles.settings.telescope').quickfix()<CR>", "Find tags." },
+            r = { "<cmd>lua require('dotfiles.settings.telescope').registers()<CR>", "Find tags." },
+            S = { "<cmd>lua require('dotfiles.settings.telescope').lsp_dynamic_workspace_symbols()<CR>", "Find LSP workspace symbols." },
+            s = { "<cmd>lua require('dotfiles.settings.telescope').treesitter()<CR>", "Find Treesitter symbols." },
+            t = { "<cmd>lua require('dotfiles.settings.telescope').tags()<CR>", "Find tags." },
+            t = { "<cmd>lua require('dotfiles.settings.telescope').tags()<CR>", "Find tags." },
         },
     }, { noremap = true, silent = true})
 end
+
+M.buffers = builtin.buffers
+M.live_grep = builtin.live_grep
+M.loclist = builtin.loclist
+M.marks = builtin.marks
+M.quickfix = builtin.quickfix
+M.registers = builtin.registers
+M.tags = builtin.tags
+M.treesitter = builtin.treesitter
+M.lsp_dynamic_workspace_symbols = builtin.lsp_dynamic_workspace_symbols
+
 
 function M.find_files()
     local opts = {
@@ -45,18 +63,6 @@ function M.find_files()
     if not ok then
         builtin.find_files(opts)
     end
-end
-
-function M.tags()
-    builtin.tags()
-end
-
-function M.live_grep()
-    builtin.live_grep()
-end
-
-function M.find_buffers()
-    builtin.buffers()
 end
 
 function M.lsp_code_actions()

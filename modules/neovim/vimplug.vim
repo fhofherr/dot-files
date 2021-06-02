@@ -26,7 +26,7 @@ Plug 'antoinemadec/FixCursorHold.nvim' " See https://github.com/lambdalisue/fern
 " }}}
 
 " Eye candy and color schemes {{{
-" Plug 'TaDaa/vimade'
+Plug 'TaDaa/vimade'
 Plug 'mhinz/vim-startify'
 Plug 'folke/which-key.nvim'
 " Plug 'psliwka/vim-smoothie'
