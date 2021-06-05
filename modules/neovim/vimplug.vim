@@ -16,13 +16,15 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'simnalamburt/vim-mundo'
 Plug 'unblevable/quick-scope'
-Plug 'kassio/neoterm'
 
+Plug 'antoinemadec/FixCursorHold.nvim' " See https://github.com/lambdalisue/fern.vim/issues/120 and https://github.com/neovim/neovim/issues/12587
+" }}}
+
+" Terminal {{{
+Plug 'kassio/neoterm'
 if executable('tmux')
     Plug 'christoomey/vim-tmux-navigator'
 endif
-
-Plug 'antoinemadec/FixCursorHold.nvim' " See https://github.com/lambdalisue/fern.vim/issues/120 and https://github.com/neovim/neovim/issues/12587
 " }}}
 
 " Eye candy and color schemes {{{
