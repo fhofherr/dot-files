@@ -23,7 +23,8 @@ OUTPUT_CONFIG = {
         "keep": True
     },
     HOME_OFFICE: {
-        "auto": True,
+        "rate": 75,
+        "mode": "3840x1600",
         "primary": True,
         "right-of": [
             DELL_XPS,
@@ -99,7 +100,7 @@ def query_outputs():
     return edids
 
 
-def configure_outputs(outputs):
+def configure_outputs(outputs, dry_run=False):
     def xrandr_args(output, edid, inverse):
         cfg = OUTPUT_CONFIG.get(edid)
         if not cfg:
@@ -111,6 +112,10 @@ def configure_outputs(outputs):
             args += ["--auto"]
         if cfg.get("primary", False):
             args += ["--primary"]
+        if "rate" in cfg:
+            args += ["--rate", str(cfg["rate"])]
+        if "mode" in cfg:
+            args += ["--mode", str(cfg["mode"])]
         for o in cfg.get("right-of", []):
             if o not in inverse:
                 continue
@@ -122,11 +127,18 @@ def configure_outputs(outputs):
         args = xrandr_args(output, edid, inverse)
         if not args:
             continue
-        subprocess.run([XRANDR_CMD] + args)
+        cmd = [XRANDR_CMD] + args
+        if dry_run:
+            print(" ".join(cmd))
+            continue
+        subprocess.run(cmd)
 
 
 if __name__ == "__main__":
     outputs = query_outputs()
+    if len(sys.argv) == 2 and sys.argv[1] == "test":
+        configure_outputs(outputs, dry_run=True)
+        sys.exit(0)
     if len(sys.argv) == 2 and sys.argv[1] == "identify":
         for k in sorted(outputs):
             print(f"{k}\t{outputs[k]}")
