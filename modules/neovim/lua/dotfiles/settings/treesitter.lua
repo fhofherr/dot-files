@@ -3,14 +3,19 @@ local M = {}
 local plugin = require("dotfiles.plugin")
 local treesitter = plugin.safe_require("nvim-treesitter")
 local treesitter_configs = plugin.safe_require("nvim-treesitter.configs")
+local spellsitter = plugin.safe_require("spellsitter")
 
 function M.setup()
     if not treesitter then
         return
     end
 
+    if spellsitter then
+        spellsitter.setup()
+    end
+
     treesitter_configs.setup {
-        highlight = { enable = false },
+        highlight = { enable = spellsitter ~= nil },
         incremental_selection = {
             enable = true,
             keymaps = {
@@ -39,7 +44,7 @@ function M.setup()
         },
         textobjects = {
             lsp_interop = {
-                enable = true,
+                enable = false,
                 peek_definition_code = {
                     ["<leader>df"] = "@function.outer",
                     ["<leader>dF"] = "@class.outer",

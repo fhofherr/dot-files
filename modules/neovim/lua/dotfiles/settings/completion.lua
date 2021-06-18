@@ -73,11 +73,11 @@ function M.tab_complete()
     if vim.fn.pumvisible() ~= 0 then
         return vimcompat.termesc("<C-n>")
     end
-    if plugin.exists("vim-vsnip") then
-        if vim.fn["vsnip#jumpable"](1) == 1 then
-            return vimcompat.termesc("<Plug>(vsnip-jump-next)")
-        end
-    end
+    -- if plugin.exists("vim-vsnip") then
+    --     if vim.fn["vsnip#jumpable"](1) == 1 then
+    --         return vimcompat.termesc("<Plug>(vsnip-jump-next)")
+    --     end
+    -- end
     if check_back_space() then
         return vimcompat.termesc("<Tab>")
     end
@@ -88,9 +88,9 @@ function M.s_tab_complete()
     if vim.fn.pumvisible() ~= 0 then
         return vimcompat.termesc("<C-p>")
     end
-    if plugin.exists("vim-vsnip") and vim.fn["vsnip#jumpable"](-1) == 1 then
-        return vimcompat.termesc("<Plug>(vsnip-jump-prev)")
-    end
+    -- if plugin.exists("vim-vsnip") and vim.fn["vsnip#jumpable"](-1) == 1 then
+    --     return vimcompat.termesc("<Plug>(vsnip-jump-prev)")
+    -- end
     return vimcompat.termesc("<S-Tab>")
 end
 

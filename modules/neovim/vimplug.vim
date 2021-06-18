@@ -100,6 +100,7 @@ if has('nvim-0.5')
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-treesitter/nvim-treesitter-refactor'
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+    Plug 'lewis6991/spellsitter.nvim'
 endif
 
 " Works best with universal-ctags (https://ctags.io)
