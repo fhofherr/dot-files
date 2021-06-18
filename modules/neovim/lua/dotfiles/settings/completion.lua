@@ -33,7 +33,7 @@ function M.setup()
             nvim_lsp = true,
             nvim_lua = true,
             path = true,
-            treesitter = true,
+            treesitter = false,
             ultisnips = true,
             vsnip = true,
             omni = false,
