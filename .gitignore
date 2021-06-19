@@ -12,11 +12,7 @@ spell
 tags
 
 # Ignore all vim plugins as they are managed by vim-plug.
-vim/bundle/
-vim/autoload/gocomplete.vim
-vim/ftplugin/go/
-vim/local.vim
-vim/.localvimrc_persistent
+modules/neovim/plugin/packer_compiled.vim
 
 # Ignore tmux plugins as they are managed by tpm
 tmux/plugins

@@ -37,8 +37,8 @@ class NeoVim(module.Definition):
         return os.path.join(self.home_dir, ".config", "nvim")
 
     @property
-    def _init_vim(self):
-        return os.path.join(self._nvim_cfg_dest, "init.vim")
+    def _init_lua(self):
+        return os.path.join(self._nvim_cfg_dest, "init.lua")
 
     @property
     def _vimplug_home(self):
@@ -164,7 +164,7 @@ class NeoVim(module.Definition):
     def __call__(self, *args, **kwargs):
         if "env" not in kwargs:
             kwargs["env"] = self._env
-        self.run_cmd(self.nvim_cmd, "-u", self._init_vim, "--headless", *args,
+        self.run_cmd(self.nvim_cmd, "-u", self._init_lua, "--headless", *args,
                      **kwargs)
 
 

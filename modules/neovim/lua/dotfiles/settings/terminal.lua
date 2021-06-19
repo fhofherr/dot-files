@@ -1,7 +1,7 @@
 local M = {}
 
 local plugin = require("dotfiles.plugin")
-local wk = require("dotfiles.settings.which-key")
+local wk = require("dotfiles.plugin.which-key")
 
 local leader_mappings = {
     name="Terminal",
@@ -31,7 +31,7 @@ local function setup_neoterm()
     vim.api.nvim_command("command! TTerm :tab :Tnew")
 
     vim.api.nvim_command([[
-    autocmd FileType neoterm lua require('dotfiles.settings.terminal').configure_neoterm_buffer()
+    autocmd FileType neoterm lua require('dotfiles.plugin.terminal').configure_neoterm_buffer()
     ]])
 
     wk.register({
