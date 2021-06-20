@@ -34,6 +34,14 @@ function M.hererocks_bin()
     return vim.fn.stdpath("cache") .. "/packer_hererocks/" .. jit_version .. "/bin"
 end
 
+local function try_local(name)
+    local plugin_dir = "~/Projects/github.com/" .. name
+    if vim.fn.isdirectory(plugin_dir) then
+        return plugin_dir
+    end
+    return name
+end
+
 function M.setup()
     -- Note:
     --
@@ -42,6 +50,22 @@ function M.setup()
     packer.startup({
         function(use)
             use "wbthomason/packer.nvim" -- Packer can manage itself
+
+            use {
+                try_local("fhofherr/termmaker.nvim"),
+                config = function()
+                    -- TODO add options to termmaker to allow setting this on
+                    -- a per-terminal-buffer basis.
+                    vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
+                    vim.api.nvim_set_keymap("t", "<C-v><Esc>", "<Esc>", { noremap = true, silent = true })
+                    -- Send q to the executing application even in normal mode.
+                    -- vim.api.nvim_buf_set_keymap("n", "q", "iq<C-\\><C-n>", { noremap = true, silent = true })
+                    -- TODO termmaker should allow setting environment variables
+                    -- for each terminal buffer.
+                    vim.env.DOTFILES_PROTECT_VAR_PATH = 1
+                    require("termmaker").setup()
+                end
+            }
 
             use "editorconfig/editorconfig-vim"
             use {
