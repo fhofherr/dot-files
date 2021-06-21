@@ -36,7 +36,7 @@ end
 
 local function try_local(name)
     local plugin_dir = "~/Projects/github.com/" .. name
-    if vim.fn.isdirectory(plugin_dir) then
+    if vim.fn.isdirectory(plugin_dir) == 1 then
         return plugin_dir
     end
     return name
