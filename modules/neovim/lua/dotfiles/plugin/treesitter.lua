@@ -2,15 +2,10 @@ local M = {}
 
 local treesitter = require("nvim-treesitter")
 local treesitter_configs = require("nvim-treesitter.configs")
-local spellsitter = require("spellsitter")
 
 function M.config()
-    if spellsitter then
-        spellsitter.setup()
-    end
-
     treesitter_configs.setup {
-        highlight = { enable = spellsitter ~= nil },
+        highlight = { enable = false },
         incremental_selection = {
             enable = true,
             keymaps = {

@@ -222,11 +222,9 @@ function M.setup()
                 end
             }
 
-            use "lewis6991/spellsitter.nvim"
             use {
                 "nvim-treesitter/nvim-treesitter",
                 run = ":TSUpdate",
-                after = { "spellsitter.nvim" },
                 config = function()
                     require("dotfiles.plugin.treesitter").config()
                 end
