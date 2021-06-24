@@ -36,7 +36,7 @@ end
 
 local function try_local(name)
     local plugin_dir = "~/Projects/github.com/" .. name
-    if vim.fn.isdirectory(plugin_dir) == 1 then
+    if vim.fn.isdirectory(vim.fn.expand(plugin_dir)) == 1 then
         return plugin_dir
     end
     return name
@@ -53,6 +53,7 @@ function M.setup()
 
             use {
                 try_local("fhofherr/termmaker.nvim"),
+                after = {"which-key.nvim"},
                 config = function()
                     -- TODO add options to termmaker to allow setting this on
                     -- a per-terminal-buffer basis.
@@ -64,6 +65,13 @@ function M.setup()
                     -- for each terminal buffer.
                     vim.env.DOTFILES_PROTECT_VAR_PATH = 1
                     require("termmaker").setup()
+
+                    require("dotfiles.plugin.which-key").register({
+                        ["<localleader>T"] = {
+                            name = "TermMaker",
+                            T = { "<cmd>:TermMakerToggle<CR>", "Toggle termmaker terminal." },
+                        }
+                    }, { noremap = true, silent = true})
                 end
             }
 
