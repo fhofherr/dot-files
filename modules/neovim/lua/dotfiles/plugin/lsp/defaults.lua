@@ -35,7 +35,7 @@ local function on_attach(client, bufnr)
 
     if client.resolved_capabilities.document_formatting or client.resolved_capabilities.document_range_formatting then
         buf_def_cmd("LspFmt", "lua vim.lsp.buf.formatting()")
-        vim.api.nvim_command("autocmd BufWritePre <buffer> undojoin | lua vim.lsp.buf.formatting_sync()")
+        vim.api.nvim_command("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
     end
 
     vim.b.dotfiles_lsp_enabled = 1
