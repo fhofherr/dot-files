@@ -23,6 +23,14 @@ function M.config()
     wk.register({
         name = "Telescope",
         ["<C-p>"] = { "<cmd>lua require('dotfiles.plugin.telescope').find_files()<CR>", "Find files" },
+        ["<localleader>e"] = {
+            "<cmd>lua require('dotfiles.plugin.telescope').file_browser()<CR>",
+            "Browse current working directory.",
+        },
+        ["<localleader>E"] = {
+            "<cmd>lua require('dotfiles.plugin.telescope').file_browser({pwd=vim.fn.expand('%:p:h')})<CR>",
+            "Browse current file directory.",
+        },
         ["<localleader>f"] = {
             name = "Find",
             b = { "<cmd>lua require('dotfiles.plugin.telescope').buffers()<CR>", "Find buffers." },
@@ -43,14 +51,15 @@ function M.config()
 end
 
 M.buffers = builtin.buffers
+M.file_browser = builtin.file_browser
 M.live_grep = builtin.live_grep
 M.loclist = builtin.loclist
+M.lsp_dynamic_workspace_symbols = builtin.lsp_dynamic_workspace_symbols
 M.marks = builtin.marks
 M.quickfix = builtin.quickfix
 M.registers = builtin.registers
 M.tags = builtin.tags
 M.treesitter = builtin.treesitter
-M.lsp_dynamic_workspace_symbols = builtin.lsp_dynamic_workspace_symbols
 
 
 function M.find_files()
