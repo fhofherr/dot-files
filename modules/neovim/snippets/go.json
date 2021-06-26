@@ -1,7 +1,7 @@
 {
   "pkg": {
     "prefix": "pkg",
-    "body": "package ${VIM:v:lua.dotfiles.settings.vsnip.go.pkg_name()}",
+    "body": "package ${VIM:v:lua.dotfiles.plugin.vsnip.go.pkg_name()}",
     "description": "Create a golang package definition"
   },
   "*t": {
