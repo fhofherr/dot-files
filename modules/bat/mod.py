@@ -52,6 +52,8 @@ class Bat(module.Definition):
             "everforest-light-hard": "gruvbox-light",
             "everforest-light-medium": "gruvbox-light",
             "everforest-light-soft": "gruvbox-light",
+            "gruvbox-dark": "gruvbox-dark",
+            "gruvbox-light": "gruvbox-light",
             "iceberg-dark": "OneHalfDark",
             "iceberg-light": "OneHalfLight",
             "onehalf-dark": "OneHalfDark",

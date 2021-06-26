@@ -15,7 +15,7 @@ local function select_theme()
         ["iceberg-dark"] = "iceberg_dark",
         ["iceberg-light"] = "iceberg_light",
         ["gruvbox-dark"] = "gruvbox",
-        ["gruvbox-light"] = "ayu_light", -- TODO currently no gruvbox-light theme available. https://github.com/hoob3rt/lualine.nvim/issues/188
+        ["gruvbox-light"] = "gruvbox_light",
         ["onehalf-dark"] = "onedark",
         ["onehalf-light"] = "onelight",
     }
