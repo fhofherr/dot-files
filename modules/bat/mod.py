@@ -56,8 +56,9 @@ class Bat(module.Definition):
             "gruvbox-light": "gruvbox-light",
             "iceberg-dark": "OneHalfDark",
             "iceberg-light": "OneHalfLight",
-            "onehalf-dark": "OneHalfDark",
-            "onehalf-light": "OneHalfLight",
+            "tokyonight-night": "OneHalfDark",
+            "tokyonight-storm": "OneHalfDark",
+            "tokyonight-day": "OneHalfLight",
         }.get(theme_name, theme_name) # Translate theme_name or re-use.
         self.state.setenv("BAT_THEME", theme_name)
 

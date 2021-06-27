@@ -29,8 +29,9 @@ class GitDelta(module.Definition):
             "everforest-light-soft": "gruvbox-light",
             "gruvbox-dark": "gruvbox",
             "gruvbox-light": "gruvbox-light",
-            "onehalf-dark": "OneHalfDark",
-            "onehalf-light": "OneHalfLight",
+            "tokyonight-night": "OneHalfDark",
+            "tokyonight-storm": "OneHalfDark",
+            "tokyonight-day": "OneHalfLight",
         }.get(name, "gruvbox")
 
     def is_archive_asset(self, name):

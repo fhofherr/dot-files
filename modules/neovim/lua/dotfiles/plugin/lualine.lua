@@ -16,8 +16,9 @@ local function select_theme()
         ["iceberg-light"] = "iceberg_light",
         ["gruvbox-dark"] = "gruvbox",
         ["gruvbox-light"] = "gruvbox_light",
-        ["onehalf-dark"] = "onedark",
-        ["onehalf-light"] = "onelight",
+        ["tokyonight-night"] = "tokyonight",
+        ["tokyonight-storm"] = "tokyonight",
+        ["tokyonight-day"] = "tokyonight",
     }
     return color_schemes[vim.env.DOTFILES_COLOR_SCHEME] or "gruvbox"
 end

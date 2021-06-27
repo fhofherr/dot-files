@@ -288,23 +288,26 @@ function M.setup()
                 end
             }
             use {
-                "sonph/onehalf",
-                rtp = "vim",
+                "folke/tokyonight.nvim",
                 cond = function()
                     return vim.tbl_contains({
-                        "onehalf-dark",
-                        "onehalf-light",
+                        "tokyonight-storm",
+                        "tokyonight-night",
+                        "tokyonight-day",
                     }, vim.env.DOTFILES_COLOR_SCHEME)
                 end,
                 config = function()
-                    if vim.env.DOTFILES_COLOR_SCHEME == "onehalf-dark" then
-                        vim.o.background = "dark"
-                        vim.api.nvim_command("colorscheme onehalfdark")
+                    vim.o.background = "dark"
+                    if vim.env.DOTFILES_COLOR_SCHEME == "tokyonight-storm" then
+                        vim.g.tokyonight_style = "storm"
+                    elseif  vim.env.DOTFILES_COLOR_SCHEME == "tokyonight-night" then
+                        vim.g.tokyonight_style = "storm"
+                    else
+                        vim.o.background = "light"
+                        vim.g.tokyonight_day_brightness = 0.1
+                        vim.g.tokyonight_style = "day"
                     end
-                    if vim.env.DOTFILES_COLOR_SCHEME == "onehalf-light" then
-                        vim.o.background = "dark"
-                        vim.api.nvim_command("colorscheme onehalflight")
-                    end
+                    vim.api.nvim_command("colorscheme tokyonight")
                 end
             }
             use {
