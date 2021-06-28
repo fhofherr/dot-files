@@ -64,7 +64,11 @@ function M.setup()
                     -- TODO termmaker should allow setting environment variables
                     -- for each terminal buffer.
                     vim.env.DOTFILES_PROTECT_VAR_PATH = 1
-                    require("termmaker").setup()
+                    require("termmaker").setup({
+                        default_terminal = {
+                            window_factory = "new_window"
+                        }
+                    })
 
                     require("dotfiles.plugin.which-key").register({
                         ["<localleader>T"] = {
