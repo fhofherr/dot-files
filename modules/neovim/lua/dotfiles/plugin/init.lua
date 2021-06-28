@@ -302,6 +302,7 @@ function M.setup()
                 end,
                 config = function()
                     vim.o.background = "dark"
+                    vim.g.tokyonight_transparent = true
                     if vim.env.DOTFILES_COLOR_SCHEME == "tokyonight-storm" then
                         vim.g.tokyonight_style = "storm"
                     elseif  vim.env.DOTFILES_COLOR_SCHEME == "tokyonight-night" then

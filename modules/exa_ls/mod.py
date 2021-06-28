@@ -23,10 +23,14 @@ class ExaLs(module.Definition):
 
         self.state.add_alias("ls", f"{ls} --color=auto")
         if exa:
-            self.state.add_alias("l", f"{exa} --color=auto")
-            self.state.add_alias("ll", f"{exa} --color=auto --long")
-            self.state.add_alias("la", f"{exa} --color=auto --long --all")
+            common_args = "--color=auto --icons"
+            self.state.add_alias("l", f"{exa} {common_args}")
+            self.state.add_alias("ll", f"{exa} {common_args} --long")
+            self.state.add_alias("la", f"{exa} {common_args} --long --all")
         else:
             self.state.add_alias("l", f"{ls} --color=auto")
             self.state.add_alias("ll", f"{ls} --color=auto -lh")
             self.state.add_alias("la", f"{ls} --color=auto -alh")
+
+if __name__ == "__main__":
+    module.run(ExaLs)
