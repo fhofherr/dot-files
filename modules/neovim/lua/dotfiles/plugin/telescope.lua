@@ -28,7 +28,7 @@ function M.config()
             "Browse current working directory.",
         },
         ["<localleader>E"] = {
-            "<cmd>lua require('dotfiles.plugin.telescope').file_browser({pwd=vim.fn.expand('%:p:h')})<CR>",
+            "<cmd>lua require('dotfiles.plugin.telescope').file_browser({cwd=vim.fn.expand('%:p:h')})<CR>",
             "Browse current file directory.",
         },
         ["<localleader>f"] = {
