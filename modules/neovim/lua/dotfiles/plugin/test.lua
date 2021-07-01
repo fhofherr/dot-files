@@ -7,19 +7,28 @@ function M.config()
     if plugin.exists("vim-dispatch") then
         vim.g["test#strategy"] = "dispatch"
     end
+    if plugin.exists("vim-ultest") then
+        vim.g.ultest_use_pty = 1
+        wk.register({
+            ["<localleader>t"] = {
+                name = "Test",
+                n = { "<cmd>:UltestNearest<CR>", "Run nearest test." },
+                f = { "<cmd>:Ultest<CR>", "Run all tests in file." },
+            },
+        }, { noremap = true, silent = true })
+    else
+        wk.register({
+            ["<localleader>t"] = {
+                name = "Test",
+                n = { "<cmd>:TestNearest<CR>", "Run nearest test." },
+                f = { "<cmd>:TestFile<CR>", "Run all tests in file." },
+            },
+        }, { noremap = true, silent = true })
+    end
     vim.g["test#preserve_screen"] = 1
     vim.g["test#go#gotest#options"] = "-timeout 30s"
 
-    wk.register({
-        ["<localleader>t"] = {
-            name = "Test",
-            n = { "<cmd>:TestNearest<CR>", "Run nearest test." },
-            f = { "<cmd>:TestFile<CR>", "Run all tests in file." },
-            s = { "<cmd>:TestSuite<CR>", "Run test suite." },
-            l = { "<cmd>:TestLast<CR>", "Re-run last test." },
-            v = { "<cmd>:TestVisit<CR>", "Open last run test." },
-        },
-    }, { noremap = true, silent = true })
+
 end
 
 return M

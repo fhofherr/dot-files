@@ -139,9 +139,10 @@ function M.setup()
             use "nelstrom/vim-visual-star-search"
 
             use {
-                "vim-test/vim-test",
+                "rcarriga/vim-ultest",
                 after = { "which-key.nvim" },
-                requires = { "tpope/vim-dispatch" },
+                requires = { "vim-test/vim-test", "tpope/vim-dispatch" },
+                run = ":UpdateRemotePlugins",
                 config = function()
                     require("dotfiles.plugin.test").config()
                 end
