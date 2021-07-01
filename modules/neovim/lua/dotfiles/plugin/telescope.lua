@@ -8,7 +8,9 @@ local wk = require("dotfiles.plugin.which-key")
 function M.config()
     telescope.setup({
         defaults = {
-            prompt_position = "top",
+            layout_config = {
+                prompt_position = "top",
+            },
             sorting_strategy = "ascending",
             extensions = {
                 fzy_native = {
