@@ -279,6 +279,15 @@ function M.setup()
             use "mattn/vim-goaddtags"
             use "sebdah/vim-delve" -- TODO consider trying nvim-dap
 
+            -- Smooth scrolling
+            use {
+                "karb94/neoscroll.nvim",
+                config = function()
+                    require("neoscroll").setup({
+                        easing_function = "cubic",
+                    })
+                end
+            }
             -- Colorschemes
             use {
                 "dracula/vim",
