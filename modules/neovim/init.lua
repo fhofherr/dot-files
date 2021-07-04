@@ -24,7 +24,7 @@ vim.o.hidden = true        -- hide buffers when abandoning them
 vim.o.cmdheight = 2
 vim.o.signcolumn = "yes:2"
 vim.o.scrolloff = 4
-vim.o.updatetime = 100
+-- vim.o.updatetime = 100
 
 vim.o.splitbelow = true
 vim.o.splitright = true
