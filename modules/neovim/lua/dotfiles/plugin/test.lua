@@ -9,11 +9,15 @@ function M.config()
     end
     if plugin.exists("vim-ultest") then
         vim.g.ultest_use_pty = 1
+        vim.g.ultest_summary_width = 80
+
         wk.register({
             ["<localleader>t"] = {
                 name = "Test",
-                n = { "<cmd>:UltestNearest<CR>", "Run nearest test." },
-                f = { "<cmd>:Ultest<CR>", "Run all tests in file." },
+                f = { "<Plug>(ultest-run-file)", "Run all tests in file." },
+                n = { "<Plug>(ultest-run-nearest)", "Run nearest test." },
+                o = { "<Plug>(ultest-output-jump)", "Show error output of nearest test" },
+                s = { "<Plug>(ultest-summary-toggle)", "Toggle test summary" },
             },
         }, { noremap = true, silent = true })
     else

@@ -107,12 +107,12 @@ function M.setup()
             }
 
             use "unblevable/quick-scope"
-            use {
-                "TaDaa/vimade",
-                config = function()
-                    require("dotfiles.plugin.vimade").config()
-                end
-            }
+            -- use {
+            --     "TaDaa/vimade",
+            --     config = function()
+            --         require("dotfiles.plugin.vimade").config()
+            --     end
+            -- }
 
             use {
                 "mhinz/vim-startify",
@@ -175,6 +175,7 @@ function M.setup()
                     require("dotfiles.plugin.trouble").config()
                 end
             }
+            use "ray-x/lsp_signature.nvim"
             use {
                 "neovim/nvim-lspconfig",
                 after = { "which-key.nvim" },
@@ -265,16 +266,16 @@ function M.setup()
                 end
             }
 
-            use {
-                "ptzz/lf.vim",
-                requires = {"voldikss/vim-floaterm"},
-                config = function()
-                    vim.g.lf_map_keys = 0
-                    vim.g.lf_replace_netrw = 1
-                    vim.g.lf_width = 0.8
-                    vim.g.lf_height = 0.8
-                end
-            }
+            -- use {
+            --     "ptzz/lf.vim",
+            --     requires = {"voldikss/vim-floaterm"},
+            --     config = function()
+            --         vim.g.lf_map_keys = 0
+            --         vim.g.lf_replace_netrw = 1
+            --         vim.g.lf_width = 0.8
+            --         vim.g.lf_height = 0.8
+            --     end
+            -- }
 
             use "hashivim/vim-terraform"
             use "mattn/vim-goaddtags"

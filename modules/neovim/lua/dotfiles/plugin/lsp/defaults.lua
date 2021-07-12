@@ -1,5 +1,7 @@
 local M = {}
 
+local plugin = require("dotfiles.plugin")
+local lsp_signature = plugin.safe_require("lsp_signature")
 local wk = require("dotfiles.plugin.which-key")
 
 local function on_attach(client, bufnr)
@@ -36,6 +38,13 @@ local function on_attach(client, bufnr)
     if client.resolved_capabilities.document_formatting or client.resolved_capabilities.document_range_formatting then
         buf_def_cmd("LspFmt", "lua vim.lsp.buf.formatting()")
         vim.api.nvim_command("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+    end
+    if lsp_signature then
+        lsp_signature.on_attach({
+            handler_opts = {
+                border = "single",
+            },
+        })
     end
 
     vim.b.dotfiles_lsp_enabled = 1

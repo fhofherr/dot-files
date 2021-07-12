@@ -13,6 +13,7 @@ tags
 
 # Ignore all vim plugins as they are managed by vim-plug.
 modules/neovim/plugin/packer_compiled.vim
+modules/neovim/plugin/packer_compiled.lua
 
 # Ignore tmux plugins as they are managed by tpm
 tmux/plugins
