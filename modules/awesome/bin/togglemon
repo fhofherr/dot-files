@@ -10,9 +10,10 @@ import subprocess
 import sys
 import time
 
-TUXEDO_NOTEBOOK = "dde2d427f1bb6bb7226043b024ef5c5262c1782f55eabcf97c1217fe8b80d0a6"
 DELL_XPS = "47b1e3e6a4f6d3ded9b3ae89d4ae27610bd0832e8c22af068da9d884610847f0"
 HOME_OFFICE = "2dd61d8c7bb2c6ea2755c7fabe598b21643e9ff52863511304d2cc778443e39b"
+OFFICE = "54866818688082877ba0975c4a9cad60f85e08c5e4119a17839c8620b3040e38"
+TUXEDO_NOTEBOOK = "dde2d427f1bb6bb7226043b024ef5c5262c1782f55eabcf97c1217fe8b80d0a6"
 
 OUTPUT_CONFIG = {
     TUXEDO_NOTEBOOK: {
@@ -29,6 +30,13 @@ OUTPUT_CONFIG = {
         "right-of": [
             DELL_XPS,
             TUXEDO_NOTEBOOK,
+        ],
+    },
+    OFFICE: {
+        "primary": True,
+        "auto": True,
+        "right-of": [
+            DELL_XPS,
         ],
     }
 }
