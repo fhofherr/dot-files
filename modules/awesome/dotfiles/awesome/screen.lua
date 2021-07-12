@@ -19,7 +19,7 @@ if lain then
 end
 
 local function is_big(screen)
-    return screen.geometry.width > 1920
+    return screen.geometry.width > 2560
 end
 
 function M.connect_for_each_screen(f)
