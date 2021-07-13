@@ -1,6 +1,7 @@
 local M = {}
 
 local telescope = require("telescope")
+local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")
 local themes = require("telescope.themes")
 local wk = require("dotfiles.plugin.which-key")
@@ -52,7 +53,16 @@ function M.config()
     }, { noremap = true, silent = true})
 end
 
-M.buffers = builtin.buffers
+function M.buffers()
+    builtin.buffers({
+        attach_mappings = function(_, map)
+            map("i", "<C-q>", actions.delete_buffer)
+            map("n", "<C-q>", actions.delete_buffer)
+            return true
+        end
+    })
+end
+
 M.file_browser = builtin.file_browser
 M.live_grep = builtin.live_grep
 M.loclist = builtin.loclist
