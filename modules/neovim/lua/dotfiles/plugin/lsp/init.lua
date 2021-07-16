@@ -6,7 +6,7 @@ local wk = require("dotfiles.plugin.which-key")
 local language_servers = {
     ccls = require("dotfiles.plugin.lsp.ccls"),
     gopls = require("dotfiles.plugin.lsp.gopls"),
-    pyls = require("dotfiles.plugin.lsp.pyls"),
+    pylsp = require("dotfiles.plugin.lsp.pylsp"),
 }
 
 function M.config()

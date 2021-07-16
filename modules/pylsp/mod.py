@@ -1,10 +1,10 @@
 from dotfiles import module
 
-PKG_NAME = "python-language-server"
-PLUGINS = ["python-language-server[rope]"]
+PKG_NAME = "python-lsp-server"
+PLUGINS = ["python-lsp-server[rope]"]
 
 
-class Pyls(module.Definition):
+class Pylsp(module.Definition):
     required = ["pipx"]
 
     @module.install
@@ -18,3 +18,7 @@ class Pyls(module.Definition):
         self.pipx.update(PKG_NAME)
         for plugin in PLUGINS:
             self.pipx.inject(PKG_NAME, plugin, update=True)
+
+
+if __name__ == "__main__":
+    module.run(Pylsp)
