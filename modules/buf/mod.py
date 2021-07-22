@@ -7,6 +7,8 @@ REPO_ID = "bufbuild/buf"
 
 
 class Buf(module.Definition):
+    hostnames = ["fhhc"]
+
     def is_shasum_asset(self, name):
         return name == "sha256.txt"
 

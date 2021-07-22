@@ -6,6 +6,8 @@ REPO_ID = "ktr0731/evans"
 
 
 class Evans(module.Definition):
+    hostnames = ["fhhc"]
+
     def is_checksum_asset(self, name):
         return name == "checksums.txt"
 

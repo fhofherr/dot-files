@@ -7,11 +7,14 @@ import subprocess
 import threading
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
+import platform
 from logging import Logger
 from typing import (Any, Callable, Dict, Generator, List, Optional, Set, Tuple,
                     Type, TypeVar, Union)
 
 from dotfiles import fs, logging, state, zsh
+
+HOSTNAME = platform.node()
 
 DEFAULT_HOME_DIR = os.path.expanduser("~")
 DEFAULT_DIR = os.path.join(fs.find_dotfiles_dir(), "modules")
@@ -98,8 +101,10 @@ class Definition:
     # List of optional modules.
     optional: List[str] = []
 
-    # List of tags for this module.
-    tags: List[str] = []
+    # List of hosts this module should be installed on. If the current host
+    # is not in hostnames, it will not be installed. If hostnames is empty
+    # module is installed on all hosts.
+    hostnames: List[str] = []
 
     @classmethod
     def _new_instance(cls: Type[T], mod_dir: str, home_dir: str,
@@ -273,12 +278,6 @@ def _parse_args(
         help=("Directory containing state of installed modules. Treated as " +
               "relative to home directory if not an absolute path. " +
               f"Default: $HOME/{state_dir}"))
-    args_parser.add_argument("-t",
-                             "--tag",
-                             type=str,
-                             nargs="*",
-                             dest="tags",
-                             help="Tags to limit the modules by")
     args_parser.add_argument(
         "--shell",
         default=_DEFAULT_SHELL,
@@ -311,9 +310,7 @@ def run(only: Optional[Union[Type[Definition], str]] = None,
     if not loader:
         loader = Loader(args.modules_dir, args.home_dir, args.state_dir)
 
-    load_args: Dict[str, Any] = {}
-    if args.tags:
-        load_args["filter_by"] = [has_any_tag(args.tags)]
+    load_args: Dict[str, Any] = {"filter_by": [enabled_on_host()]}
     if only:
         load_args["reduce_by"] = [reduce_by_mod(only)]
 
@@ -458,23 +455,20 @@ class Loader:
             except TypeError:
                 continue
 
-
-def has_any_tag(tags: List[str]) -> Callable[[Loader.ModInfo], bool]:
+def enabled_on_host() -> Callable[[Loader.ModInfo], bool]:
     """
-    Filter mod_info for modules with at least one tag in tags assigned.
-    If tags is empty mod_infos is returned verbatim.
+    Filter mod_info for modules that are enabled on the current host.
     """
     def filter_fn(mod_info: Loader.ModInfo) -> bool:
-        if not tags:
+        if len(mod_info.mod_def.hostnames) == 0:
             return True
-        for tag in mod_info.mod_def.tags:
-            if tag in tags:
-                return True
 
-        _LOG.info(
-            f"{mod_info.mod_def.name} has none of the following tags: {', '.join(tags)}"
-        )
-        return False
+        if HOSTNAME not in mod_info.mod_def.hostnames:
+            _LOG.info(
+                f"{mod_info.mod_def.name} is not enabled for host {HOSTNAME}"
+            )
+            return False
+        return True
 
     return filter_fn
 

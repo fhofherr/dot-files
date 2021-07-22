@@ -217,18 +217,17 @@ class TestReduceByModDef:
         assert expected_modules == mod_names
 
 
-class TestFilterModulesByTags:
+class TestFilterModulesByHostname:
     class MockModuleA(module.Definition):
         name = "mock_module_a"
-        tags = ["common-tag", "tag-a"]
 
     class MockModuleB(module.Definition):
         name = "mock_module_b"
-        tags = ["common-tag", "tag-b"]
+        hostnames = ["other_host"]
 
     class MockModuleC(module.Definition):
         name = "mock_module_c"
-        tags = ["common-tag", "tag-c"]
+        hostnames = [module.HOSTNAME]
 
     @pytest.fixture
     def mod_infos(self, tmpdir):
@@ -238,17 +237,17 @@ class TestFilterModulesByTags:
             module.Loader.ModInfo(tmpdir, TestFilterModulesByTags.MockModuleC),
         ]
 
-    def test_no_tags_passed(self, mod_infos):
-        for mi in mod_infos:
-            assert module.has_any_tag([])(mi)
+    def test_no_hostnames_for_module(self, tmpdir):
+        mod = module.Loader.ModInfo(tmpdir, TestFilterModulesByHostname.MockModuleA)
+        assert module.enabled_on_host()(mod)
 
-    def test_tags_match_all_modules(self, mod_infos):
-        tag = "common-tag"
-        for mi in mod_infos:
-            if tag in mi.mod_def.tags:
-                assert module.has_any_tag(["common-tag"])(mi)
-            else:
-                assert not module.has_any_tag(["common-tag"])(mi)
+    def test_module_for_different_host(self, tmpdir):
+        mod = module.Loader.ModInfo(tmpdir, TestFilterModulesByHostname.MockModuleB)
+        assert not module.enabled_on_host()(mod)
+
+    def test_module_for_current_host(self, tmpdir):
+        mod = module.Loader.ModInfo(tmpdir, TestFilterModulesByHostname.MockModuleC)
+        assert module.enabled_on_host()(mod)
 
 
 class TestSortByDependencies:

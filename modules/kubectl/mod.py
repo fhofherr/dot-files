@@ -4,6 +4,8 @@ from dotfiles import module
 
 
 class Kubectl(module.Definition):
+    hostnames = ["fhhc"]
+
     @property
     def kubectl_cmd(self):
         return shutil.which("kubectl")

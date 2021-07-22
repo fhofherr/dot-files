@@ -5,6 +5,7 @@ PKG_NAME = "lookatme"
 
 class Lookatme(module.Definition):
     required = ["pipx"]
+    hostnames = ["fhhc", "wintermute"]
 
     @module.install
     def install(self):

@@ -7,6 +7,7 @@ MNML_PKG = "github.com/fhofherr/mnml/cmd/mnml"
 
 class MNML(module.Definition):
     required = ["golang"]
+    hostnames = ["wintermute"]
 
     def _mnml_cmd(self):
         return os.path.join(self.golang.go_bin_dir, "mnml")

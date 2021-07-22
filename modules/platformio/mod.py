@@ -4,6 +4,7 @@ PKG_NAME = "platformio"
 
 
 class PlatformIO(module.Definition):
+    hostnames = ["wintermute"]
     required = ["pipx"]
 
     @module.install

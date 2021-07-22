@@ -15,7 +15,6 @@ AFTER_COMPINIT_PLUGINS = [
 
 class Zsh(module.Definition):
     required = ["git"]
-    tags = ["essential"]
 
     @property
     def plugin_dir(self):

@@ -8,7 +8,6 @@ TPM_REMOTE_REPO = "https://github.com/tmux-plugins/tpm"
 
 class Tmux(module.Definition):
     required = ["git"]
-    tags = ["essential"]
 
     @property
     def tmux_cmd(self):

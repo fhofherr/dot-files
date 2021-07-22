@@ -5,7 +5,6 @@ from dotfiles import module
 
 
 class Git(module.Definition):
-    tags = ["essential"]
     optional = ["git_delta"]
 
     @property

@@ -6,6 +6,7 @@ from dotfiles import download, module
 
 
 class Overmind(module.Definition):
+    hostnames = ["fhhc", "wintermute"]
     _repo_id = "DarthSim/overmind"
 
     def is_asset_selected(self, name):

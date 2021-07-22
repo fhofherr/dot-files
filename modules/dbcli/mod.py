@@ -9,6 +9,7 @@ PKG_NAMES = [
 
 class DBCLI(module.Definition):
     required = ["pipx"]
+    hostnames = ["fhhc", "wintermute"]
 
     @module.install
     def install(self):

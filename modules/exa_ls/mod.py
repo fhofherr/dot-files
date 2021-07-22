@@ -5,7 +5,6 @@ from dotfiles import module
 
 class ExaLs(module.Definition):
     name = "exa_ls"
-    tags = ["essential"]
 
     @property
     def ls_cmd(self):

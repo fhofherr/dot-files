@@ -5,6 +5,7 @@ from dotfiles import download, fs, module
 
 
 class Direnv(module.Definition):
+    hostnames = ["fhhc", "wintermute"]
     _repo_id = "direnv/direnv"
 
     @property
@@ -37,7 +38,7 @@ class Direnv(module.Definition):
         self.state.zsh.after_compinit_script = self._zsh_hook
 
     def download(self):
-        self.log.info(f"Downloading direnv")
+        self.log.info("Downloading direnv")
         paths, did_download = download.github_asset(self._repo_id,
                                                     self._asset_name,
                                                     self.download_dir,

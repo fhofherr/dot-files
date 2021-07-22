@@ -4,8 +4,6 @@ from dotfiles import fs, module
 
 
 class Editorconfig(module.Definition):
-    tags = ["essential"]
-
     @property
     def editorconfig_src(self):
         return os.path.join(self.mod_dir, "editorconfig")
