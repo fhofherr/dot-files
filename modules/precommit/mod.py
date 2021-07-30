@@ -4,6 +4,7 @@ PKG_NAME = "pre-commit"
 
 
 class PreCommit(module.Definition):
+    hostnames = ["fhhc", "wintermute"]
     required = ["pipx"]
 
     @module.install

@@ -35,9 +35,13 @@ class GitDelta(module.Definition):
         }.get(name, "gruvbox")
 
     def is_archive_asset(self, name):
+        if self.is_raspberrypi_32bit():
+            return fnmatch(name, "delta-*-arm-unknown-linux-gnueabihf.tar.gz")
         return fnmatch(name, "delta-*-x86_64-unknown-linux-gnu.tar.gz")
 
     def is_binary_member(self, ti: tarfile.TarInfo) -> bool:
+        if self.is_raspberrypi_32bit():
+            return fnmatch(ti.name, "delta-*-arm-unknown-linux-gnueabihf/delta")
         return fnmatch(ti.name, "delta-*-x86_64-unknown-linux-gnu/delta")
 
     @module.update

@@ -8,6 +8,7 @@ REPO_ID = "golangci/golangci-lint"
 
 
 class GolangCILint(module.Definition):
+    hostnames = ["fhhc", "wintermute"]
     name = "golangci_lint"
 
     @property

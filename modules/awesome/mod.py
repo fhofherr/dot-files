@@ -4,6 +4,7 @@ from dotfiles import fs, module
 
 
 class Awesome(module.Definition):
+    hostnames = ["fhhc", "wintermute"]
     required = ["picom", "xrdb"]
 
     @property

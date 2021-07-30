@@ -67,7 +67,7 @@ class Tmux(module.Definition):
     @module.install
     def install(self):
         if not self.tmux_cmd:
-            self.log("Tmux not installed. Skipping")
+            self.log.info("Tmux not installed. Skipping")
             return
         fs.safe_link_file(self._tmux_conf_src, self._tmux_conf_dest)
         fs.safe_link_file(self._status_bar_plugin_src, self._status_bar_plugin_dest)

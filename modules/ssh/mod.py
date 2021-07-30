@@ -5,8 +5,6 @@ from dotfiles import module
 
 
 class SSH(module.Definition):
-    tags = ["essential"]
-
     @property
     def ssh_config_txt(self):
         return textwrap.dedent(f"""

@@ -4,6 +4,7 @@ PKG_NAME = "httpie"
 
 
 class HTTPie(module.Definition):
+    hostnames = ["fhhc", "wintermute"]
     required = ["pipx"]
 
     @module.install

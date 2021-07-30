@@ -10,7 +10,6 @@ ZSH_COMPLETIONS_URL = "https://raw.githubusercontent.com/jarun/buku/master/auto-
 
 class Buku(module.Definition):
     required = ["pipx"]
-    hostnames = ["fhhc", "wintermute"]
 
     @property
     def local_dir(self):

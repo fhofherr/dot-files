@@ -12,6 +12,11 @@ class Starship(module.Definition):
 
     @property
     def asset_names(self):
+        if self.is_raspberrypi_32bit():
+            return (
+                "starship-arm-unknown-linux-musleabihf.tar.gz",
+                "starship-arm-unknown-linux-musleabihf.tar.gz.sha256",
+            )
         return (
             "starship-x86_64-unknown-linux-gnu.tar.gz",
             "starship-x86_64-unknown-linux-gnu.tar.gz.sha256",

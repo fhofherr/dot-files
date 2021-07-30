@@ -167,6 +167,8 @@ LF_ICONS = {
 
 
 class LF(module.Definition):
+    hostnames = ["fhhc", "wintermute"]
+
     _repo_id = "gokcehan/lf"
 
     @property

@@ -5,6 +5,7 @@ from dotfiles import module
 
 
 class Golang(module.Definition):
+    hostnames = ["fhhc", "wintermute"]
     # required = ["asdf"]  # TODO could be an optional dependency
 
     # Go development tools I install from source.

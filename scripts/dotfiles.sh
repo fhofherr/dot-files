@@ -1,14 +1,14 @@
 #!/bin/bash
-: "${POETRY_URL:=https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py}"
-
-set -e
+: "${POETRY_URL:=https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py}"
 
 CURL="$(command -v curl)"
 POETRY="$(command -v poetry)"
 PYTHON3="$(command -v python3)"
 
+set -eou pipefail
+
 function install_poetry() {
-    POETRY="$HOME/.poetry/bin/poetry"
+    POETRY="$HOME/.local/bin/poetry"
 
     if [[ ! -e "$POETRY" ]]; then
         echo "Installing poetry"
@@ -30,12 +30,46 @@ function install_poetry() {
     fi
 }
 
+function install_raspberrypi_dependencies() {
+    sudo apt install \
+        autoconf \
+        automake \
+        bear \
+        build-essential \
+        cargo \
+        cmake \
+        curl \
+        fonts-noto-color-emoji \
+        g++ \
+        gettext \
+        libffi-dev \
+        libssl-dev \
+        libtool \
+        libtool-bin \
+        ninja-build \
+        pkg-config \
+        python3-dev \
+        universal-ctags \
+        unzip \
+        zsh
+}
+
+function install_dependencies() {
+    case $(hostname) in
+        pi400*)
+            install_raspberrypi_dependencies
+            ;;
+        # TODO install dependencies for other hosts here.
+    esac
+}
+
 if [[ -z "$PYTHON3" ]]; then
     echo "python3 is not installed"
     exit 1
 fi
 
 if [[ -z "$POETRY" ]]; then
+    install_dependencies
     install_poetry
 fi
 

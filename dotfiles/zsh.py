@@ -3,7 +3,7 @@ import textwrap
 from dataclasses import dataclass
 from typing import List
 
-from dotfiles import state
+from dotfiles import state, colors
 
 
 @dataclass
@@ -53,6 +53,11 @@ def write_init_files(dest_dir: str, sts: List[state.State]):
             """)
 
         f.write(f"{header}\n\n")
+
+        # Ensure our selected color theme is written to our environment
+        text = f'export {colors.ENV_VAR}="{colors.color_scheme()}"\n'
+        f.write(text)
+
         for name, val in agg.env_vars:
             if name == "PATH":
                 text = protect_var(name, [

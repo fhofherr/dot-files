@@ -5,6 +5,7 @@ from dotfiles import colors, module
 
 
 class Alacritty(module.Definition):
+    hostnames = ["fhhc", "wintermute"]
     required = ["nerd_fonts"]
 
     @property
@@ -45,8 +46,6 @@ class Alacritty(module.Definition):
             return
         with open(self._cfg_file_dest, "w") as f:
             f.write(self._alacritty_cfg)
-        if self._scheme_file:
-            self.state.setenv(colors.ENV_VAR, colors.color_scheme())
 
 
 if __name__ == "__main__":

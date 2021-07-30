@@ -5,6 +5,7 @@ PKG_NAME = "edir"
 
 
 class Edir(module.Definition):
+    hostnames = ["fhhc", "wintermute"]
     required = ["pipx"]
 
     @module.install

@@ -21,7 +21,10 @@ function M.config()
             }
         }
     })
-    telescope.load_extension('fzy_native')
+    -- FZY extension does not work on all machines (e.g. raspberry pi)
+    if vim.tbl_contains({"fhhc", "wintermute"}, vim.fn.hostname()) then
+        telescope.load_extension('fzy_native')
+    end
 
     wk.register({
         name = "Telescope",

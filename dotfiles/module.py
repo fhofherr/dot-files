@@ -15,6 +15,7 @@ from typing import (Any, Callable, Dict, Generator, List, Optional, Set, Tuple,
 from dotfiles import fs, logging, state, zsh
 
 HOSTNAME = platform.node()
+MACHINE = platform.machine()
 
 DEFAULT_HOME_DIR = os.path.expanduser("~")
 DEFAULT_DIR = os.path.join(fs.find_dotfiles_dir(), "modules")
@@ -140,6 +141,9 @@ class Definition:
         self._log = log
         self._state = state
         self._lock = threading.RLock()
+
+    def is_raspberrypi_32bit(self):
+        return MACHINE == "armv7l"
 
     @property
     def mod_dir(self):

@@ -5,6 +5,8 @@ from dotfiles import fs, module
 
 
 class Picom(module.Definition):
+    hostnames = ["fhhc", "wintermute"]
+
     @property
     def _cfg_src(self):
         return os.path.join(self.mod_dir, "picom.conf")

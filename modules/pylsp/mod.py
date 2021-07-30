@@ -5,6 +5,7 @@ PLUGINS = ["python-lsp-server[rope]"]
 
 
 class Pylsp(module.Definition):
+    hostnames = ["fhhc", "wintermute"]
     required = ["pipx"]
 
     @module.install

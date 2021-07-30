@@ -6,6 +6,7 @@ LAZY_GIT_PKG = "github.com/jesseduffield/lazygit"
 
 
 class LazyGit(module.Definition):
+    hostnames = ["fhhc", "wintermute"]
     required = ["git", "golang"]
 
     @property

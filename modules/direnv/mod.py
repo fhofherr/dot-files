@@ -6,6 +6,7 @@ from dotfiles import download, fs, module
 
 class Direnv(module.Definition):
     hostnames = ["fhhc", "wintermute"]
+
     _repo_id = "direnv/direnv"
 
     @property
