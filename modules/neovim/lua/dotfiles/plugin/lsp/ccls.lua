@@ -11,9 +11,6 @@ function M.setup()
     if vim.g.dotfiles_lsp_ccls_root_patterns then
         ccls_opts.root_dir = lspconfig.util.root_pattern(vim.g.dotfiles_lsp_ccls_root_patterns)
     end
-    if vim.g.dotfiles_lsp_ccls_compilation_db_dir then
-        ccls_opts.init_options.compilationDatabaseDirectory = vim.g.dotfiles_lsp_ccls_compilation_db_dir
-    end
     lspconfig.ccls.setup(ccls_opts)
 end
 

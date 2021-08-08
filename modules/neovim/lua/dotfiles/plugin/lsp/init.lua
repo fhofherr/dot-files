@@ -4,7 +4,8 @@ local lspconfig = require("lspconfig")
 local wk = require("dotfiles.plugin.which-key")
 
 local language_servers = {
-    ccls = require("dotfiles.plugin.lsp.ccls"),
+    -- ccls = require("dotfiles.plugin.lsp.ccls"),
+    clangd = require("dotfiles.plugin.lsp.clangd"),
     gopls = require("dotfiles.plugin.lsp.gopls"),
     pylsp = require("dotfiles.plugin.lsp.pylsp"),
 }
