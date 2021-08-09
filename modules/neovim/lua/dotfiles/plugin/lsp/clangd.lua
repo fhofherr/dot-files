@@ -8,7 +8,14 @@ function M.setup()
     local clangd_opts = defaults.new_defaults()
 
     clangd_opts.root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git")
-    clangd_opts.cmd = {"clangd", "--background-index", "--query-driver", "/usr/bin/arm-none-eabi-*"}
+    clangd_opts.cmd = {
+        "clangd",
+        "--background-index",
+        "--clang-tidy",
+        "--cross-file-rename",
+        "--header-insertion", "never",
+        "--query-driver", "/usr/bin/clang-*,/usr/bin/arm-none-eabi-*",
+    }
     lspconfig.clangd.setup(clangd_opts)
 end
 
