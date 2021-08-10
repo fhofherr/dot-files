@@ -44,6 +44,7 @@ local function on_attach(client, bufnr)
             handler_opts = {
                 border = "single",
             },
+            zindex = 50,
         })
     end
 
