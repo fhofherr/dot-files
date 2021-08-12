@@ -195,9 +195,9 @@ function M.setup()
 
             use {
                 "mhartington/formatter.nvim",
-                rocks = {
-                    {"luaformatter", server = "https://luarocks.org/dev"},
-                },
+                -- rocks = {
+                --     {"luaformatter", server = "https://luarocks.org/dev"},
+                -- },
                 config = function()
                     require("dotfiles.plugin.formatter").config()
                 end
