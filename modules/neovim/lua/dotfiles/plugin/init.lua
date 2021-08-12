@@ -227,7 +227,6 @@ function M.setup()
                 "nvim-lua/telescope.nvim",
                 requires = {
                     "nvim-lua/plenary.nvim",
-                    "nvim-lua/popup.nvim" ,
                     "nvim-telescope/telescope-fzy-native.nvim"
                 },
                 after = { "which-key.nvim" },
