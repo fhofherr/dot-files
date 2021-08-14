@@ -1,0 +1,7 @@
+--exclude=extern/*
+--exclude=vendor/*
+--exclude=build/*
+--exclude=*.json
+--exclude=*.md
+--exclude=*.txt
+--exclude=Makefile
