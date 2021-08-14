@@ -3,7 +3,6 @@ local M = {}
 local vimcompat = require("dotfiles.vimcompat")
 local plugin = require("dotfiles.plugin")
 local lint = require("lint")
-local parser = require("lint.parser")
 
 -- List of linters we want to configure. Not all linters may be available
 -- on all systems. We therefore check if the command exists before adding
@@ -15,18 +14,8 @@ local desired_linters = {
     sh = {"shellcheck"}
 }
 
--- TODO configure buf linter: https://github.com/bufbuild/vim-buf/blob/master/ale_linters/proto/buf_lint.vim
-lint.linters.luacheck = {
-    cmd = plugin.hererocks_bin() .. "/luacheck",
-    stdin = false,
-    args = {"--formatter=plain"},
-    ignore_exitcode = true,
-    parser = parser.from_pattern(
-        -- path/to/file:line:col: (code) message
-        "[^:]+:(%d+):(%d+):%s+(.+)%s+(.+)",
-        {source = "luacheck", severity = vim.lsp.protocol.DiagnosticSeverity.Warning}
-    )
-}
+-- -- TODO configure buf linter: https://github.com/bufbuild/vim-buf/blob/master/ale_linters/proto/buf_lint.vim
+lint.linters.luacheck.cmd = plugin.hererocks_bin() .. "/luacheck"
 
 function M.config()
     for ft, list in pairs(desired_linters) do
