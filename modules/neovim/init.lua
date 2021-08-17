@@ -20,6 +20,7 @@ vim.o.writebackup = false  -- not even before writing a file
 vim.o.mouse = "n"          -- enable mouse support in normal mode
 vim.o.showcmd = true       -- show partial commands in the last line of the screen
 vim.o.hidden = true        -- hide buffers when abandoning them
+vim.o.hlsearch = false
 
 vim.o.cmdheight = 2
 vim.o.signcolumn = "yes:2"
