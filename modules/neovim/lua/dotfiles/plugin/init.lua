@@ -128,19 +128,6 @@ function M.setup()
 				end,
 			})
 			use("mhinz/vim-signify")
-			use({
-				"mhinz/vim-grepper",
-				config = function()
-					vim.api.nvim_set_keymap("n", "gs", "<Plug>(GrepperOperator)", { silent = true })
-					vim.api.nvim_set_keymap("x", "gs", "<Plug>(GrepperOperator)", { silent = true })
-					if vim.fn.executable("ag") then
-						vim.api.nvim_command("command -nargs=+ Ag GrepperAg <args>")
-					end
-					if vim.fn.executable("rg") then
-						vim.api.nvim_command("command -nargs=+ Rg GrepperRg <args>")
-					end
-				end,
-			})
 
 			use("nelstrom/vim-visual-star-search")
 

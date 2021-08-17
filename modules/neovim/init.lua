@@ -133,6 +133,12 @@ vim.api.nvim_set_keymap("v", ">", ">gv", { noremap = true, silent = true })
 vim.api.nvim_command("command! Cd cd %:p:h")
 vim.api.nvim_command("command! Lcd lcd %:p:h")
 
+if vim.fn.executable("rg") == 1 then
+    -- See https://github.com/BurntSushi/ripgrep/issues/425#issuecomment-702244167
+    vim.o.grepformat = "%f:%l:%c:%m,%f:%l:%m"
+    vim.o.grepprg = "rg --vimgrep --no-heading"
+end
+
 -------------------------------------------------------------------------------
 -- Plugins
 -------------------------------------------------------------------------------
