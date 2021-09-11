@@ -69,7 +69,7 @@ class Golang(module.Definition):
         env["GOBIN"] = bin_dir
 
         with tempfile.TemporaryDirectory(prefix="dotfiles-go-get-") as tmpdir:
-            return self("get", url, env=env, cwd=tmpdir)
+            return self("install", url, env=env, cwd=tmpdir)
 
 
 if __name__ == "__main__":
