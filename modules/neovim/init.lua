@@ -133,6 +133,7 @@ vim.api.nvim_set_keymap("v", ">", ">gv", { noremap = true, silent = true })
 
 vim.api.nvim_command("command! Cd cd %:p:h")
 vim.api.nvim_command("command! Lcd lcd %:p:h")
+vim.api.nvim_command("command! Delete call delete(expand('%')) | bdelete!")
 
 if vim.fn.executable("rg") == 1 then
     -- See https://github.com/BurntSushi/ripgrep/issues/425#issuecomment-702244167
