@@ -76,6 +76,9 @@ vimcompat.add_to_globals("dotfiles.set_relative_number", function(v)
     if vim.tbl_contains(ignored_file_types, vim.bo.filetype) then
         return
     end
+    -- Always set number. This ensures we don't loose this setting while
+    -- toggling relative number.
+    vim.wo.number = true
     vim.wo.relativenumber = v
 end)
 vimcompat.augroup("dotfiles_numbertoggle", {
