@@ -32,6 +32,7 @@ function M.config()
     })
     npairs_cmp.setup({
         map_cr = true,
+        insert = true,
         map_complete = true,
         auto_select = false,
     })
