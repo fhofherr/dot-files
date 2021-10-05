@@ -13,6 +13,11 @@ function M.config()
                 prompt_position = "top",
             },
             sorting_strategy = "ascending",
+            mappings = {
+                i = {
+                    ["<C-h>"] = "which_key",
+                }
+            },
             extensions = {
                 fzy_native = {
                     override_generic_sorter = true,
