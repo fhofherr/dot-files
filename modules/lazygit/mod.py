@@ -2,7 +2,7 @@ import os
 
 from dotfiles import fs, module
 
-LAZY_GIT_PKG = "github.com/jesseduffield/lazygit"
+LAZY_GIT_PKG = "github.com/jesseduffield/lazygit@latest"
 
 
 class LazyGit(module.Definition):
