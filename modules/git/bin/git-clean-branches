@@ -1,3 +1,27 @@
 #!/bin/bash
 
-git branch --merged | egrep -v "(^\*|master|develop)" | xargs git branch -d
+set -eou pipefail
+
+main_branches=("master" "develop" "main")
+cur_branch="$(command git branch --show-current)"
+
+if [[ ! "${main_branches[*]}" =~ $cur_branch ]]; then
+        echo "Must be called from repository main branch"
+        exit 1
+fi
+
+# Remove deleted remote branches
+command git remote prune origin
+
+# List all branches merged into the current branch. This includes the current
+# branch which is marked with a *. We remove this as it will otherwise be
+# expanded by bash below.
+branches="$(command git branch --merged | grep -v '^\*')"
+
+for branch in $branches; do
+    # Don't remove any main branches
+    if [[ "${main_branches[*]}" =~ $branch ]]; then
+        continue
+    fi
+    command git branch -d "$branch" || true
+done
