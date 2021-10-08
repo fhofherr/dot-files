@@ -95,6 +95,8 @@ function M.setup()
 				end,
 			})
 
+            use "tpope/vim-eunuch"
+
 			use({
 				"tpope/vim-surround",
 				requires = { "tpope/vim-repeat" },
