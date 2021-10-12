@@ -77,6 +77,7 @@ class Tmux(module.Definition):
         self.state.add_alias("tnw", "tmux new-window")
         self.state.add_alias("tsp", f"{self._tmux_bin_dir}/tmux-switch-project")
         self.state.add_alias("tss", "tmux switch-client -t")
+        self.state.add_alias("tst", f"{self._tmux_bin_dir}/tmux-start")
 
     def _create_terminfo(self):
         self.log.info("create tmux terminfo")

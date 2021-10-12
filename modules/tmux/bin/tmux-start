@@ -6,17 +6,21 @@
 set -eou pipefail
 
 function __start_tmux() {
-    local ec
+    local ec session_dir
 
-    # Do not autostart tmux if this is not one of our allow listed terminal
+    # Do not start tmux if this is not one of our allow listed terminal
     # emulators, we are already in a tmux instance, or this is a neovim
     # terminal.
     if [[ -z "${DOTFILES_TERMINAL_EMULATOR:-}" ]] || [[ -n "${TMUX:-}" ]] || [[ -n "${NVIM_LISTEN_ADDRESS:-}" ]]; then
         return 0
     fi
 
+    session_dir="$DOTFILES_TMUX_DEFAULT_SESSION_DIR"
+    if [[ -n "${1-}" ]]; then
+        session_dir="$(realpath "$1")"
+    fi
     # Otherwise create a new session
-    command tmux new-session -A -s "$DOTFILES_TMUX_DEFAULT_SESSION_NAME" -c "$DOTFILES_TMUX_DEFAULT_SESSION_DIR"
+    command tmux new-session -A -s "$DOTFILES_TMUX_DEFAULT_SESSION_NAME" -c "$session_dir"
     ec=$?
     if (( ec == 0 )); then
         exit $ec
@@ -25,4 +29,4 @@ function __start_tmux() {
     return $ec
 }
 
-__start_tmux
+__start_tmux "$@"
