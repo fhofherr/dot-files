@@ -121,10 +121,10 @@ vim.g.markdown_fenced_languages = { "go", "python" }
 vim.api.nvim_set_keymap("n", "Q", ":bdelete<cr>", { noremap = true, silent = true })
 
 -- Move between windows using C-[HJKL]
-vim.api.nvim_set_keymap("n", "<C-J>", "<C-W><C-J>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-K>", "<C-W><C-K>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-L>", "<C-W><C-L>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-H>", "<C-W><C-H>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<C-J>", "<C-W><C-J>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<C-K>", "<C-W><C-K>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<C-L>", "<C-W><C-L>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<C-H>", "<C-W><C-H>", { noremap = true, silent = true })
 
 -- Reselect after using > or < in visualmode
 vim.api.nvim_set_keymap("v", "<", "<gv", { noremap = true, silent = true })

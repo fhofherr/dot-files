@@ -85,6 +85,18 @@ function M.setup()
 				end,
 			})
 
+            use({
+                "numToStr/Navigator.nvim",
+                config = function()
+                    require('Navigator').setup()
+                    local opts = { noremap = true, silent = true }
+                    vim.api.nvim_set_keymap("n", "<C-J>", "<CMD>lua require('Navigator').down()<CR>", opts)
+                    vim.api.nvim_set_keymap("n", "<C-K>", "<CMD>lua require('Navigator').up()<CR>", opts)
+                    vim.api.nvim_set_keymap("n", "<C-L>", "<CMD>lua require('Navigator').right()<CR>", opts)
+                    vim.api.nvim_set_keymap("n", "<C-H>", "<CMD>lua require('Navigator').left()<CR>", opts)
+                end
+            })
+
 			use("editorconfig/editorconfig-vim")
 			use({
 				"mbbill/undotree",
@@ -126,7 +138,7 @@ function M.setup()
 				"mhinz/vim-startify",
 				config = function()
 					vim.g.startify_session_persistence = 1
-					vim.g.starify_change_to_vcs_root = 0
+					vim.g.starify_change_to_vcs_root = 1
 				end,
 			})
 			use("mhinz/vim-signify")
