@@ -8,10 +8,10 @@ set -eou pipefail
 function __start_tmux() {
     local ec session_dir
 
-    # Do not start tmux if this is not one of our allow listed terminal
-    # emulators, we are already in a tmux instance, or this is a neovim
-    # terminal.
-    if [[ -z "${DOTFILES_TERMINAL_EMULATOR:-}" ]] || [[ -n "${TMUX:-}" ]] || [[ -n "${NVIM_LISTEN_ADDRESS:-}" ]]; then
+    if  ! command -v tmux >/dev/null 2>&1; then
+        return 0
+    fi
+    if [[ -n "${TMUX:-}" ]] || [[ -n "${NVIM_LISTEN_ADDRESS:-}" ]] || [[ -n "${DOTFILES_NO_TMUX:-}" ]]; then
         return 0
     fi
 

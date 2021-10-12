@@ -119,11 +119,11 @@ local global_keys = gears.table.join(
 
     -- Standard program
     awful.key({ ctrl, alt }, "t", function()
-        awful.spawn(apps.terminal)
+        apps.spawn_terminal()
     end, { description = "open a terminal", group = "launcher" }),
 
     awful.key({ M.mod }, "Return", function()
-        awful.spawn(apps.terminal)
+        apps.spawn_tmux()
     end, { description = "open a terminal", group = "launcher" }),
 
     awful.key({ M.mod, ctrl }, "r", awesome.restart, {
