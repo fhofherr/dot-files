@@ -1,12 +1,13 @@
+import shutil
 import os
 import textwrap
 
 from dotfiles import fs, module, zsh, colors
 
-BEFORE_COMPINIT_PLUGINS = [
-    zsh.Plugin("https://github.com/yous/vanilli.sh", "vanilli.zsh"),
-    zsh.Plugin("https://github.com/agkozak/zsh-z", "zsh-z.plugin.zsh"),
-]
+BEFORE_COMPINIT_PLUGINS = [ zsh.Plugin("https://github.com/yous/vanilli.sh", "vanilli.zsh") ]
+if not shutil.which("zoxide"):
+    BEFORE_COMPINIT_PLUGINS.append(zsh.Plugin("https://github.com/agkozak/zsh-z", "zsh-z.plugin.zsh"))
+
 AFTER_COMPINIT_PLUGINS = [
     zsh.Plugin("https://github.com/zsh-users/zsh-autosuggestions",
                "zsh-autosuggestions.zsh"),
@@ -56,3 +57,7 @@ class Zsh(module.Definition):
         plugin_dir = os.path.join(self.plugin_dir, plugin_name)
         self.git.clone_or_update(plugin.url, plugin_dir)
         return plugin.init_script(plugin_dir)
+
+
+if __name__ == "__main__":
+    module.run(Zsh)

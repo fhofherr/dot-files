@@ -4,7 +4,7 @@
 ### See: https://wiki.archlinux.org/index.php/zsh#xterm_title
 
 ## Should already be loaded
-# autoload -Uz add-zsh-hook
+autoload -Uz add-zsh-hook
 
 function xterm_title_precmd () {
 	print -Pn -- '\e]2;%n@%m %~\a'
