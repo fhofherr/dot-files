@@ -5,5 +5,5 @@ if [[ -z "$TMUX" ]]; then
     exit 1
 fi
 
-WIDTH="${1:-30}"
+WIDTH="${1:-25}"
 command tmux split-window -l"${WIDTH}%" -h -b
