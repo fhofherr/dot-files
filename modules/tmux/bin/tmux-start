@@ -3,6 +3,10 @@
 : "${DOTFILES_TMUX_DEFAULT_SESSION_NAME:=default}"
 : "${DOTFILES_TMUX_DEFAULT_SESSION_DIR:=$HOME}"
 
+if [[ -f "$HOME/.local/dotfiles/zsh/env.zsh" ]]; then
+    source "$HOME/.local/dotfiles/zsh/env.zsh"
+fi
+
 set -eou pipefail
 
 function __start_tmux() {
