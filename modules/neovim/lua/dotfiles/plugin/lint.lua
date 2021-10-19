@@ -3,6 +3,7 @@ local M = {}
 local vimcompat = require("dotfiles.vimcompat")
 local plugin = require("dotfiles.plugin")
 local lint = require("lint")
+local parser = require("lint.parser")
 
 -- List of linters we want to configure. Not all linters may be available
 -- on all systems. We therefore check if the command exists before adding
@@ -10,11 +11,20 @@ local lint = require("lint")
 local desired_linters = {
     go = {"golangcilint", "revive"},
     lua = {"luacheck"},
+    proto = {"buf"},
     python = {"mypy", "flake8"},
-    sh = {"shellcheck"}
+    sh = {"shellcheck"},
 }
 
--- -- TODO configure buf linter: https://github.com/bufbuild/vim-buf/blob/master/ale_linters/proto/buf_lint.vim
+lint.linters.buf = {
+    cmd = "buf",
+    stdin = false,
+    ignore_exitcode = true,
+    args = {"lint", "--path"},
+    stream = "stdout",
+    parser = parser.from_errorformat("%f:%l:%c:%m"),
+}
+
 lint.linters.luacheck.cmd = plugin.hererocks_bin() .. "/luacheck"
 
 function M.config()
