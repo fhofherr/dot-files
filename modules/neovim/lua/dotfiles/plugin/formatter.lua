@@ -30,6 +30,19 @@ local function config_lua()
 	}
 end
 
+local function config_shfmt()
+	-- Install using cargo install stylua
+	-- See https://github.com/JohnnyMorganz/StyLua
+	if vim.fn.executable("shfmt") ~= 1 then
+		return nil
+	end
+	return {
+		function()
+			return { exe = "shfmt", stdin = true }
+		end,
+	}
+end
+
 local function python_isort()
 	return { exe = "isort", args = { "-rc" }, stdin = false }
 end
@@ -66,6 +79,7 @@ function M.config()
 			cpp = config_clang(),
 			lua = config_lua(),
 			python = config_python(),
+            sh = config_shfmt(),
 		},
 	})
 end
