@@ -162,7 +162,7 @@ function M.setup()
 				end,
 			})
 			use({
-				"hoob3rt/lualine.nvim",
+				"nvim-lualine/lualine.nvim",
 				requires = { "kyazdani42/nvim-web-devicons" },
 				config = function()
 					require("dotfiles.plugin.lualine").config()
@@ -225,7 +225,9 @@ function M.setup()
 			use({
 				"windwp/nvim-autopairs",
 				config = function()
-					require("nvim-autopairs").setup()
+					require("nvim-autopairs").setup({
+                        disable_filetype = { "TelescopePrompt" , "vim" },
+                    })
 				end,
 			})
 			use({
