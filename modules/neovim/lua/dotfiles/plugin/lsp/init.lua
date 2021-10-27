@@ -8,6 +8,7 @@ local language_servers = {
     clangd = require("dotfiles.plugin.lsp.clangd"),
     gopls = require("dotfiles.plugin.lsp.gopls"),
     pylsp = require("dotfiles.plugin.lsp.pylsp"),
+    yamlls = require("dotfiles.plugin.lsp.yamlls"),
 }
 
 function M.config()
