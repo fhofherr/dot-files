@@ -7,9 +7,11 @@ from dotfiles import module
 class SSH(module.Definition):
     @property
     def ssh_config_txt(self):
-        return textwrap.dedent(f"""
-        Include {os.path.join(self.mod_dir, "ssh_config.common")}
-        """)
+        lines = [f"""Include {os.path.join(self.mod_dir, "ssh_config.common")}"""]
+        local_path = os.path.join(self.home_dir, ".ssh", "ssh_config.local")
+        if os.path.exists(local_path):
+            lines.append(f"""Include {local_path}""")
+        return "\n".join(lines)
 
     @property
     def ssh_bin_dir(self):
