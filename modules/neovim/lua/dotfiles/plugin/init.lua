@@ -285,6 +285,39 @@ function M.setup()
 				end,
 			})
 
+            use({
+                "mcchrish/nnn.vim",
+                config = function()
+                    require("nnn").setup({
+                        command = "nnn -o",
+                        set_default_mappings = 0,
+                        replace_netrw = 1,
+                        action = {
+                            ["<c-t>"] = "tab split",
+                            ["<c-x>"] = "split",
+                            ["<c-v>"] = "vsplit" ,
+                        },
+                    })
+                    -- vim.g["nnn#set_default_mappings"] = 0
+                    -- vim.g["nnn#action"] = {
+                    --     ["<c-t>"] ='tab split',
+                    --     ["<c-x>"] = 'split',
+                    --     ["<c-v>"] = 'vsplit' ,
+                    -- }
+                    local wk = require("dotfiles.plugin.which-key")
+                    wk.register({
+                        ["<localleader>e"] = { "<cmd>:NnnPicker<CR>", "Toggle NNN picker for working directory." },
+                        ["<localleader>E"] = {
+                            "<cmd>:NnnPicker %:p:h<CR>",
+                            "Toggle NNN picker for directory containing file.",
+                        },
+					}, {
+						noremap = true,
+						silent = true,
+					})
+                end
+            })
+
 			-- use {
 			--     "ptzz/lf.vim",
 			--     requires = {"voldikss/vim-floaterm"},
