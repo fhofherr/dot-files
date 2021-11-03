@@ -292,18 +292,14 @@ function M.setup()
                         command = "nnn -o",
                         set_default_mappings = 0,
                         replace_netrw = 1,
+                        layout = {window = { width = 0.6, height = 0.9}},
+                        explorer_layout = { left = "25%" },
                         action = {
                             ["<c-t>"] = "tab split",
                             ["<c-x>"] = "split",
                             ["<c-v>"] = "vsplit" ,
                         },
                     })
-                    -- vim.g["nnn#set_default_mappings"] = 0
-                    -- vim.g["nnn#action"] = {
-                    --     ["<c-t>"] ='tab split',
-                    --     ["<c-x>"] = 'split',
-                    --     ["<c-v>"] = 'vsplit' ,
-                    -- }
                     local wk = require("dotfiles.plugin.which-key")
                     wk.register({
                         ["<localleader>e"] = { "<cmd>:NnnPicker<CR>", "Toggle NNN picker for working directory." },
