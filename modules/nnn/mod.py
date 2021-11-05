@@ -54,7 +54,7 @@ class NNN(module.Definition):
 
         self.state.setenv("NNN_OPENER", os.path.join(self._plugin_dest, "nuke"))
         self.state.setenv("NNN_COMMAND", self._nnn_cmd)
-        self.state.setenv("NNN_OPTS", "coERxa")
+        self.state.setenv("NNN_OPTS", "codERxa")
         self.state.setenv("NNN_PLUG","p:preview-tui;z:autojump")
 
         self.state.zsh.after_compinit_script = self._zsh_hook
