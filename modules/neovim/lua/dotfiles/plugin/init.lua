@@ -85,17 +85,17 @@ function M.setup()
 				end,
 			})
 
-            use({
-                "numToStr/Navigator.nvim",
-                config = function()
-                    require('Navigator').setup()
-                    local opts = { noremap = true, silent = true }
-                    vim.api.nvim_set_keymap("n", "<C-J>", "<CMD>lua require('Navigator').down()<CR>", opts)
-                    vim.api.nvim_set_keymap("n", "<C-K>", "<CMD>lua require('Navigator').up()<CR>", opts)
-                    vim.api.nvim_set_keymap("n", "<C-L>", "<CMD>lua require('Navigator').right()<CR>", opts)
-                    vim.api.nvim_set_keymap("n", "<C-H>", "<CMD>lua require('Navigator').left()<CR>", opts)
-                end
-            })
+			use({
+				"numToStr/Navigator.nvim",
+				config = function()
+					require("Navigator").setup()
+					local opts = { noremap = true, silent = true }
+					vim.api.nvim_set_keymap("n", "<C-J>", "<CMD>lua require('Navigator').down()<CR>", opts)
+					vim.api.nvim_set_keymap("n", "<C-K>", "<CMD>lua require('Navigator').up()<CR>", opts)
+					vim.api.nvim_set_keymap("n", "<C-L>", "<CMD>lua require('Navigator').right()<CR>", opts)
+					vim.api.nvim_set_keymap("n", "<C-H>", "<CMD>lua require('Navigator').left()<CR>", opts)
+				end,
+			})
 
 			use("editorconfig/editorconfig-vim")
 			use({
@@ -107,7 +107,7 @@ function M.setup()
 				end,
 			})
 
-            use "tpope/vim-eunuch"
+			use("tpope/vim-eunuch")
 
 			use({
 				"tpope/vim-surround",
@@ -127,12 +127,12 @@ function M.setup()
 			})
 
 			use("unblevable/quick-scope")
-			use {
-			    "TaDaa/vimade",
-			    config = function()
-			        require("dotfiles.plugin.vimade").config()
-			    end
-			}
+			use({
+				"TaDaa/vimade",
+				config = function()
+					require("dotfiles.plugin.vimade").config()
+				end,
+			})
 
 			use({
 				"mhinz/vim-startify",
@@ -154,6 +154,17 @@ function M.setup()
 				config = function()
 					require("dotfiles.plugin.test").config()
 				end,
+			})
+
+			use({
+				"kevinhwang91/nvim-bqf",
+				ft = "qf",
+				requires = {
+					{
+						"junegunn/fzf",
+						-- run = function() vim.fn['fzf#install']() end ,
+					},
+				},
 			})
 
 			use({
@@ -227,8 +238,8 @@ function M.setup()
 				"windwp/nvim-autopairs",
 				config = function()
 					require("nvim-autopairs").setup({
-                        disable_filetype = { "TelescopePrompt" , "vim" },
-                    })
+						disable_filetype = { "TelescopePrompt", "vim" },
+					})
 				end,
 			})
 			use({
@@ -263,7 +274,7 @@ function M.setup()
 				"nvim-treesitter/nvim-treesitter",
 				requires = {
 					"nvim-treesitter/nvim-treesitter-refactor",
-				    "nvim-treesitter/nvim-treesitter-textobjects",
+					"nvim-treesitter/nvim-treesitter-textobjects",
 				},
 				run = ":TSUpdate",
 				config = function()
@@ -285,34 +296,34 @@ function M.setup()
 				end,
 			})
 
-            use({
-                "mcchrish/nnn.vim",
-                config = function()
-                    require("nnn").setup({
-                        command = "nnn -o",
-                        set_default_mappings = 0,
-                        replace_netrw = 1,
-                        layout = {window = { width = 0.6, height = 0.9}},
-                        explorer_layout = { left = "25%" },
-                        action = {
-                            ["<c-t>"] = "tab split",
-                            ["<c-x>"] = "split",
-                            ["<c-v>"] = "vsplit" ,
-                        },
-                    })
-                    local wk = require("dotfiles.plugin.which-key")
-                    wk.register({
-                        ["<localleader>e"] = { "<cmd>:NnnPicker<CR>", "Toggle NNN picker for working directory." },
-                        ["<localleader>E"] = {
-                            "<cmd>:NnnPicker %:p:h<CR>",
-                            "Toggle NNN picker for directory containing file.",
-                        },
+			use({
+				"mcchrish/nnn.vim",
+				config = function()
+					require("nnn").setup({
+						command = "nnn -o",
+						set_default_mappings = 0,
+						replace_netrw = 1,
+						layout = { window = { width = 0.6, height = 0.9 } },
+						explorer_layout = { left = "25%" },
+						action = {
+							["<c-t>"] = "tab split",
+							["<c-x>"] = "split",
+							["<c-v>"] = "vsplit",
+						},
+					})
+					local wk = require("dotfiles.plugin.which-key")
+					wk.register({
+						["<localleader>e"] = { "<cmd>:NnnPicker<CR>", "Toggle NNN picker for working directory." },
+						["<localleader>E"] = {
+							"<cmd>:NnnPicker %:p:h<CR>",
+							"Toggle NNN picker for directory containing file.",
+						},
 					}, {
 						noremap = true,
 						silent = true,
 					})
-                end
-            })
+				end,
+			})
 
 			-- use {
 			--     "ptzz/lf.vim",
