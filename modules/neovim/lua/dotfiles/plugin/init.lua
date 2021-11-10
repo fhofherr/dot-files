@@ -156,16 +156,16 @@ function M.setup()
 				end,
 			})
 
-			use({
-				"kevinhwang91/nvim-bqf",
-				ft = "qf",
-				requires = {
-					{
-						"junegunn/fzf",
-						-- run = function() vim.fn['fzf#install']() end ,
-					},
-				},
-			})
+			-- use({
+			-- 	"kevinhwang91/nvim-bqf",
+			-- 	ft = "qf",
+			-- 	requires = {
+			-- 		{
+			-- 			"junegunn/fzf",
+			-- 			-- run = function() vim.fn['fzf#install']() end ,
+			-- 		},
+			-- 	},
+			-- })
 
 			use({
 				"folke/which-key.nvim",
