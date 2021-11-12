@@ -312,13 +312,15 @@ function M.setup()
 						},
 					})
 					local wk = require("dotfiles.plugin.which-key")
-					wk.register({
-						["<localleader>e"] = { "<cmd>:NnnPicker<CR>", "Toggle NNN picker for working directory." },
-						["<localleader>E"] = {
-							"<cmd>:NnnPicker %:p:h<CR>",
-							"Toggle NNN picker for directory containing file.",
-						},
-					}, {
+                    wk.register({
+                        ["<localleader>n"] = {
+                            ["e"] = { "<cmd>:NnnPicker<CR>", "Toggle NNN picker for working directory." },
+                            ["E"] = {
+                                "<cmd>:NnnPicker %:p:h<CR>",
+                                "Toggle NNN picker for directory containing file.",
+                            },
+                        }
+                    }, {
 						noremap = true,
 						silent = true,
 					})

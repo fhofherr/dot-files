@@ -34,14 +34,14 @@ function M.config()
     wk.register({
         name = "Telescope",
         ["<C-p>"] = { "<cmd>lua require('dotfiles.plugin.telescope').find_files()<CR>", "Find files" },
-        -- ["<localleader>e"] = {
-        --     "<cmd>lua require('dotfiles.plugin.telescope').file_browser()<CR>",
-        --     "Browse current working directory.",
-        -- },
-        -- ["<localleader>E"] = {
-        --     "<cmd>lua require('dotfiles.plugin.telescope').file_browser({cwd=vim.fn.expand('%:p:h')})<CR>",
-        --     "Browse current file directory.",
-        -- },
+        ["<localleader>e"] = {
+            "<cmd>lua require('dotfiles.plugin.telescope').file_browser()<CR>",
+            "Browse current working directory.",
+        },
+        ["<localleader>E"] = {
+            "<cmd>lua require('dotfiles.plugin.telescope').file_browser({cwd=vim.fn.expand('%:p:h')})<CR>",
+            "Browse current file directory.",
+        },
         ["<localleader>f"] = {
             name = "Find",
             b = { "<cmd>lua require('dotfiles.plugin.telescope').buffers()<CR>", "Find buffers." },
