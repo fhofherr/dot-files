@@ -1,2 +1,2 @@
-setlocal spell spelllang=en_us
+setlocal spelllang=en_us " spell
 setlocal commentstring=//\ %s

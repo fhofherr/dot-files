@@ -1,1 +1,1 @@
-setlocal textwidth=72 spell spelllang=en_us
+setlocal textwidth=72  spelllang=en_us " spell

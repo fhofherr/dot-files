@@ -50,6 +50,7 @@ function M.setup()
 	packer.startup({
 		function(use)
 			use("wbthomason/packer.nvim") -- Packer can manage itself
+			use("antoinemadec/FixCursorHold.nvim")
 
 			use({
 				try_local("fhofherr/termmaker.nvim"),
@@ -98,17 +99,18 @@ function M.setup()
 			})
 
 			use("editorconfig/editorconfig-vim")
-			use({
-				"mbbill/undotree",
-				config = function()
-					vim.g.undotree_WindowLayout = 4
-					vim.g.undotree_SplitWidth = 50
-					vim.g.undotree_SetFocusWhenToggle = 1
-				end,
-			})
+
+			-- I hardly ever use that
+			-- use({
+			-- 	"mbbill/undotree",
+			-- 	config = function()
+			-- 		vim.g.undotree_WindowLayout = 4
+			-- 		vim.g.undotree_SplitWidth = 50
+			-- 		vim.g.undotree_SetFocusWhenToggle = 1
+			-- 	end,
+			-- })
 
 			use("tpope/vim-eunuch")
-
 			use({
 				"tpope/vim-surround",
 				requires = { "tpope/vim-repeat" },
@@ -117,12 +119,22 @@ function M.setup()
 				"tpope/vim-unimpaired",
 				requires = { "tpope/vim-repeat" },
 			})
-			use("tpope/vim-fugitive") -- TODO config?
 			use("tpope/vim-commentary")
 			use({
 				"tpope/vim-projectionist",
 				config = function()
 					require("dotfiles.plugin.projectionist").config()
+				end,
+			})
+			use("tpope/vim-fugitive") -- TODO config?
+			use({
+				"lewis6991/gitsigns.nvim",
+				requires = { "nvim-lua/plenary.nvim" },
+				after = { "which-key.nvim" },
+				config = function()
+					require("gitsigns").setup({
+						current_line_blame = false,
+					})
 				end,
 			})
 
@@ -142,7 +154,7 @@ function M.setup()
 					vim.g.startify_change_vcs_root = 1
 				end,
 			})
-			use("mhinz/vim-signify")
+			-- use("mhinz/vim-signify")
 
 			use("nelstrom/vim-visual-star-search")
 
@@ -198,6 +210,7 @@ function M.setup()
 				"ray-x/lsp_signature.nvim",
 				config = function()
 					require("lsp_signature").setup({
+						hint_enable = false,
 						handler_opts = {
 							border = "single",
 						},
@@ -213,6 +226,7 @@ function M.setup()
 					require("dotfiles.plugin.lsp").config()
 				end,
 			})
+
 			use({
 				"mfussenegger/nvim-lint",
 				rocks = {
@@ -236,22 +250,44 @@ function M.setup()
 
 			use({
 				"windwp/nvim-autopairs",
+				requires = {
+					"windwp/nvim-ts-autotag",
+				},
 				config = function()
-					require("nvim-autopairs").setup({
+                    local npairs = require("nvim-autopairs")
+					npairs.setup({
 						disable_filetype = { "TelescopePrompt", "vim" },
+						disable_in_macro = true,
+						enable_moveright = true,
+						enable_afterquote = true,
+						enable_check_bracket_in_line = true,
+						check_ts = true, -- See https://github.com/windwp/nvim-autopairs#treesitter
+						map_bs = true,
+						map_c_w = false,
+						autotag = {
+							enable = true,
+						},
 					})
+                    -- Enabble experimental endwise support.
+                    -- See https://github.com/windwp/nvim-autopairs/wiki/Endwise
+                    npairs.add_rules(require('nvim-autopairs.rules.endwise-elixir'))
+                    npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
+                    npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
 				end,
 			})
 			use({
 				"hrsh7th/nvim-cmp",
 				after = { "nvim-autopairs" },
 				requires = {
-					"hrsh7th/vim-vsnip",
-					"hrsh7th/cmp-vsnip",
-					"hrsh7th/cmp-path",
-					"hrsh7th/cmp-nvim-lsp",
 					"hrsh7th/cmp-emoji",
+					"hrsh7th/cmp-nvim-lsp",
 					"hrsh7th/cmp-nvim-lua",
+					"hrsh7th/cmp-path",
+					"hrsh7th/cmp-vsnip",
+					"hrsh7th/cmp-buffer",
+					"hrsh7th/vim-vsnip",
+					"onsails/lspkind-nvim",
+					"ray-x/cmp-treesitter",
 				},
 				config = function()
 					require("dotfiles.plugin.vsnip").config()
@@ -262,7 +298,7 @@ function M.setup()
 				"nvim-lua/telescope.nvim",
 				requires = {
 					"nvim-lua/plenary.nvim",
-					"nvim-telescope/telescope-fzy-native.nvim",
+					{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
 				},
 				after = { "which-key.nvim" },
 				config = function()
@@ -279,6 +315,16 @@ function M.setup()
 				run = ":TSUpdate",
 				config = function()
 					require("dotfiles.plugin.treesitter").config()
+				end,
+			})
+
+			use({
+				"lewis6991/spellsitter.nvim",
+				config = function()
+					require("spellsitter").setup({
+						enable = true,
+						spellchecker = "vimfn",
+					})
 				end,
 			})
 
@@ -312,15 +358,15 @@ function M.setup()
 						},
 					})
 					local wk = require("dotfiles.plugin.which-key")
-                    wk.register({
-                        ["<localleader>n"] = {
-                            ["e"] = { "<cmd>:NnnPicker<CR>", "Toggle NNN picker for working directory." },
-                            ["E"] = {
-                                "<cmd>:NnnPicker %:p:h<CR>",
-                                "Toggle NNN picker for directory containing file.",
-                            },
-                        }
-                    }, {
+					wk.register({
+						["<localleader>n"] = {
+							["e"] = { "<cmd>:NnnPicker<CR>", "Toggle NNN picker for working directory." },
+							["E"] = {
+								"<cmd>:NnnPicker %:p:h<CR>",
+								"Toggle NNN picker for directory containing file.",
+							},
+						},
+					}, {
 						noremap = true,
 						silent = true,
 					})

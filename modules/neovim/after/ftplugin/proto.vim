@@ -1,4 +1,4 @@
-setlocal formatoptions+=r spell spelllang=en_us
+setlocal formatoptions+=r spelllang=en_us " spell
 
 let s:spelldir = stdpath('config') . '/spell'
 call mkdir(s:spelldir, 'p')

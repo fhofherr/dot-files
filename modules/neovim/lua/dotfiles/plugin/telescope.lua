@@ -19,17 +19,23 @@ function M.config()
                 }
             },
             extensions = {
-                fzy_native = {
+                fzf = {
+                    fuzzy = true,
                     override_generic_sorter = true,
-                    override_file_sorter = true
-                }
+                    override_file_sorter = true,
+                },
+                -- fzy_native = {
+                --     override_generic_sorter = true,
+                --     override_file_sorter = true
+                -- }
             }
         }
     })
-    -- FZY extension does not work on all machines (e.g. raspberry pi)
-    if vim.tbl_contains({"fhhc", "wintermute"}, vim.fn.hostname()) then
-        telescope.load_extension('fzy_native')
-    end
+    telescope.load_extension("fzf")
+    -- -- FZY extension does not work on all machines (e.g. raspberry pi)
+    -- if vim.tbl_contains({"fhhc", "wintermute"}, vim.fn.hostname()) then
+    --     telescope.load_extension('fzy_native')
+    -- end
 
     wk.register({
         name = "Telescope",

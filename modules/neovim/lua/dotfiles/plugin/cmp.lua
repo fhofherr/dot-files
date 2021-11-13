@@ -1,6 +1,7 @@
 local M = {}
 
 local cmp = require("cmp")
+local lspkind = require("lspkind")
 local npairs_cmp = require("nvim-autopairs.completion.cmp")
 
 function M.config()
@@ -16,8 +17,16 @@ function M.config()
 		},
 		sources = {
 			{ name = "nvim_lsp" },
+			{ name = "treesitter" },
 			{ name = "nvim_lua" },
-			{ name = "buffer" },
+			{
+				name = "buffer",
+				opts = {
+					get_bufnrs = function()
+						return vim.api.nvim_list_bufs()
+					end,
+				},
+			},
 			{ name = "path" },
 			{ name = "vsnip" },
 			{ name = "emoji" },
@@ -28,7 +37,10 @@ function M.config()
 			["<C-e>"] = cmp.mapping.close(),
 			["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
 			["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
-			["<CR>"] = cmp.mapping.confirm({ select = true }),
+			["<CR>"] = cmp.mapping.confirm({ select = false }),
+		},
+		formatting = {
+			format = lspkind.cmp_format({ with_text = true, maxwidth = 50 }),
 		},
 	})
 

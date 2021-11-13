@@ -6,8 +6,8 @@ local treesitter_configs = require("nvim-treesitter.configs")
 function M.config()
 	treesitter_configs.setup({
 		highlight = {
-			enable = false,
-			additional_vim_regex_highlighting = true,
+			enable = true,
+			additional_vim_regex_highlighting = false,
 		},
 		incremental_selection = {
 			enable = true,

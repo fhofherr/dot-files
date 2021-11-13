@@ -138,6 +138,12 @@ vim.api.nvim_command("command! Cd cd %:p:h")
 vim.api.nvim_command("command! Lcd lcd %:p:h")
 -- vim.api.nvim_command("command! Delete call delete(expand('%')) | bdelete!")
 
+-- Open files relative to the path of the current buffer regardless of Neovim's
+-- working directory.
+vim.api.nvim_command("command! -nargs=1 -complete=file Edit edit %:h/<args>")
+vim.api.nvim_command("command! -nargs=1 -complete=file Split split %:h/<args>")
+vim.api.nvim_command("command! -nargs=1 -complete=file Vsplit vsplit %:h/<args>")
+
 if vim.fn.executable("rg") == 1 then
     -- See https://github.com/BurntSushi/ripgrep/issues/425#issuecomment-702244167
     vim.o.grepformat = "%f:%l:%c:%m,%f:%l:%m"
