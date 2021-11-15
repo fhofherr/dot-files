@@ -147,13 +147,34 @@ function M.setup()
 			})
 
 			use({
-				"mhinz/vim-startify",
+				"goolord/alpha-nvim",
+				requires = { "kyazdani42/nvim-web-devicons" },
 				config = function()
-					vim.g.startify_session_persistence = 1
-					vim.g.startify_change_to_dir = 0
-					vim.g.startify_change_vcs_root = 1
+					local dashboard = require("alpha.themes.dashboard")
+					local leader = vim.g.maplocalleader
+					if leader == " " then
+						leader = "Space"
+					end
+
+					dashboard.section.buttons.val = {
+						dashboard.button("CTRL-p", "  Find file"),
+						dashboard.button(leader .. " f o", "  Recently opened files"),
+						dashboard.button(leader .. " f g", "  Live grep"),
+						dashboard.button(leader .. " f m", "  Jump to bookmarks"),
+						dashboard.button("e", "  New file", ":enew <CR>"),
+						dashboard.button("q", "  Quit NVIM", ":qa<CR>"),
+					}
+					require("alpha").setup(require("alpha.themes.dashboard").opts)
 				end,
 			})
+			-- use({
+			-- 	"mhinz/vim-startify",
+			-- 	config = function()
+			-- 		vim.g.startify_session_persistence = 1
+			-- 		vim.g.startify_change_to_dir = 0
+			-- 		vim.g.startify_change_vcs_root = 1
+			-- 	end,
+			-- })
 			-- use("mhinz/vim-signify")
 
 			use("nelstrom/vim-visual-star-search")
@@ -254,7 +275,7 @@ function M.setup()
 					"windwp/nvim-ts-autotag",
 				},
 				config = function()
-                    local npairs = require("nvim-autopairs")
+					local npairs = require("nvim-autopairs")
 					npairs.setup({
 						disable_filetype = { "TelescopePrompt", "vim" },
 						disable_in_macro = true,
@@ -268,11 +289,11 @@ function M.setup()
 							enable = true,
 						},
 					})
-                    -- Enabble experimental endwise support.
-                    -- See https://github.com/windwp/nvim-autopairs/wiki/Endwise
-                    npairs.add_rules(require('nvim-autopairs.rules.endwise-elixir'))
-                    npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
-                    npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
+					-- Enabble experimental endwise support.
+					-- See https://github.com/windwp/nvim-autopairs/wiki/Endwise
+					npairs.add_rules(require("nvim-autopairs.rules.endwise-elixir"))
+					npairs.add_rules(require("nvim-autopairs.rules.endwise-lua"))
+					npairs.add_rules(require("nvim-autopairs.rules.endwise-ruby"))
 				end,
 			})
 			use({
