@@ -55,6 +55,7 @@ function M.config()
             g = { "<cmd>lua require('dotfiles.plugin.telescope').live_grep()<CR>", "Live grep." },
             l = { "<cmd>lua require('dotfiles.plugin.telescope').loclist()<CR>", "Find tags." },
             m = { "<cmd>lua require('dotfiles.plugin.telescope').marks()<CR>", "Find marks." },
+            o = { "<cmd>lua require('dotfiles.plugin.telescope').oldfiles()<CR>", "Recently opened files" },
             q = { "<cmd>lua require('dotfiles.plugin.telescope').quickfix()<CR>", "Find tags." },
             r = { "<cmd>lua require('dotfiles.plugin.telescope').registers()<CR>", "Find tags." },
             S = {
@@ -63,6 +64,7 @@ function M.config()
             },
             s = { "<cmd>lua require('dotfiles.plugin.telescope').treesitter()<CR>", "Find Treesitter symbols." },
             t = { "<cmd>lua require('dotfiles.plugin.telescope').tags()<CR>", "Find tags." },
+            j = { "<cmd>lua require('dotfiles.plugin.telescope').jumplist()<CR>", "Find jumlist entry" },
         },
     }, { noremap = true, silent = true})
 end
@@ -78,10 +80,12 @@ function M.buffers()
 end
 
 M.file_browser = builtin.file_browser
+M.jumplist = builtin.jumplist
 M.live_grep = builtin.live_grep
 M.loclist = builtin.loclist
 M.lsp_dynamic_workspace_symbols = builtin.lsp_dynamic_workspace_symbols
 M.marks = builtin.marks
+M.oldfiles = builtin.oldfiles
 M.quickfix = builtin.quickfix
 M.registers = builtin.registers
 M.tags = builtin.tags
