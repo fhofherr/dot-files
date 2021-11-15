@@ -72,7 +72,7 @@ vimcompat.augroup("dotfiles_colors", {
 vim.o.number = true
 vim.o.numberwidth = 5
 vimcompat.add_to_globals("dotfiles.set_relative_number", function(v)
-    local ignored_file_types = {"help", "qf", "termmaker"}
+    local ignored_file_types = {"alpha", "help", "qf", "termmaker"}
     if vim.tbl_contains(ignored_file_types, vim.bo.filetype) then
         return
     end
