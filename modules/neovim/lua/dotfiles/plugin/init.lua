@@ -332,6 +332,8 @@ function M.setup()
 				requires = {
 					"nvim-treesitter/nvim-treesitter-refactor",
 					"nvim-treesitter/nvim-treesitter-textobjects",
+					"nvim-treesitter/playground",
+					"p00f/nvim-ts-rainbow",
 				},
 				run = ":TSUpdate",
 				config = function()
