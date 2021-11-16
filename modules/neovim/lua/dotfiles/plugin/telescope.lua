@@ -66,6 +66,10 @@ function M.config()
 			t = { "<cmd>lua require('dotfiles.plugin.telescope').workspace_symbols()<CR>", "Find tags." },
 			j = { "<cmd>lua require('dotfiles.plugin.telescope').jumplist()<CR>", "Find jumlist entry" },
 		},
+        ["<localleader>x"] = {
+			d = { "<cmd>lua require('dotfiles.plugin.telescope').document_diagnostics()<CR>", "Toggle document diagnostics" },
+			w = { "<cmd>lua require('dotfiles.plugin.telescope').workspace_diagnostics()<CR>", "Toggle workspace diagnostics" },
+        },
 	}, {
 		noremap = true,
 		silent = true,
@@ -82,6 +86,7 @@ function M.buffers()
 	})
 end
 
+M.document_diagnostics = builtin.lsp_document_diagnostics
 M.file_browser = builtin.file_browser
 M.help_tags = builtin.help_tags
 M.jumplist = builtin.jumplist
@@ -92,6 +97,7 @@ M.oldfiles = builtin.oldfiles
 M.quickfix = builtin.quickfix
 M.registers = builtin.registers
 M.tags = builtin.tags
+M.workspace_diagnostics = builtin.lsp_workspace_diagnostics
 
 function M.document_symbols()
 	-- Check if buffer is attached to *any* lsp client. Usually this is just

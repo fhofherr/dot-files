@@ -220,13 +220,13 @@ function M.setup()
 					require("lsp-colors").setup()
 				end,
 			})
-			use({
-				"folke/trouble.nvim",
-				after = { "which-key.nvim" },
-				config = function()
-					require("dotfiles.plugin.trouble").config()
-				end,
-			})
+			-- use({
+			-- 	"folke/trouble.nvim",
+			-- 	after = { "which-key.nvim" },
+			-- 	config = function()
+			-- 		require("dotfiles.plugin.trouble").config()
+			-- 	end,
+			-- })
 			use({
 				"ray-x/lsp_signature.nvim",
 				config = function()
