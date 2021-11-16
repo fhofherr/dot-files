@@ -157,7 +157,7 @@ function M.setup()
 					end
 
 					dashboard.section.buttons.val = {
-						dashboard.button("CTRL-p", "  Find file"),
+						dashboard.button("Ctrl-p", "  Find file"),
 						dashboard.button(leader .. " f o", "  Recently opened files"),
 						dashboard.button(leader .. " f g", "  Live grep"),
 						dashboard.button(leader .. " f m", "  Jump to bookmarks"),
