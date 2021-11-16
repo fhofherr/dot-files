@@ -1,6 +1,7 @@
 --exclude=extern/*
 --exclude=vendor/*
 --exclude=build/*
+--exclude=.venv/*
 --exclude=*.json
 --exclude=*.md
 --exclude=*.txt
