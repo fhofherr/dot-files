@@ -2,7 +2,7 @@ import os
 
 from dotfiles import module
 
-MNML_PKG = "github.com/fhofherr/mnml/cmd/mnml"
+MNML_PKG = "github.com/fhofherr/mnml/cmd/mnml@latest"
 
 
 class MNML(module.Definition):

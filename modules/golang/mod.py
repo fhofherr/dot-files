@@ -60,7 +60,9 @@ class Golang(module.Definition):
 
     @module.export
     def go_get(self, url, go_mod=True, bin_dir=None):
-        env = {"GOPROXY": self.go_proxy, "HOME": self.home_dir}
+        env = os.environ.copy()
+        env["GOPROXY"] = self.go_proxy
+        env["HOME"] = self.home_dir
         if go_mod:
             env["GO111MODULE"] = "on"
 
