@@ -38,6 +38,7 @@ function M.config()
 			["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
 			["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
 			["<CR>"] = cmp.mapping.confirm({ select = false }),
+			["<M-CR>"] = cmp.mapping(cmp.mapping.complete({ reason = cmp.ContextReason.Manual }), { "i", "s" }),
 		},
 		formatting = {
 			format = lspkind.cmp_format({ with_text = true, maxwidth = 50 }),

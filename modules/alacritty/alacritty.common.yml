@@ -564,9 +564,18 @@ key_bindings:
   # Custom key bindings (Linux)
   - { key: N,      mods: Shift|Control,       action: SpawnNewInstance }
 
+  # TODO for some reason this does not work (anymore)
   # Key-codes expected by vim to be able to map S-CR and C-CR
-  - { key: Return,   mods: Shift,   chars: "\x1b[13;2u" }
-  - { key: Return,   mods: Control, chars: "\x1b[13;5u" }
+  # See https://www.reddit.com/r/neovim/comments/mbj8m5/how_to_setup_ctrlshiftkey_mappings_in_neovim_and/
+  # And https://en.wikipedia.org/wiki/List_of_Unicode_characters
+  #
+  # * \x1b[ is a CSI (control sequence introducer), meaning ESC+[;
+  # * 74 is the decimal value of char J (see above);
+  # * 5 is the sum of bits for the ctrl and shift modifiers (1 is shift, 2 is alt, 4 is ctrl);
+  # * u stands for unicode.
+  #
+  # - { key: Return,   mods: Shift,   chars: "\x1b[13;1u" }
+  # - { key: Return,   mods: Control, chars: "\x1b[13;4u" }
 
 #debug:
   # Display the time it takes to redraw each frame.
