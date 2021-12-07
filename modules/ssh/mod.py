@@ -43,7 +43,7 @@ class SSH(module.Definition):
         # ussh stands for *unsafe* ssh. I frequently need to log into test
         # cloud nodes which were just spawned and received the same IP as
         # the previous test node.
-        self.state.add_alias("ussh", "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null")
+        self.state.add_alias("ussh", "ssh -o AddKeysToAgent=no -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null")
 
 
 if __name__ == "__main__":
