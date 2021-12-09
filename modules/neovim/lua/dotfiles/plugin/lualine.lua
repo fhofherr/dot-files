@@ -43,7 +43,7 @@ function M.config()
             lualine_b = {"branch"},
             lualine_c = {"filename"},
             lualine_x = {
-                {"diagnostics", sources = {"nvim_lsp", "ale"}},
+                {"diagnostics", sources = {"nvim", "ale"}},
                 "encoding",
                 "fileformat",
                 "filetype",
