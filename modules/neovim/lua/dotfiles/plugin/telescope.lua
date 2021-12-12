@@ -86,7 +86,9 @@ function M.buffers()
 	})
 end
 
-M.document_diagnostics = builtin.lsp_document_diagnostics
+M.document_diagnostics = function()
+    builtin.diagnostics({bufnr=0})
+end
 M.file_browser = builtin.file_browser
 M.help_tags = builtin.help_tags
 M.jumplist = builtin.jumplist
@@ -97,7 +99,7 @@ M.oldfiles = builtin.oldfiles
 M.quickfix = builtin.quickfix
 M.registers = builtin.registers
 M.tags = builtin.tags
-M.workspace_diagnostics = builtin.lsp_workspace_diagnostics
+M.workspace_diagnostics = builtin.diagnostics
 
 function M.document_symbols()
 	-- Check if buffer is attached to *any* lsp client. Usually this is just
