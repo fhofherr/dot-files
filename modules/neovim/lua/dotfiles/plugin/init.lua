@@ -320,6 +320,7 @@ function M.setup()
 				requires = {
 					"nvim-lua/plenary.nvim",
 					{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+                    "nvim-telescope/telescope-file-browser.nvim",
 				},
 				after = { "which-key.nvim" },
 				config = function()
@@ -341,15 +342,15 @@ function M.setup()
 				end,
 			})
 
-			use({
-				"lewis6991/spellsitter.nvim",
-				config = function()
-					require("spellsitter").setup({
-						enable = true,
-						spellchecker = "vimfn",
-					})
-				end,
-			})
+			-- use({
+			-- 	"lewis6991/spellsitter.nvim",
+			-- 	config = function()
+			-- 		require("spellsitter").setup({
+			-- 			enable = true,
+			-- 			spellchecker = "vimfn",
+			-- 		})
+			-- 	end,
+			-- })
 
 			-- Works best with universal-ctags (https://ctags.io)
 			-- Install with: brew install --HEAD universal-ctags/universal-ctags/universal-ctags on Mac

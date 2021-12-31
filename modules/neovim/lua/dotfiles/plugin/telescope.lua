@@ -32,6 +32,7 @@ function M.config()
 		},
 	})
 	telescope.load_extension("fzf")
+	telescope.load_extension("file_browser")
 	-- -- FZY extension does not work on all machines (e.g. raspberry pi)
 	-- if vim.tbl_contains({"fhhc", "wintermute"}, vim.fn.hostname()) then
 	--     telescope.load_extension('fzy_native')
@@ -89,7 +90,7 @@ end
 M.document_diagnostics = function()
     builtin.diagnostics({bufnr=0})
 end
-M.file_browser = builtin.file_browser
+M.file_browser = telescope.extensions.file_browser.file_browser
 M.help_tags = builtin.help_tags
 M.jumplist = builtin.jumplist
 M.live_grep = builtin.live_grep
