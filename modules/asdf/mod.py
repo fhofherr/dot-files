@@ -26,6 +26,7 @@ class ASDF(module.Definition):
     def install_asdf(self):
         self.git.clone_or_update(REPO_URL, self.asdf_dir, branch="latest_tag")
         self.state.setenv("PATH", self.asdf_bin_dir)
+        self.state.setenv("ASDF_DIR", self.asdf_dir)
         self._add_zsh_completions()
 
     @module.update
@@ -40,12 +41,6 @@ class ASDF(module.Definition):
 
         with open(init_file) as f:
             script = f.read()
-            script = re.sub(
-                r"^ASDF_DIR=.+$",
-                f'\nASDF_DIR="{self.asdf_dir}"\n',
-                script,
-                flags=re.MULTILINE,
-            )
             script = f'{script}\nfpath+=("${{ASDF_DIR}}"/completions)\n'
             self.state.zsh.before_compinit_script = script
 
