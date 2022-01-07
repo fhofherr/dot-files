@@ -9,6 +9,9 @@ function M.config()
 		completion = {
 			completeopt = "menu,menuone,noselect,noinsert",
 		},
+        experimental = {
+            native_menu = true,
+        },
 		preselect = cmp.PreselectMode.None,
 		snippet = {
 			expand = function(args)
