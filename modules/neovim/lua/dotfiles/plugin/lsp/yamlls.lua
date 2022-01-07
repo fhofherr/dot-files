@@ -9,6 +9,14 @@ function M.setup()
         return
     end
     local opts = defaults.new_defaults()
+    opts.settings = {
+        yaml = {
+            schemaStore = {
+                enable = true,
+                url = "https://www.schemastore.org/json/",
+            },
+        },
+    }
     lspconfig.yamlls.setup(opts)
 end
 
