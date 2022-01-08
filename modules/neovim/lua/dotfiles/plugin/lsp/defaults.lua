@@ -45,6 +45,8 @@ local function on_attach(client, bufnr)
 	})
 
 	buf_def_cmd("LspRename", "lua vim.lsp.buf.rename()")
+	buf_def_cmd("LspIncomingCalls", "lua vim.lsp.buf.incoming_calls()")
+	buf_def_cmd("LspOutgoingCalls", "lua vim.lsp.buf.outgoing_calls()")
 	buf_def_cmd("LspCodeActions", "lua require('dotfiles.plugin.telescope').lsp_code_actions()")
 
 	if client.resolved_capabilities.document_formatting or client.resolved_capabilities.document_range_formatting then
