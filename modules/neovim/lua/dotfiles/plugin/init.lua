@@ -137,12 +137,12 @@ function M.setup()
 				end,
 			})
 
-            use({
-                "numToStr/Comment.nvim",
-                config = function()
-                    require("Comment").setup()
-                end
-            })
+			use({
+				"numToStr/Comment.nvim",
+				config = function()
+					require("Comment").setup()
+				end,
+			})
 
 			use("unblevable/quick-scope")
 			use({
@@ -326,7 +326,7 @@ function M.setup()
 				requires = {
 					"nvim-lua/plenary.nvim",
 					{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
-                    "nvim-telescope/telescope-file-browser.nvim",
+					"nvim-telescope/telescope-file-browser.nvim",
 				},
 				after = { "which-key.nvim" },
 				config = function()
@@ -417,18 +417,17 @@ function M.setup()
 			use("hashivim/vim-terraform")
 			use("mattn/vim-goaddtags")
 
-            use({
-                "mfussenegger/nvim-dap",
-                requires = {
-                    "rcarriga/nvim-dap-ui",
-                    "leoluz/nvim-dap-go",
-                    "theHamsta/nvim-dap-virtual-text",
-                },
-                after = {"telescope.nvim"},
-                config = function()
-                    require("dotfiles.plugin.dap").setup()
-                end,
-            })
+			use({
+				"mfussenegger/nvim-dap",
+				requires = {
+					"rcarriga/nvim-dap-ui",
+					"leoluz/nvim-dap-go",
+					"theHamsta/nvim-dap-virtual-text",
+				},
+				config = function()
+					require("dotfiles.plugin.dap").setup()
+				end,
+			})
 
 			-- Smooth scrolling
 			use({
