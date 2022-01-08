@@ -316,7 +316,7 @@ function M.setup()
 				end,
 			})
 			use({
-				"nvim-lua/telescope.nvim",
+				"nvim-telescope/telescope.nvim",
 				requires = {
 					"nvim-lua/plenary.nvim",
 					{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
@@ -410,7 +410,19 @@ function M.setup()
 
 			use("hashivim/vim-terraform")
 			use("mattn/vim-goaddtags")
-			use("sebdah/vim-delve") -- TODO consider trying nvim-dap
+
+            use({
+                "mfussenegger/nvim-dap",
+                requires = {
+                    "rcarriga/nvim-dap-ui",
+                    "leoluz/nvim-dap-go",
+                    "theHamsta/nvim-dap-virtual-text",
+                },
+                after = {"telescope.nvim"},
+                config = function()
+                    require("dotfiles.plugin.dap").setup()
+                end,
+            })
 
 			-- Smooth scrolling
 			use({
