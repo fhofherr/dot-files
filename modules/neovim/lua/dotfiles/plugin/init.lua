@@ -119,7 +119,6 @@ function M.setup()
 				"tpope/vim-unimpaired",
 				requires = { "tpope/vim-repeat" },
 			})
-			use("tpope/vim-commentary")
 			use({
 				"tpope/vim-projectionist",
 				config = function()
@@ -137,6 +136,13 @@ function M.setup()
 					})
 				end,
 			})
+
+            use({
+                "numToStr/Comment.nvim",
+                config = function()
+                    require("Comment").setup()
+                end
+            })
 
 			use("unblevable/quick-scope")
 			use({
