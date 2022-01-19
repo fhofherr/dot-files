@@ -23,8 +23,8 @@ function M.config()
     )
     wk.register({
         name = "lsp",
-        ["]w"] = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "Go to next LSP diagnostic" },
-        ["[w"] = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", "Go to next LSP diagnostic" },
+        ["]w"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Go to next LSP diagnostic" },
+        ["[w"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Go to next LSP diagnostic" },
     }, { noremap = true, silent = true })
 
     if lspconfig then
