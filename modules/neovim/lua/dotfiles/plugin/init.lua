@@ -145,12 +145,12 @@ function M.setup()
 			})
 
 			use("unblevable/quick-scope")
-			use({
-				"TaDaa/vimade",
-				config = function()
-					require("dotfiles.plugin.vimade").config()
-				end,
-			})
+			-- use({
+			-- 	"TaDaa/vimade",
+			-- 	config = function()
+			-- 		require("dotfiles.plugin.vimade").config()
+			-- 	end,
+			-- })
 
 			use({
 				"goolord/alpha-nvim",
