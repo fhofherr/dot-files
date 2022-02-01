@@ -9,6 +9,7 @@ local language_servers = {
     gopls = require("dotfiles.plugin.lsp.gopls"),
     pylsp = require("dotfiles.plugin.lsp.pylsp"),
     pyright = require("dotfiles.plugin.lsp.pyright"),
+    sumneko_lua = require("dotfiles.plugin.lsp.lualsp"),
     yamlls = require("dotfiles.plugin.lsp.yamlls"),
 }
 
