@@ -39,6 +39,8 @@ vim.wo.list = false
 vim.wo.colorcolumn = "80,120"
 
 vim.wo.foldenable = false -- disable folding by default
+vim.wo.foldcolumn = "auto:1"
+vim.wo.foldnestmax = 5
 
 vim.o.fileencoding = "utf-8"
 vim.bo.fileencoding = "utf-8"
