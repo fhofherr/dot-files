@@ -246,9 +246,18 @@ function M.setup()
 					})
 				end,
 			})
+            use({
+                "stevearc/aerial.nvim",
+                config = function()
+                    require("aerial").setup({
+                        max_width = {50, 0.2},
+                        min_width = 40,
+                    })
+                end,
+            })
 			use({
 				"neovim/nvim-lspconfig",
-				after = { "which-key.nvim" },
+				after = { "aerial.nvim", "which-key.nvim" },
 				config = function()
 					require("dotfiles.plugin.lsp").config()
 				end,
@@ -382,7 +391,7 @@ function M.setup()
 			-- 			layout = { window = { width = 0.6, height = 0.9 } },
 			-- 			explorer_layout = { left = "25%" },
 			-- 			action = {
-			-- 				["<c-t>"] = "tab split",
+			-- 				"<c-t>" = "tab split",
 			-- 				["<c-x>"] = "split",
 			-- 				["<c-v>"] = "vsplit",
 			-- 			},

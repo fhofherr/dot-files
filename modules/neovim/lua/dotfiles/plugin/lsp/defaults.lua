@@ -3,6 +3,7 @@ local M = {}
 local plugin = require("dotfiles.plugin")
 local cmp_nvim_lsp = plugin.safe_require("cmp_nvim_lsp")
 local wk = require("dotfiles.plugin.which-key")
+local aerial = require("aerial")
 
 local function on_attach(client, bufnr)
 	local function buf_set_option(...)
@@ -53,6 +54,9 @@ local function on_attach(client, bufnr)
 		buf_def_cmd("LspFmt", "lua vim.lsp.buf.formatting()")
 		vim.api.nvim_command("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
 	end
+
+    aerial.on_attach(client, bufnr)
+
 	vim.b.dotfiles_lsp_enabled = 1
 end
 
