@@ -1,28 +1,43 @@
 #!/bin/bash
 : "${POETRY_URL:=https://install.python-poetry.org}"
 
-CURL="$(command -v curl)"
-POETRY="$(command -v poetry)"
-PYTHON3="$(command -v python3)"
+ASDF="$(command -v asdf 2>/dev/null)"
+CURL="$(command -v curl 2>/dev/null)"
+POETRY="$(command -v poetry 2>/dev/null)"
+PYTHON3="$(command -v python3 2>/dev/null)"
 
 set -eou pipefail
 
-function install_poetry() {
-    POETRY="$HOME/.local/bin/poetry"
+function install_asdf() {
+    local latest_tag
 
-    if [[ ! -e "$POETRY" ]]; then
+    if [[ -n "$ASDF" ]]; then
+        return 0
+    fi
+
+    if [[ ! -d "$HOME/.asdf" ]]; then
+        git clone https://github.com/asdf-vm/asdf.git "$HOME/.asdf"
+    fi
+
+    pushd "$HOME/.asdf"
+    latest_tag="$(git describe --tags --abbrev=0)"
+    git checkout "$latest_tag"
+    popd
+}
+
+function install_poetry() {
+    if [[ -z "$POETRY" ]]; then
         echo "Installing poetry"
 
-        if [ -z "$CURL" ]; then
-            echo "curl is not installed"
+        if [ -z "$ASDF" ]; then
+            echo "asdf is not installed"
             exit 1
         fi
-
-        "$CURL" -sSL "$POETRY_URL" | "$PYTHON3"
-
-        # Fix python interpreter of poetry
-        sed -i.bak "s;#!/usr/bin/env python;#!/usr/bin/env python3;" "$POETRY"
-        rm "${POETRY}.bak"
+        "$ASDF" plugin add poetry || true
+        "$ASDF" install poetry latest
+        "$ASDF" global poetry latest
+        "$ASDF" reshim poetry
+        POETRY="$HOME/.asdf/shims/poetry"
     fi
 
     if [[ "$($POETRY config virtualenvs.in-project)" != "true" ]]; then
@@ -56,9 +71,9 @@ function install_raspberrypi_dependencies() {
 
 function install_dependencies() {
     case $(hostname) in
-        pi400*)
-            install_raspberrypi_dependencies
-            ;;
+    pi400*)
+        install_raspberrypi_dependencies
+        ;;
         # TODO install dependencies for other hosts here.
     esac
 }
@@ -70,6 +85,7 @@ fi
 
 if [[ -z "$POETRY" ]]; then
     install_dependencies
+    install_asdf
     install_poetry
 fi
 
