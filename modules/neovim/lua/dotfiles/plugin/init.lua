@@ -144,7 +144,7 @@ function M.setup()
 				end,
 			})
 
-            use("ggandor/lightspeed.nvim")
+			use("ggandor/lightspeed.nvim")
 			use("unblevable/quick-scope")
 
 			-- use({
@@ -248,15 +248,20 @@ function M.setup()
 					})
 				end,
 			})
-            use({
-                "stevearc/aerial.nvim",
-                config = function()
-                    require("aerial").setup({
-                        max_width = {50, 0.2},
-                        min_width = 40,
-                    })
-                end,
-            })
+			use({
+				"stevearc/aerial.nvim",
+				after = { "which-key.nvim" },
+				config = function()
+					require("aerial").setup({
+						max_width = { 50, 0.2 },
+						min_width = 40,
+					})
+					local wk = require("dotfiles.plugin.which-key")
+					wk.register({
+						["<localleader>o"] = { "<cmd>:AerialToggle!<CR>", "Toggle code outline" },
+					})
+				end,
+			})
 			use({
 				"neovim/nvim-lspconfig",
 				after = { "aerial.nvim", "which-key.nvim" },
