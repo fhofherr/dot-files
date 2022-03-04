@@ -172,7 +172,7 @@ function M.setup()
 						dashboard.button("e", "  New file", ":enew <CR>"),
 						dashboard.button("q", "  Quit NVIM", ":qa<CR>"),
 					}
-					require("alpha").setup(require("alpha.themes.dashboard").opts)
+					require("alpha").setup(dashboard.opts)
 				end,
 			})
 			-- use({
