@@ -18,21 +18,21 @@ class GitDelta(module.Definition):
     def syntax_theme(self):
         name = colors.color_scheme()
         if not name:
-            return "gruvbox"
+            return "gruvbox-dark"
         return {
             "dracula": "Dracula",
-            "everforest-dark-hard": "gruvbox",
-            "everforest-dark-medium": "gruvbox",
-            "everforest-dark-soft": "gruvbox",
+            "everforest-dark-hard": "gruvbox-dark",
+            "everforest-dark-medium": "gruvbox-dark",
+            "everforest-dark-soft": "gruvbox-dark",
             "everforest-light-hard": "gruvbox-light",
             "everforest-light-medium": "gruvbox-light",
             "everforest-light-soft": "gruvbox-light",
-            "gruvbox-dark": "gruvbox",
+            "gruvbox-dark": "gruvbox-dark",
             "gruvbox-light": "gruvbox-light",
             "tokyonight-night": "OneHalfDark",
             "tokyonight-storm": "OneHalfDark",
             "tokyonight-day": "OneHalfLight",
-        }.get(name, "gruvbox")
+        }.get(name, "gruvbox-dark")
 
     def is_archive_asset(self, name):
         if self.is_raspberrypi_32bit():
