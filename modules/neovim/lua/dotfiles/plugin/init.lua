@@ -217,6 +217,9 @@ function M.setup()
 			use({
 				"nvim-lualine/lualine.nvim",
 				requires = { "kyazdani42/nvim-web-devicons" },
+				after = {
+					"tokyonight.nvim", -- Tokyonight provides a custom lualine theme
+				},
 				config = function()
 					require("dotfiles.plugin.lualine").config()
 				end,
