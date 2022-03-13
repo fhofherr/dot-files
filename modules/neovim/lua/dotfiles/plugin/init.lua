@@ -231,6 +231,21 @@ function M.setup()
 					require("lsp-colors").setup()
 				end,
 			})
+			use({
+				"folke/todo-comments.nvim",
+				requires = { requires = "nvim-lua/plenary.nvim" },
+				config = function()
+					require("todo-comments").setup({
+                        highlight = {
+                            pattern = [[.*<(KEYWORDS)\s*:?]],
+                            comments_only = true,
+                        },
+						search = {
+							pattern = [[\b(KEYWORDS):?]],
+						},
+					})
+				end,
+			})
 			-- use({
 			-- 	"folke/trouble.nvim",
 			-- 	after = { "which-key.nvim" },
