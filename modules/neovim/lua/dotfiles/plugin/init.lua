@@ -216,10 +216,13 @@ function M.setup()
 			})
 			use({
 				"nvim-lualine/lualine.nvim",
-				requires = { "kyazdani42/nvim-web-devicons" },
-				after = {
-					"tokyonight.nvim", -- Tokyonight provides a custom lualine theme
-				},
+				requires = {
+                    "kyazdani42/nvim-web-devicons" ,
+                    -- Tokyonight provides a custom lualine theme. As such
+                    -- we depend on it, even though this dependency is only
+                    -- relevant if tokyonight is actually selected.
+					"tokyonight.nvim",
+                },
 				config = function()
 					require("dotfiles.plugin.lualine").config()
 				end,
