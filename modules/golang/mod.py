@@ -13,7 +13,7 @@ class Golang(module.Definition):
         "github.com/aarzilli/gdlv@latest",
         "github.com/fatih/gomodifytags@latest",
         "github.com/go-delve/delve/cmd/dlv@latest",
-        "github.com/goreleaser/goreleaser@latest",
+        # "github.com/goreleaser/goreleaser@latest",
         "github.com/mgechev/revive@latest",
         "github.com/psampaz/go-mod-outdated@latest",
         "golang.org/x/lint/golint@latest",
