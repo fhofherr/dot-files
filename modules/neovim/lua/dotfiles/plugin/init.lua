@@ -144,7 +144,7 @@ function M.setup()
 				end,
 			})
 
-			use("ggandor/lightspeed.nvim")
+			-- use("ggandor/lightspeed.nvim")
 			use("unblevable/quick-scope")
 
 			-- use({
