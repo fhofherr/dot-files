@@ -7,9 +7,6 @@ from dotfiles import fs, module
 NEOVIM_REPO = "https://github.com/neovim/neovim"
 
 PYTHON_VENV_PACKAGES = ["pynvim"]
-PYTHON_TOOLS_AND_LINTERS = [
-    "ansible-lint", "gitlint", "neovim-remote", "yamllint"
-]
 
 
 class NeoVim(module.Definition):
@@ -45,10 +42,6 @@ class NeoVim(module.Definition):
         return os.path.join(self.local_dir, "vimplug")
 
     @property
-    def _shims_dir(self):
-        return os.path.join(self.mod_dir, "shims")
-
-    @property
     def _neovim_master_dir(self):
         return os.path.join(self.projects_dir, "github.com", "neovim",
                             "neovim")
@@ -71,33 +64,22 @@ class NeoVim(module.Definition):
         return shutil.which("nvim")
 
     @property
-    def nvr_cmd(self):
-        cmd = os.path.join(self.pipx.pipx_bin_dir, "nvr")
-        if not os.path.exists(cmd):
-            return None
-        return cmd
-
-    @property
     def _env(self):
         return {
             "DOTFILES_NEOVIM_PYTHON3": self._nvim_python_host,
             "DOTFILES_NEOVIM_COMMAND": self.nvim_cmd,
-            "DOTFILES_NVR_COMMAND": self.nvr_cmd,
             "VIMPLUG_HOME": self._vimplug_home,
             "VIMHOME": self._nvim_cfg_dest,
-            "EDITOR": self._get_shim("nvim"),
-            "GIT_EDITOR": self._get_shim("giteditor"),
+            "EDITOR": self.nvim_cmd,
+            "GIT_EDITOR": self.nvim_cmd,
             "HOME": self.home_dir,
         }
 
     @property
     def _aliases(self):
         return {
-            "vim": self._get_shim("nvim"),
+            "vim": self.nvim_cmd,
         }
-
-    def _get_shim(self, name):
-        return os.path.join(self._shims_dir, name)
 
     @module.install
     def install_neovim_cfg(self):
@@ -105,10 +87,9 @@ class NeoVim(module.Definition):
             self.log.info("NeoVim is not installed or not on path")
             return
         venv.create(self._venv_dir, clear=True, with_pip=True)
-        for pkg in PYTHON_TOOLS_AND_LINTERS:
-            self.pipx.install(pkg)
 
-        self.state.setenv("PATH", self._shims_dir)
+        if self._nvim_master_cmd:
+            self.state.setenv("PATH", os.path.dirname(self._nvim_master_cmd))
         self.update_neovim_cfg()
 
     @module.update
@@ -118,8 +99,6 @@ class NeoVim(module.Definition):
         for pkg in PYTHON_VENV_PACKAGES:
             self.run_cmd(self._nvim_python_host, "-m", "pip", "install",
                          "--upgrade", pkg)
-        for pkg in PYTHON_TOOLS_AND_LINTERS:
-            self.pipx.update(pkg)
 
         # Make sure to remove DOTFILES_NEOVIM_COMMAND from state when
         # removing or commenting out this line.
