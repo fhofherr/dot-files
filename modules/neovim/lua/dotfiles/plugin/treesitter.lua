@@ -103,7 +103,7 @@ function M.config()
 				},
 			},
 		},
-		ensure_installed = "maintained",
+		ensure_installed = "all",
 	})
 
 	vim.api.nvim_command([[
