@@ -37,6 +37,7 @@ function M.config()
 		options = {
 			theme = select_theme(),
 			icons_enabled = true,
+            globalstatus = true,
 		},
 		sections = {
 			lualine_a = { "mode" },
