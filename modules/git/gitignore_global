@@ -24,7 +24,6 @@ __pycache__/
 .lsp/
 .lein-repl-history
 .vscode/
-.envrc
 .direnv/
 .vagrant/
 .venv/
