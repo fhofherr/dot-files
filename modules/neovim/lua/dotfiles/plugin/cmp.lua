@@ -20,7 +20,6 @@ function M.config()
 		},
 		sources = {
 			{ name = "nvim_lsp" },
-			{ name = "treesitter" },
 			{ name = "nvim_lua" },
 			{
 				name = "buffer",

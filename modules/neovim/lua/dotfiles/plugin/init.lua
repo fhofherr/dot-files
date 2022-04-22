@@ -365,7 +365,6 @@ function M.setup()
 					"hrsh7th/cmp-buffer",
 					"hrsh7th/vim-vsnip",
 					"onsails/lspkind-nvim",
-					"ray-x/cmp-treesitter",
 				},
 				config = function()
 					require("dotfiles.plugin.vsnip").config()
