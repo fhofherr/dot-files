@@ -371,6 +371,7 @@ function M.setup()
 					require("dotfiles.plugin.cmp").config()
 				end,
 			})
+
 			use({
 				"nvim-telescope/telescope.nvim",
 				requires = {
@@ -383,6 +384,14 @@ function M.setup()
 					require("dotfiles.plugin.telescope").config()
 				end,
 			})
+
+            use({
+                "stevearc/dressing.nvim",
+                after = { "telescope.nvim" },
+                config = function()
+                    require("dressing").setup({})
+                end
+            })
 
 			use({
 				"nvim-treesitter/nvim-treesitter",

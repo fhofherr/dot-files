@@ -3,7 +3,6 @@ local M = {}
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")
-local themes = require("telescope.themes")
 local wk = require("dotfiles.plugin.which-key")
 
 function M.config()
@@ -151,16 +150,7 @@ function M.find_files()
 end
 
 function M.lsp_code_actions()
-	if not builtin then
-		return vim.lsp.buf_code_action()
-	end
-	local opts = themes.get_dropdown({
-		winblend = 10,
-		border = true,
-		previewer = false,
-		shorten_path = false,
-	})
-	return builtin.lsp_code_actions(opts)
+    return vim.lsp.buf.code_action()
 end
 
 function M.lsp_implementations()
