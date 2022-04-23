@@ -1,140 +1,118 @@
 local M = {}
 
-local wk = require("which-key")
 local plugin = require("dotfiles.plugin")
-
-local normal_mode = { mode = "n", noremap = true, silent = true }
-local visual_mode = { mode = "v", noremap = true, silent = true }
+local telescope = require("dotfiles.plugin.telescope")
+local luasnip = require("dotfiles.plugin.luasnip")
 
 function M.register()
-	wk.register({
-		["]w"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Go to next LSP diagnostic" },
-		["[w"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Go to next LSP diagnostic" },
-		["<C-p>"] = { "<cmd>lua require('dotfiles.plugin.telescope').find_files()<CR>", "Find files" },
-		Q = { ":bdelete<cr>", "Delete Buffer" },
+	local opts = { silent = true }
+	--
+	-- Code navigation
+	--
+	-- Toggle code outline
+	vim.keymap.set("n", "<localleader>o", "<cmd>:AerialToggle!<CR>", opts)
 
-		["<localleader>e"] = {
-			"<cmd>lua require('dotfiles.plugin.telescope').file_browser()<CR>",
-			"Browse current working directory.",
-		},
-		["<localleader>E"] = {
-			"<cmd>lua require('dotfiles.plugin.telescope').file_browser({cwd=vim.fn.expand('%:p:h')})<CR>",
-			"Browse current file directory.",
-		},
+	--
+	-- Diagnostics
+	--
+	vim.keymap.set("n", "]w", vim.diagnostic.goto_next, opts)
+	vim.keymap.set("n", "[w", vim.diagnostic.goto_prev, opts)
 
-		["<localleader>f"] = {
-			name = "Find",
-			b = { "<cmd>lua require('dotfiles.plugin.telescope').buffers()<CR>", "Find buffers." },
-			f = { "<cmd>lua require('dotfiles.plugin.telescope').find_files()<CR>", "Find files." },
-			g = { "<cmd>lua require('dotfiles.plugin.telescope').live_grep()<CR>", "Live grep." },
-			h = { "<cmd>lua require('dotfiles.plugin.telescope').help_tags()<CR>", "Live grep." },
-			l = { "<cmd>lua require('dotfiles.plugin.telescope').loclist()<CR>", "Find tags." },
-			m = { "<cmd>lua require('dotfiles.plugin.telescope').marks()<CR>", "Find marks." },
-			o = { "<cmd>lua require('dotfiles.plugin.telescope').oldfiles()<CR>", "Recently opened files" },
-			q = { "<cmd>lua require('dotfiles.plugin.telescope').quickfix()<CR>", "Find tags." },
-			r = { "<cmd>lua require('dotfiles.plugin.telescope').registers()<CR>", "Find tags." },
-			s = {
-				"<cmd>lua require('dotfiles.plugin.telescope').document_symbols()<CR>",
-				"Find LSP/Treesitter symbols.",
-			},
-			t = { "<cmd>lua require('dotfiles.plugin.telescope').workspace_symbols()<CR>", "Find tags." },
-			j = { "<cmd>lua require('dotfiles.plugin.telescope').jumplist()<CR>", "Find jumlist entry" },
-		},
+	-- Show document diagnostics
+	vim.keymap.set("n", "<localleader>xd", telescope.document_diagnostics, opts)
+	-- Show workspace diagnostics
+	vim.keymap.set("n", "<localleader>xw", telescope.workspace_diagnostics, opts)
 
-		["<localleader>n"] = {
-			name = "NeoTree",
-			t = {
-				"<cmd>:Neotree reveal=true toggle=true position=left source=filesystem<CR>",
-				"Toggle NeoTree filesystem",
-			},
-			b = {
-				"<cmd>:Neotree reveal=true toggle=true position=right source=buffers<CR>",
-				"Toggle NeoTree buffers",
-			},
-			g = {
-				"<cmd>:Neotree reveal=true toggle=true position=float source=git_status<CR>",
-				"Toggle NeoTree git status",
-			},
-		},
+	--
+	-- Searching and finding
+	--
+	vim.keymap.set("n", "<C-p>", telescope.find_files, opts) -- Find files.
+	vim.keymap.set("n", "<localleader>fb", telescope.buffers, opts) -- Find buffers.
+	vim.keymap.set("n", "<localleader>ff", telescope.find_files, opts) -- Find files.
+	vim.keymap.set("n", "<localleader>fg", telescope.live_grep, opts) -- Live grep.
+	vim.keymap.set("n", "<localleader>fh", telescope.help_tags, opts) -- Search help.
+	vim.keymap.set("n", "<localleader>fl", telescope.loclist, opts) -- Find tags.
+	vim.keymap.set("n", "<localleader>fm", telescope.marks, opts) -- Find marks.
+	vim.keymap.set("n", "<localleader>fo", telescope.oldfiles, opts) -- Recently opened files
+	vim.keymap.set("n", "<localleader>fq", telescope.quickfix, opts) -- Find tags.
+	vim.keymap.set("n", "<localleader>fr", telescope.registers, opts) -- Find tags.
+	vim.keymap.set("n", "<localleader>fs", telescope.document_symbols, opts) -- Find LSP/Treesitter symbols.
+	vim.keymap.set("n", "<localleader>ft", telescope.workspace_symbols, opts) -- Find tags.
+	vim.keymap.set("n", "<localleader>fj", telescope.jumplist, opts) -- Find jumlist entry
 
-		["<localleader>o"] = { "<cmd>:AerialToggle!<CR>", "Toggle code outline" },
-		["<localleader>x"] = {
-			name = "Trouble",
-			d = {
-				"<cmd>lua require('dotfiles.plugin.telescope').document_diagnostics()<CR>",
-				"Toggle document diagnostics",
-			},
-			w = {
-				"<cmd>lua require('dotfiles.plugin.telescope').workspace_diagnostics()<CR>",
-				"Toggle workspace diagnostics",
-			},
-		},
-	}, normal_mode)
+	--
+	-- File browsing
+	--
+	-- Browse current working directory
+	vim.keymap.set("n", "<localleader>e", telescope.file_browser, opts)
 
+	-- Browse current file directory
+	vim.keymap.set("n", "<localleader>E", function()
+		telescope.file_browser({ cwd = vim.fn.expand("%:p:h", opts) })
+	end)
+
+	-- Toggle NeoTree filesystem
+	vim.keymap.set(
+		"n",
+		"<localleader>nt",
+		"<cmd>:Neotree reveal=true toggle=true position=left source=filesystem<CR>",
+		opts
+	)
+
+	--
+	-- Snippets
+	--
+	vim.keymap.set({ "i", "s" }, "<c-j>", luasnip.expand_or_jump)
+	vim.keymap.set({ "i", "s" }, "<c-k>", luasnip.jump_back)
+	vim.keymap.set({ "i", "s" }, "<c-l>", luasnip.select_choice)
+
+	--
+	-- Testing
+	--
 	if plugin.exists("vim-ultest") then
-		wk.register({
-			["<localleader>t"] = {
-				name = "Test",
-				f = { "<Plug>(ultest-run-file)", "Run all tests in file." },
-				n = { "<Plug>(ultest-run-nearest)", "Run nearest test." },
-				o = { "<Plug>(ultest-output-jump)", "Show error output of nearest test" },
-				s = { "<Plug>(ultest-summary-toggle)", "Toggle test summary" },
-			},
-		}, normal_mode)
+		vim.keymap.set("n", "<localleader>tf", "<Plug>(ultest-run-file)", opts) -- Run all tests in file.
+		vim.keymap.set("n", "<localleader>tn", "<Plug>(ultest-run-nearest)", opts) -- Run nearest test.
+		vim.keymap.set("n", "<localleader>to", "<Plug>(ultest-output-jump)", opts) -- Show error output of nearest test
+		vim.keymap.set("n", "<localleader>ts", "<Plug>(ultest-summary-toggle)", opts) -- Toggle test summary
 	else
-		wk.register({
-			["<localleader>t"] = {
-				name = "Test",
-				n = { "<cmd>:TestNearest<CR>", "Run nearest test." },
-				f = { "<cmd>:TestFile<CR>", "Run all tests in file." },
-			},
-		}, normal_mode)
+		vim.keymap.set("n", "<localleader>tn", "<cmd>:TestNearest<CR>", opts) -- Run nearest test.
+		vim.keymap.set("n", "<localleader>tf", "<cmd>:TestFile<CR>", opts) -- Run all tests in file.
 	end
 
+	--
+	-- Window navigation
+	--
 	if plugin.exists("Navigator.nvim") then
-		wk.register({
-			["<C-J>"] = { "<CMD>lua require('Navigator').down()<CR>", "One window down" },
-			["<C-K>"] = { "<CMD>lua require('Navigator').up()<CR>", "One window up" },
-			["<C-L>"] = { "<CMD>lua require('Navigator').right()<CR>", "One window right" },
-			["<C-H>"] = { "<CMD>lua require('Navigator').left()<CR>", "One window left" },
-		}, normal_mode)
+		vim.keymap.set("n", "<C-J>", "<CMD>lua require('Navigator').down()<CR>", opts) -- Move one window down
+		vim.keymap.set("n", "<C-K>", "<CMD>lua require('Navigator').up()<CR>", opts) -- Move one window up
+		vim.keymap.set("n", "<C-L>", "<CMD>lua require('Navigator').right()<CR>", opts) -- Move one window right
+		vim.keymap.set("n", "<C-H>", "<CMD>lua require('Navigator').left()<CR>", opts) -- Move one window left
 	else
-		wk.register({
-			["<C-J>"] = { "<C-W><C-J>", "One window down" },
-			["<C-K>"] = { "<C-W><C-K>", "One window up" },
-			["<C-L>"] = { "<C-W><C-L>", "One window right" },
-			["<C-H>"] = { "<C-W><C-H>", "One window left" },
-		}, normal_mode)
+		vim.keymap.set("n", "<C-J>", "<C-W><C-J>", opts) -- Move one window down
+		vim.keymap.set("n", "<C-K>", "<C-W><C-K>", opts) -- Move one window up
+		vim.keymap.set("n", "<C-L>", "<C-W><C-L>", opts) -- Move one window right
+		vim.keymap.set("n", "<C-H>", "<C-W><C-H>", opts) -- Move one window left
 	end
 
-	wk.register({
-		["<"] = { "<gv", "Decrease indent and reselect" },
-		[">"] = { ">gv", "Increase indent and reselect" },
-	}, visual_mode)
+	--
+	-- Various editing helpers
+	--
+	vim.keymap.set("n", "<", "<gv", opts) -- Decrease indent and reselect
+	vim.keymap.set("n", ">", ">gv", opts) -- Increase indent and reselect
 end
 
 function M.on_lsp_attached(bufnr)
-	local normal_mode_buffer = vim.deepcopy(normal_mode)
-	normal_mode_buffer.buffer = bufnr
+	local opts = { silent = true, buffer = bufnr }
 
-	wk.register({
-		name = "lsp",
-		gD = {
-			"<cmd>lua require('dotfiles.plugin.telescope').lsp_type_definitions()<CR>",
-			"Go to type definition.",
-		},
-		gd = { "<cmd>lua require('dotfiles.plugin.telescope').lsp_definitions()<CR>", "Go to definition." },
-		K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Show documentation." },
-		gi = { "<cmd>lua require('dotfiles.plugin.telescope').lsp_implementations()<CR>", "Go to implementation." },
-		["<c-s>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show signature." },
-		["1gD"] = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration." },
-		gr = { "<cmd>lua require('dotfiles.plugin.telescope').lsp_references()<CR>", "Show references." },
-
-		["<localleader>"] = {
-			rn = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename symbol." },
-			ca = { "<cmd>lua require('dotfiles.plugin.telescope').lsp_code_actions()<CR>", "Show code actions" },
-		},
-	}, normal_mode_buffer)
+	vim.keymap.set("n", "gD", telescope.lsp_type_definitions, opts) -- Go to type definition.
+	vim.keymap.set("n", "gd", telescope.lsp_definitions, opts) -- Go to definition.
+	vim.keymap.set("n", "K", vim.lsp.buf.hover, opts) -- Show documentation
+	vim.keymap.set("n", "gi", telescope.lsp_implementations, opts) -- Go to implementation
+	vim.keymap.set("n", "gr", telescope.lsp_references, opts) -- Show references
+	vim.keymap.set("n", "<c-s>", vim.lsp.buf.signature_help, opts) -- Show signature.
+	vim.keymap.set("n", "1gD", vim.lsp.buf.declaration, opts) -- Go to declaration.
+	vim.keymap.set("n", "<localleader>rn", vim.lsp.buf.rename, opts) -- Rename symbol
+	vim.keymap.set("n", "<localleader>ca", "telescope.lsp_code_actions", opts) -- Show code actions
 end
 
 return M

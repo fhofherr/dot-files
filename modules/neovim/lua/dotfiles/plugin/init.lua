@@ -161,13 +161,6 @@ function M.setup()
 			})
 
 			use({
-				"folke/which-key.nvim",
-				config = function()
-					require("which-key").setup()
-				end,
-			})
-
-			use({
 				"nvim-lualine/lualine.nvim",
 				requires = {
 					"kyazdani42/nvim-web-devicons",
@@ -202,13 +195,7 @@ function M.setup()
 					})
 				end,
 			})
-			-- use({
-			-- 	"folke/trouble.nvim",
-			-- 	after = { "which-key.nvim" },
-			-- 	config = function()
-			-- 		require("dotfiles.plugin.trouble").config()
-			-- 	end,
-			-- })
+
 			use({
 				"ray-x/lsp_signature.nvim",
 				config = function()
@@ -224,7 +211,6 @@ function M.setup()
 			})
 			use({
 				"stevearc/aerial.nvim",
-				after = { "which-key.nvim" },
 				config = function()
 					require("aerial").setup({
 						max_width = { 50, 0.2 },
@@ -234,7 +220,7 @@ function M.setup()
 			})
 			use({
 				"neovim/nvim-lspconfig",
-				after = { "aerial.nvim", "which-key.nvim" },
+				after = { "aerial.nvim" },
 				config = function()
 					require("dotfiles.plugin.lsp").config()
 				end,
@@ -290,9 +276,9 @@ function M.setup()
 			})
 			use({
 				"L3MON4D3/LuaSnip",
-                config = function()
-                    require("dotfiles.plugin.luasnip").config()
-                end
+				config = function()
+					require("dotfiles.plugin.luasnip").config()
+				end,
 			})
 			use({
 				"hrsh7th/nvim-cmp",
@@ -318,19 +304,18 @@ function M.setup()
 					{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
 					"nvim-telescope/telescope-file-browser.nvim",
 				},
-				after = { "which-key.nvim" },
 				config = function()
 					require("dotfiles.plugin.telescope").config()
 				end,
 			})
 
-            use({
-                "stevearc/dressing.nvim",
-                after = { "telescope.nvim" },
-                config = function()
-                    require("dressing").setup({})
-                end
-            })
+			use({
+				"stevearc/dressing.nvim",
+				after = { "telescope.nvim" },
+				config = function()
+					require("dressing").setup({})
+				end,
+			})
 
 			use({
 				"nvim-treesitter/nvim-treesitter",

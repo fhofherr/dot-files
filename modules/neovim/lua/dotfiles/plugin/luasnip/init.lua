@@ -3,19 +3,19 @@ local M = {}
 local ls = require("luasnip")
 local types = require("luasnip.util.types")
 
-local function expand_or_jump()
+function M.expand_or_jump()
 	if ls.expand_or_jumpable() then
 		ls.expand_or_jump()
 	end
 end
 
-local function jump_back()
+function M.jump_back()
 	if ls.jumpable(-1) then
 		ls.jump(-1)
 	end
 end
 
-local function select_choice()
+function M.select_choice()
 	if ls.choice_active() then
 		ls.change_choice(1)
 	end
@@ -40,12 +40,6 @@ function M.config()
 	-- Since I don't want to deal with those I manually load the snippets
 	-- I want. This is a little less comfortable but more explicit.
 	require("dotfiles.plugin.luasnip.snippets").load()
-
-	-- Keep those mappings here for now. I'm not even sure when which-key
-	-- would display them.
-	vim.keymap.set({ "i", "s" }, "<c-j>", expand_or_jump)
-	vim.keymap.set({ "i", "s" }, "<c-k>", jump_back)
-	vim.keymap.set({ "i", "s" }, "<c-l>", select_choice)
 end
 
 return M
