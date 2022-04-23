@@ -1,7 +1,6 @@
 local M = {}
 
 local lspconfig = require("lspconfig")
-local wk = require("dotfiles.plugin.which-key")
 
 local language_servers = {
     -- ccls = require("dotfiles.plugin.lsp.ccls"),
@@ -23,11 +22,6 @@ function M.config()
             update_in_insert = true,
         }
     )
-    wk.register({
-        name = "lsp",
-        ["]w"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Go to next LSP diagnostic" },
-        ["[w"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Go to next LSP diagnostic" },
-    }, { noremap = true, silent = true })
 
     if lspconfig then
         for _, v in pairs(language_servers) do

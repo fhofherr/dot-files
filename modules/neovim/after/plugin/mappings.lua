@@ -1,0 +1,1 @@
+require("dotfiles.mappings").register()

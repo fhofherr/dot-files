@@ -34,13 +34,13 @@ function M.hererocks_bin()
 	return vim.fn.stdpath("cache") .. "/packer_hererocks/" .. jit_version .. "/bin"
 end
 
-local function try_local(name)
-	local plugin_dir = "~/Projects/github.com/" .. name
-	if vim.fn.isdirectory(vim.fn.expand(plugin_dir)) == 1 then
-		return plugin_dir
-	end
-	return name
-end
+-- local function try_local(name)
+-- 	local plugin_dir = "~/Projects/github.com/" .. name
+-- 	if vim.fn.isdirectory(vim.fn.expand(plugin_dir)) == 1 then
+-- 		return plugin_dir
+-- 	end
+-- 	return name
+-- end
 
 function M.setup()
 	-- Note:
@@ -53,48 +53,9 @@ function M.setup()
 			use("antoinemadec/FixCursorHold.nvim")
 
 			use({
-				try_local("fhofherr/termmaker.nvim"),
-				after = { "which-key.nvim" },
-				config = function()
-					-- Send q to the executing application even in normal mode.
-					-- vim.api.nvim_buf_set_keymap("n", "q", "iq<C-\\><C-n>", { noremap = true, silent = true })
-					local window = require("termmaker.window")
-					require("termmaker").setup({
-						env = {
-							DOTFILES_PROTECT_VAR_PATH = 1,
-						},
-						window_opts = {
-							window_factory = window.auto_split(),
-						},
-						buffer_opts = {
-							t_mappings = {
-								["<Esc>"] = "<C-\\><C-n>",
-								["<C-v><Esc>"] = "<Esc>",
-							},
-						},
-					})
-
-					require("dotfiles.plugin.which-key").register({
-						["<localleader>T"] = {
-							name = "TermMaker",
-							T = { "<cmd>:TermMakerToggle<CR>", "Toggle termmaker terminal." },
-						},
-					}, {
-						noremap = true,
-						silent = true,
-					})
-				end,
-			})
-
-			use({
 				"numToStr/Navigator.nvim",
 				config = function()
 					require("Navigator").setup()
-					local opts = { noremap = true, silent = true }
-					vim.api.nvim_set_keymap("n", "<C-J>", "<CMD>lua require('Navigator').down()<CR>", opts)
-					vim.api.nvim_set_keymap("n", "<C-K>", "<CMD>lua require('Navigator').up()<CR>", opts)
-					vim.api.nvim_set_keymap("n", "<C-L>", "<CMD>lua require('Navigator').right()<CR>", opts)
-					vim.api.nvim_set_keymap("n", "<C-H>", "<CMD>lua require('Navigator').left()<CR>", opts)
 				end,
 			})
 
@@ -106,7 +67,6 @@ function M.setup()
 					"kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
 					"MunifTanjim/nui.nvim",
 				},
-				after = { "which-key.nvim" },
 				config = function()
 					require("dotfiles.plugin.neotree").setup()
 				end,
@@ -143,7 +103,6 @@ function M.setup()
 			use({
 				"lewis6991/gitsigns.nvim",
 				requires = { "nvim-lua/plenary.nvim" },
-				after = { "which-key.nvim" },
 				config = function()
 					require("gitsigns").setup({
 						current_line_blame = false,
@@ -189,21 +148,11 @@ function M.setup()
 					require("alpha").setup(dashboard.opts)
 				end,
 			})
-			-- use({
-			-- 	"mhinz/vim-startify",
-			-- 	config = function()
-			-- 		vim.g.startify_session_persistence = 1
-			-- 		vim.g.startify_change_to_dir = 0
-			-- 		vim.g.startify_change_vcs_root = 1
-			-- 	end,
-			-- })
-			-- use("mhinz/vim-signify")
 
 			use("nelstrom/vim-visual-star-search")
 
 			use({
 				"rcarriga/vim-ultest",
-				after = { "which-key.nvim" },
 				requires = { "vim-test/vim-test", "tpope/vim-dispatch" },
 				run = ":UpdateRemotePlugins",
 				config = function()
@@ -211,23 +160,13 @@ function M.setup()
 				end,
 			})
 
-			-- use({
-			-- 	"kevinhwang91/nvim-bqf",
-			-- 	ft = "qf",
-			-- 	requires = {
-			-- 		{
-			-- 			"junegunn/fzf",
-			-- 			-- run = function() vim.fn['fzf#install']() end ,
-			-- 		},
-			-- 	},
-			-- })
-
 			use({
 				"folke/which-key.nvim",
 				config = function()
-					require("dotfiles.plugin.which-key").config()
+					require("which-key").setup()
 				end,
 			})
+
 			use({
 				"nvim-lualine/lualine.nvim",
 				requires = {
@@ -290,10 +229,6 @@ function M.setup()
 					require("aerial").setup({
 						max_width = { 50, 0.2 },
 						min_width = 40,
-					})
-					local wk = require("dotfiles.plugin.which-key")
-					wk.register({
-						["<localleader>o"] = { "<cmd>:AerialToggle!<CR>", "Toggle code outline" },
 					})
 				end,
 			})
@@ -434,48 +369,6 @@ function M.setup()
 					vim.g.gutentags_define_advanced_commands = 1
 				end,
 			})
-
-			-- use({
-			-- 	"mcchrish/nnn.vim",
-			-- 	config = function()
-			-- 		require("nnn").setup({
-			-- 			command = "nnn -o",
-			-- 			set_default_mappings = 0,
-			-- 			replace_netrw = 1,
-			-- 			layout = { window = { width = 0.6, height = 0.9 } },
-			-- 			explorer_layout = { left = "25%" },
-			-- 			action = {
-			-- 				"<c-t>" = "tab split",
-			-- 				["<c-x>"] = "split",
-			-- 				["<c-v>"] = "vsplit",
-			-- 			},
-			-- 		})
-			-- 		local wk = require("dotfiles.plugin.which-key")
-			-- 		wk.register({
-			-- 			["<localleader>n"] = {
-			-- 				["e"] = { "<cmd>:NnnPicker<CR>", "Toggle NNN picker for working directory." },
-			-- 				["E"] = {
-			-- 					"<cmd>:NnnPicker %:p:h<CR>",
-			-- 					"Toggle NNN picker for directory containing file.",
-			-- 				},
-			-- 			},
-			-- 		}, {
-			-- 			noremap = true,
-			-- 			silent = true,
-			-- 		})
-			-- 	end,
-			-- })
-
-			-- use {
-			--     "ptzz/lf.vim",
-			--     requires = {"voldikss/vim-floaterm"},
-			--     config = function()
-			--         vim.g.lf_map_keys = 0
-			--         vim.g.lf_replace_netrw = 1
-			--         vim.g.lf_width = 0.8
-			--         vim.g.lf_height = 0.8
-			--     end
-			-- }
 
 			use("hashivim/vim-terraform")
 			use("mattn/vim-goaddtags")

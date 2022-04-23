@@ -41,6 +41,8 @@ function M.config()
 	-- I want. This is a little less comfortable but more explicit.
 	require("dotfiles.plugin.luasnip.snippets").load()
 
+	-- Keep those mappings here for now. I'm not even sure when which-key
+	-- would display them.
 	vim.keymap.set({ "i", "s" }, "<c-j>", expand_or_jump)
 	vim.keymap.set({ "i", "s" }, "<c-k>", jump_back)
 	vim.keymap.set({ "i", "s" }, "<c-l>", select_choice)

@@ -1,7 +1,6 @@
 local M = {}
 
 local neo_tree = require("neo-tree")
-local wk = require("dotfiles.plugin.which-key")
 
 function M.setup()
 	-- Unless you are still migrating, remove the deprecated commands from v1.x
@@ -160,27 +159,6 @@ function M.setup()
 				},
 			},
 		},
-	})
-
-	wk.register({
-		["<localleader>n"] = {
-			name = "NeoTree",
-			t = {
-				"<cmd>:Neotree reveal=true toggle=true position=left source=filesystem<CR>",
-				"Toggle NeoTree filesystem",
-			},
-			b = {
-				"<cmd>:Neotree reveal=true toggle=true position=right source=buffers<CR>",
-				"Toggle NeoTree buffers",
-			},
-			g = {
-				"<cmd>:Neotree reveal=true toggle=true position=float source=git_status<CR>",
-				"Toggle NeoTree git status",
-			},
-		},
-	}, {
-		noremap = true,
-		silent = true,
 	})
 end
 

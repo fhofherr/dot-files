@@ -3,7 +3,6 @@ local M = {}
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")
-local wk = require("dotfiles.plugin.which-key")
 
 function M.config()
 	telescope.setup({
@@ -36,44 +35,6 @@ function M.config()
 	-- if vim.tbl_contains({"fhhc", "wintermute"}, vim.fn.hostname()) then
 	--     telescope.load_extension('fzy_native')
 	-- end
-
-	wk.register({
-		name = "Telescope",
-		["<C-p>"] = { "<cmd>lua require('dotfiles.plugin.telescope').find_files()<CR>", "Find files" },
-		["<localleader>e"] = {
-			"<cmd>lua require('dotfiles.plugin.telescope').file_browser()<CR>",
-			"Browse current working directory.",
-		},
-		["<localleader>E"] = {
-			"<cmd>lua require('dotfiles.plugin.telescope').file_browser({cwd=vim.fn.expand('%:p:h')})<CR>",
-			"Browse current file directory.",
-		},
-		["<localleader>f"] = {
-			name = "Find",
-			b = { "<cmd>lua require('dotfiles.plugin.telescope').buffers()<CR>", "Find buffers." },
-			f = { "<cmd>lua require('dotfiles.plugin.telescope').find_files()<CR>", "Find files." },
-			g = { "<cmd>lua require('dotfiles.plugin.telescope').live_grep()<CR>", "Live grep." },
-			h = { "<cmd>lua require('dotfiles.plugin.telescope').help_tags()<CR>", "Live grep." },
-			l = { "<cmd>lua require('dotfiles.plugin.telescope').loclist()<CR>", "Find tags." },
-			m = { "<cmd>lua require('dotfiles.plugin.telescope').marks()<CR>", "Find marks." },
-			o = { "<cmd>lua require('dotfiles.plugin.telescope').oldfiles()<CR>", "Recently opened files" },
-			q = { "<cmd>lua require('dotfiles.plugin.telescope').quickfix()<CR>", "Find tags." },
-			r = { "<cmd>lua require('dotfiles.plugin.telescope').registers()<CR>", "Find tags." },
-			s = {
-				"<cmd>lua require('dotfiles.plugin.telescope').document_symbols()<CR>",
-				"Find LSP/Treesitter symbols.",
-			},
-			t = { "<cmd>lua require('dotfiles.plugin.telescope').workspace_symbols()<CR>", "Find tags." },
-			j = { "<cmd>lua require('dotfiles.plugin.telescope').jumplist()<CR>", "Find jumlist entry" },
-		},
-        ["<localleader>x"] = {
-			d = { "<cmd>lua require('dotfiles.plugin.telescope').document_diagnostics()<CR>", "Toggle document diagnostics" },
-			w = { "<cmd>lua require('dotfiles.plugin.telescope').workspace_diagnostics()<CR>", "Toggle workspace diagnostics" },
-        },
-	}, {
-		noremap = true,
-		silent = true,
-	})
 end
 
 function M.buffers()

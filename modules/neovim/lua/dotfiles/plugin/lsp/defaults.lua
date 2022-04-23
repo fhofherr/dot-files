@@ -1,8 +1,9 @@
 local M = {}
 
 local plugin = require("dotfiles.plugin")
+local mappings = require("dotfiles.mappings")
+
 local cmp_nvim_lsp = plugin.safe_require("cmp_nvim_lsp")
-local wk = require("dotfiles.plugin.which-key")
 local aerial = require("aerial")
 
 local function on_attach(client, bufnr)
@@ -16,35 +17,6 @@ local function on_attach(client, bufnr)
 	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
 	-- Define buffer local commands
-	wk.register({
-		name = "lsp",
-		gD = {
-			"<cmd>lua require('dotfiles.plugin.telescope').lsp_type_definitions()<CR>",
-			"Go to type definition.",
-		},
-		gd = { "<cmd>lua require('dotfiles.plugin.telescope').lsp_definitions()<CR>", "Go to definition." },
-		K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Show documentation." },
-		gi = { "<cmd>lua require('dotfiles.plugin.telescope').lsp_implementations()<CR>", "Go to implementation." },
-		["<c-s>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show signature." },
-		["1gD"] = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration." },
-		gr = { "<cmd>lua require('dotfiles.plugin.telescope').lsp_references()<CR>", "Show references." },
-	}, {
-		noremap = true,
-		silent = true,
-		buffer = bufnr,
-	})
-
-	wk.register({
-		name = "lsp",
-		rn = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename symbol." },
-		ca = { "<cmd>lua require('dotfiles.plugin.telescope').lsp_code_actions()<CR>", "Show code actions" },
-	}, {
-		noremap = true,
-		silent = true,
-		buffer = bufnr,
-		prefix = "<localleader>",
-	})
-
 	buf_def_cmd("LspRename", "lua vim.lsp.buf.rename()")
 	buf_def_cmd("LspIncomingCalls", "lua vim.lsp.buf.incoming_calls()")
 	buf_def_cmd("LspOutgoingCalls", "lua vim.lsp.buf.outgoing_calls()")
@@ -57,6 +29,7 @@ local function on_attach(client, bufnr)
 
     aerial.on_attach(client, bufnr)
 
+	mappings.on_lsp_attached(bufnr)
 	vim.b.dotfiles_lsp_enabled = 1
 end
 
