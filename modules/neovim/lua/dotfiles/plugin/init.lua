@@ -50,7 +50,12 @@ function M.setup()
 	packer.startup({
 		function(use)
 			use("wbthomason/packer.nvim") -- Packer can manage itself
-			use("antoinemadec/FixCursorHold.nvim")
+			use({
+				"antoinemadec/FixCursorHold.nvim",
+				config = function()
+					vim.g.cursorhold_updatetime = 100
+				end,
+			})
 
 			use({
 				"numToStr/Navigator.nvim",
