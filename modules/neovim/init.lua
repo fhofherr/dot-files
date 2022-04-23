@@ -1,5 +1,3 @@
-local vimcompat = require("dotfiles.vimcompat")
-
 -- Configure leader and local leader. This should be one very early in the
 -- configuration. We therefore do it right at the top.
 
@@ -62,51 +60,70 @@ end
 
 -- Enable a transparent terminal background and create an autocmd to ensure
 -- it stays that way even after calling :colorscheme
-vim.api.nvim_command("highlight! Normal ctermbg=None guibg=None")
-vim.api.nvim_command("highlight! NonText ctermbg=None guibg=None")
-vimcompat.augroup("dotfiles_colors", {
-    [[
-        ColorScheme * highlight! Normal ctermbg=None guibg=None |
-                      highlight! NonText ctermbg=None guibg=None
-    ]]
-})
+local function transparent_background()
+	vim.api.nvim_command("highlight! Normal ctermbg=None guibg=None")
+	vim.api.nvim_command("highlight! NonText ctermbg=None guibg=None")
+
+	local group = vim.api.nvim_create_augroup("dotfiles_transparent_background", {})
+	vim.api.nvim_create_autocmd("ColorScheme", {
+		group = group,
+		command = "highlight! Normal ctermbg=None guibg=None | highlight! NonText ctermbg=None guibg=None"
+	})
+end
+transparent_background()
 
 -- Configure number and relative number. Ensure relative number is toggled of
 -- when entering insert mode
 vim.o.number = true
 vim.o.numberwidth = 5
-vimcompat.add_to_globals("dotfiles.set_relative_number", function(v)
-    local ignored_file_types = {
-        "aerial", "alpha", "help", "packer", "qf", "termmaker", "neo-tree"
-    }
-    if vim.tbl_contains(ignored_file_types, vim.bo.filetype) then
-        return
-    end
-    -- Always set number. This ensures we don't loose this setting while
-    -- toggling relative number.
-    vim.wo.number = true
-    vim.wo.relativenumber = v
-end)
-vimcompat.augroup("dotfiles_numbertoggle", {
-    [[
-        BufEnter,FocusGained,InsertLeave * :call v:lua.dotfiles.set_relative_number(v:true)
-    ]],
-    [[
-        BufLeave,FocusLost,InsertEnter * :call v:lua.dotfiles.set_relative_number(v:false)
-    ]]
-})
+
+local function toggle_relnum()
+	local ignored_file_types = {
+		"aerial", "alpha", "help", "packer", "qf", "termmaker", "neo-tree"
+	}
+
+	local toggle = function(v)
+		if vim.tbl_contains(ignored_file_types, vim.bo.filetype) then
+			return
+		end
+		-- Always set number. This ensures we don't loose this setting while
+		-- toggling relative number.
+		vim.wo.number = true
+		vim.wo.relativenumber = v
+	end
+
+	local group = vim.api.nvim_create_augroup("dotfiles_numbertoggle", {})
+	vim.api.nvim_create_autocmd({"BufEnter", "FocusGained", "InsertLeave"}, {
+		group = group,
+		callback = function()
+			toggle(true)
+		end,
+	})
+	vim.api.nvim_create_autocmd({"BufLeave", "FocusLost", "InsertEnter"}, {
+		group = group,
+		callback = function()
+			toggle(false)
+		end,
+	})
+end
+toggle_relnum()
 
 -- Persistent undo.
 --
 -- Some filetypes may choose to disable this. Additionally we disable it
 -- for all files in /tmp/
-vim.o.undofile = true
-vim.bo.undofile = true
-vimcompat.augroup("dotfiles_undofile", {
-    [[
-        BufWritePre /tmp/* setlocal noundofile
-    ]]
-})
+local function persistent_undo()
+	vim.o.undofile = true
+	vim.bo.undofile = true
+
+	local group = vim.api.nvim_create_augroup("dotfiles_undofile", {})
+	vim.api.nvim_create_autocmd("BufEnter", {
+		group = group,
+		pattern = "/tmp/*",
+		command = "setlocal noundofile",
+	})
+end
+persistent_undo()
 
 -------------------------------------------------------------------------------
 -- Language specific settings available in Neovim

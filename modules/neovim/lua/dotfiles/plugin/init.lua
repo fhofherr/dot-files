@@ -125,13 +125,6 @@ function M.setup()
 			-- use("ggandor/lightspeed.nvim")
 			use("unblevable/quick-scope")
 
-			-- use({
-			-- 	"TaDaa/vimade",
-			-- 	config = function()
-			-- 		require("dotfiles.plugin.vimade").config()
-			-- 	end,
-			-- })
-
 			use({
 				"goolord/alpha-nvim",
 				requires = { "kyazdani42/nvim-web-devicons" },

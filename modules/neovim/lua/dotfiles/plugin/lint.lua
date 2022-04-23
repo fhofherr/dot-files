@@ -1,6 +1,5 @@
 local M = {}
 
-local vimcompat = require("dotfiles.vimcompat")
 local plugin = require("dotfiles.plugin")
 local lint = require("lint")
 local parser = require("lint.parser")
@@ -27,34 +26,7 @@ lint.linters.buf = {
 
 lint.linters.luacheck.cmd = plugin.hererocks_bin() .. "/luacheck"
 
-function M.config()
-    for ft, list in pairs(desired_linters) do
-        local linters = {}
-
-        for _, x in ipairs(list) do
-            local linter = lint.linters[x]
-            if linter and vim.fn.executable(linter.cmd) == 1 then
-                linters[#linters + 1] = x
-            end
-        end
-
-        if #linters > 0 then
-            lint.linters_by_ft[ft] = linters
-        end
-    end
-
-    vimcompat.augroup(
-        "dotfiles_lint", {
-            [[
-            BufWritePost * silent lua require("dotfiles.plugin.lint").buf_write_post()
-        ]], [[
-            InsertLeave * silent lua require("dotfiles.plugin.lint").insert_leave()
-        ]]
-        }
-    )
-end
-
-function M.buf_write_post()
+local function buf_write_post()
     local linters = lint.linters_by_ft[vim.bo.filetype]
     if not linters then
         return
@@ -62,7 +34,7 @@ function M.buf_write_post()
     lint.try_lint()
 end
 
-function M.insert_leave()
+local function insert_leave()
     local linters = lint.linters_by_ft[vim.bo.filetype]
     if not linters then
         return
@@ -83,6 +55,34 @@ function M.insert_leave()
     if vim.b.lint_on_insert_leave then
         lint.try_lint()
     end
+end
+
+
+function M.config()
+    for ft, list in pairs(desired_linters) do
+        local linters = {}
+
+        for _, x in ipairs(list) do
+            local linter = lint.linters[x]
+            if linter and vim.fn.executable(linter.cmd) == 1 then
+                linters[#linters + 1] = x
+            end
+        end
+
+        if #linters > 0 then
+            lint.linters_by_ft[ft] = linters
+        end
+    end
+
+	local group = vim.api.nvim_create_augroup("dotfiles_lint", {})
+	vim.api.nvim_create_autocmd("BufWritePost", {
+		group = group,
+		callback = buf_write_post,
+	})
+	vim.api.nvim_create_autocmd("InsertLeave", {
+		group = group,
+		callback = insert_leave,
+	})
 end
 
 return M
