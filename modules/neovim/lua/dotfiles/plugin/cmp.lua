@@ -3,24 +3,26 @@ local M = {}
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 local npairs_cmp = require("nvim-autopairs.completion.cmp")
+local ls = require("luasnip")
 
 function M.config()
 	cmp.setup({
 		completion = {
 			completeopt = "menu,menuone,noselect,noinsert",
 		},
-        view = {
-            entries = "native",
-        },
+		view = {
+			entries = "native",
+		},
 		preselect = cmp.PreselectMode.None,
 		snippet = {
 			expand = function(args)
-				vim.fn["vsnip#anonymous"](args.body)
+				ls.lsp_expand(args.body)
 			end,
 		},
 		sources = {
 			{ name = "nvim_lsp" },
-			{ name = "nvim_lua" },
+			{ name = "luasnip" },
+			{ name = "nvim_lua" }, -- TODO only use this source for lua files
 			{
 				name = "buffer",
 				option = {
@@ -30,7 +32,7 @@ function M.config()
 				},
 			},
 			{ name = "path" },
-			{ name = "vsnip" },
+			{ name = "treesitter" },
 			{ name = "emoji" },
 		},
 		mapping = {
