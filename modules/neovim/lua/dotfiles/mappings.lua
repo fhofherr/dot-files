@@ -115,4 +115,40 @@ function M.on_lsp_attached(bufnr)
 	vim.keymap.set("n", "<localleader>ca", "telescope.lsp_code_actions", opts) -- Show code actions
 end
 
+function M.on_gitsigns_attach(bufnr)
+	local opts = { silent = true, buffer = bufnr }
+	local range = function()
+		local start = vim.fn.line("v")
+		local stop = vim.fn.line(".")
+
+		vim.api.nvim_input("<esc>") -- Not sure if I should be doing this here
+
+		if start <= stop then
+			return { start, stop }
+		else
+			return { stop, start }
+		end
+	end
+
+	local gs = require("gitsigns")
+
+	-- Stage a hunk
+	vim.keymap.set("n", "<localleader>ghs", gs.stage_hunk, opts)
+	vim.keymap.set("v", "<localleader>ghs", function()
+		return gs.stage_hunk(range())
+	end, opts)
+
+	-- Stage a hunk
+	vim.keymap.set("n", "<localleader>ghu", gs.undo_stage_hunk, opts)
+	vim.keymap.set("v", "<localleader>ghu", function()
+		gs.undo_stage_hunk(range())
+	end, opts)
+
+	-- Reset a hunk
+	vim.keymap.set("n", "<localleader>ghr", gs.reset_hunk, opts)
+	vim.keymap.set("v", "<localleader>ghr", function()
+		gs.reset_hunk(range())
+	end, opts)
+end
+
 return M

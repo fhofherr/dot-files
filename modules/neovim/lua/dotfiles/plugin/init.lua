@@ -111,6 +111,9 @@ function M.setup()
 				config = function()
 					require("gitsigns").setup({
 						current_line_blame = false,
+						on_attach = function(bufnr)
+							require("dotfiles.mappings").on_gitsigns_attach(bufnr)
+						end
 					})
 				end,
 			})
