@@ -155,6 +155,17 @@ if vim.fn.executable("rg") == 1 then
     vim.o.grepprg = "rg --vimgrep --no-heading"
 end
 
+function _G.dotfiles_reload()
+	for name, _ in pairs(package.loaded) do
+		if name:match("^dotfiles") then
+			package.loaded[name] = nil
+		end
+	end
+
+    vim.api.nvim_command("source " .. vim.env.MYVIMRC)
+end
+vim.api.nvim_command("command! ReloadVimrc :lua dotfiles_reload()<CR>")
+
 -------------------------------------------------------------------------------
 -- Plugins
 -------------------------------------------------------------------------------
