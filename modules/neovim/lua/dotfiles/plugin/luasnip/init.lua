@@ -21,6 +21,14 @@ function M.select_choice()
 	end
 end
 
+function M.load_snippets()
+	-- Using the luasnip snippets loader seems convenient at first look,
+	-- but leads to a lot of linting errors due to pre-defined globals.
+	-- Since I don't want to deal with those I manually load the snippets
+	-- I want. This is a little less comfortable but more explicit.
+	require("dotfiles.plugin.luasnip.snippets").load()
+end
+
 function M.config()
 	ls.config.set_config({
 		history = true,
@@ -35,11 +43,8 @@ function M.config()
 		},
 	})
 
-	-- Using the luasnip snippets loader seems convenient at first look,
-	-- but leads to a lot of linting errors due to pre-defined globals.
-	-- Since I don't want to deal with those I manually load the snippets
-	-- I want. This is a little less comfortable but more explicit.
-	require("dotfiles.plugin.luasnip.snippets").load()
+	M.load_snippets()
+	vim.api.nvim_command("command! ReloadSnippets :lua require('dotfiles.plugin.luasnip').load_snippets()<CR>")
 end
 
 return M
