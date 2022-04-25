@@ -112,7 +112,7 @@ function M.on_lsp_attached(bufnr)
 	vim.keymap.set("n", "<c-s>", vim.lsp.buf.signature_help, opts) -- Show signature.
 	vim.keymap.set("n", "1gD", vim.lsp.buf.declaration, opts) -- Go to declaration.
 	vim.keymap.set("n", "<localleader>rn", vim.lsp.buf.rename, opts) -- Rename symbol
-	vim.keymap.set("n", "<localleader>ca", "telescope.lsp_code_actions", opts) -- Show code actions
+	vim.keymap.set("n", "<localleader>ca", telescope.lsp_code_actions, opts) -- Show code actions
 end
 
 function M.on_gitsigns_attach(bufnr)
