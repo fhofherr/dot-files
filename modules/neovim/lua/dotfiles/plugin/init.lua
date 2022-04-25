@@ -221,30 +221,17 @@ function M.setup()
 			})
 			use({
 				"neovim/nvim-lspconfig",
+				requires = {
+					"nvim-lua/plenary.nvim", -- for null-ls
+					"jose-elias-alvarez/null-ls.nvim",
+				},
+				rocks = {
+                    "luacheck",
+                    "luafilesystem",
+                },
 				after = { "aerial.nvim" },
 				config = function()
 					require("dotfiles.plugin.lsp").config()
-				end,
-			})
-
-			use({
-				"mfussenegger/nvim-lint",
-				rocks = {
-					"luacheck",
-					"luafilesystem",
-				},
-				config = function()
-					require("dotfiles.plugin.lint").config()
-				end,
-			})
-
-			use({
-				"mhartington/formatter.nvim",
-				-- rocks = {
-				--     {"luaformatter", server = "https://luarocks.org/dev"},
-				-- },
-				config = function()
-					require("dotfiles.plugin.formatter").config()
 				end,
 			})
 
