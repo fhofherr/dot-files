@@ -48,7 +48,7 @@ function M.buffers()
 end
 
 M.document_diagnostics = function()
-    builtin.diagnostics({bufnr=0})
+	builtin.diagnostics({ bufnr = 0 })
 end
 M.file_browser = telescope.extensions.file_browser.file_browser
 M.help_tags = builtin.help_tags
@@ -92,7 +92,7 @@ function M.workspace_symbols()
 			use_lsp = false
 			break
 		end
-		has_workspace_symbols = has_workspace_symbols or v.resolved_capabilities.workspace_symbol
+		has_workspace_symbols = has_workspace_symbols or v.server_capabilities.workspace_symbol
 	end
 	if use_lsp and has_workspace_symbols then
 		return builtin.lsp_workspace_symbols()
@@ -111,7 +111,7 @@ function M.find_files()
 end
 
 function M.lsp_code_actions()
-    return vim.lsp.buf.code_action()
+	return vim.lsp.buf.code_action()
 end
 
 function M.lsp_implementations()

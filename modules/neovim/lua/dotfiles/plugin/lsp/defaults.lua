@@ -26,7 +26,7 @@ end
 
 local function configure_formatting(client, bufnr)
 	local can_fmt = (
-		client.resolved_capabilities.document_formatting or client.resolved_capabilities.document_range_formatting
+		client.server_capabilities.document_formatting or client.server_capabilities.document_range_formatting
 	)
 	if not can_fmt then
 		return
