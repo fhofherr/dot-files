@@ -4,8 +4,6 @@ local plugin = require("dotfiles.plugin")
 local null_ls = require("null-ls")
 local builtins = null_ls.builtins
 
-local defaults = require("dotfiles.plugin.lsp.defaults")
-
 local sources = {
 	builtins.code_actions.gitsigns,
 	builtins.code_actions.shellcheck,
@@ -54,9 +52,7 @@ local sources = {
 	builtins.formatting.stylua,
 }
 
-function M.setup()
-	local opts = defaults.new_defaults()
-
+function M.setup(opts)
 	opts.sources = sources
 	null_ls.setup(opts)
 end

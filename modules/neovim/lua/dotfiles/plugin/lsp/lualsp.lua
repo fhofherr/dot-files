@@ -1,22 +1,20 @@
 local plugin = require("dotfiles.plugin")
 local lspconfig = plugin.safe_require("lspconfig")
-local defaults = require("dotfiles.plugin.lsp.defaults")
 
 local M = {}
 
-function M.setup()
+function M.setup(opts)
 	-- pamac install lua-language-server
 	if vim.fn.executable("lua-language-server") ~= 1 then
 		return
 	end
 
-    -- This setup currently only works for neovim. I need to tweak this
-    -- if I want to use lua for other things as well.
-    local runtime_path = vim.split(package.path, ';')
-    table.insert(runtime_path, "lua/?.lua")
-    table.insert(runtime_path, "lua/?/init.lua")
+	-- This setup currently only works for neovim. I need to tweak this
+	-- if I want to use lua for other things as well.
+	local runtime_path = vim.split(package.path, ";")
+	table.insert(runtime_path, "lua/?.lua")
+	table.insert(runtime_path, "lua/?/init.lua")
 
-	local opts = defaults.new_defaults()
 	opts.settings = {
 		Lua = {
 			runtime = {

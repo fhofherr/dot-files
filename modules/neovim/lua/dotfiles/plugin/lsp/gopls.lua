@@ -2,32 +2,31 @@ local M = {}
 
 local plugin = require("dotfiles.plugin")
 local lspconfig = plugin.safe_require("lspconfig")
-local defaults = require("dotfiles.plugin.lsp.defaults")
 
 local function build_flags()
-    local flags = {}
+	local flags = {}
 
-    local tags = vim.env.GOPLS_BUILD_TAGS
-    if tags and tags ~= "" then
-        flags[#flags+1] = "-tags"
-        flags[#flags+1] = tags
-    end
+	local tags = vim.env.GOPLS_BUILD_TAGS
+	if tags and tags ~= "" then
+		flags[#flags + 1] = "-tags"
+		flags[#flags + 1] = tags
+	end
 
-    return flags
+	return flags
 end
 
-function M.setup()
-    local gopls_opts = defaults.new_defaults()
+function M.setup(opts)
+	opts.cmd = {
+		"gopls", --[["--remote=auto"]]
+	}
+	opts.init_options = {
+		usePlaceholders = true,
+		completeUnimported = true,
+		buildFlags = build_flags(),
+	}
+	opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-    gopls_opts.cmd = {"gopls", --[["--remote=auto"]]}
-    gopls_opts.init_options = {
-        usePlaceholders = true,
-        completeUnimported = true,
-        buildFlags = build_flags(),
-    }
-    gopls_opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-    lspconfig.gopls.setup(gopls_opts)
+	lspconfig.gopls.setup(opts)
 end
 
 return M
