@@ -21,21 +21,7 @@ local preferred_formatters = {
 }
 
 local function configure_buffer(_, bufnr)
-	local function buf_set_option(...)
-		vim.api.nvim_buf_set_option(bufnr, ...)
-	end
-	local function buf_def_cmd(name, rhs)
-		vim.api.nvim_command("command! -buffer " .. name .. " " .. rhs)
-	end
-
-	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-
-	-- Define buffer local commands
-	buf_def_cmd("LspRename", "lua vim.lsp.buf.rename()")
-	buf_def_cmd("LspIncomingCalls", "lua vim.lsp.buf.incoming_calls()")
-	buf_def_cmd("LspOutgoingCalls", "lua vim.lsp.buf.outgoing_calls()")
-	buf_def_cmd("LspCodeActions", "lua require('dotfiles.plugin.telescope').lsp_code_actions()")
-	buf_def_cmd("LspFmt", "lua vim.lsp.buf.formatting()")
+	vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 end
 
 local function configure_formatting(_, bufnr)
@@ -84,18 +70,22 @@ local function configure_formatting(_, bufnr)
 		return clients
 	end
 
+	local do_fmt = function()
+		vim.lsp.buf.format({
+			filter = filter_clients,
+			bufnr = bufnr,
+			async = false,
+		})
+	end
+
 	-- Remember the id of the autocmd. This is not really used but allows
 	-- is to not attach the auto command again to the buffer.
 	vim.b.dotfiles_lspfmt_autocmd = vim.api.nvim_create_autocmd("BufWritePre", {
 		buffer = bufnr,
-		callback = function()
-			vim.lsp.buf.format({
-				filter = filter_clients,
-				bufnr = bufnr,
-				async = false,
-			})
-		end,
+		callback = do_fmt,
 	})
+
+	vim.api.nvim_buf_create_user_command(bufnr, "LspFmt", do_fmt, {})
 end
 
 local function new_default_opts()
