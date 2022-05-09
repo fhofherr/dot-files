@@ -101,7 +101,7 @@ function M.register()
 	vim.keymap.set("n", ">", ">gv", opts) -- Increase indent and reselect
 end
 
-function M.on_lsp_attached(bufnr)
+function M.on_lsp_attached(client, bufnr)
 	local opts = { silent = true, buffer = bufnr }
 
 	vim.keymap.set("n", "gD", telescope.lsp_type_definitions, opts) -- Go to type definition.
@@ -113,6 +113,10 @@ function M.on_lsp_attached(bufnr)
 	vim.keymap.set("n", "1gD", vim.lsp.buf.declaration, opts) -- Go to declaration.
 	vim.keymap.set("n", "<localleader>rn", vim.lsp.buf.rename, opts) -- Rename symbol
 	vim.keymap.set("n", "<localleader>ca", telescope.lsp_code_actions, opts) -- Show code actions
+
+	if client.server_capabilities.codeLensProvider then
+		vim.keymap.set("n", "<localleader>clr", vim.lsp.codelens.run, opts) -- Run code lens
+	end
 end
 
 function M.on_gitsigns_attach(bufnr)

@@ -88,6 +88,36 @@ local function configure_formatting(_, bufnr)
 	vim.api.nvim_buf_create_user_command(bufnr, "LspFmt", do_fmt, {})
 end
 
+local function configure_code_lens(client, bufnr)
+	-- This function whenever a client is attached to the buffer. As such
+	-- we skip it as soon as we are able to determine that nothing with
+	-- respect to the code lens configuration is going to change.
+	if not client.server_capabilities.codeLensProvider then
+		return
+	end
+
+	local ok, _ = pcall(vim.lsp.nvim_get_hl_by_name, "LspCodeLens", false)
+	if not ok then
+		vim.cmd("highlight default link LspCodeLens Comment")
+		vim.cmd("highlight default link LspCodeLensText Comment")
+		vim.cmd("highlight default link LspCodeLensTextSign LspCodeLensText")
+		vim.cmd("highlight default link LspCodeLensTextSeparator Boolean")
+	end
+
+	if not vim.b.dotfiles_codelens_autocmd then
+		vim.b.dotfiles_codelens_autocmd = vim.api.nvim_create_autocmd({
+			"BufEnter",
+			"CursorHold",
+			"InsertLeave",
+		}, {
+			buffer = bufnr,
+			callback = function()
+				vim.lsp.codelens.refresh()
+			end,
+		})
+	end
+end
+
 local function new_default_opts()
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 
@@ -96,8 +126,9 @@ local function new_default_opts()
 		on_attach = function(client, bufnr)
 			configure_buffer(client, bufnr)
 			configure_formatting(client, bufnr)
+			configure_code_lens(client, bufnr)
 			aerial.on_attach(client, bufnr)
-			mappings.on_lsp_attached(bufnr)
+			mappings.on_lsp_attached(client, bufnr)
 		end,
 		capabilities = capabilities,
 	}
