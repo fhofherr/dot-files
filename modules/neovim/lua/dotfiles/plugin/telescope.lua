@@ -63,38 +63,44 @@ M.tags = builtin.tags
 M.workspace_diagnostics = builtin.diagnostics
 
 function M.document_symbols()
-	-- Check if buffer is attached to *any* lsp client. Usually this is just
-	-- one. If this is the case use the language server to obtain the document
-	-- symbols. Fall back to treesitter otherwise.
+	-- Check if buffer is attached to *any* lsp client.  If this is the case
+	-- and at least one of the language servers is a documentSymbolProvider
+	-- use the language server to obtain the document symbols.
+	-- Fall back to treesitter otherwise.
 
 	local lsp_clients = vim.lsp.buf_get_clients(0)
-	if not vim.tbl_isempty(lsp_clients) then
-		return builtin.lsp_document_symbols()
+	for _, c in ipairs(lsp_clients) do
+		if c.server_capabilities.documentSymbolProvider then
+			return builtin.lsp_document_symbols()
+		end
 	end
 	return builtin.treesitter()
 end
 
 function M.workspace_symbols()
-	-- Check if buffer is attached to *any* lsp client. Usually this is just
-	-- one. If this is the case, and none of the clients is in the block list
-	-- use the language server to obtain the workspace symbols.
-	-- Fall back to ctags otherwise.
+	-- Check if *any* active lsp clients exists. If this is the case,
+	-- and none of the clients is not in the block list use the
+	-- language server to obtain the workspace symbols. Fall back to ctags
+	-- otherwise.
 	local blocked = {
 		"gopls", -- Does not return anything on document_symbols
 	}
 
-	local lsp_clients = vim.lsp.buf_get_clients(0)
-	local use_lsp = not vim.tbl_isempty(lsp_clients)
-	local has_workspace_symbols = false
-
-	for _, v in pairs(lsp_clients) do
-		if vim.tbl_contains(blocked, v.name) then
+	local lsp_clients = vim.lsp.get_active_clients()
+	local use_lsp = false
+	for _, c in ipairs(lsp_clients) do
+		if vim.tbl_contains(blocked, c.name) then
+			-- Found a blocked client. Whatever we found before does not matter
+			-- we use ctags.
 			use_lsp = false
 			break
 		end
-		has_workspace_symbols = has_workspace_symbols or v.server_capabilities.workspace_symbol
+		if c.server_capabilities.workspaceSymbolProvider then
+			use_lsp = true
+		end
 	end
-	if use_lsp and has_workspace_symbols then
+
+	if use_lsp then
 		return builtin.lsp_workspace_symbols()
 	end
 	return builtin.tags()
