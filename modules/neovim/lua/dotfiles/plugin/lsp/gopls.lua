@@ -28,9 +28,14 @@ function M.setup(opts)
 		gopls = {
 			usePlaceholders = true,
 			buildFlags = build_flags(),
+			-- See https://github.com/golang/tools/blob/master/gopls/doc/analyzers.md
 			analyses = {
+				fieldalignment = true,
+				nilness = true,
 				unreachable = true,
 				unusedparams = true,
+				unusedwrite = true,
+				useany = true,
 			},
 			codelenses = {
 				generate = true,
