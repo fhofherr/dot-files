@@ -38,6 +38,7 @@ class Bat(module.Definition):
         self._set_color_scheme()
         fs.safe_link_file(self.cfg_file_src, self.cfg_file_dest)
         self.state.setenv("MANPAGER", r'sh -c \"col -bx | bat -l man -p\"')
+        self.state.setenv("MANWIDTH", "72")
         self.state.add_alias("cat", "bat")
 
     def _set_color_scheme(self):
