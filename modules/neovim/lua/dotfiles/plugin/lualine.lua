@@ -37,7 +37,7 @@ function M.config()
 		options = {
 			theme = select_theme(),
 			icons_enabled = true,
-            globalstatus = true,
+			globalstatus = true,
 		},
 		sections = {
 			lualine_a = { "mode" },
@@ -62,6 +62,7 @@ function M.config()
 		},
 		extensions = select_extensions(),
 	})
+	vim.o.winbar = "%=%m %f"
 end
 
 return M
