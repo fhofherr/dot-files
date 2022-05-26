@@ -2,7 +2,7 @@ import os
 import tarfile
 from fnmatch import fnmatch
 
-from dotfiles import download, fs, module, colors
+from dotfiles import colors, download, fs, module
 
 REPO_ID = "dandavison/delta"
 
@@ -32,6 +32,12 @@ class GitDelta(module.Definition):
             "tokyonight-night": "OneHalfDark",
             "tokyonight-storm": "OneHalfDark",
             "tokyonight-day": "OneHalfLight",
+            "nightfox": "OneHalfDark",
+            "duskfox": "OneHalfDark",
+            "nordfox": "OneHalfDark",
+            "terafox": "gruvbox-dark",
+            "dayfox": "OneHalfLight",
+            "dawnfox": "OneHalfLight",
         }.get(name, "gruvbox-dark")
 
     def is_archive_asset(self, name):

@@ -60,6 +60,12 @@ class Bat(module.Definition):
             "tokyonight-night": "OneHalfDark",
             "tokyonight-storm": "OneHalfDark",
             "tokyonight-day": "OneHalfLight",
+            "nightfox": "OneHalfDark",
+            "duskfox": "OneHalfDark",
+            "nordfox": "OneHalfDark",
+            "terafox": "gruvbox-dark",
+            "dayfox": "OneHalfLight",
+            "dawnfox": "OneHalfLight",
         }.get(theme_name, theme_name) # Translate theme_name or re-use.
         self.state.setenv("BAT_THEME", theme_name)
 

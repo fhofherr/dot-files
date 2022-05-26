@@ -18,6 +18,7 @@ local function ensure_packer()
 
 	return require("packer")
 end
+
 local packer = ensure_packer()
 
 function M.hererocks_bin()
@@ -113,7 +114,7 @@ function M.setup()
 						current_line_blame = false,
 						on_attach = function(bufnr)
 							require("dotfiles.mappings").on_gitsigns_attach(bufnr)
-						end
+						end,
 					})
 				end,
 			})
@@ -165,11 +166,21 @@ function M.setup()
 				"nvim-lualine/lualine.nvim",
 				requires = {
 					"kyazdani42/nvim-web-devicons",
+				},
+				after = (function()
 					-- Tokyonight provides a custom lualine theme. As such
 					-- we depend on it, even though this dependency is only
 					-- relevant if tokyonight is actually selected.
-					"tokyonight.nvim",
-				},
+					local tokyonight_names = {
+						"tokyonight-storm",
+						"tokyonight-night",
+						"tokyonight-day",
+					}
+					if vim.tbl_contains(tokyonight_names, vim.env.DOTFILES_COLOR_SCHEME) then
+						return { "tokyonight.nvim" }
+					end
+					return nil
+				end)(),
 				config = function()
 					require("dotfiles.plugin.lualine").config()
 				end,
@@ -226,9 +237,9 @@ function M.setup()
 					"jose-elias-alvarez/null-ls.nvim",
 				},
 				rocks = {
-                    "luacheck",
-                    "luafilesystem",
-                },
+					"luacheck",
+					"luafilesystem",
+				},
 				after = { "aerial.nvim" },
 				config = function()
 					require("dotfiles.plugin.lsp").config()
@@ -451,6 +462,27 @@ function M.setup()
 						vim.g.background = "light"
 					end
 					vim.api.nvim_command("colorscheme gruvbox")
+				end,
+			})
+			use({
+				"EdenEast/nightfox.nvim",
+				cond = function()
+					return vim.tbl_contains({
+						"nightfox",
+						"dayfox",
+						"dawnfox",
+						"duskfox",
+						"nordfox",
+						"terafox",
+					}, vim.env.DOTFILES_COLOR_SCHEME)
+				end,
+				config = function()
+					require("nightfox").setup({
+						options = {
+							dim_inactive = true,
+						},
+					})
+					vim.api.nvim_command("colorscheme " .. vim.env.DOTFILES_COLOR_SCHEME)
 				end,
 			})
 		end,

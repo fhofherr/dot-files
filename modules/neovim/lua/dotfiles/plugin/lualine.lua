@@ -20,7 +20,7 @@ local function select_theme()
 		["tokyonight-storm"] = "tokyonight",
 		["tokyonight-day"] = "tokyonight",
 	}
-	return color_schemes[vim.env.DOTFILES_COLOR_SCHEME] or "gruvbox"
+	return color_schemes[vim.env.DOTFILES_COLOR_SCHEME] or "auto"
 end
 
 local function select_extensions()
