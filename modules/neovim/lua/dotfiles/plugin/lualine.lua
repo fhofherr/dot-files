@@ -62,7 +62,7 @@ function M.config()
 		},
 		extensions = select_extensions(),
 	})
-	vim.o.winbar = "%=%m %f"
+	vim.o.winbar = "%m %f"
 end
 
 return M
