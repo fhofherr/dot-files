@@ -3,6 +3,7 @@ local M = {}
 local plugin = require("dotfiles.plugin")
 local telescope = require("dotfiles.plugin.telescope")
 local luasnip = require("dotfiles.plugin.luasnip")
+local neotest = require("neotest")
 
 function M.register()
 	local opts = { silent = true }
@@ -69,15 +70,17 @@ function M.register()
 	--
 	-- Testing
 	--
-	if plugin.exists("vim-ultest") then
-		vim.keymap.set("n", "<localleader>tf", "<Plug>(ultest-run-file)", opts) -- Run all tests in file.
-		vim.keymap.set("n", "<localleader>tn", "<Plug>(ultest-run-nearest)", opts) -- Run nearest test.
-		vim.keymap.set("n", "<localleader>to", "<Plug>(ultest-output-jump)", opts) -- Show error output of nearest test
-		vim.keymap.set("n", "<localleader>ts", "<Plug>(ultest-summary-toggle)", opts) -- Toggle test summary
-	else
-		vim.keymap.set("n", "<localleader>tn", "<cmd>:TestNearest<CR>", opts) -- Run nearest test.
-		vim.keymap.set("n", "<localleader>tf", "<cmd>:TestFile<CR>", opts) -- Run all tests in file.
-	end
+	vim.keymap.set("n", "<localleader>tf", function()
+		neotest.run.run(vim.fn.expand("%"))
+	end) -- Run all tests in file.
+
+	vim.keymap.set("n", "<localleader>tn", neotest.run.run) -- Run nearest test.
+	vim.keymap.set("n", "<localleader>td", function()
+		neotest.run.run({ strategy = dap })
+	end) -- Debug nearest test.
+
+	vim.keymap.set("n", "<localleader>to", neotest.output.open) -- Show error output of nearest test
+	vim.keymap.set("n", "<localleader>ts", neotest.summary.open) -- Toggle test summary
 
 	--
 	-- Window navigation

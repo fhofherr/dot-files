@@ -11,7 +11,7 @@ local fmta = require("luasnip.extras.fmt").fmta
 
 -- TODO document and move to utilities package
 local function last_word(args)
-	local res = vim.split(args[1][1], " ", {plain = true})
+	local res = vim.split(args[1][1], " ", { plain = true })
 
 	if res then
 		return res[#res]

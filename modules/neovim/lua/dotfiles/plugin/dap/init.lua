@@ -60,14 +60,14 @@ local function add_commands()
 	end, { force = true })
 
 	vim.api.nvim_create_user_command("DapStepInto", function()
-        dap.step_into({askForTargets = true})
-    end, { force = true })
+		dap.step_into({ askForTargets = true })
+	end, { force = true })
 	vim.api.nvim_create_user_command("DapStepOut", function()
-        dap.step_out()
-    end, { force = true })
+		dap.step_out()
+	end, { force = true })
 	vim.api.nvim_create_user_command("DapStepOver", function()
-        dap.step_over()
-    end, { force = true })
+		dap.step_over()
+	end, { force = true })
 end
 
 local function register_ui()
@@ -84,11 +84,7 @@ end
 
 function M.setup()
 	dap_go.setup()
-	dap_ui.setup({
-		sidebar = {
-			size = 60,
-		},
-	})
+	dap_ui.setup()
 	dap_vt.setup()
 
 	register_ui()

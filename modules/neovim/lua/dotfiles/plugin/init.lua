@@ -161,9 +161,29 @@ function M.setup()
 			use("nelstrom/vim-visual-star-search")
 
 			use({
-				"rcarriga/vim-ultest",
-				requires = { "vim-test/vim-test", "tpope/vim-dispatch" },
-				run = ":UpdateRemotePlugins",
+				"mfussenegger/nvim-dap",
+				requires = {
+					"rcarriga/nvim-dap-ui",
+					"leoluz/nvim-dap-go",
+					"theHamsta/nvim-dap-virtual-text",
+				},
+				config = function()
+					require("dotfiles.plugin.dap").setup()
+				end,
+			})
+
+			use({
+				"nvim-neotest/neotest",
+				requires = {
+					"nvim-lua/plenary.nvim",
+					"nvim-treesitter/nvim-treesitter",
+					"antoinemadec/FixCursorHold.nvim",
+					"nvim-neotest/neotest-python",
+					"nvim-neotest/neotest-go",
+					"nvim-neotest/neotest-vim-test",
+					"vim-test/vim-test",
+					"tpope/vim-dispatch",
+				},
 				config = function()
 					require("dotfiles.plugin.test").config()
 				end,
@@ -363,18 +383,6 @@ function M.setup()
 
 			use("hashivim/vim-terraform")
 			use("mattn/vim-goaddtags")
-
-			use({
-				"mfussenegger/nvim-dap",
-				requires = {
-					"rcarriga/nvim-dap-ui",
-					"leoluz/nvim-dap-go",
-					"theHamsta/nvim-dap-virtual-text",
-				},
-				config = function()
-					require("dotfiles.plugin.dap").setup()
-				end,
-			})
 
 			-- Smooth scrolling
 			use({
