@@ -32,7 +32,18 @@ local sources = {
 			return vim.fn.executable("mypy") == 1
 		end,
 	}),
-	builtins.diagnostics.revive,
+	builtins.diagnostics.revive.with({
+		args = function()
+			local revive_args = { "-formatter", "json" }
+			if vim.fn.filereadable("revive.toml") == 1 then
+				table.insert(revive_args, "-config")
+				table.insert(revive_args, "revive.toml")
+			end
+			table.insert(revive_args, "./...")
+
+			return revive_args
+		end,
+	}),
 	builtins.diagnostics.shellcheck,
 	builtins.diagnostics.yamllint,
 
