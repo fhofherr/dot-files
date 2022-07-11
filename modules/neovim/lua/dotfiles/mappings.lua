@@ -80,7 +80,7 @@ function M.register()
 	end) -- Debug nearest test.
 
 	vim.keymap.set("n", "<localleader>to", neotest.output.open) -- Show error output of nearest test
-	vim.keymap.set("n", "<localleader>ts", neotest.summary.open) -- Toggle test summary
+	vim.keymap.set("n", "<localleader>ts", neotest.summary.toggle) -- Toggle test summary
 
 	--
 	-- Window navigation
