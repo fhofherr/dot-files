@@ -8,6 +8,7 @@ local aerial = require("aerial")
 local language_servers = {
 	clangd = require("dotfiles.plugin.lsp.clangd"),
 	gopls = require("dotfiles.plugin.lsp.gopls"),
+	hls = require("dotfiles.plugin.lsp.hls"),
 	pylsp = require("dotfiles.plugin.lsp.pylsp"),
 	pyright = require("dotfiles.plugin.lsp.pyright"),
 	sumneko_lua = require("dotfiles.plugin.lsp.lualsp"),
