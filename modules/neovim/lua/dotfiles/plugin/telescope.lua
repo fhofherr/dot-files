@@ -107,12 +107,14 @@ function M.workspace_symbols()
 end
 
 function M.find_files()
-	local opts = {
-		shorten_path = false,
-	}
-	local ok = pcall(builtin.git_files, opts)
+	local ok = pcall(builtin.git_files, {
+		use_git_root = true,
+		show_untracked = true,
+	})
 	if not ok then
-		builtin.find_files(opts)
+		builtin.find_files({
+			shorten_path = false,
+		})
 	end
 end
 
