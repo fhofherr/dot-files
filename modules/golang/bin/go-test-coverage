@@ -20,7 +20,7 @@ if ! command -v go >/dev/null 2>&1; then
     exit 1
 fi
 
-GO_PACKAGES=$(command go list ./... | grep -v scripts | tr "\n" ",")
+GO_PACKAGES=$(command go list ./... | grep -v scripts | tr "\n" "," | head -c -1)
 command go test \
     "$TESTCOVERAGE_TESTFLAGS" \
     -p 1 \
