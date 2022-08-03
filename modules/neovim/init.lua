@@ -78,7 +78,7 @@ transparent_background()
 vim.o.number = true
 vim.o.numberwidth = 5
 
-local function toggle_relnum()
+local function toggle_window_features()
 	local ignored_file_types = {
 		"aerial",
 		"alpha",
@@ -89,32 +89,57 @@ local function toggle_relnum()
 		"neo-tree",
 	}
 
-	local toggle = function(v)
-		if vim.tbl_contains(ignored_file_types, vim.bo.filetype) then
-			return
+	local make_callback = function(fn)
+		return function()
+			if vim.tbl_contains(ignored_file_types, vim.bo.filetype) then
+				return
+			end
+			fn()
 		end
-		-- Always set number. This ensures we don't loose this setting while
-		-- toggling relative number.
-		vim.wo.number = true
-		vim.wo.relativenumber = v
 	end
 
-	local group = vim.api.nvim_create_augroup("dotfiles_numbertoggle", {})
-	vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave" }, {
+	local group = vim.api.nvim_create_augroup("dotfiles_toggle_window_features", {})
+	vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter", "FocusGained", "InsertLeave" }, {
+		group = group,
+		callback = make_callback(function()
+			-- Use relative numbers in an active window.
+			vim.wo.number = true
+			vim.wo.relativenumber = true
+
+			vim.wo.cursorline = true
+		end),
+	})
+	vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave", "FocusLost", "InsertEnter" }, {
+		group = group,
+		callback = make_callback(function()
+			vim.wo.relativenumber = false
+			-- Ensure number is set even if we disabled relative number.
+			vim.wo.number = true
+
+			vim.wo.cursorline = false
+		end),
+	})
+end
+
+toggle_window_features()
+
+local function toggle_cursorline()
+	local group = vim.api.nvim_create_augroup("dotfiles_toggle_cursorline", {})
+	vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter", "FocusGained", "InsertLeave" }, {
 		group = group,
 		callback = function()
-			toggle(true)
+			vim.wo.cursorline = true
 		end,
 	})
-	vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
+	vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave", "FocusLost", "InsertEnter" }, {
 		group = group,
 		callback = function()
-			toggle(false)
+			vim.wo.cursorline = false
 		end,
 	})
 end
 
-toggle_relnum()
+toggle_cursorline()
 
 -- Persistent undo.
 --
