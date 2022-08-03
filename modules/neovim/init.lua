@@ -6,18 +6,18 @@ vim.g.maplocalleader = " "
 
 -- Configure language providers (most notably pyhton which we mostly use)
 if vim.env.DOTFILES_NEOVIM_PYTHON3 then
-    vim.g.python3_host_prog = vim.env.DOTFILES_NEOVIM_PYTHON3
+	vim.g.python3_host_prog = vim.env.DOTFILES_NEOVIM_PYTHON3
 end
 
 -------------------------------------------------------------------------------
 -- General editor settings according to our liking. Some of them might get
 -- overriden by editorconfig on a per file-type basis.
 -------------------------------------------------------------------------------
-vim.o.backup = false       -- never keep backup files
-vim.o.writebackup = false  -- not even before writing a file
-vim.o.mouse = "n"          -- enable mouse support in normal mode
-vim.o.showcmd = true       -- show partial commands in the last line of the screen
-vim.o.hidden = true        -- hide buffers when abandoning them
+vim.o.backup = false -- never keep backup files
+vim.o.writebackup = false -- not even before writing a file
+vim.o.mouse = "n" -- enable mouse support in normal mode
+vim.o.showcmd = true -- show partial commands in the last line of the screen
+vim.o.hidden = true -- hide buffers when abandoning them
 vim.o.hlsearch = false
 vim.o.jumpoptions = "stack"
 vim.o.shada = "!,'0,<50,s10,h"
@@ -55,7 +55,7 @@ vim.bo.softtabstop = 4
 vim.api.nvim_command("language messages en_US.UTF-8")
 
 if vim.fn.has("termguicolors") then
-    vim.o.termguicolors = true
+	vim.o.termguicolors = true
 end
 
 -- Enable a transparent terminal background and create an autocmd to ensure
@@ -67,9 +67,10 @@ local function transparent_background()
 	local group = vim.api.nvim_create_augroup("dotfiles_transparent_background", {})
 	vim.api.nvim_create_autocmd("ColorScheme", {
 		group = group,
-		command = "highlight! Normal ctermbg=None guibg=None | highlight! NonText ctermbg=None guibg=None"
+		command = "highlight! Normal ctermbg=None guibg=None | highlight! NonText ctermbg=None guibg=None",
 	})
 end
+
 transparent_background()
 
 -- Configure number and relative number. Ensure relative number is toggled of
@@ -79,7 +80,13 @@ vim.o.numberwidth = 5
 
 local function toggle_relnum()
 	local ignored_file_types = {
-		"aerial", "alpha", "help", "packer", "qf", "termmaker", "neo-tree"
+		"aerial",
+		"alpha",
+		"help",
+		"packer",
+		"qf",
+		"termmaker",
+		"neo-tree",
 	}
 
 	local toggle = function(v)
@@ -93,19 +100,20 @@ local function toggle_relnum()
 	end
 
 	local group = vim.api.nvim_create_augroup("dotfiles_numbertoggle", {})
-	vim.api.nvim_create_autocmd({"BufEnter", "FocusGained", "InsertLeave"}, {
+	vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave" }, {
 		group = group,
 		callback = function()
 			toggle(true)
 		end,
 	})
-	vim.api.nvim_create_autocmd({"BufLeave", "FocusLost", "InsertEnter"}, {
+	vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
 		group = group,
 		callback = function()
 			toggle(false)
 		end,
 	})
 end
+
 toggle_relnum()
 
 -- Persistent undo.
@@ -123,6 +131,7 @@ local function persistent_undo()
 		command = "setlocal noundofile",
 	})
 end
+
 persistent_undo()
 
 -------------------------------------------------------------------------------
@@ -150,9 +159,9 @@ vim.api.nvim_command("command! -nargs=1 -complete=file Split split %:p:h/<args>"
 vim.api.nvim_command("command! -nargs=1 -complete=file Vsplit vsplit %:p:h/<args>")
 
 if vim.fn.executable("rg") == 1 then
-    -- See https://github.com/BurntSushi/ripgrep/issues/425#issuecomment-702244167
-    vim.o.grepformat = "%f:%l:%c:%m,%f:%l:%m"
-    vim.o.grepprg = "rg --vimgrep --no-heading"
+	-- See https://github.com/BurntSushi/ripgrep/issues/425#issuecomment-702244167
+	vim.o.grepformat = "%f:%l:%c:%m,%f:%l:%m"
+	vim.o.grepprg = "rg --vimgrep --no-heading"
 end
 
 function _G.dotfiles_reload()
@@ -162,8 +171,9 @@ function _G.dotfiles_reload()
 		end
 	end
 
-    vim.api.nvim_command("source " .. vim.env.MYVIMRC)
+	vim.api.nvim_command("source " .. vim.env.MYVIMRC)
 end
+
 vim.api.nvim_command("command! ReloadVimrc :lua dotfiles_reload()<CR>")
 
 -------------------------------------------------------------------------------
