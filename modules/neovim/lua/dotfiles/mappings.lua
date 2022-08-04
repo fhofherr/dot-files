@@ -156,6 +156,18 @@ function M.on_gitsigns_attach(bufnr)
 	vim.keymap.set("v", "<localleader>ghr", function()
 		gs.reset_hunk(range())
 	end, opts)
+
+	-- Diff hunks
+	vim.keymap.set("n", "<localleader>ghd", gs.diffthis)
+	vim.keymap.set("n", "<localleader>ghD", function()
+		gs.diffthis("~1")
+	end)
+
+	vim.keymap.set("n", "<localleader>ghb", function()
+		gs.blame_line({ full = true })
+	end)
+	vim.keymap.set("n", "<localleader>gtb", gs.toggle_current_line_blame)
+	vim.keymap.set("n", "<localleader>gtd", gs.toggle_deleted)
 end
 
 return M
