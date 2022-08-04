@@ -85,17 +85,10 @@ function M.register()
 	--
 	-- Window navigation
 	--
-	if plugin.exists("Navigator.nvim") then
-		vim.keymap.set("n", "<C-J>", "<CMD>lua require('Navigator').down()<CR>", opts) -- Move one window down
-		vim.keymap.set("n", "<C-K>", "<CMD>lua require('Navigator').up()<CR>", opts) -- Move one window up
-		vim.keymap.set("n", "<C-L>", "<CMD>lua require('Navigator').right()<CR>", opts) -- Move one window right
-		vim.keymap.set("n", "<C-H>", "<CMD>lua require('Navigator').left()<CR>", opts) -- Move one window left
-	else
-		vim.keymap.set("n", "<C-J>", "<C-W><C-J>", opts) -- Move one window down
-		vim.keymap.set("n", "<C-K>", "<C-W><C-K>", opts) -- Move one window up
-		vim.keymap.set("n", "<C-L>", "<C-W><C-L>", opts) -- Move one window right
-		vim.keymap.set("n", "<C-H>", "<C-W><C-H>", opts) -- Move one window left
-	end
+	vim.keymap.set("n", "<C-J>", "<C-W><C-J>", opts) -- Move one window down
+	vim.keymap.set("n", "<C-K>", "<C-W><C-K>", opts) -- Move one window up
+	vim.keymap.set("n", "<C-L>", "<C-W><C-L>", opts) -- Move one window right
+	vim.keymap.set("n", "<C-H>", "<C-W><C-H>", opts) -- Move one window left
 
 	--
 	-- Various editing helpers

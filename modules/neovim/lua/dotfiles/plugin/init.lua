@@ -59,16 +59,28 @@ function M.setup()
 			})
 
 			use({
-				"numToStr/Navigator.nvim",
+				"kwkarlwang/bufresize.nvim",
 				config = function()
-					require("Navigator").setup()
+					require("bufresize").setup()
 				end,
 			})
 
 			use({
-				"kwkarlwang/bufresize.nvim",
+				"akinsho/toggleterm.nvim",
+				tag = "v2.*",
 				config = function()
-					require("bufresize").setup()
+					require("toggleterm").setup({
+						size = function(term)
+							if term.direction == "horizontal" then
+								return 15
+							elseif term.direction == "vertical" then
+								return vim.o.columns * 0.4
+							end
+						end,
+						open_mapping = [[<C-\>]],
+						direction = "float",
+						close_on_exit = true,
+					})
 				end,
 			})
 
