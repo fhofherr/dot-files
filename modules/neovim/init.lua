@@ -123,24 +123,6 @@ end
 
 toggle_window_features()
 
-local function toggle_cursorline()
-	local group = vim.api.nvim_create_augroup("dotfiles_toggle_cursorline", {})
-	vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter", "FocusGained", "InsertLeave" }, {
-		group = group,
-		callback = function()
-			vim.wo.cursorline = true
-		end,
-	})
-	vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave", "FocusLost", "InsertEnter" }, {
-		group = group,
-		callback = function()
-			vim.wo.cursorline = false
-		end,
-	})
-end
-
-toggle_cursorline()
-
 -- Persistent undo.
 --
 -- Some filetypes may choose to disable this. Additionally we disable it
