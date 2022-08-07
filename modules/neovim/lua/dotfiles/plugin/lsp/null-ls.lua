@@ -35,9 +35,14 @@ local sources = {
 	builtins.diagnostics.revive.with({
 		args = function()
 			local revive_args = { "-formatter", "json" }
-			if vim.fn.filereadable("revive.toml") == 1 then
-				table.insert(revive_args, "-config")
-				table.insert(revive_args, "revive.toml")
+			local cfg_files = { "revive.toml", ".revive.toml" }
+
+			for _, file in ipairs(cfg_files) do
+				if vim.fn.filereadable(file) == 1 then
+					table.insert(revive_args, "-config")
+					table.insert(revive_args, file)
+					break
+				end
 			end
 			table.insert(revive_args, "./...")
 
