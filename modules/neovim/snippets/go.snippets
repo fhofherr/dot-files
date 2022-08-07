@@ -11,13 +11,8 @@ snippet tf "Create a test function" b
 
 snippet tt "Create a test table"
 	tests := []struct{
-		${1:name} string
-		${2:fields}
-	}{
-		{
-			$0
-		}
-	}
+		$0
+	}{}
 
 snippet for "Normal for loop"
 	for ${1:cond} {
