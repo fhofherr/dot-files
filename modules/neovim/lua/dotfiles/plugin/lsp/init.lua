@@ -136,14 +136,6 @@ local function new_default_opts()
 end
 
 function M.config()
-	-- See :help lsp-handler for more info
-	-- See https://github.com/nvim-lua/diagnostic-nvim/issues/73 for transition info from diagnostic-nvim
-	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-		virtual_text = true,
-		signs = false,
-		update_in_insert = true,
-	})
-
 	if lspconfig then
 		for _, v in pairs(language_servers) do
 			v.setup(new_default_opts())
