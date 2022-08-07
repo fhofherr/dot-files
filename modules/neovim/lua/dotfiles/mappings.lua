@@ -1,9 +1,8 @@
 local M = {}
 
-local plugin = require("dotfiles.plugin")
 local telescope = require("dotfiles.plugin.telescope")
-local luasnip = require("dotfiles.plugin.luasnip")
 local neotest = require("neotest")
+local snippy = require("dotfiles.plugin.snippy")
 
 function M.register()
 	local opts = { silent = true }
@@ -63,9 +62,8 @@ function M.register()
 	--
 	-- Snippets
 	--
-	vim.keymap.set({ "i", "s" }, "<c-j>", luasnip.expand_or_jump)
-	vim.keymap.set({ "i", "s" }, "<c-k>", luasnip.jump_back)
-	vim.keymap.set({ "i", "s" }, "<c-l>", luasnip.select_choice)
+	vim.keymap.set({ "i", "s" }, "<c-j>", snippy.expand_or_jump_fwd)
+	vim.keymap.set({ "i", "s" }, "<c-k>", snippy.jump_back)
 
 	--
 	-- Testing

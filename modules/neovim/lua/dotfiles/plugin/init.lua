@@ -313,14 +313,14 @@ function M.setup()
 				end,
 			})
 			use({
-				"L3MON4D3/LuaSnip",
+				"dcampos/nvim-snippy",
 				config = function()
-					require("dotfiles.plugin.luasnip").config()
+					require("dotfiles.plugin.snippy").config()
 				end,
 			})
 			use({
 				"hrsh7th/nvim-cmp",
-				after = { "nvim-autopairs", "LuaSnip" },
+				after = { "nvim-autopairs", "nvim-snippy" },
 				requires = {
 					"hrsh7th/cmp-buffer",
 					"hrsh7th/cmp-emoji",
@@ -328,7 +328,7 @@ function M.setup()
 					"hrsh7th/cmp-nvim-lua",
 					"hrsh7th/cmp-path",
 					"onsails/lspkind-nvim",
-					"saadparwaiz1/cmp_luasnip",
+					"dcampos/cmp-snippy",
 				},
 				config = function()
 					require("dotfiles.plugin.cmp").config()

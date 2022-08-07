@@ -3,7 +3,6 @@ local M = {}
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 local npairs_cmp = require("nvim-autopairs.completion.cmp")
-local ls = require("luasnip")
 
 function M.config()
 	cmp.setup({
@@ -16,12 +15,12 @@ function M.config()
 		preselect = cmp.PreselectMode.None,
 		snippet = {
 			expand = function(args)
-				ls.lsp_expand(args.body)
+				require("snippy").expand_snippet(args.body)
 			end,
 		},
 		sources = {
 			{ name = "nvim_lsp" },
-			{ name = "luasnip" },
+			{ name = "snippy" },
 			{ name = "nvim_lua" }, -- TODO only use this source for lua files
 			{
 				name = "buffer",

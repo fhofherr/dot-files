@@ -1,0 +1,43 @@
+snippet pkg "Create a golang package definition" b
+	package `!lua require("dotfiles.plugin.snippy.go").pkg_name()`
+
+snippet *t "Create a *testing.T"
+	t *testing.T
+
+snippet tf "Create a test function" b
+	func Test${1:Name}(t *testing.T) {
+		$0
+	}
+
+snippet tt "Create a test table"
+	tests := []struct{
+		${1:name} string
+		${2:fields}
+	}{
+		{
+			$0
+		}
+	}
+
+snippet for "Normal for loop"
+	for ${1:cond} {
+		$0
+	}
+
+snippet fortt "Iterate over a test table"
+	for _, ${1:tt} := range ${2:tests} {
+		$1 := $1
+		t.Run($1.${3:name}, func(t *testing.T) {
+			$0
+		})
+	}
+
+snippet fori "Iterate using an index variable"
+	for ${1:i} := 0; $1 < ${2:n}; ${1}++ {
+		$0
+	}
+
+snippet forr "Iterate using a range"
+	for ${1:i},${2:v} := range ${3:iterable} {
+		$0
+	}
