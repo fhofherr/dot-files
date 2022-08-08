@@ -286,41 +286,15 @@ function M.setup()
 			})
 
 			use({
-				"windwp/nvim-autopairs",
-				requires = {
-					"windwp/nvim-ts-autotag",
-				},
-				config = function()
-					local npairs = require("nvim-autopairs")
-					npairs.setup({
-						disable_filetype = { "TelescopePrompt", "vim" },
-						disable_in_macro = true,
-						enable_moveright = true,
-						enable_afterquote = true,
-						enable_check_bracket_in_line = true,
-						check_ts = true, -- See https://github.com/windwp/nvim-autopairs#treesitter
-						map_bs = true,
-						map_c_w = false,
-						autotag = {
-							enable = true,
-						},
-					})
-					-- Enabble experimental endwise support.
-					-- See https://github.com/windwp/nvim-autopairs/wiki/Endwise
-					npairs.add_rules(require("nvim-autopairs.rules.endwise-elixir"))
-					npairs.add_rules(require("nvim-autopairs.rules.endwise-lua"))
-					npairs.add_rules(require("nvim-autopairs.rules.endwise-ruby"))
-				end,
-			})
-			use({
 				"dcampos/nvim-snippy",
 				config = function()
 					require("dotfiles.plugin.snippy").config()
 				end,
 			})
+
 			use({
 				"hrsh7th/nvim-cmp",
-				after = { "nvim-autopairs", "nvim-snippy" },
+				after = { "nvim-snippy" },
 				requires = {
 					"hrsh7th/cmp-buffer",
 					"hrsh7th/cmp-emoji",
@@ -368,6 +342,18 @@ function M.setup()
 					require("dotfiles.plugin.treesitter").config()
 				end,
 			})
+
+			-- TODO not sure yet if I like this.
+			-- use({
+			-- 	"lukas-reineke/indent-blankline.nvim",
+			-- 	config = function()
+			-- 		require("indent_blankline").setup({
+			-- 			show_end_of_line = true,
+			-- 			show_current_context = true,
+			-- 			show_current_context_start = true,
+			-- 		})
+			-- 	end,
+			-- })
 
 			-- use({
 			-- 	"lewis6991/spellsitter.nvim",

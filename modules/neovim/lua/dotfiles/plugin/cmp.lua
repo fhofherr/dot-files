@@ -2,7 +2,6 @@ local M = {}
 
 local cmp = require("cmp")
 local lspkind = require("lspkind")
-local npairs_cmp = require("nvim-autopairs.completion.cmp")
 
 function M.config()
 	cmp.setup({
@@ -47,9 +46,6 @@ function M.config()
 			format = lspkind.cmp_format({ with_text = true, maxwidth = 50 }),
 		},
 	})
-
-	-- See https://github.com/windwp/nvim-autopairs/issues/171 for info
-	cmp.event:on("confirm_done", npairs_cmp.on_confirm_done())
 end
 
 return M

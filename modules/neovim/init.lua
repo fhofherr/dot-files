@@ -32,9 +32,14 @@ vim.o.splitright = true
 
 vim.o.diffopt = "filler,vertical"
 
-vim.wo.lcs = "eol:$,tab:>-,trail:·"
-vim.wo.list = false
-vim.wo.colorcolumn = "80,120"
+vim.opt.list = true
+-- See https://unicode-table.com/
+-- See https://jdhao.github.io/2020/10/07/nvim_insert_unicode_char/
+vim.opt.listchars:append("eol:↲")
+vim.opt.listchars:append("tab:→ ")
+vim.opt.listchars:append("trail:·")
+
+vim.opt.colorcolumn = "80,120"
 
 vim.wo.foldenable = false -- disable folding by default
 vim.wo.foldcolumn = "auto:1"
