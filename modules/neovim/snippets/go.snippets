@@ -1,8 +1,8 @@
 snippet pkg "Create a golang package definition" b
 	package `!lua require("dotfiles.plugin.snippy.go").pkg_name()`
 
-snippet *t "Create a *testing.T"
-	t *testing.T
+snippet *t "Create a *testing.T" i
+	t *testing.T$0
 
 snippet tf "Create a test function" b
 	func Test${1:Name}(t *testing.T) {
