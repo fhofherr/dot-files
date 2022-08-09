@@ -280,6 +280,7 @@ function M.setup()
 					"onsails/lspkind-nvim",
 					"dcampos/cmp-snippy",
 					"hrsh7th/cmp-nvim-lsp-signature-help",
+					"rcarriga/cmp-dap",
 				},
 				config = function()
 					require("dotfiles.plugin.cmp").config()

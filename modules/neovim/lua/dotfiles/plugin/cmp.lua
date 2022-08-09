@@ -21,7 +21,6 @@ function M.config()
 			{ name = "nvim_lsp" },
 			{ name = "snippy" },
 			{ name = "nvim_lsp_signature_help" },
-			{ name = "nvim_lua" }, -- TODO only use this source for lua files
 			{
 				name = "buffer",
 				option = {
@@ -45,6 +44,18 @@ function M.config()
 		},
 		formatting = {
 			format = lspkind.cmp_format({ with_text = true, maxwidth = 50 }),
+		},
+	})
+
+	cmp.setup.filetype({ "dap-repl", "dapui_watches" }, {
+		sources = {
+			{ name = "dap" },
+		},
+	})
+
+	cmp.setup.filetype("lua", {
+		sources = {
+			{ name = "nvim_lua" },
 		},
 	})
 end
