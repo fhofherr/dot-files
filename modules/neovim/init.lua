@@ -41,9 +41,13 @@ vim.opt.listchars:append("trail:·")
 
 vim.opt.colorcolumn = "80,120"
 
-vim.wo.foldenable = false -- disable folding by default
-vim.wo.foldcolumn = "auto:1"
-vim.wo.foldnestmax = 5
+-- See https://www.reddit.com/r/neovim/comments/psl8rq/sexy_folds/
+-- See https://www.reddit.com/r/neovim/comments/sofaax/is_there_a_way_to_change_neovims_way_of/
+vim.opt.foldenable = true
+vim.opt.foldcolumn = "auto:1"
+vim.opt.foldnestmax = 3
+vim.opt.foldtext =
+[[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
 
 vim.o.fileencoding = "utf-8"
 vim.bo.fileencoding = "utf-8"
