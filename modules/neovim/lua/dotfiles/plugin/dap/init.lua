@@ -4,6 +4,7 @@ local dap = require("dap")
 local dap_go = require("dap-go")
 local dap_ui = require("dapui")
 local dap_vt = require("nvim-dap-virtual-text")
+local dap_bp = require("persistent-breakpoints")
 
 local function set_breakpoint(cmd_args, fn)
 	if cmd_args.args and cmd_args ~= "" then
@@ -66,29 +67,39 @@ local function add_commands()
 		dap.step_out()
 	end, { force = true })
 	vim.api.nvim_create_user_command("DapStepOver", function()
-		dap.step_over()
+		dap.step_over({})
 	end, { force = true })
 end
 
 local function register_ui()
 	dap.listeners.after.event_initialized["dapui_config"] = function()
-		dap_ui.open()
+		dap_ui.open({})
 	end
 	dap.listeners.before.event_terminated["dapui_config"] = function()
-		dap_ui.close()
+		dap_ui.close({})
 	end
 	dap.listeners.before.event_exited["dapui_config"] = function()
-		dap_ui.close()
+		dap_ui.close({})
 	end
+end
+
+local function load_persistent_breakpoints_autocmd()
+	local group = vim.api.nvim_create_augroup("dotfiles_dap_persistent_breakpoints", {})
+	vim.api.nvim_create_autocmd("BufReadPost", {
+		callback = require("persistent-breakpoints.api").load_breakpoints,
+		group = group,
+	})
 end
 
 function M.setup()
 	dap_go.setup()
-	dap_ui.setup()
-	dap_vt.setup()
+	dap_ui.setup({})
+	dap_vt.setup({})
+	dap_bp.setup({})
 
 	register_ui()
 	add_commands()
+	load_persistent_breakpoints_autocmd()
 end
 
 return M

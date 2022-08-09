@@ -178,6 +178,7 @@ function M.setup()
 					"rcarriga/nvim-dap-ui",
 					"leoluz/nvim-dap-go",
 					"theHamsta/nvim-dap-virtual-text",
+					"Weissle/persistent-breakpoints.nvim",
 				},
 				config = function()
 					require("dotfiles.plugin.dap").setup()
