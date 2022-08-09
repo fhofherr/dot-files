@@ -256,7 +256,6 @@ function M.setup()
 					"luacheck",
 					"luafilesystem",
 				},
-				after = { "aerial.nvim" },
 				config = function()
 					require("dotfiles.plugin.lsp").config()
 				end,
