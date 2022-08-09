@@ -245,7 +245,7 @@ function M.setup()
 				"neovim/nvim-lspconfig",
 				requires = {
 					"folke/lsp-colors.nvim",
-					"ray-x/lsp_signature.nvim",
+					-- "ray-x/lsp_signature.nvim",
 					"stevearc/aerial.nvim",
 					"j-hui/fidget.nvim",
 					"jose-elias-alvarez/null-ls.nvim",
@@ -279,6 +279,7 @@ function M.setup()
 					"hrsh7th/cmp-path",
 					"onsails/lspkind-nvim",
 					"dcampos/cmp-snippy",
+					"hrsh7th/cmp-nvim-lsp-signature-help",
 				},
 				config = function()
 					require("dotfiles.plugin.cmp").config()

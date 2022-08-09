@@ -1,11 +1,10 @@
 local M = {}
 
-local lspconfig = require("lspconfig")
 local mappings = require("dotfiles.mappings")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local aerial = require("aerial")
 local fidget = require("fidget")
-local lspsig = require("lsp_signature")
+-- local lspsig = require("lsp_signature")
 local lspcolors = require("lsp-colors")
 
 local language_servers = {
@@ -147,14 +146,15 @@ function M.config()
 		max_width = { 50, 0.2 },
 		min_width = 40,
 	})
-	lspsig.setup({
-		hint_enable = false,
-		handler_opts = {
-			border = "single",
-		},
-		zindex = 50,
-		toggle_key = "<M-x>",
-	})
+	-- lspsig.setup({
+	-- 	hint_enable = false,
+	-- 	handler_opts = {
+	-- 		border = "single",
+	-- 	},
+	-- 	floating_window_above_cur_line = false,
+	-- 	zindex = 50,
+	-- 	toggle_key = "<M-x>",
+	-- })
 	lspcolors.setup()
 end
 

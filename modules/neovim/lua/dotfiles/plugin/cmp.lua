@@ -20,6 +20,7 @@ function M.config()
 		sources = {
 			{ name = "nvim_lsp" },
 			{ name = "snippy" },
+			{ name = "nvim_lsp_signature_help" },
 			{ name = "nvim_lua" }, -- TODO only use this source for lua files
 			{
 				name = "buffer",
