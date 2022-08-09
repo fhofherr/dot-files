@@ -4,6 +4,9 @@ local lspconfig = require("lspconfig")
 local mappings = require("dotfiles.mappings")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local aerial = require("aerial")
+local fidget = require("fidget")
+local lspsig = require("lsp_signature")
+local lspcolors = require("lsp-colors")
 
 local language_servers = {
 	clangd = require("dotfiles.plugin.lsp.clangd"),
@@ -136,11 +139,23 @@ local function new_default_opts()
 end
 
 function M.config()
-	if lspconfig then
-		for _, v in pairs(language_servers) do
-			v.setup(new_default_opts())
-		end
+	for _, v in pairs(language_servers) do
+		v.setup(new_default_opts())
 	end
+	fidget.setup({})
+	aerial.setup({
+		max_width = { 50, 0.2 },
+		min_width = 40,
+	})
+	lspsig.setup({
+		hint_enable = false,
+		handler_opts = {
+			border = "single",
+		},
+		zindex = 50,
+		toggle_key = "<M-x>",
+	})
+	lspcolors.setup()
 end
 
 return M

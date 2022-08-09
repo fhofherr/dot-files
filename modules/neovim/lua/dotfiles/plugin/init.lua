@@ -226,12 +226,6 @@ function M.setup()
 			})
 
 			use({
-				"folke/lsp-colors.nvim",
-				config = function()
-					require("lsp-colors").setup()
-				end,
-			})
-			use({
 				"folke/todo-comments.nvim",
 				requires = { requires = "nvim-lua/plenary.nvim" },
 				config = function()
@@ -248,32 +242,14 @@ function M.setup()
 			})
 
 			use({
-				"ray-x/lsp_signature.nvim",
-				config = function()
-					require("lsp_signature").setup({
-						hint_enable = false,
-						handler_opts = {
-							border = "single",
-						},
-						zindex = 50,
-						toggle_key = "<M-x>",
-					})
-				end,
-			})
-			use({
-				"stevearc/aerial.nvim",
-				config = function()
-					require("aerial").setup({
-						max_width = { 50, 0.2 },
-						min_width = 40,
-					})
-				end,
-			})
-			use({
 				"neovim/nvim-lspconfig",
 				requires = {
-					"nvim-lua/plenary.nvim", -- for null-ls
+					"folke/lsp-colors.nvim",
+					"ray-x/lsp_signature.nvim",
+					"stevearc/aerial.nvim",
+					"j-hui/fidget.nvim",
 					"jose-elias-alvarez/null-ls.nvim",
+					"nvim-lua/plenary.nvim", -- for null-ls
 				},
 				rocks = {
 					"luacheck",
