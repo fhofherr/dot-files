@@ -248,7 +248,6 @@ function M.setup()
 					"folke/lsp-colors.nvim",
 					-- "ray-x/lsp_signature.nvim",
 					"stevearc/aerial.nvim",
-					"j-hui/fidget.nvim",
 					"jose-elias-alvarez/null-ls.nvim",
 					"nvim-lua/plenary.nvim", -- for null-ls
 				},

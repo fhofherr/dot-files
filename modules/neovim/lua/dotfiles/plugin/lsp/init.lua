@@ -3,7 +3,6 @@ local M = {}
 local mappings = require("dotfiles.mappings")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local aerial = require("aerial")
-local fidget = require("fidget")
 -- local lspsig = require("lsp_signature")
 local lspcolors = require("lsp-colors")
 
@@ -149,7 +148,6 @@ function M.config()
 	for _, v in pairs(language_servers) do
 		v.setup(new_default_opts())
 	end
-	fidget.setup({})
 	aerial.setup({
 		max_width = { 50, 0.2 },
 		min_width = 40,
