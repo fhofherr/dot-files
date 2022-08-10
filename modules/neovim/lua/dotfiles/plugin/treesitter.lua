@@ -105,9 +105,6 @@ function M.config()
 		},
 		ensure_installed = "all",
 	})
-
-	vim.opt.foldmethod = "expr"
-	vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 end
 
 function M.status()

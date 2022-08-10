@@ -99,6 +99,30 @@ function M.setup()
 
 			use("editorconfig/editorconfig-vim")
 
+			use({
+				"kevinhwang91/nvim-ufo",
+				requires = { "kevinhwang91/promise-async" },
+				config = function()
+					-- See https://www.reddit.com/r/neovim/comments/psl8rq/sexy_folds/
+					-- See https://www.reddit.com/r/neovim/comments/sofaax/is_there_a_way_to_change_neovims_way_of/
+					vim.opt.foldcolumn = "1"
+					vim.opt.foldlevel = 99
+					vim.opt.foldlevelstart = 99
+					vim.opt.foldenable = true
+
+					-- TODO tinker a bit more with the various providers
+					require("ufo").setup({
+						provider_selector = function(bufnr, filetype, buftype)
+							return { "treesitter", "indent" }
+						end,
+					})
+
+					-- TODO move this to mappings.lua
+					vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+					vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+				end,
+			})
+
 			-- I hardly ever use that
 			-- use({
 			-- 	"mbbill/undotree",
