@@ -99,30 +99,6 @@ function M.setup()
 
 			use("editorconfig/editorconfig-vim")
 
-			use({
-				"kevinhwang91/nvim-ufo",
-				requires = { "kevinhwang91/promise-async" },
-				config = function()
-					-- See https://www.reddit.com/r/neovim/comments/psl8rq/sexy_folds/
-					-- See https://www.reddit.com/r/neovim/comments/sofaax/is_there_a_way_to_change_neovims_way_of/
-					vim.opt.foldcolumn = "1"
-					vim.opt.foldlevel = 99
-					vim.opt.foldlevelstart = 99
-					vim.opt.foldenable = true
-
-					-- TODO tinker a bit more with the various providers
-					require("ufo").setup({
-						provider_selector = function(bufnr, filetype, buftype)
-							return { "treesitter", "indent" }
-						end,
-					})
-
-					-- TODO move this to mappings.lua
-					vim.keymap.set("n", "zR", require("ufo").openAllFolds)
-					vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
-				end,
-			})
-
 			-- I hardly ever use that
 			-- use({
 			-- 	"mbbill/undotree",
@@ -308,6 +284,44 @@ function M.setup()
 				},
 				config = function()
 					require("dotfiles.plugin.cmp").config()
+				end,
+			})
+
+			use({
+				"kevinhwang91/nvim-ufo",
+				requires = { "kevinhwang91/promise-async" },
+				after = { "nvim-lspconfig" },
+				config = function()
+					local ufo = require("ufo")
+					-- See https://www.reddit.com/r/neovim/comments/psl8rq/sexy_folds/
+					-- See https://www.reddit.com/r/neovim/comments/sofaax/is_there_a_way_to_change_neovims_way_of/
+					vim.opt.foldcolumn = "auto:1"
+					vim.opt.foldlevel = 99
+					vim.opt.foldlevelstart = 99
+					vim.opt.foldenable = true
+
+					local providers = {
+						go = { "lsp", "indent" },
+						lua = { "treesitter", "indent" },
+					}
+
+					ufo.setup({
+						open_fold_hl_timeout = 150,
+						win_config = {
+							winhighlight = "Normal:Folded",
+							winblend = 0,
+						},
+						mappings = {
+							scrollU = "<C-u>",
+							scrollD = "<C-d>",
+						},
+						provider_selector = function(bufnr, filetype, buftype)
+							return providers[filetype] or "indent" -- { "treesitter", "indent" }
+						end,
+					})
+
+					vim.keymap.set("n", "zR", ufo.openAllFolds)
+					vim.keymap.set("n", "zM", ufo.closeAllFolds)
 				end,
 			})
 

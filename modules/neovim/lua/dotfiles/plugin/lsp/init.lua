@@ -125,6 +125,14 @@ local function new_default_opts()
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 	capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+	-- Add folding range capablility, which is not enabled by default in
+	-- neovim.
+	-- See https://github.com/kevinhwang91/nvim-ufo#quickstart
+	capabilities.textDocument.foldingRange = {
+		dynamicRegistration = false,
+		lineFoldingOnly = true,
+	}
+
 	return {
 		on_attach = function(client, bufnr)
 			configure_buffer(client, bufnr)

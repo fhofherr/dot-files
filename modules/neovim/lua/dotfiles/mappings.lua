@@ -1,5 +1,6 @@
 local M = {}
 
+local plugin = require("dotfiles.plugin")
 local telescope = require("dotfiles.plugin.telescope")
 local neotest = require("neotest")
 local snippy = require("dotfiles.plugin.snippy")
@@ -100,7 +101,12 @@ function M.on_lsp_attached(client, bufnr)
 
 	vim.keymap.set("n", "gD", telescope.lsp_type_definitions, opts) -- Go to type definition.
 	vim.keymap.set("n", "gd", telescope.lsp_definitions, opts) -- Go to definition.
-	vim.keymap.set("n", "K", vim.lsp.buf.hover, opts) -- Show documentation
+	vim.keymap.set("n", "K", function()
+		local ufo = plugin.safe_require("ufo")
+		if not ufo or not ufo.peekFoldedLinesUnderCursor() then
+			vim.lsp.buf.hover()
+		end
+	end, opts) -- Show documentation
 	vim.keymap.set("n", "gi", telescope.lsp_implementations, opts) -- Go to implementation
 	vim.keymap.set("n", "gr", telescope.lsp_references, opts) -- Show references
 	vim.keymap.set("n", "<c-s>", vim.lsp.buf.signature_help, opts) -- Show signature.
