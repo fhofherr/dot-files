@@ -148,6 +148,7 @@ function M.config()
 	for _, v in pairs(language_servers) do
 		v.setup(new_default_opts())
 	end
+
 	aerial.setup({
 		max_width = { 50, 0.2 },
 		min_width = 40,

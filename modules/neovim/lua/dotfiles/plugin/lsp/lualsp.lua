@@ -4,11 +4,6 @@ local lspconfig = plugin.safe_require("lspconfig")
 local M = {}
 
 function M.setup(opts)
-	-- pamac install lua-language-server
-	if vim.fn.executable("lua-language-server") ~= 1 then
-		return
-	end
-
 	-- This setup currently only works for neovim. I need to tweak this
 	-- if I want to use lua for other things as well.
 	local runtime_path = vim.split(package.path, ";")

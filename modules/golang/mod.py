@@ -10,17 +10,12 @@ class Golang(module.Definition):
 
     # Go development tools I install from source.
     _golang_dev_tools = [
-        "github.com/aarzilli/gdlv@latest",
         "github.com/fatih/gomodifytags@latest",
-        "github.com/go-delve/delve/cmd/dlv@latest",
         # "github.com/goreleaser/goreleaser@latest",
-        "github.com/mgechev/revive@latest",
         "github.com/psampaz/go-mod-outdated@latest",
-        "golang.org/x/lint/golint@latest",
         "golang.org/x/tools/cmd/godoc@latest",
         "golang.org/x/tools/cmd/goimports@latest",
         "golang.org/x/tools/cmd/stringer@latest",
-        "golang.org/x/tools/gopls@latest",
     ]
 
     @property

@@ -243,13 +243,49 @@ function M.setup()
 			})
 
 			use({
+				"williamboman/mason.nvim",
+				requires = {
+					"williamboman/mason-lspconfig.nvim",
+					"WhoIsSethDaniel/mason-tool-installer.nvim",
+				},
+				config = function()
+					local ensure_installed = {
+						"black",
+						"delve",
+						"gitlint",
+						"golangci-lint",
+						"gopls",
+						"isort",
+						"lua-language-server",
+						"pyright",
+						"python-lsp-server", --aka pylsp
+						"revive",
+						"rust-analyzer",
+						"shellcheck",
+						"shfmt",
+						"stylua",
+					}
+
+					require("mason").setup()
+					require("mason-lspconfig").setup({
+						automatic_installation = false,
+					})
+					require("mason-tool-installer").setup({
+						ensure_installed = ensure_installed,
+						auto_update = false,
+						run_on_start = false,
+					})
+				end,
+			})
+
+			use({
 				"neovim/nvim-lspconfig",
 				requires = {
 					"folke/lsp-colors.nvim",
-					-- "ray-x/lsp_signature.nvim",
-					"stevearc/aerial.nvim",
 					"jose-elias-alvarez/null-ls.nvim",
 					"nvim-lua/plenary.nvim", -- for null-ls
+					-- "ray-x/lsp_signature.nvim",
+					"stevearc/aerial.nvim",
 				},
 				rocks = {
 					"luacheck",

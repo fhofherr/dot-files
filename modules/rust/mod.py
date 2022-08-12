@@ -5,7 +5,6 @@ from dotfiles import module
 
 RUSTUP_URL = "https://sh.rustup.rs"
 CRATES = [
-    "stylua",
     "zoxide",
 ]
 
