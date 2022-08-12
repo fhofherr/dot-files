@@ -30,7 +30,7 @@ function M.setup(opts)
 			buildFlags = build_flags(),
 			-- See https://github.com/golang/tools/blob/master/gopls/doc/analyzers.md
 			analyses = {
-				fieldalignment = true,
+				fieldalignment = false,
 				nilness = true,
 				unreachable = true,
 				unusedparams = true,
