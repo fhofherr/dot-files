@@ -10,7 +10,7 @@ local sources = {
 
 	builtins.diagnostics.ansiblelint,
 	builtins.diagnostics.buf,
-	builtins.diagnostics.checkmake, -- TODO install checkmake: https://github.com/mrtazz/checkmake
+	-- builtins.diagnostics.checkmake, -- TODO install checkmake: https://github.com/mrtazz/checkmake
 	builtins.diagnostics.flake8.with({
 		condition = function()
 			return vim.fn.executable("flake8") == 1
