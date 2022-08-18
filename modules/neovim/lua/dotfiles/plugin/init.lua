@@ -361,6 +361,14 @@ function M.setup()
 			})
 
 			use({
+				"simrat39/rust-tools.nvim",
+				after = { "nvim-lspconfig" },
+				config = function()
+					require("rust-tools").setup({})
+				end,
+			})
+
+			use({
 				"nvim-telescope/telescope.nvim",
 				requires = {
 					"nvim-lua/plenary.nvim",
