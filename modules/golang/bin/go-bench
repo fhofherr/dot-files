@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+function usage {
+    echo "Usage"
+    echo "    $0 <Benchmark name> <go-pkg> [info]"
+    exit 1
+}
+
+function main {
+    local benchname gopkg info
+
+    benchname="${1:-}"
+    gopkg="${2:-}"
+    info="${3:-}"
+
+    [[ -n "${benchname:-}" ]] || usage
+    [[ -n "${gopkg:-}" ]] || usage
+
+    if [[ -z "${info:-}" ]]; then
+        info="$(date +%Y%m%d_%H%M%S)"
+    fi
+
+    go test -bench "^${benchname}\$" \
+        -benchmem -memprofile "${benchname}.${info}.mem.out" \
+        -cpuprofile "${benchname}.${info}.cpu.out" \
+        "${gopkg}" | tee "${benchname}.${info}.out"
+}
+
+main "$@"
