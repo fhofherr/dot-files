@@ -108,6 +108,14 @@ function M.setup()
 			-- 		vim.g.undotree_SetFocusWhenToggle = 1
 			-- 	end,
 			-- })
+			--
+			use({
+				"sindrets/diffview.nvim",
+				requires = "nvim-lua/plenary.nvim",
+				config = function()
+					require("diffview").setup({})
+				end,
+			})
 
 			use("tpope/vim-eunuch")
 			use({
