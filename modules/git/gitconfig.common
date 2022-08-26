@@ -17,6 +17,8 @@
     pup = pull --prune
     ri = rebase -i
     st = status -s
+    tree = log --graph --all -10 --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(bold white)— %an%C(reset)' --abbrev-commit
+    tagwk = "!f() { local tag; tag=\"$(date +%Y.%V.$(( $(git tag -l | grep -c $(date +%Y.%V)) + 1)))\"; git tag -a \"$tag\" ; }; f"
 [core]
     autocrlf = input
 [filter "kicad_project"]
