@@ -22,7 +22,7 @@ function main {
         info="$(date +%Y%m%d_%H%M%S)"
     fi
 
-    go test -bench "^${benchname}\$" \
+    go test -run "^${benchname}\$" -bench "^${benchname}\$" \
         -benchmem -memprofile "${benchname}.${info}.mem.out" \
         -cpuprofile "${benchname}.${info}.cpu.out" \
         "${gopkg}" | tee "${benchname}.${info}.out"
