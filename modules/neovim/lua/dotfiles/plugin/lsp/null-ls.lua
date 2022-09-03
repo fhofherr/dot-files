@@ -8,7 +8,11 @@ local sources = {
 	builtins.code_actions.gitsigns,
 	builtins.code_actions.shellcheck,
 
-	builtins.diagnostics.ansiblelint,
+	builtins.diagnostics.ansiblelint.with({
+		condition = function()
+			return vim.fn.executable("ansible-lint") == 1
+		end,
+	}),
 	builtins.diagnostics.buf,
 	-- builtins.diagnostics.checkmake, -- TODO install checkmake: https://github.com/mrtazz/checkmake
 	builtins.diagnostics.flake8.with({

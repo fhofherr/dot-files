@@ -7,6 +7,7 @@ local aerial = require("aerial")
 local lspcolors = require("lsp-colors")
 
 local language_servers = {
+	ansiblels = require("dotfiles.plugin.lsp.ansiblels"),
 	clangd = require("dotfiles.plugin.lsp.clangd"),
 	gopls = require("dotfiles.plugin.lsp.gopls"),
 	hls = require("dotfiles.plugin.lsp.hls"),

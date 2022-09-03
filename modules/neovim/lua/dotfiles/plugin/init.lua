@@ -258,6 +258,7 @@ function M.setup()
 				},
 				config = function()
 					local ensure_installed = {
+						"ansible-language-server", -- aka ansiblels
 						"black",
 						"delve",
 						"gitlint",
@@ -272,6 +273,7 @@ function M.setup()
 						"shellcheck",
 						"shfmt",
 						"stylua",
+						"yamllint",
 					}
 
 					require("mason").setup()
