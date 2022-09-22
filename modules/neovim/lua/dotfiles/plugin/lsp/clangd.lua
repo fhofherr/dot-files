@@ -2,6 +2,11 @@ local M = {}
 
 local plugin = require("dotfiles.plugin")
 local lspconfig = plugin.safe_require("lspconfig")
+local ccls = require("dotfiles.plugin.lsp.ccls")
+
+function M.enabled()
+	return not ccls.enabled()
+end
 
 function M.setup(opts)
 	if vim.fn.executable("clangd") ~= 1 then
@@ -15,8 +20,8 @@ function M.setup(opts)
 		"--cross-file-rename",
 		"--header-insertion",
 		"never",
-		"--query-driver",
-		"/usr/bin/clang-*,/usr/bin/arm-none-eabi-*",
+		-- "--query-driver",
+		-- "/usr/bin/clang-*,/usr/bin/arm-none-eabi-*",
 	}
 	lspconfig.clangd.setup(opts)
 end

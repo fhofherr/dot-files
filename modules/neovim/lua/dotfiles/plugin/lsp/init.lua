@@ -9,6 +9,7 @@ local lspcolors = require("lsp-colors")
 local language_servers = {
 	ansiblels = require("dotfiles.plugin.lsp.ansiblels"),
 	clangd = require("dotfiles.plugin.lsp.clangd"),
+	ccls = require("dotfiles.plugin.lsp.ccls"),
 	gopls = require("dotfiles.plugin.lsp.gopls"),
 	hls = require("dotfiles.plugin.lsp.hls"),
 	pylsp = require("dotfiles.plugin.lsp.pylsp"),
@@ -21,7 +22,12 @@ local language_servers = {
 local preferred_formatters = {
 	gopls = "go",
 	clangd = { "c", "cpp" },
+	ccls = { "c", "cpp" },
 }
+
+local function language_server_enabled(ls)
+	return ls.enabled == nil or ls.enabled()
+end
 
 local function configure_buffer(_, bufnr)
 	vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
@@ -35,11 +41,15 @@ local function configure_formatting(_, bufnr)
 
 	local formatters_by_filetype = {}
 	for ls_name, fts in pairs(preferred_formatters) do
-		if type(fts) == "string" then
-			formatters_by_filetype[fts] = ls_name
-		else
-			for _, ft in ipairs(fts) do
-				formatters_by_filetype[ft] = ls_name
+		local ls = language_servers[ls_name]
+
+		if language_server_enabled(ls) then
+			if type(fts) == "string" then
+				formatters_by_filetype[fts] = ls_name
+			else
+				for _, ft in ipairs(fts) do
+					formatters_by_filetype[ft] = ls_name
+				end
 			end
 		end
 	end
@@ -147,7 +157,9 @@ end
 
 function M.config()
 	for _, v in pairs(language_servers) do
-		v.setup(new_default_opts())
+		if language_server_enabled(v) then
+			v.setup(new_default_opts())
+		end
 	end
 
 	aerial.setup({
