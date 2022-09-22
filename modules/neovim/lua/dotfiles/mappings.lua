@@ -7,6 +7,11 @@ local snippy = require("dotfiles.plugin.snippy")
 
 function M.register()
 	local opts = { silent = true }
+
+	-- In select or visual mode always paste from the 0 register which
+	-- contains the value of the latest yank.
+	vim.keymap.set("x", "<localleader>p", '"0p')
+
 	--
 	-- Code navigation
 	--
