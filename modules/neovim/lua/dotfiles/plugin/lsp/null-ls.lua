@@ -25,9 +25,10 @@ local sources = {
 	builtins.diagnostics.luacheck.with({
 		command = plugin.hererocks_bin() .. "/luacheck",
 		cwd = function()
-			local rc = vim.fn.getcwd(0) .. "/.luacheckrc"
+			local wd = vim.fn.getcwd(0)
+			local rc = wd .. "/.luacheckrc"
 			if vim.fn.filereadable(rc) > 0 then
-				return rc
+				return wd
 			end
 		end,
 	}),
