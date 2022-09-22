@@ -2,6 +2,7 @@ local M = {}
 
 local treesitter = require("nvim-treesitter")
 local treesitter_configs = require("nvim-treesitter.configs")
+local treesitter_context = require("treesitter-context")
 
 function M.config()
 	treesitter_configs.setup({
@@ -104,6 +105,11 @@ function M.config()
 			},
 		},
 		ensure_installed = "all",
+	})
+
+	treesitter_context.setup({
+		enable = true,
+		max_lines = 1,
 	})
 end
 
