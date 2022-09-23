@@ -1,17 +1,18 @@
 local M = {}
 
-local plugin = require("dotfiles.plugin")
-local lspconfig = plugin.safe_require("lspconfig")
+local lspconfig = require("lspconfig")
+local ccls = require("ccls")
 
 function M.enabled()
-	return vim.fn.findfile(".ccls", vim.fn.getcwd()) ~= ""
+	return vim.fn.executable("ccls") == 1 and vim.fn.findfile(".ccls", vim.fn.getcwd()) ~= ""
 end
 
 function M.setup(opts)
-	if vim.fn.executable("ccls") ~= 1 then
-		return
-	end
+	opts.filetypes = { "c", "cpp", "objc", "objcpp" }
 	lspconfig.ccls.setup(opts)
+	ccls.setup({
+		filetypes = opts.filetypes,
+	})
 end
 
 return M

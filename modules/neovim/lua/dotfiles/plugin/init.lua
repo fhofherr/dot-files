@@ -298,6 +298,7 @@ function M.setup()
                     "nvim-lua/plenary.nvim", -- for null-ls
                     "p00f/clangd_extensions.nvim",
                     -- "ray-x/lsp_signature.nvim",
+                    "ranjithshegde/ccls.nvim",
                     "stevearc/aerial.nvim",
                 },
                 rocks = {
