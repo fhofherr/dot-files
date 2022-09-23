@@ -13,6 +13,7 @@ function M.setup(opts)
 		return
 	end
 	opts.root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git")
+	opts.filetypes = { "c", "cpp", "objc", "objcpp", "cuda" }
 	opts.cmd = {
 		"clangd",
 		"--background-index",
