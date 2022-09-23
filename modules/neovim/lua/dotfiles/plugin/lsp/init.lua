@@ -8,6 +8,7 @@ local lspcolors = require("lsp-colors")
 
 local language_servers = {
 	ansiblels = require("dotfiles.plugin.lsp.ansiblels"),
+	bufls = require("dotfiles.plugin.lsp.bufls"),
 	clangd = require("dotfiles.plugin.lsp.clangd"),
 	ccls = require("dotfiles.plugin.lsp.ccls"),
 	gopls = require("dotfiles.plugin.lsp.gopls"),

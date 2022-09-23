@@ -259,6 +259,8 @@ function M.setup()
 				config = function()
 					local ensure_installed = {
 						"ansible-language-server", -- aka ansiblels
+						"buf",
+						"buf-language-server",
 						"black",
 						"delve",
 						"gitlint",
