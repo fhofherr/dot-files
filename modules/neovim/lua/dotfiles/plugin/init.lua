@@ -178,8 +178,6 @@ function M.setup()
 				end,
 			})
 
-			use("nelstrom/vim-visual-star-search")
-
 			use({
 				"mfussenegger/nvim-dap",
 				requires = {
